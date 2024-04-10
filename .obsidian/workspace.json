@@ -1,0 +1,263 @@
+{
+  "main": {
+    "id": "ef229fe6fb76e6f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "56990f097cfb2230",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a1e8c121f108a2b9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "templates/Standart.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bc1986e14c33d931",
+    "type": "split",
+    "children": [
+      {
+        "id": "f53eff160a497ecd",
+        "type": "tabs",
+        "dimension": 63,
+        "children": [
+          {
+            "id": "a4aac5da601ba6a5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2a74392cf3b8fe56",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": true,
+                "collapseAll": true,
+                "extraContext": true,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4088324b5b9c1559",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "c41d99a7dd6a99d9",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {}
+            }
+          }
+        ]
+      },
+      {
+        "id": "e00227eb846a8853",
+        "type": "tabs",
+        "dimension": 37,
+        "children": [
+          {
+            "id": "1d02bf679667e70c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "5574d936d4634301",
+            "type": "leaf",
+            "state": {
+              "type": "tags-overview-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "7b792f38758c7169",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "018a9fa1eebd5dc3",
+    "type": "split",
+    "children": [
+      {
+        "id": "b65f64f7ea565699",
+        "type": "tabs",
+        "dimension": 58.83333333333334,
+        "children": [
+          {
+            "id": "f3c26dea75321055",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "templates/Standart.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1daf017023089b15",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "templates/Standart.md"
+              }
+            }
+          },
+          {
+            "id": "ddae7b7ad3100f14",
+            "type": "leaf",
+            "state": {
+              "type": "trash-explorer",
+              "state": {}
+            }
+          }
+        ]
+      },
+      {
+        "id": "ef374a01047e02c6",
+        "type": "tabs",
+        "dimension": 41.16666666666666,
+        "children": [
+          {
+            "id": "5a56115c53085d93",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "templates/Standart.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c9ab2448d75e6670",
+            "type": "leaf",
+            "state": {
+              "type": "reference-map-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "2d9d3e6e7ae25d5f",
+            "type": "leaf",
+            "state": {
+              "type": "textAnalysis-view",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 379.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "workspaces:Manage workspace layouts": false,
+      "obsidian42-brat:BRAT": false,
+      "reference-map:Reference Map": false,
+      "obsidian-trash-explorer:Open trash explorer": false,
+      "textanalysis:Text Analysis": false,
+      "local-backup:Run local backup": false,
+      "tags-overview:Tags overview": false
+    }
+  },
+  "active": "a1e8c121f108a2b9",
+  "lastOpenFiles": [
+    "attachments/Pasted image 20240410174131.png",
+    "Untitled 3.md",
+    "attachments/ARIMA + GARCH to model SPX returns.ipynb",
+    "attachments/Random Variables.ipynb",
+    "Untitled 6.md",
+    "Pasted image 20240410173924.png",
+    "templates/Standart.md",
+    "Untitled 7.md",
+    "Untitled.canvas",
+    "Untitled 2.md",
+    "Untitled 4.md",
+    "Untitled 8.md",
+    "Welcome.md",
+    "Untitled 5.md",
+    "attachments",
+    "Pasted image 20240410173230.png",
+    "db/deep learning.md",
+    "Grandmaster level in StarCraft II using multi-agent reinforcement learning-O Vinyals 2019.md",
+    "Relational Deep Reinforcement Learning.pdf",
+    "Autoencoders-Dor Bank 2021.md",
+    "2024-04-10.md",
+    "create a link.md",
+    "Untitled 1.md",
+    "Untitled.md",
+    "StarCraft II A New Challenge for Reinforcement Learning-O Vinyals 2017.md",
+    "db/subsidiary.md",
+    "db/Googleplex.md",
+    "0002-04-04.md",
+    "2024-04-09.md",
+    "2024-04-04.md",
+    "2020-08-21.md",
+    "Spaces",
+    "Here we improve on deep RL architectures by leveragin.md",
+    "db/Untitled 1.md",
+    "db",
+    "Untitled",
+    "templates",
+    "CloudAtlas",
+    "StarCraft II A New Challenge 1.pdf"
+  ]
+}

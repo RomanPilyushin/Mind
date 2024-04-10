@@ -1,0 +1,660 @@
+/*****************************************************************************
+ * NOTE TOOLBAR (CSS Snippet for Obsidian)
+ * 
+ * Author: Chris Gurney https://chrisgurney.ca/ https://github.com/chrisgurney/
+ * License: Feel free to use and modify. Attribution would be appreciated.
+ * Version: 20240318.0
+ * 
+ * Adds an unobtrusive toolbar that blends well with your Obsidian note, made 
+ * up of any items you provide in a standard markdown list.
+ * 
+ * INSTALLATION
+ * 
+ * Install the obsidian-note-toolbar plugin via Community Plugins.
+ *
+ * OR
+ *   1. Add this CSS file to your .obsidian/snippets folder in your vault.
+ *   2. Enable it in Obsidian Settings... > Appearance > CSS Snippets
+ * 
+ * USAGE
+ * 
+ * Create a toolbar by creating a callout containing any list, like this:
+ * 
+ * > [!note-toolbar]
+ * > - [Link Menu Item](obsidian://...)
+ * > - [[Page Menu Item]]
+ * > - Menu Item That Won't Do Anything
+ * 
+ * To control its appearance, optionally add metadata by adding a | and listing
+ * options, for example:
+ *
+ * > [!note-toolbar|border-right-sticky]
+ *
+ * STYLES
+ * 
+ * Options are as follows, and can be combined (per the above example):
+ *   border = adds a top and bottom border
+ *   noborder = turns off border (default)
+ *   center = aligns items center
+ *   even = distributes items evenly
+ *   floatl = floats the toolbar left of nearby content
+ *   floatr = floats the toolbar right of nearby content
+ *   nofloat = turns off float (default)
+ *   left = aligns items left (default)
+ *   right = aligns items right
+ *   sticky = sticks toolbar to top on scroll
+ *   nosticky = turns off stickiness (default)
+ * 
+ * STYLES (MOBILE OVERRIDES)
+ * 
+ * Add these mobile-equivalent styles to override the defaults, above:
+ *   mbrder = border
+ *   mnbrder = noborder
+ *   mctr = center
+ *   mevn = even
+ *   mfltl = floatl
+ *   mfltr = floatr
+ *   mnflt = nofloat
+ *   mlft = left
+ *   mrght = right
+ *   mstcky = sticky
+ *   mnstcky = nosticky
+ * 
+ * USAGE TIPS
+ * 
+ * - Toolbars can be placed anywhere in a note, even within other callouts!
+ * - That said, you may want to place the toolbar one space below the top of a 
+ *   note, so that the callout code doesn't get expanded when switching to the note
+ *   in Editing mode.
+ * - The sticky option is disabled on mobile, but see comment below to enable it.
+ * - Note Toolbar pairs well with these plugins, which I use:
+ *   - Advanced URI (for linking to any Obsidian command)
+ *   - Dataview (e.g., generate a list of your Bookmarks)
+ *   - Periodic Notes (link to today's, and previous/next Daily Notes)
+ *   - Shell Commands (for executing shell scripts, Python code, etc.) 
+ *****************************************************************************/
+
+.metadata-container {
+    margin-block-end: 0;
+}
+
+.cm-embed-block:has(> div > .callout[data-callout="note-toolbar"]) {
+    &:hover {
+        box-shadow: none !important; /* hide the border on hover of the toolbar callout */
+        & .edit-block-button {
+            display: none; /* hide the edit icon that appears */
+        }
+    }
+}
+
+.cm-embed-block:has(> div > .callout[data-callout="note-toolbar"][data-callout-metadata*="sticky"]) {
+    position: sticky;
+    top: calc(var(--header-height) * -1);
+    z-index: 2;
+    .is-mobile &, .is-phone & {
+        top: -1rem;
+    }
+}
+
+.is-mobile .cm-embed-block:has(> div > .callout[data-callout="note-toolbar"][data-callout-metadata*="mstcky"]) {
+    position: sticky;
+    z-index: 2;
+}
+.cm-embed-block:has(> div > .callout[data-callout="note-toolbar"][data-callout-metadata*="mstcky"]) {
+    .is-mobile &, .is-phone & {
+        top: -1rem;
+    }
+}
+
+/* default, if not specified */
+.cm-embed-block:has(> div > .callout[data-callout="note-toolbar"][data-callout-metadata*="nosticky"]) {
+    top: inherit;
+    position: relative;
+}
+
+.cm-embed-block:has(> div > .callout[data-callout="note-toolbar"][data-callout-metadata*="mnstcky"]) {
+    .is-mobile &, .is-phone & {
+        top: inherit;
+        position: relative;
+    }
+}
+
+.callout[data-callout="note-toolbar"] {
+
+    background-color: var(--background-primary);
+    
+    .callout & {
+        background-color: inherit;
+    }
+
+    border-radius: 0;
+    padding: inherit;
+    width: 100%;
+    /* max-width: var(--file-line-width); */
+
+    & .callout-title {
+        display: none;
+    }
+
+    & .callout-content {
+
+        & ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0rem;
+            margin: 0.5em 0 0.5em 0;
+            padding-inline-start: 0;
+        }
+    
+        & li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            
+            & div.list-bullet {
+                display: none; /* remove for reading mode */
+            }
+            &.hide-on-mobile {
+                .is-mobile & {
+                    display: none;
+                }
+            }
+            &.hide-on-desktop {
+                display: none;
+                .is-mobile & {
+                    display: block !important;
+                }
+            }
+
+        }
+
+        & a {
+            color: var(--metadata-label-text-color);
+            padding: 0.5em 0.75em 0.5em 0.75em;
+            display: block;
+            text-decoration: none;
+            font-size: var(--metadata-label-font-size);
+            border-radius: var(--button-radius);
+            height: 100%;
+        }
+
+        & a:focus-within {
+            border-radius: var(--metadata-property-radius);
+            box-shadow: inset 0 0 0 1px var(--background-modifier-border);
+            box-shadow: inset 0 0 0 2px var(--background-modifier-border-focus);
+        }
+
+        & a:hover {
+            box-shadow: none;
+            opacity: var(--icon-opacity-hover);
+            background-color: var(--background-modifier-hover);
+            color: var(--text-normal);
+        }
+
+        & a.external-link {
+            background-image: none; /* hide the external link icon */
+        }
+
+    }
+
+    /*************************************************************************
+     * Toolbar Styles (sticky's at top)
+     *************************************************************************/
+
+    &[data-callout-metadata*="border"] {
+        border-top: solid 1px var(--hr-color);
+        border-bottom: solid 1px var(--hr-color);
+        border-radius: 0;
+    }
+
+    &[data-callout-metadata*="mbrder"] {
+        .is-mobile & {
+            border-top: solid 1px var(--hr-color);
+            border-bottom: solid 1px var(--hr-color);
+            border-radius: 0;
+        }
+    }
+
+    &[data-callout-metadata*="noborder"] {
+        border: inherit;
+    }
+
+    &[data-callout-metadata*="mnbrder"] {
+        .is-mobile & {
+            border: inherit;
+        }
+    }
+
+    &[data-callout-metadata*="center"] ul {
+        justify-content: center;
+    }
+    
+    &[data-callout-metadata*="mctr"] ul {
+        .is-mobile & {
+            justify-content: center;
+        }
+    }
+
+    &[data-callout-metadata*="even"] ul {
+        justify-content: space-evenly;
+    }
+    
+    &[data-callout-metadata*="mevn"] ul {
+        .is-mobile & {
+            justify-content: space-evenly;
+        }
+    }
+
+    &[data-callout-metadata*="floatl"] {
+        float: left;
+        width: inherit;
+    }
+
+    &[data-callout-metadata*="mfltl"] {
+        .is-mobile & {
+            float: left;
+            width: inherit;
+        }
+    }
+
+    &[data-callout-metadata*="floatr"] {
+        float: right;
+        width: inherit;
+    }
+
+    &[data-callout-metadata*="mfltr"] {
+        .is-mobile & {
+            float: right;
+            width: inherit;
+        }
+    }
+
+    &[data-callout-metadata*="nofloat"] {
+        float: inherit;
+    }
+
+    &[data-callout-metadata*="mnflt"] {
+        .is-mobile & {
+            float: inherit;
+        }
+    }
+
+    &[data-callout-metadata*="left"] ul {
+        justify-content: left;
+    }
+
+    &[data-callout-metadata*="mlft"] ul {
+        .is-mobile & {
+            justify-content: left;
+        }
+    }
+
+    &[data-callout-metadata*="right"] ul {
+        justify-content: right;
+    }
+
+    &[data-callout-metadata*="mrght"] ul {
+        .is-mobile & {
+            justify-content: right;
+        }
+    }
+
+    &.cg-note-toolbar-callout {
+        /* margin-top: fix for reading mode */
+        margin-top: 0; 
+        & a {
+            align-items: center;
+            display: flex;
+            gap: 0 0.5em;
+            & svg {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }
+    
+}
+
+.cg-note-toolbar-container {
+    box-shadow: 0 0 0 1px var(--background-primary);
+    margin-bottom: 1em;
+    .is-mobile & {
+        margin: 0.4em 0 1em 0;
+    }
+    &:hover {
+        /* fix: (#14) flickering problem experienced with Banner plugin beta in use */
+        overflow: inherit !important;
+    }
+    /* width: var(--var-max-width);
+    max-width: var(--var-max-width); */
+}
+
+/*****************************************************************************
+* Settings Styles (for Note Toolbar Plugin)
+******************************************************************************/
+
+.note-toolbar-setting-toolbar-list, .note-toolbar-setting-item {
+    border-radius: 8px;
+    border: 1px solid var(--background-modifier-border);
+    margin: 0em 0em 1em 0em;
+    padding: 1.5em 1.5em 0.5em 1.5em;
+    .is-mobile & {
+        padding: 1em;
+    }
+}
+
+.note-toolbar-setting-toolbar-list {
+    & svg {
+        height: var(--font-ui-smaller);
+        width: var(--font-ui-smaller);
+        display: block;
+    }
+    &:has(:last-child) {
+        .is-mobile & {
+            padding-bottom: 0;
+        }
+    }
+    & .setting-item-description {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.note-toolbar-setting-toolbar-list-preview-item {
+    align-items: center;
+    display: flex;
+    margin-right: 4px;
+    & span {
+        margin-right: 2px;
+        white-space: nowrap;
+    }
+}
+
+.note-toolbar-setting-empty-message {
+    color: var(--text-muted);
+    height: var(--input-height);
+    padding-bottom: 1em;
+    .note-toolbar-setting-item-styles & {
+        padding-bottom: 0;    
+    }
+}
+
+.note-toolbar-setting-error-message {
+    color: var(--color-red);
+    padding-bottom: 1em;
+    .note-toolbar-setting-item-top-container & {
+        padding-top: 1em;
+    }
+}
+
+.note-toolbar-setting-error {
+    & input[type="text"], & input[type="search"] {
+        box-shadow: 0 0 0 1px var(--color-red);
+    }
+}
+
+.note-toolbar-setting-button {
+    border-top: none;
+    padding-top: 0 !important;
+    padding-bottom: 1em !important;
+}
+
+.note-toolbar-setting-no-controls {
+    & .setting-item-control {
+        display: none;
+    }
+    & .setting-item-description a {
+        white-space: nowrap;
+        &:focus-within {
+            box-shadow: 0 0 0 2px;
+        }
+    }
+}
+
+.note-toolbar-setting-item-delete-button {
+    margin-top: 2em !important;
+}
+
+.note-toolbar-setting-folder-list-item-container {
+    display: flex;
+}
+
+.note-toolbar-setting-item-top-container {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+}
+
+.note-toolbar-setting-item-toggles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.note-toolbar-setting-item-icon {
+    padding-top: 0 !important;
+    & .setting-item-info {
+        display: none;
+    }
+    & .setting-item-control {
+        margin-top: 0 !important;
+        & .clickable-icon[data-note-toolbar-no-icon="true"] {
+            & svg {
+                filter: brightness(0.5);
+            }
+        }    
+        & .clickable-icon:focus-within {
+            border-radius: var(--input-radius);
+            box-shadow: 0 0 0 1px var(--background-modifier-border);
+            box-shadow: 0 0 0 2px var(--background-modifier-border-focus);
+        }
+    }
+}
+
+.note-toolbar-icon-suggestion {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    & svg {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.note-toolbar-icon-action-button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 1em;
+}
+
+.note-toolbar-setting-item-fields {
+    display: flex;
+    gap: 0 1em;
+}
+
+.note-toolbar-setting-item-field {
+    border-top: none;
+    flex-grow: 1;
+    padding-top: 0 !important;
+    & .setting-item-info {
+        display: none;
+    }
+    & .setting-item-control {
+        width: 100%;
+        & input[type="text"] {
+            width: 100%;
+        }
+        .is-mobile & {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+.note-toolbar-setting-item-link-container {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    column-gap: 1em;
+    row-gap: 1em;
+    & .setting-item {
+        padding: 0;
+    }
+    & .setting-item-info {
+        display: none;
+    }
+    & .setting-item-control {
+        .is-mobile & {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+.note-toolbar-setting-item-link {
+    width: 100%;
+}
+
+.note-toolbar-setting-item-field-link {
+    border-top: none;
+    /* default to none, so we can render it ahead of time; set visible based on type to show */
+    display: none;
+    padding-top: 0 !important;
+    width: 100%;
+    & .setting-item-control, .search-input-container {
+        width: 100%;
+        & input[type="text"] {
+            width: 100%;
+        }
+    }
+    &[data-active="true"] {
+        display: inherit;
+    }
+    &[data-active="false"] {
+        display: none;
+    }
+}
+
+.note-toolbar-setting-item-toggle {
+    border-top: none;
+    padding: 0.75em 0 0.75em 0 !important;
+    &:not(:first-child) {
+        padding-left: 1em !important;
+    }
+    .is-mobile & {
+        padding-bottom: 0em !important;
+    }
+    & .setting-item-info {
+        margin-right: 0.5em;
+    }
+    & .setting-item-name {
+        color: var(--text-muted);
+        font-size: var(--font-ui-smaller);
+    }
+}
+
+.note-toolbar-setting-item-controls {
+    margin-left: auto;
+    .setting-item {
+        & .setting-item-info {
+            display: none;
+        }
+        .is-mobile & {
+            padding-top: 0 !important;
+        }
+        & .setting-item-control {
+            .is-mobile & {
+                margin-top: 0 !important;
+            }
+            & .clickable-icon:focus-within {
+                border-radius: var(--input-radius);
+                box-shadow: 0 0 0 1px var(--background-modifier-border);
+                box-shadow: 0 0 0 2px var(--background-modifier-border-focus);
+            }
+        }
+    }
+}
+
+.note-toolbar-setting-item-fields-and-controls {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+.note-toolbar-setting-item-styles {
+    border-top: none;
+    & > .setting-item-info {
+        align-self: flex-start;
+    }
+}
+
+.note-toolbar-setting-item-style {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: end;
+    gap: 0.25em;
+    width: 100%;
+    .setting-item {
+        border-top: none;
+        border: dashed 1px var(--pill-color-remove);
+        border-radius: var(--pill-radius);
+        padding: 0 0.25em 0 0.75em !important;
+        flex-wrap: nowrap;
+        height: var(--input-height);
+        .is-mobile & {
+            flex-direction: row !important;
+            align-items: center !important;
+        }
+        &:first-child {
+            border: dashed 1px var(--pill-color-remove) !important;
+        }
+        &:last-child {
+            border: none !important;
+            padding: 0em !important;
+            flex-basis: 100%;
+        }
+        & .setting-item-info {
+            margin-right: 0.25em;
+            color: var(--pill-color);
+            & .setting-item-name {
+                font-size: var(--metadata-input-font-size);
+            }
+        }
+        & .setting-item-control {
+            --icon-size: var(--icon-xs);
+            --icon-stroke: var(--icon-xs-stroke-width);
+            .is-mobile & {
+                margin-top: 0 !important;
+            }
+            .is-phone & {
+                width: inherit !important;
+            }
+            & .clickable-icon:focus-within {
+                border-radius: var(--input-radius);
+                box-shadow: 0 0 0 1px var(--background-modifier-border);
+                box-shadow: 0 0 0 2px var(--background-modifier-border-focus);
+            }
+            & select[class="dropdown"] {
+                border-radius: 2em;
+                font-size: var(--metadata-input-font-size);
+                max-width: 50%;
+            }
+        }
+    }
+}
+
+.note-toolbar-setting-mini-dialog {
+    width: calc(var(--dialog-width) / 1.5);
+}
+
+.note-toolbar-setting-modal-container {
+    .is-phone & {
+        /* fix/workaround for Obsidian v1.5.11 bug: modals opened from settings have an inaccessible close button */
+        top: var(--safe-area-inset-top);
+    }
+}
+
+.vertical-tab-content.note-toolbar-setting-modal {
+    padding-left: var(--size-4-5);
+    padding-right: var(--size-4-5);
+}
