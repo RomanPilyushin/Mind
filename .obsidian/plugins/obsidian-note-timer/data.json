@@ -1,0 +1,11 @@
+{
+  "autoLog": false,
+  "dateFormat": "MM-DD",
+  "logDateLinking": "none",
+  "msDisplay": false,
+  "startButtonText": "Play",
+  "stopButtonText": "Stop",
+  "resetButtonText": "Reset",
+  "showResetButton": true,
+  "continueRunningOnReset": false
+}

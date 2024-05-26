@@ -5,6 +5,8 @@
     "tags": "tags",
     "time": "datetime",
     "id": "number",
-    "data": "date"
+    "data": "date",
+    "created": "date",
+    "updated": "date"
   }
 }

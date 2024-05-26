@@ -1,0 +1,3 @@
+- [[templates/The Economist Template.md]]
+- [[templates/Daily Note Template.md]]
+

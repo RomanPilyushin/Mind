@@ -1,0 +1,9 @@
+- improve public health
+	- study shown, reduce blood pressure
+	- boost immune system
+- enhance overall life in the city
+	- estetic places
+	- cycling
+	- sport
+- enviroment
+	- trees absorb air pollution

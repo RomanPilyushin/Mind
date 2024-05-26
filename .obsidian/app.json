@@ -3,5 +3,7 @@
   "trashOption": "local",
   "promptDelete": false,
   "attachmentFolderPath": "attachments",
-  "showUnsupportedFiles": true
+  "showUnsupportedFiles": true,
+  "readableLineLength": true,
+  "spellcheck": false
 }

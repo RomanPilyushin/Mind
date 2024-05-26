@@ -1,84 +1,192 @@
 {
   "recentFiles": [
     {
-      "basename": "Standart",
-      "path": "templates/Standart.md"
+      "basename": "Speaking 4 Integrated Listen",
+      "path": "templates/toefl/Speaking 4 Integrated Listen.md"
     },
     {
-      "basename": "Pasted image 20240410174131",
-      "path": "attachments/Pasted image 20240410174131.png"
+      "basename": "Speaking 3 Integrated Read Listen",
+      "path": "templates/toefl/Speaking 3 Integrated Read Listen.md"
     },
     {
-      "basename": "Untitled 3",
-      "path": "Untitled 3.md"
+      "basename": "Writing 1 Integrated",
+      "path": "templates/toefl/Writing 1 Integrated.md"
     },
     {
-      "basename": "Untitled 6",
-      "path": "Untitled 6.md"
+      "basename": "Speaking 2 Campus Integrated",
+      "path": "templates/toefl/Speaking 2 Campus Integrated.md"
     },
     {
-      "basename": "Pasted image 20240410173924",
-      "path": "Pasted image 20240410173924.png"
+      "basename": "Speaking 1 Independent",
+      "path": "templates/toefl/Speaking 1 Independent.md"
     },
     {
-      "basename": "Untitled 7",
-      "path": "Untitled 7.md"
+      "basename": "Writing 2 Academic Discussion",
+      "path": "templates/toefl/Writing 2 Academic Discussion.md"
     },
     {
-      "basename": "Untitled",
-      "path": "Untitled.canvas"
+      "basename": "_Anki",
+      "path": "_Anki.md"
     },
     {
-      "basename": "Untitled 2",
-      "path": "Untitled 2.md"
+      "basename": "Writing 2 (1)",
+      "path": "Writing 2 (1).md"
     },
     {
-      "basename": "Untitled 5",
-      "path": "Untitled 5.md"
+      "basename": "Writing 1 (1)",
+      "path": "Writing 1 (1).md"
     },
     {
-      "basename": "deep learning",
-      "path": "db/deep learning.md"
+      "basename": "_Dataviewer",
+      "path": "_Dataviewer.md"
     },
     {
-      "basename": "Grandmaster level in StarCraft II using multi-agent reinforcement learning-O Vinyals 2019",
-      "path": "Grandmaster level in StarCraft II using multi-agent reinforcement learning-O Vinyals 2019.md"
+      "basename": "_Toggl",
+      "path": "_Toggl.md"
+    },
+    {
+      "basename": "Conceptual Note",
+      "path": "templates/Conceptual Note.md"
+    },
+    {
+      "basename": "Optiver",
+      "path": "Optiver.md"
+    },
+    {
+      "basename": "Chess Template",
+      "path": "templates/Chess Template.md"
+    },
+    {
+      "basename": "Einstellung Effect",
+      "path": "Einstellung Effect.md"
+    },
+    {
+      "basename": "Theo",
+      "path": "Theo.md"
+    },
+    {
+      "basename": "How to Excel at Math and Science",
+      "path": "How to Excel at Math and Science.md"
+    },
+    {
+      "basename": "The Economist Note",
+      "path": "templates/The Economist Note.md"
+    },
+    {
+      "basename": "Diffuse Mode",
+      "path": "Diffuse Mode.md"
+    },
+    {
+      "basename": "Summary Note",
+      "path": "templates/Summary Note.md"
+    },
+    {
+      "basename": "MathJax",
+      "path": "templates/MathJax.md"
+    },
+    {
+      "basename": "Deutsch Perfekt Note",
+      "path": "templates/Deutsch Perfekt Note.md"
+    },
+    {
+      "basename": "Daily Note",
+      "path": "templates/Daily Note.md"
+    },
+    {
+      "basename": "Recall the Material",
+      "path": "Recall the Material.md"
+    },
+    {
+      "basename": "The bid and ask prices",
+      "path": "The bid and ask prices.md"
     },
     {
       "basename": "Relational Deep Reinforcement Learning",
-      "path": "Relational Deep Reinforcement Learning.pdf"
+      "path": "pdf/papers/Relational Deep Reinforcement Learning.pdf"
     },
     {
-      "basename": "Autoencoders-Dor Bank 2021",
-      "path": "Autoencoders-Dor Bank 2021.md"
+      "basename": "Logical Chess",
+      "path": "pdf/chess/Logical Chess.pdf"
     },
     {
-      "basename": "2024-04-10",
-      "path": "2024-04-10.md"
+      "basename": "Naked Statistics",
+      "path": "pdf/statistics/Naked Statistics.pdf"
     },
     {
-      "basename": "create a link",
-      "path": "create a link.md"
+      "basename": "Art of Statistics",
+      "path": "pdf/statistics/Art of Statistics.pdf"
     },
     {
-      "basename": "Untitled 1",
-      "path": "Untitled 1.md"
+      "basename": "Basic German",
+      "path": "pdf/deutsch/Basic German.pdf"
     },
     {
-      "basename": "Untitled",
-      "path": "Untitled.md"
+      "basename": "Note",
+      "path": "Note.md"
     },
     {
-      "basename": "StarCraft II A New Challenge for Reinforcement Learning-O Vinyals 2017",
-      "path": "StarCraft II A New Challenge for Reinforcement Learning-O Vinyals 2017.md"
+      "basename": "UNTITLED CHAT 2024-05-10 19 09 02",
+      "path": "smart-chats/UNTITLED CHAT 2024-05-10 19 09 02.md"
     },
     {
-      "basename": "subsidiary",
-      "path": "db/subsidiary.md"
+      "basename": "UNTITLED CHAT 2024-05-10 18 54 58",
+      "path": "smart-chats/UNTITLED CHAT 2024-05-10 18 54 58.md"
     },
     {
-      "basename": "Googleplex",
-      "path": "db/Googleplex.md"
+      "basename": "UNTITLED CHAT 2024-05-10 18 54 57",
+      "path": "smart-chats/UNTITLED CHAT 2024-05-10 18 54 57.md"
+    },
+    {
+      "basename": "UNTITLED CHAT 2024-05-10 18 54 27",
+      "path": "smart-chats/UNTITLED CHAT 2024-05-10 18 54 27.md"
+    },
+    {
+      "basename": "Rust Variables",
+      "path": "Rust Variables.md"
+    },
+    {
+      "basename": "Speaking",
+      "path": "templates/english/Speaking.md"
+    },
+    {
+      "basename": "Writing",
+      "path": "templates/english/Writing.md"
+    },
+    {
+      "basename": "Secrets of Mental Math",
+      "path": "pdf/mental math/Secrets of Mental Math.pdf"
+    },
+    {
+      "basename": "Intermediate German",
+      "path": "pdf/deutsch/Intermediate German.pdf"
+    },
+    {
+      "basename": "The Princeton Companion To Applied Mathematics",
+      "path": "pdf/math/The Princeton Companion To Applied Mathematics.pdf"
+    },
+    {
+      "basename": "The Princeton Companion To Mathematics",
+      "path": "pdf/math/The Princeton Companion To Mathematics.pdf"
+    },
+    {
+      "basename": "Python Code Template",
+      "path": "templates/code/Python Code Template.md"
+    },
+    {
+      "basename": "Rust Code Template",
+      "path": "templates/code/Rust Code Template.md"
+    },
+    {
+      "basename": "Rustlings Template",
+      "path": "templates/code/Rustlings Template.md"
+    },
+    {
+      "basename": "Recording 20240423163030",
+      "path": "attachments/Recording 20240423163030.webm"
+    },
+    {
+      "basename": "Why Swiss Money Looks WeirdPT7M36.54S",
+      "path": "screenshots/Why Swiss Money Looks WeirdPT7M36.54S.webp"
     }
   ],
   "omittedPaths": [],

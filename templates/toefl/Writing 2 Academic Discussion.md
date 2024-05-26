@@ -1,0 +1,75 @@
+---
+tags:
+  - toefl
+  - writing-section-2
+  - english
+---
+>At least 100 words
+>**Writing for an Academic Discussion task** (10 minutes) — state and support an opinion in an online classroom discussion.
+
+```timer
+log: false
+ms: true
+showResetButton: false
+_timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
+```
+
+### Text
+
+
+
+
+
+
+### Notes
+
+
+
+
+
+
+
+### Essay
+
+
+
+Here’s a template that focuses on expanding on and challenging the points mentioned by the other students.
+
+- This is a challenging topic, but I think that [respond directly to the question].
+- I strongly agree with [student]’s idea that [mention one point made by the student]. 
+- I’d add that [expand on the point with your own idea].
+- While [other student] raised the relevant point that [mention one point made by the other student], he/she didn’t mention that [challenge that point].
+- For example [elaborate on your challenge with your own ideas].
+
+Here’s a template that focuses on giving an entirely new answer and ignoring the other student responses.
+
+- While I appreciate the points mentioned by both STUDENT 1 and STUDENT 2, I think that… [elaborate on your idea for a few sentences]
+- Remember that [elaborate on your point], so [elaborate on your point].
+- Some people may feel that [mention a potential challenge], but [respond to this challenge].
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Gemini's Improvements
+
+
+
+
+
+
+
+### Gemini's Evaluations
+
+
+
+
+

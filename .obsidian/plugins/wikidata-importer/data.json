@@ -1,0 +1,9 @@
+{
+  "entityIdKey": "wikidata entity id",
+  "internalLinkPrefix": "",
+  "ignoreCategories": true,
+  "ignoreWikipediaPages": true,
+  "ignoreIDs": true,
+  "ignorePropertiesWithTimeRanges": true,
+  "overwriteExistingProperties": false
+}

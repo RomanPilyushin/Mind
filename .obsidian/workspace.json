@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "56990f097cfb2230",
+        "id": "5f9c2329896eba14",
         "type": "tabs",
         "children": [
           {
-            "id": "a1e8c121f108a2b9",
+            "id": "e6076ad27ae47e2a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "templates/Standart.md",
+                "file": "templates/toefl/Speaking 4 Integrated Listen.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -32,10 +32,10 @@
       {
         "id": "f53eff160a497ecd",
         "type": "tabs",
-        "dimension": 63,
+        "dimension": 69.58333333333333,
         "children": [
           {
-            "id": "a4aac5da601ba6a5",
+            "id": "3b9858743f17ceae",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -80,7 +80,7 @@
       {
         "id": "e00227eb846a8853",
         "type": "tabs",
-        "dimension": 37,
+        "dimension": 30.416666666666664,
         "children": [
           {
             "id": "1d02bf679667e70c",
@@ -94,7 +94,7 @@
             }
           },
           {
-            "id": "5574d936d4634301",
+            "id": "c5d671c6f0758889",
             "type": "leaf",
             "state": {
               "type": "tags-overview-view",
@@ -102,7 +102,7 @@
             }
           },
           {
-            "id": "7b792f38758c7169",
+            "id": "34284c347a632b34",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -114,7 +114,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 307.5
   },
   "right": {
     "id": "018a9fa1eebd5dc3",
@@ -123,17 +123,22 @@
       {
         "id": "b65f64f7ea565699",
         "type": "tabs",
-        "dimension": 58.83333333333334,
+        "dimension": 53.5,
         "children": [
           {
-            "id": "f3c26dea75321055",
+            "id": "059cc707853f99d9",
             "type": "leaf",
             "state": {
-              "type": "outgoing-link",
+              "type": "backlink",
               "state": {
-                "file": "templates/Standart.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
+                "file": "templates/toefl/Speaking 4 Integrated Listen.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -143,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "templates/Standart.md"
+                "file": "templates/toefl/Speaking 4 Integrated Listen.md"
               }
             }
           },
@@ -154,28 +159,55 @@
               "type": "trash-explorer",
               "state": {}
             }
+          },
+          {
+            "id": "2be577d542912355",
+            "type": "leaf",
+            "state": {
+              "type": "code-execute-manage-executors",
+              "state": {}
+            }
+          },
+          {
+            "id": "60572abd1cae05b1",
+            "type": "leaf",
+            "state": {
+              "type": "tlfItemView",
+              "state": {}
+            }
+          },
+          {
+            "id": "3d1b2a28c67bc0eb",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {}
+            }
+          },
+          {
+            "id": "169ac32b326b8c08",
+            "type": "leaf",
+            "state": {
+              "type": "toggl-report",
+              "state": {}
+            }
           }
         ]
       },
       {
         "id": "ef374a01047e02c6",
         "type": "tabs",
-        "dimension": 41.16666666666666,
+        "dimension": 46.5,
         "children": [
           {
-            "id": "5a56115c53085d93",
+            "id": "f3c26dea75321055",
             "type": "leaf",
             "state": {
-              "type": "backlink",
+              "type": "outgoing-link",
               "state": {
-                "file": "templates/Standart.md",
-                "collapseAll": true,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "file": "templates/toefl/Speaking 4 Integrated Listen.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -188,10 +220,53 @@
             }
           },
           {
-            "id": "2d9d3e6e7ae25d5f",
+            "id": "1a71bda88597e173",
             "type": "leaf",
             "state": {
-              "type": "textAnalysis-view",
+              "type": "localgraph",
+              "state": {
+                "file": "templates/toefl/Speaking 4 Integrated Listen.md",
+                "options": {
+                  "collapse-filter": false,
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": true,
+                  "showTags": true,
+                  "showAttachments": true,
+                  "hideUnresolved": true,
+                  "collapse-color-groups": true,
+                  "colorGroups": [],
+                  "collapse-display": false,
+                  "showArrow": true,
+                  "textFadeMultiplier": 0,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "collapse-forces": true,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 0.713275462622442,
+                  "close": true
+                }
+              }
+            }
+          },
+          {
+            "id": "523558824376f5a8",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "777c9ed87815bd5a",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-chat-view",
               "state": {}
             }
           }
@@ -199,65 +274,87 @@
       }
     ],
     "direction": "horizontal",
-    "width": 379.5
+    "width": 403.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "workspaces:Manage workspace layouts": false,
-      "obsidian42-brat:BRAT": false,
-      "reference-map:Reference Map": false,
-      "obsidian-trash-explorer:Open trash explorer": false,
-      "textanalysis:Text Analysis": false,
-      "local-backup:Run local backup": false,
-      "tags-overview:Tags overview": false
+      "switcher:Schnellauswahl öffnen": false,
+      "graph:Graphen-Ansicht öffnen": false,
+      "canvas:Neuen Canvas erstellen": false,
+      "daily-notes:Heutige Notiz öffnen": false,
+      "templates:Vorlage einfügen": false,
+      "command-palette:Befehlspalette öffnen": false,
+      "zk-prefixer:Neue eindeutige Notiz erstellen": false,
+      "random-note:Zufällige Notiz öffnen": false,
+      "audio-recorder:Audioaufzeichnung starten/stoppen": false,
+      "workspaces:Workspace-Layouts verwalten": false,
+      "obsidian42-brat:BRAT": true,
+      "reference-map:Reference Map": true,
+      "local-backup:Run local backup": true,
+      "tags-overview:Tags overview": true,
+      "obsidian-file-info-plugin:File Info Panel": true,
+      "3d-graph:3D Graph": true,
+      "table-editor-obsidian:Advanced Tables Toolbar": true,
+      "obisidian-note-linker:Note Linker": true,
+      "obsidian-map-view:Open map view": true,
+      "latex-ocr:LatexOCR": false,
+      "omnisearch:Omnisearch": false,
+      "smart-second-brain:Open S2B Chat": false,
+      "media-extended:Open media": false,
+      "smart-connections:Open: View Smart Connections": false,
+      "smart-connections:Open: Smart Chat Conversation": false,
+      "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "a1e8c121f108a2b9",
+  "active": "e6076ad27ae47e2a",
   "lastOpenFiles": [
-    "attachments/Pasted image 20240410174131.png",
-    "Untitled 3.md",
-    "attachments/ARIMA + GARCH to model SPX returns.ipynb",
-    "attachments/Random Variables.ipynb",
-    "Untitled 6.md",
-    "Pasted image 20240410173924.png",
-    "templates/Standart.md",
-    "Untitled 7.md",
+    "templates/toefl/Speaking 3 Integrated Read Listen.md",
+    "templates/toefl/Speaking 4 Integrated Listen.md",
+    "templates/toefl/Writing 1 Integrated.md",
+    "templates/toefl/Speaking 2 Campus Integrated.md",
+    "templates/toefl/Speaking 1 Independent.md",
+    "templates/toefl/Writing 2 Academic Discussion.md",
+    "_Anki.md",
+    "Writing 2 (1).md",
+    "Writing 1 (1).md",
+    "_Dataviewer.md",
+    "pdf/math/How to Think Like a Mathematician.pdf",
+    "pdf/math/How to Study as a Mathematics Major.pdf",
+    "pdf/chess/How To Reassess Your Chess.pdf",
+    "pdf/math/Algorithmic Puzzles.pdf",
+    "_Toggl.md",
+    "templates/Conceptual Note.md",
+    "Unbenannt.md",
+    "Optiver.md",
+    "templates/Chess Template.md",
+    "Einstellung Effect.md",
+    "Theo.md",
+    "How to Excel at Math and Science.md",
+    "templates/The Economist Note.md",
+    "pdf/papers",
+    "pdf/chess",
+    "pdf/statistics",
+    "pdf/math",
+    "pdf/mental math",
+    "pdf/deutsch",
+    "Diffuse Mode.md",
+    "templates/Summary Note.md",
+    "templates/MathJax.md",
+    "templates/Deutsch Perfekt Note.md",
+    "templates/Daily Note.md",
+    "Recall the Material.md",
+    "Solving Problems.md",
+    "How to Excel at Math and SciencePT2M48.15S.png",
+    "media/How to Excel at Math and SciencePT2M48.15S.png",
+    "attachments/Anki.png",
+    "Pasted image 20240508130912.png",
+    "attachments/Pasted image 20240508130912.png",
+    "attachments/Pasted image 20240508130804.png",
+    "attachments/Pasted image 20240508130607.png",
+    "media/20231118_FND004.jpg",
     "Untitled.canvas",
-    "Untitled 2.md",
-    "Untitled 4.md",
-    "Untitled 8.md",
-    "Welcome.md",
-    "Untitled 5.md",
-    "attachments",
-    "Pasted image 20240410173230.png",
-    "db/deep learning.md",
-    "Grandmaster level in StarCraft II using multi-agent reinforcement learning-O Vinyals 2019.md",
-    "Relational Deep Reinforcement Learning.pdf",
-    "Autoencoders-Dor Bank 2021.md",
-    "2024-04-10.md",
-    "create a link.md",
-    "Untitled 1.md",
-    "Untitled.md",
-    "StarCraft II A New Challenge for Reinforcement Learning-O Vinyals 2017.md",
-    "db/subsidiary.md",
-    "db/Googleplex.md",
-    "0002-04-04.md",
-    "2024-04-09.md",
-    "2024-04-04.md",
-    "2020-08-21.md",
-    "Spaces",
-    "Here we improve on deep RL architectures by leveragin.md",
-    "db/Untitled 1.md",
-    "db",
-    "Untitled",
-    "templates",
-    "CloudAtlas",
-    "StarCraft II A New Challenge 1.pdf"
+    "screenshots/Why Swiss Money Looks WeirdPT12M20.101S.webp",
+    "screenshots/Why Swiss Money Looks WeirdPT7M36.54S.webp"
   ]
 }

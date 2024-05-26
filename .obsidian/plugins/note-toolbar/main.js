@@ -27,10 +27,10 @@ __export(main_exports, {
   default: () => NoteToolbarPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian8 = require("obsidian");
+var import_obsidian9 = require("obsidian");
 
 // src/Settings/NoteToolbarSettingTab.ts
-var import_obsidian7 = require("obsidian");
+var import_obsidian8 = require("obsidian");
 
 // src/Utils/Utils.ts
 var DEBUG = false;
@@ -42,6 +42,64 @@ function arraymove(arr, fromIndex, toIndex) {
   arr[fromIndex] = arr[toIndex];
   arr[toIndex] = element;
 }
+function moveElement(array, fromIndex, toIndex) {
+  if (fromIndex !== toIndex && fromIndex >= 0 && fromIndex < array.length && toIndex >= 0 && toIndex < array.length) {
+    const element = array.splice(fromIndex, 1)[0];
+    array.splice(toIndex, 0, element);
+  }
+}
+function migrateItemVisPlatform(hideOnDesktop, hideOnMobile) {
+  if (!hideOnDesktop && !hideOnMobile) {
+    return "all";
+  } else if (hideOnDesktop && hideOnMobile) {
+    return "none";
+  } else if (hideOnMobile) {
+    return "desktop";
+  } else if (hideOnDesktop) {
+    return "mobile";
+  } else {
+    return "all";
+  }
+}
+function calcComponentVisToggles(visibility) {
+  const desktopComponents = hasComponents(visibility.desktop);
+  const mobileComponents = hasComponents(visibility.mobile);
+  const tabletComponents = hasComponents(visibility.tablet);
+  return desktopComponents.concat(mobileComponents, tabletComponents);
+}
+function hasComponents(platform) {
+  let hasIcon = false;
+  let hasLabel = false;
+  if (platform && platform.allViews) {
+    hasIcon = platform.allViews.components.includes("icon");
+    hasLabel = platform.allViews.components.includes("label");
+  }
+  return [hasIcon, hasLabel];
+}
+function calcItemVisToggles(visibility) {
+  const desktopHasComponents = hasVisibleComponents(visibility.desktop);
+  const mobileHasComponents = hasVisibleComponents(visibility.mobile);
+  const tabletHasComponents = hasVisibleComponents(visibility.tablet);
+  return [desktopHasComponents, mobileHasComponents, tabletHasComponents];
+}
+function hasVisibleComponents(platform) {
+  return !!platform && !!platform.allViews && platform.allViews.components.length > 0;
+}
+function removeComponentVisibility(platform, component) {
+  if (platform && platform.allViews) {
+    const index2 = platform.allViews.components.indexOf(component);
+    if (index2 !== -1) {
+      platform.allViews.components.splice(index2, 1);
+    }
+  }
+}
+function addComponentVisibility(platform, component) {
+  if (platform && platform.allViews) {
+    if (!platform.allViews.components.includes(component)) {
+      platform.allViews.components.push(component);
+    }
+  }
+}
 function debugLog(message, ...optionalParams) {
   DEBUG && console.log(message, ...optionalParams);
 }
@@ -51,6 +109,22 @@ function emptyMessageFr(message) {
   messageFrText.textContent = message;
   messageFr.append(messageFrText);
   return messageFr;
+}
+function learnMoreFr(message, url) {
+  let messageFr = document.createDocumentFragment();
+  messageFr.append(
+    message,
+    " ",
+    messageFr.createEl("a", { href: url, text: "Learn\xA0more" })
+  );
+  return messageFr;
+}
+function getPosition(element) {
+  const rect = element.getBoundingClientRect();
+  return {
+    x: rect.left + activeWindow.scrollX,
+    y: rect.top + activeWindow.scrollY
+  };
 }
 function hasVars(s) {
   const urlVariableRegex = /{{.*?}}/g;
@@ -71,12 +145,14 @@ function isValidUri(u) {
 }
 
 // src/Settings/ToolbarSettingsModal.ts
-var import_obsidian4 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 
 // src/Settings/NoteToolbarSettings.ts
-var SETTINGS_VERSION = 202403301e-1;
+var SETTINGS_VERSION = 202404261e-1;
 var DEFAULT_SETTINGS = {
   folderMappings: [],
+  icon: "circle-ellipsis",
+  showEditInFabMenu: false,
   toolbarProp: "notetoolbar",
   toolbars: [],
   version: SETTINGS_VERSION
@@ -86,33 +162,66 @@ var DEFAULT_TOOLBAR_SETTINGS = {
   items: [],
   mobileStyles: [],
   name: "",
+  position: {
+    desktop: { allViews: { position: "props" } },
+    tablet: { allViews: { position: "props" } },
+    mobile: { allViews: { position: "props" } }
+  },
   updated: new Date().toISOString()
 };
+var POSITION_OPTIONS = {
+  desktop: [
+    { top: "Top (fixed)" },
+    { props: "Below Properties" },
+    { hidden: "Hidden (do not display)" }
+  ],
+  mobile: [
+    { top: "Top (fixed)" },
+    { props: "Below Properties" },
+    { fabl: "Floating button: left" },
+    { fabr: "Floating button: right" },
+    { hidden: "Hidden / Navigation bar" }
+  ]
+};
 var DEFAULT_STYLE_OPTIONS = [
+  { autohide: "auto-hide*" },
   { border: "border" },
+  { button: "button" },
   { noborder: "no border" },
   { center: "center items" },
   { even: "evenly space items" },
   { left: "left align items" },
   { right: "right align items" },
-  { sticky: "sticky" },
+  { sticky: "sticky*" },
   { nosticky: "not sticky" },
-  { floatl: "float left" },
-  { floatr: "float right" },
+  { floatl: "float left*" },
+  { floatr: "float right*" },
   { nofloat: "no float" }
+];
+var DEFAULT_STYLE_DISCLAIMERS = [
+  { autohide: "Auto-hide does not apply on mobile." },
+  { floatl: "Float left only works within callouts." },
+  { floatr: "Float right only works within callouts." },
+  { sticky: "Sticky does not apply in Reading mode." }
 ];
 var MOBILE_STYLE_OPTIONS = [
   { mbrder: "border" },
+  { mbtn: "button" },
   { mnbrder: "no border" },
   { mctr: "center items" },
   { mevn: "evenly space items" },
   { mlft: "left align items" },
   { mrght: "right align items" },
-  { mstcky: "sticky" },
+  { mstcky: "sticky*" },
   { mnstcky: "not sticky" },
-  { mfltl: "float left" },
-  { mfltr: "float right" },
+  { mfltl: "float left*" },
+  { mfltr: "float right*" },
   { mnflt: "no float" }
+];
+var MOBILE_STYLE_DISCLAIMERS = [
+  { mfltl: "Float left only works within callouts." },
+  { mfltr: "Float right only works within callouts." },
+  { mstcky: "Sticky does not apply in Reading mode." }
 ];
 
 // src/Settings/DeleteModal.ts
@@ -171,14 +280,18 @@ var CommandSuggester = class extends import_obsidian2.AbstractInputSuggest {
 // src/Settings/IconSuggestModal.ts
 var import_obsidian3 = require("obsidian");
 var IconSuggestModal = class extends import_obsidian3.SuggestModal {
-  constructor(parent, parentEl, toolbarSettings, index) {
-    super(parent.plugin.app);
+  constructor(plugin, settingsWithIcon, parentEl2) {
+    super(plugin.app);
     this.modalEl.addClass("note-toolbar-setting-mini-dialog");
-    this.parentEl = parentEl;
-    this.plugin = parent.plugin;
-    this.toolbarSettings = toolbarSettings;
-    this.toolbarItemIndex = index;
+    this.parentEl = parentEl2;
+    this.plugin = plugin;
+    this.settingsWithIcon = settingsWithIcon;
     this.setPlaceholder("Search for an icon");
+    this.setInstructions([
+      { command: "\u2191\u2193", purpose: "to navigate" },
+      { command: "\u21B5", purpose: "to use" },
+      { command: "esc", purpose: "to dismiss" }
+    ]);
   }
   getSuggestions(inputStr) {
     const iconIds = (0, import_obsidian3.getIconIds)();
@@ -208,8 +321,8 @@ var IconSuggestModal = class extends import_obsidian3.SuggestModal {
    * @param selectedIcon Icon to save.
    */
   onChooseSuggestion(item, evt) {
-    debugLog("onChooseSuggestion: ", this.toolbarItemIndex, item);
-    this.toolbarSettings.items[this.toolbarItemIndex].icon = item === "No icon" ? "" : item;
+    debugLog("onChooseSuggestion: ", this.settingsWithIcon);
+    this.settingsWithIcon.icon = item === "No icon" ? "" : item;
     this.plugin.saveSettings();
     (0, import_obsidian3.setIcon)(this.parentEl, item === "No icon" ? "lucide-plus-square" : item);
     this.parentEl.setAttribute("data-note-toolbar-no-icon", item === "No icon" ? "true" : "false");
@@ -217,12 +330,46 @@ var IconSuggestModal = class extends import_obsidian3.SuggestModal {
   }
 };
 
+// src/Settings/Suggesters/FileSuggester.ts
+var import_obsidian4 = require("obsidian");
+var FileSuggester = class extends import_obsidian4.AbstractInputSuggest {
+  constructor(app, inputEl) {
+    super(app, inputEl);
+    this.inputEl = inputEl;
+  }
+  getSuggestions(inputStr) {
+    const abstractFiles = this.app.vault.getAllLoadedFiles();
+    let files = [];
+    const lowerCaseInputStr = inputStr.toLowerCase();
+    files = abstractFiles.filter(
+      (file) => file instanceof import_obsidian4.TFile && file.path.toLowerCase().includes(lowerCaseInputStr)
+    );
+    return files;
+  }
+  renderSuggestion(file, el) {
+    el.setText(file.path);
+  }
+  selectSuggestion(file) {
+    this.inputEl.value = file.path;
+    this.inputEl.trigger("input");
+    this.close();
+  }
+};
+
 // src/Settings/ToolbarSettingsModal.ts
-var ToolbarSettingsModal = class extends import_obsidian4.Modal {
-  constructor(parent, toolbar) {
-    super(parent.plugin.app);
+var ToolbarSettingsModal = class extends import_obsidian5.Modal {
+  /**
+   * Displays a new edit toolbar modal, for the given toolbar.
+   * @param app reference to the app
+   * @param plugin reference to the plugin
+   * @param parent NoteToolbarSettingTab if coming from settings UI; null if coming from editor 
+   * @param toolbar ToolbarSettings to edit
+   */
+  constructor(app, plugin, parent = null, toolbar) {
+    super(app);
+    this.itemListOpen = true;
     this.parent = parent;
-    this.plugin = parent.plugin;
+    this.plugin = plugin;
     this.toolbar = toolbar;
   }
   /**
@@ -237,7 +384,7 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
   onClose() {
     const { contentEl } = this;
     contentEl.empty();
-    this.parent.display();
+    this.parent ? this.parent.display() : void 0;
   }
   /*************************************************************************
    * SETTINGS DISPLAY
@@ -248,28 +395,36 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
   display(focusOnLastItem = false) {
     this.modalEl.addClass("note-toolbar-setting-modal-container");
     this.contentEl.empty();
-    let settingsDiv = this.containerEl.createEl("div");
+    let settingsDiv = this.containerEl.createDiv();
     settingsDiv.className = "vertical-tab-content note-toolbar-setting-modal";
     this.displayNameSetting(settingsDiv);
     this.displayItemList(settingsDiv);
+    this.displayPositionSetting(settingsDiv);
     this.displayStyleSetting(settingsDiv);
     this.displayDeleteButton(settingsDiv);
     this.contentEl.appendChild(settingsDiv);
     if (focusOnLastItem) {
       let inputToFocus = this.contentEl.querySelector("#note-toolbar-setting-item-field-" + (this.toolbar.items.length - 1) + ' input[type="text"]');
+      let inputContainer = inputToFocus.closest(".note-toolbar-setting-item");
       if ((inputToFocus == null ? void 0 : inputToFocus.value.length) === 0) {
         inputToFocus.focus();
+        if (import_obsidian5.Platform.isMobile) {
+          setTimeout(() => {
+            inputContainer.scrollIntoView(true);
+          }, 100);
+        }
       }
+    } else {
+      this.rememberLastPosition(this.contentEl.children[0]);
     }
-    this.rememberLastPosition(this.contentEl.children[0]);
   }
   /**
    * Displays the Name setting.
    * @param settingsDiv HTMLElement to add the setting to.
    */
   displayNameSetting(settingsDiv) {
-    let toolbarNameDiv = this.containerEl.createEl("div");
-    new import_obsidian4.Setting(toolbarNameDiv).setName("Name").setDesc("Give this toolbar a unique name.").addText((text) => text.setPlaceholder("Name").setValue(this.toolbar.name).onChange((0, import_obsidian4.debounce)(async (value) => {
+    let toolbarNameDiv = this.containerEl.createDiv();
+    new import_obsidian5.Setting(toolbarNameDiv).setName("Name").setDesc("Give this toolbar a unique name.").addText((text) => text.setPlaceholder("Name").setValue(this.toolbar.name).onChange((0, import_obsidian5.debounce)(async (value) => {
       var _a;
       let existingToolbar = this.plugin.getToolbarSettings(value);
       if (existingToolbar && existingToolbar !== this.toolbar) {
@@ -295,36 +450,54 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
    * @param settingsDiv HTMLElement to add the settings to.
    */
   displayItemList(settingsDiv) {
-    const itemsDescription = document.createDocumentFragment();
-    itemsDescription.append(
-      "Items that appear in the toolbar, in order.",
-      itemsDescription.createEl("br"),
-      "See the documentation for ",
-      itemsDescription.createEl("a", {
-        href: "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Examples",
-        text: "examples"
-      }),
-      ", and for details about ",
-      itemsDescription.createEl("a", {
-        href: "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Creating-toolbars#variables",
-        text: "variables"
-      }),
-      " supported in links."
-    );
-    new import_obsidian4.Setting(settingsDiv).setName("Items").setDesc(itemsDescription).setClass("note-toolbar-setting-no-controls");
+    let itemsContainer = createDiv();
+    itemsContainer.addClass("note-toolbar-setting-items-container");
+    itemsContainer.setAttribute("data-active", this.itemListOpen.toString());
+    let itemsSetting = new import_obsidian5.Setting(itemsContainer).setName("Items").setHeading().setDesc(learnMoreFr(
+      "Items in the toolbar, in order from left to right.",
+      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Creating-toolbar-items"
+    ));
+    if (this.toolbar.items.length > 0) {
+      itemsSetting.addExtraButton((cb) => {
+        cb.setIcon("right-triangle").setTooltip("Collapse all items").onClick(async () => {
+          let itemsContainer2 = settingsDiv.querySelector(".note-toolbar-setting-items-container");
+          if (itemsContainer2) {
+            this.itemListOpen = !this.itemListOpen;
+            itemsContainer2.setAttribute("data-active", this.itemListOpen.toString());
+            let heading = itemsContainer2.querySelector(".setting-item-heading .setting-item-name");
+            this.itemListOpen ? heading == null ? void 0 : heading.setText("Items") : heading == null ? void 0 : heading.setText("Items (" + this.toolbar.items.length + ")");
+            cb.setTooltip(this.itemListOpen ? "Collapse all items" : "Expand all items");
+          }
+        }).extraSettingsEl.tabIndex = 0;
+        this.plugin.registerDomEvent(
+          cb.extraSettingsEl,
+          "keydown",
+          (e) => {
+            switch (e.key) {
+              case "Enter":
+              case " ":
+                e.preventDefault();
+                cb.extraSettingsEl.click();
+            }
+          }
+        );
+      });
+    }
     let itemLinkFields = [];
+    let itemsListContainer = createDiv();
+    itemsListContainer.addClass("note-toolbar-setting-items-list-container");
     this.toolbar.items.forEach(
-      (toolbarItem, index) => {
-        let itemDiv = this.containerEl.createEl("div");
+      (toolbarItem, index2) => {
+        let itemDiv = this.containerEl.createDiv();
         itemDiv.className = "note-toolbar-setting-item";
-        let itemTopContainer = this.containerEl.createEl("div");
+        let itemTopContainer = this.containerEl.createDiv();
         itemTopContainer.className = "note-toolbar-setting-item-top-container";
-        let textFieldsContainer = this.containerEl.createEl("div");
-        textFieldsContainer.id = "note-toolbar-setting-item-field-" + index;
+        let textFieldsContainer = this.containerEl.createDiv();
+        textFieldsContainer.id = "note-toolbar-setting-item-field-" + index2;
         textFieldsContainer.className = "note-toolbar-setting-item-fields";
-        const s1a = new import_obsidian4.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-icon").addExtraButton((cb) => {
+        const s1a = new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-icon").addExtraButton((cb) => {
           cb.setIcon(toolbarItem.icon ? toolbarItem.icon : "lucide-plus-square").setTooltip("Select icon (optional)").onClick(async () => {
-            const modal = new IconSuggestModal(this, cb.extraSettingsEl, this.toolbar, index);
+            const modal = new IconSuggestModal(this.plugin, toolbarItem, cb.extraSettingsEl);
             modal.open();
           });
           cb.extraSettingsEl.setAttribute("data-note-toolbar-no-icon", !toolbarItem.icon ? "true" : "false");
@@ -336,67 +509,75 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
               switch (e.key) {
                 case "Enter":
                 case " ":
-                  const modal = new IconSuggestModal(this, cb.extraSettingsEl, this.toolbar, index);
+                  const modal = new IconSuggestModal(this.plugin, toolbarItem, cb.extraSettingsEl);
                   modal.open();
                   e.preventDefault();
               }
             }
           );
         });
-        const s1b = new import_obsidian4.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Label (optional, if icon set)").setValue(toolbarItem.label).onChange(
-          (0, import_obsidian4.debounce)(async (value) => {
+        const s1b = new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Label (optional, if icon set)").setValue(toolbarItem.label).onChange(
+          (0, import_obsidian5.debounce)(async (value) => {
             toolbarItem.label = value;
             this.toolbar.updated = new Date().toISOString();
             await this.plugin.saveSettings();
           }, 750)
         ));
-        const s1c = new import_obsidian4.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Tooltip (optional)").setValue(toolbarItem.tooltip).onChange(
-          (0, import_obsidian4.debounce)(async (value) => {
+        const s1c = new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Tooltip (optional)").setValue(toolbarItem.tooltip).onChange(
+          (0, import_obsidian5.debounce)(async (value) => {
             toolbarItem.tooltip = value;
             this.toolbar.updated = new Date().toISOString();
             await this.plugin.saveSettings();
           }, 750)
         ));
-        let linkContainerDiv = this.containerEl.createEl("div");
-        linkContainerDiv.className = "note-toolbar-setting-item-link-container";
-        let linkTypeDiv = this.containerEl.createEl("div");
-        const s1t = new import_obsidian4.Setting(linkTypeDiv).addDropdown(
+        let linkContainer = this.containerEl.createDiv();
+        linkContainer.className = "note-toolbar-setting-item-link-container";
+        let linkTypeDiv = this.containerEl.createDiv();
+        const s1t = new import_obsidian5.Setting(linkTypeDiv).addDropdown(
           (dropdown) => dropdown.addOptions({ command: "Command", file: "File", uri: "URI" }).setValue(toolbarItem.linkAttr.type).onChange(async (value) => {
             toolbarItem.linkAttr.type = value;
             switch (value) {
               case "command":
                 toolbarItem.link = "";
-                itemLinkFields[index].command.settingEl.setAttribute("data-active", "true");
-                itemLinkFields[index].file.settingEl.setAttribute("data-active", "false");
-                itemLinkFields[index].uri.settingEl.setAttribute("data-active", "false");
+                itemLinkFields[index2].command.settingEl.setAttribute("data-active", "true");
+                itemLinkFields[index2].file.settingEl.setAttribute("data-active", "false");
+                itemLinkFields[index2].uri.settingEl.setAttribute("data-active", "false");
                 break;
               case "file":
-                itemLinkFields[index].command.settingEl.setAttribute("data-active", "false");
-                itemLinkFields[index].file.settingEl.setAttribute("data-active", "true");
-                itemLinkFields[index].uri.settingEl.setAttribute("data-active", "false");
+                itemLinkFields[index2].command.settingEl.setAttribute("data-active", "false");
+                itemLinkFields[index2].file.settingEl.setAttribute("data-active", "true");
+                itemLinkFields[index2].uri.settingEl.setAttribute("data-active", "false");
                 break;
               case "uri":
-                itemLinkFields[index].command.settingEl.setAttribute("data-active", "false");
-                itemLinkFields[index].file.settingEl.setAttribute("data-active", "false");
-                itemLinkFields[index].uri.settingEl.setAttribute("data-active", "true");
+                itemLinkFields[index2].command.settingEl.setAttribute("data-active", "false");
+                itemLinkFields[index2].file.settingEl.setAttribute("data-active", "false");
+                itemLinkFields[index2].uri.settingEl.setAttribute("data-active", "true");
                 break;
             }
             await this.plugin.saveSettings();
             this.display();
           })
         );
-        let linkFieldDiv = this.containerEl.createEl("div");
+        let linkFieldDiv = this.containerEl.createDiv();
         linkFieldDiv.className = "note-toolbar-setting-item-link-container";
         let linkCommandFieldDiv = this.containerEl.createDiv();
         let linkFileFieldDiv = this.containerEl.createDiv();
         let linkUriFieldDiv = this.containerEl.createDiv();
+        let linkFieldHelpDiv = createEl("div");
+        linkFieldHelpDiv.addClass("note-toolbar-setting-field-help");
+        linkFieldHelpDiv.appendChild(
+          learnMoreFr(
+            "Tip: Use note properties in URIs.",
+            "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Variables"
+          )
+        );
         itemLinkFields.push({
           //
           // command
           //
-          command: new import_obsidian4.Setting(linkCommandFieldDiv).setClass("note-toolbar-setting-item-field-link").addSearch((cb) => {
+          command: new import_obsidian5.Setting(linkCommandFieldDiv).setClass("note-toolbar-setting-item-field-link").addSearch((cb) => {
             new CommandSuggester(this.app, cb.inputEl);
-            cb.setPlaceholder("Search for command").setValue(toolbarItem.link).onChange((0, import_obsidian4.debounce)(async (command) => {
+            cb.setPlaceholder("Search for command").setValue(toolbarItem.link).onChange((0, import_obsidian5.debounce)(async (command) => {
               var _a, _b;
               toolbarItem.link = command;
               toolbarItem.linkAttr.type = "command";
@@ -407,35 +588,36 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
           //
           // file
           //
-          file: new import_obsidian4.Setting(linkFileFieldDiv).setClass("note-toolbar-setting-item-field-link").addText((text) => text.setPlaceholder("Path to file, with extension").setValue(toolbarItem.link).onChange(
-            (0, import_obsidian4.debounce)(async (value) => {
+          file: new import_obsidian5.Setting(linkFileFieldDiv).setClass("note-toolbar-setting-item-field-link").addSearch((cb) => {
+            new FileSuggester(this.app, cb.inputEl);
+            cb.setPlaceholder("Search for file").setValue(toolbarItem.link).onChange((0, import_obsidian5.debounce)(async (value) => {
               var _a;
               toolbarItem.linkAttr.type = "file";
               const file = this.app.vault.getAbstractFileByPath(value);
-              if (!(file instanceof import_obsidian4.TFile)) {
+              if (!(file instanceof import_obsidian5.TFile)) {
                 if (document.getElementById("note-toolbar-item-link-note-error") === null) {
                   let errorDiv = this.containerEl.createEl("div", {
-                    text: "This file does not exist. Missing a file extension?",
+                    text: "This file does not exist.",
                     attr: { id: "note-toolbar-item-link-note-error" },
                     cls: "note-toolbar-setting-error-message"
                   });
-                  linkContainerDiv.insertAdjacentElement("afterend", errorDiv);
-                  itemLinkFields[index].file.settingEl.children[1].addClass("note-toolbar-setting-error");
+                  linkContainer.insertAdjacentElement("afterend", errorDiv);
+                  itemLinkFields[index2].file.settingEl.children[1].addClass("note-toolbar-setting-error");
                 }
               } else {
-                toolbarItem.link = (0, import_obsidian4.normalizePath)(value);
+                toolbarItem.link = (0, import_obsidian5.normalizePath)(value);
                 toolbarItem.linkAttr.commandId = "";
                 (_a = document.getElementById("note-toolbar-item-link-note-error")) == null ? void 0 : _a.remove();
-                itemLinkFields[index].file.settingEl.children[1].removeClass("note-toolbar-setting-error");
+                itemLinkFields[index2].file.settingEl.children[1].removeClass("note-toolbar-setting-error");
                 await this.plugin.saveSettings();
               }
-            }, 750)
-          )),
+            }, 750));
+          }),
           //
           // URI
           //
-          uri: new import_obsidian4.Setting(linkUriFieldDiv).setClass("note-toolbar-setting-item-field-link").addText((text) => text.setPlaceholder("Website, URI, or note title").setValue(toolbarItem.link).onChange(
-            (0, import_obsidian4.debounce)(async (value) => {
+          uri: new import_obsidian5.Setting(linkUriFieldDiv).setClass("note-toolbar-setting-item-field-link").addText((text) => text.setPlaceholder("Website, URI, or note title").setValue(toolbarItem.link).onChange(
+            (0, import_obsidian5.debounce)(async (value) => {
               toolbarItem.link = value;
               toolbarItem.linkAttr.type = "uri";
               toolbarItem.linkAttr.hasVars = hasVars(value);
@@ -443,80 +625,98 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
               this.toolbar.updated = new Date().toISOString();
               await this.plugin.saveSettings();
             }, 750)
-          ))
+          ).inputEl.insertAdjacentElement("afterend", linkFieldHelpDiv))
         });
-        linkFieldDiv.append(itemLinkFields[index].command.settingEl);
-        linkFieldDiv.append(itemLinkFields[index].file.settingEl);
-        linkFieldDiv.append(itemLinkFields[index].uri.settingEl);
-        itemLinkFields[index].command.settingEl.setAttribute(
+        linkFieldDiv.append(itemLinkFields[index2].command.settingEl);
+        linkFieldDiv.append(itemLinkFields[index2].file.settingEl);
+        linkFieldDiv.append(itemLinkFields[index2].uri.settingEl);
+        itemLinkFields[index2].command.settingEl.setAttribute(
           "data-active",
           toolbarItem.linkAttr.type === "command" ? "true" : "false"
         );
-        itemLinkFields[index].file.settingEl.setAttribute(
+        itemLinkFields[index2].file.settingEl.setAttribute(
           "data-active",
           toolbarItem.linkAttr.type === "file" ? "true" : "false"
         );
-        itemLinkFields[index].uri.settingEl.setAttribute(
+        itemLinkFields[index2].uri.settingEl.setAttribute(
           "data-active",
           toolbarItem.linkAttr.type === "uri" ? "true" : "false"
         );
-        linkContainerDiv.append(linkTypeDiv);
-        linkContainerDiv.append(linkFieldDiv);
-        let itemControlsDiv = this.containerEl.createEl("div");
-        itemControlsDiv.className = "note-toolbar-setting-item-controls";
-        const s1d = new import_obsidian4.Setting(itemControlsDiv).addExtraButton((cb) => {
-          cb.setIcon("up-chevron-glyph").setTooltip("Move up").onClick(async () => this.listMoveHandler(null, this.toolbar.items, index, "up"));
+        linkContainer.append(linkTypeDiv);
+        linkContainer.append(linkFieldDiv);
+        let itemControlsContainer = this.containerEl.createDiv();
+        itemControlsContainer.className = "note-toolbar-setting-item-controls";
+        const s1d = new import_obsidian5.Setting(itemControlsContainer).addExtraButton((cb) => {
+          cb.setIcon("up-chevron-glyph").setTooltip("Move up").onClick(async () => this.listMoveHandler(null, this.toolbar.items, index2, "up"));
           cb.extraSettingsEl.setAttribute("tabindex", "0");
           this.plugin.registerDomEvent(
             cb.extraSettingsEl,
             "keydown",
-            (e) => this.listMoveHandler(e, this.toolbar.items, index, "up")
+            (e) => this.listMoveHandler(e, this.toolbar.items, index2, "up")
           );
         }).addExtraButton((cb) => {
-          cb.setIcon("down-chevron-glyph").setTooltip("Move down").onClick(async () => this.listMoveHandler(null, this.toolbar.items, index, "down"));
+          cb.setIcon("down-chevron-glyph").setTooltip("Move down").onClick(async () => this.listMoveHandler(null, this.toolbar.items, index2, "down"));
           cb.extraSettingsEl.setAttribute("tabindex", "0");
           this.plugin.registerDomEvent(
             cb.extraSettingsEl,
             "keydown",
-            (e) => this.listMoveHandler(e, this.toolbar.items, index, "down")
+            (e) => this.listMoveHandler(e, this.toolbar.items, index2, "down")
           );
         }).addExtraButton((cb) => {
-          cb.setIcon("cross").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, this.toolbar.items, index, "delete"));
+          cb.setIcon("trash").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, this.toolbar.items, index2, "delete"));
           cb.extraSettingsEl.setAttribute("tabindex", "0");
           this.plugin.registerDomEvent(
             cb.extraSettingsEl,
             "keydown",
-            (e) => this.listMoveHandler(e, this.toolbar.items, index, "delete")
+            (e) => this.listMoveHandler(e, this.toolbar.items, index2, "delete")
           );
         });
-        let itemFieldsControlsContainer = this.containerEl.createEl("div");
-        itemFieldsControlsContainer.className = "note-toolbar-setting-item-fields-and-controls";
-        itemFieldsControlsContainer.appendChild(textFieldsContainer);
-        itemFieldsControlsContainer.appendChild(itemControlsDiv);
-        itemTopContainer.appendChild(itemFieldsControlsContainer);
-        itemTopContainer.appendChild(linkContainerDiv);
+        let itemFieldsContainer = this.containerEl.createDiv();
+        itemFieldsContainer.className = "note-toolbar-setting-item-fields";
+        itemFieldsContainer.appendChild(textFieldsContainer);
+        itemTopContainer.appendChild(itemFieldsContainer);
+        itemTopContainer.appendChild(linkContainer);
         itemDiv.appendChild(itemTopContainer);
-        let togglesContainer = this.containerEl.createEl("div");
-        togglesContainer.className = "note-toolbar-setting-item-toggles-container";
-        const s2 = new import_obsidian4.Setting(togglesContainer).setClass("note-toolbar-setting-item-toggle").setName("Hide on: mobile").addToggle((toggle) => {
-          toggle.setTooltip("If enabled, this item will not appear on mobile").setValue(toolbarItem.hideOnMobile).onChange(async (hideOnMobile) => {
-            toolbarItem.hideOnMobile = hideOnMobile;
-            this.toolbar.updated = new Date().toISOString();
-            await this.plugin.saveSettings();
+        let visibilityControlsContainer = this.containerEl.createDiv();
+        visibilityControlsContainer.className = "note-toolbar-setting-item-visibility-container";
+        const visButtons = new import_obsidian5.Setting(visibilityControlsContainer).setClass("note-toolbar-setting-item-visibility").addButton((cb) => {
+          let btnIcon = cb.buttonEl.createSpan();
+          (0, import_obsidian5.setIcon)(btnIcon, "monitor");
+          let [state, tooltip] = this.getPlatformStateLabel(toolbarItem.visibility.desktop, "desktop");
+          if (state) {
+            let btnLabel = cb.buttonEl.createSpan();
+            btnLabel.setText(state);
+          }
+          cb.setTooltip(tooltip).onClick(async () => {
+            var _a, _b;
+            (_b = (_a = toolbarItem.visibility).desktop) != null ? _b : _a.desktop = { allViews: { components: [] } };
+            let visibilityMenu = this.getItemVisibilityMenu(toolbarItem.visibility.desktop, "desktop");
+            visibilityMenu.showAtPosition(getPosition(cb.buttonEl));
+          });
+        }).addButton((cb) => {
+          let btnIcon = cb.buttonEl.createSpan();
+          (0, import_obsidian5.setIcon)(btnIcon, "tablet-smartphone");
+          let [state, tooltip] = this.getPlatformStateLabel(toolbarItem.visibility.mobile, "mobile");
+          if (state) {
+            let btnLabel = cb.buttonEl.createSpan();
+            btnLabel.setText(state);
+          }
+          cb.setTooltip(tooltip).onClick(async () => {
+            var _a, _b;
+            (_b = (_a = toolbarItem.visibility).mobile) != null ? _b : _a.mobile = { allViews: { components: [] } };
+            let visibilityMenu = this.getItemVisibilityMenu(toolbarItem.visibility.mobile, "mobile");
+            visibilityMenu.showAtPosition(getPosition(cb.buttonEl));
           });
         });
-        const s3 = new import_obsidian4.Setting(togglesContainer).setClass("note-toolbar-setting-item-toggle").setName("desktop").addToggle((toggle) => {
-          toggle.setTooltip("If enabled, this item will not appear on desktop").setValue(toolbarItem.hideOnDesktop).onChange(async (hideOnDesktop) => {
-            toolbarItem.hideOnDesktop = hideOnDesktop;
-            this.toolbar.updated = new Date().toISOString();
-            await this.plugin.saveSettings();
-          });
-        });
-        itemDiv.appendChild(togglesContainer);
-        settingsDiv.appendChild(itemDiv);
+        let itemVisilityAndControlsContainer = this.containerEl.createDiv();
+        itemVisilityAndControlsContainer.className = "note-toolbar-setting-item-visibility-and-controls";
+        itemVisilityAndControlsContainer.appendChild(visibilityControlsContainer);
+        itemVisilityAndControlsContainer.appendChild(itemControlsContainer);
+        itemDiv.appendChild(itemVisilityAndControlsContainer);
+        itemsListContainer.appendChild(itemDiv);
       }
     );
-    new import_obsidian4.Setting(settingsDiv).setClass("note-toolbar-setting-button").addButton((button) => {
+    new import_obsidian5.Setting(itemsListContainer).setClass("note-toolbar-setting-button").addButton((button) => {
       button.setTooltip("Add a new item to the toolbar").setButtonText("+ Add toolbar item").setCta().onClick(async () => {
         var _a, _b;
         this.toolbar.items.push({
@@ -529,32 +729,76 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
             type: (_b = (_a = this.toolbar.items.last()) == null ? void 0 : _a.linkAttr.type) != null ? _b : "uri"
           },
           tooltip: "",
-          hideOnDesktop: false,
-          hideOnMobile: false
+          visibility: {
+            desktop: { allViews: { components: ["icon", "label"] } },
+            mobile: { allViews: { components: ["icon", "label"] } },
+            tablet: { allViews: { components: ["icon", "label"] } }
+          }
         });
         this.toolbar.updated = new Date().toISOString();
         await this.plugin.saveSettings();
         this.display(true);
       });
     });
+    itemsContainer.appendChild(itemsListContainer);
+    settingsDiv.appendChild(itemsContainer);
+  }
+  /**
+   * Displays the Position setting.
+   * @param settingsDiv HTMLElement to add the settings to.
+   */
+  displayPositionSetting(settingsDiv) {
+    var _a, _b;
+    new import_obsidian5.Setting(settingsDiv).setName("Position").setDesc(learnMoreFr(
+      "Where to position this toolbar.",
+      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Positioning-toolbars"
+    )).setHeading();
+    new import_obsidian5.Setting(settingsDiv).setName("Desktop").addDropdown(
+      (dropdown) => {
+        var _a2, _b2, _c;
+        return dropdown.addOptions(
+          POSITION_OPTIONS.desktop.reduce((acc, option2) => {
+            return { ...acc, ...option2 };
+          }, {})
+        ).setValue((_c = (_b2 = (_a2 = this.toolbar.position.desktop) == null ? void 0 : _a2.allViews) == null ? void 0 : _b2.position) != null ? _c : "props").onChange(async (val) => {
+          this.toolbar.position.desktop = { allViews: { position: val } };
+          this.toolbar.updated = new Date().toISOString();
+          await this.plugin.saveSettings();
+          this.display();
+        });
+      }
+    );
+    new import_obsidian5.Setting(settingsDiv).setName("Mobile").setDesc(
+      ((_b = (_a = this.toolbar.position.mobile) == null ? void 0 : _a.allViews) == null ? void 0 : _b.position) === "hidden" ? learnMoreFr(
+        "Tip: Access toolbars from the navigation bar.",
+        "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Navigation-bar"
+      ) : ""
+    ).addDropdown(
+      (dropdown) => {
+        var _a2, _b2, _c;
+        return dropdown.addOptions(
+          POSITION_OPTIONS.mobile.reduce((acc, option2) => {
+            return { ...acc, ...option2 };
+          }, {})
+        ).setValue((_c = (_b2 = (_a2 = this.toolbar.position.mobile) == null ? void 0 : _a2.allViews) == null ? void 0 : _b2.position) != null ? _c : "props").onChange(async (val) => {
+          this.toolbar.position.mobile = { allViews: { position: val } };
+          this.toolbar.position.tablet = { allViews: { position: val } };
+          this.toolbar.updated = new Date().toISOString();
+          await this.plugin.saveSettings();
+          this.display();
+        });
+      }
+    );
   }
   /**
    * Displays the Style settings.
    * @param settingsDiv HTMLElement to add the settings to.
    */
   displayStyleSetting(settingsDiv) {
-    const stylingDescription = document.createDocumentFragment();
-    stylingDescription.append(
-      "List of styles to apply to the toolbar (default: border even sticky).",
-      stylingDescription.createEl("br"),
-      "See the ",
-      stylingDescription.createEl("a", {
-        href: "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Styling-toolbars",
-        text: "documentation"
-      }),
-      " about the list of supported styles."
-    );
-    new import_obsidian4.Setting(settingsDiv).setName("Styles").setHeading().setDesc(stylingDescription).setClass("note-toolbar-setting-no-controls");
+    new import_obsidian5.Setting(settingsDiv).setName("Styles").setDesc(learnMoreFr(
+      "List of styles to apply to the toolbar.",
+      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Styling-toolbars"
+    )).setHeading();
     let defaultStyleDiv = this.containerEl.createDiv();
     defaultStyleDiv.className = "note-toolbar-setting-item-style";
     if (this.toolbar.defaultStyles.length == 0) {
@@ -566,23 +810,26 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
       defaultStyleDiv.append(emptyMsg);
     } else {
       this.toolbar.defaultStyles.forEach(
-        (style, index) => {
-          new import_obsidian4.Setting(defaultStyleDiv).setName(this.getValueForKey(DEFAULT_STYLE_OPTIONS, style)).addExtraButton((cb) => {
-            cb.setIcon("cross").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, this.toolbar.defaultStyles, index, "delete"));
+        (style, index2) => {
+          let styleDisclaimer = this.getValueForKey(DEFAULT_STYLE_DISCLAIMERS, style);
+          new import_obsidian5.Setting(defaultStyleDiv).setName(this.getValueForKey(DEFAULT_STYLE_OPTIONS, style)).setTooltip((styleDisclaimer ? styleDisclaimer + " " : "") + "Use in Callout or CSS: " + style).addExtraButton((cb) => {
+            cb.setIcon("cross").setTooltip("Remove").onClick(async () => this.listMoveHandler(null, this.toolbar.defaultStyles, index2, "delete"));
             cb.extraSettingsEl.setAttribute("tabindex", "0");
             this.plugin.registerDomEvent(
               cb.extraSettingsEl,
               "keydown",
-              (e) => this.listMoveHandler(e, this.toolbar.defaultStyles, index, "delete")
+              (e) => this.listMoveHandler(e, this.toolbar.defaultStyles, index2, "delete")
             );
           });
         }
       );
     }
-    new import_obsidian4.Setting(defaultStyleDiv).addDropdown(
+    new import_obsidian5.Setting(defaultStyleDiv).addDropdown(
       (dropdown) => dropdown.addOptions(
-        DEFAULT_STYLE_OPTIONS.reduce((acc, option) => {
-          return { ...acc, ...option };
+        DEFAULT_STYLE_OPTIONS.filter((option2) => {
+          return !this.toolbar.defaultStyles.includes(Object.keys(option2)[0]);
+        }).reduce((acc, option2) => {
+          return { ...acc, ...option2 };
         }, {})
       ).setValue("").onChange(async (val) => {
         if (this.toolbar.defaultStyles.includes(val)) {
@@ -594,7 +841,10 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
         this.display();
       })
     );
-    new import_obsidian4.Setting(settingsDiv).setName("Default").setDesc("Applies to all unless overridden.").setClass("note-toolbar-setting-item-styles").settingEl.append(defaultStyleDiv);
+    const defaultDesc = document.createDocumentFragment();
+    defaultDesc.append("Applies to all platforms unless overridden.");
+    defaultDesc.append(this.getStyleDisclaimersFr(DEFAULT_STYLE_DISCLAIMERS, this.toolbar.defaultStyles));
+    new import_obsidian5.Setting(settingsDiv).setName("Default").setDesc(defaultDesc).setClass("note-toolbar-setting-item-styles").settingEl.append(defaultStyleDiv);
     let mobileStyleDiv = this.containerEl.createDiv();
     mobileStyleDiv.className = "note-toolbar-setting-item-style";
     if (this.toolbar.mobileStyles.length == 0) {
@@ -606,23 +856,26 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
       mobileStyleDiv.append(emptyMsg);
     } else {
       this.toolbar.mobileStyles.forEach(
-        (style, index) => {
-          new import_obsidian4.Setting(mobileStyleDiv).setName(this.getValueForKey(MOBILE_STYLE_OPTIONS, style)).addExtraButton((cb) => {
-            cb.setIcon("cross").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, this.toolbar.mobileStyles, index, "delete"));
+        (style, index2) => {
+          let styleDisclaimer = this.getValueForKey(MOBILE_STYLE_DISCLAIMERS, style);
+          new import_obsidian5.Setting(mobileStyleDiv).setName(this.getValueForKey(MOBILE_STYLE_OPTIONS, style)).setTooltip((styleDisclaimer ? styleDisclaimer + " " : "") + "Use in Callout or CSS: " + style).addExtraButton((cb) => {
+            cb.setIcon("cross").setTooltip("Remove").onClick(async () => this.listMoveHandler(null, this.toolbar.mobileStyles, index2, "delete"));
             cb.extraSettingsEl.setAttribute("tabindex", "0");
             this.plugin.registerDomEvent(
               cb.extraSettingsEl,
               "keydown",
-              (e) => this.listMoveHandler(e, this.toolbar.mobileStyles, index, "delete")
+              (e) => this.listMoveHandler(e, this.toolbar.mobileStyles, index2, "delete")
             );
           });
         }
       );
     }
-    new import_obsidian4.Setting(mobileStyleDiv).addDropdown(
+    new import_obsidian5.Setting(mobileStyleDiv).addDropdown(
       (dropdown) => dropdown.addOptions(
-        MOBILE_STYLE_OPTIONS.reduce((acc, option) => {
-          return { ...acc, ...option };
+        MOBILE_STYLE_OPTIONS.filter((option2) => {
+          return !this.toolbar.mobileStyles.includes(Object.keys(option2)[0]);
+        }).reduce((acc, option2) => {
+          return { ...acc, ...option2 };
         }, {})
       ).setValue(this.toolbar.mobileStyles.join(", ") || "").onChange(async (val) => {
         if (this.toolbar.mobileStyles.includes(val)) {
@@ -634,14 +887,17 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
         this.display();
       })
     );
-    new import_obsidian4.Setting(settingsDiv).setName("Mobile").setDesc("Override default styles.").setClass("note-toolbar-setting-item-styles").settingEl.append(mobileStyleDiv);
+    const mobileDesc = document.createDocumentFragment();
+    mobileDesc.append("Override default styles.");
+    mobileDesc.append(this.getStyleDisclaimersFr(MOBILE_STYLE_DISCLAIMERS, this.toolbar.mobileStyles));
+    new import_obsidian5.Setting(settingsDiv).setName("Mobile").setDesc(mobileDesc).setClass("note-toolbar-setting-item-styles").settingEl.append(mobileStyleDiv);
   }
   /**
    * Displays the Delete button.
    * @param settingsDiv HTMLElement to add the settings to.
    */
   displayDeleteButton(settingsDiv) {
-    new import_obsidian4.Setting(settingsDiv).setName("Delete this toolbar").setDesc("This action cannot be undone.").setClass("note-toolbar-setting-item-delete-button").addButton((button) => {
+    new import_obsidian5.Setting(settingsDiv).setName("Delete this toolbar").setHeading().setDesc("This action cannot be undone.").setClass("note-toolbar-setting-spaced").addButton((button) => {
       button.setClass("mod-warning").setTooltip("Delete this toolbar").setButtonText("Delete...").setCta().onClick(() => {
         const modal = new DeleteModal(this);
         modal.open();
@@ -658,17 +914,25 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
    * @param index Number of the item in the list we're moving/deleting.
    * @param action Direction of the move, or "delete".
    */
-  async listMoveHandler(keyEvent, itemArray, index, action) {
+  async listMoveHandler(keyEvent, itemArray, index2, action = void 0) {
     if (keyEvent) {
       switch (keyEvent.key) {
         case "ArrowUp":
+          keyEvent.preventDefault();
           action = "up";
           break;
         case "ArrowDown":
+          keyEvent.preventDefault();
           action = "down";
+          break;
+        case "Delete":
+        case "Backspace":
+          keyEvent.preventDefault();
+          action = "delete";
           break;
         case "Enter":
         case " ":
+          keyEvent.preventDefault();
           break;
         default:
           return;
@@ -676,19 +940,16 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
     }
     switch (action) {
       case "up":
-        arraymove(itemArray, index, index - 1);
+        arraymove(itemArray, index2, index2 - 1);
         this.toolbar.updated = new Date().toISOString();
-        keyEvent == null ? void 0 : keyEvent.preventDefault();
         break;
       case "down":
-        arraymove(itemArray, index, index + 1);
+        arraymove(itemArray, index2, index2 + 1);
         this.toolbar.updated = new Date().toISOString();
-        keyEvent == null ? void 0 : keyEvent.preventDefault();
         break;
       case "delete":
-        itemArray.splice(index, 1);
+        itemArray.splice(index2, 1);
         this.toolbar.updated = new Date().toISOString();
-        keyEvent == null ? void 0 : keyEvent.preventDefault();
         break;
     }
     await this.plugin.saveSettings();
@@ -713,48 +974,141 @@ var ToolbarSettingsModal = class extends import_obsidian4.Modal {
    * UTILITIES
    *************************************************************************/
   /**
+   * Returns the visibility menu to display, for the given platform.
+   * @param platform visibility to check for component visibility
+   * @param platformLabel string to show in the menu 
+   * @returns Menu
+   */
+  getItemVisibilityMenu(platform, platformLabel) {
+    let isComponentVisible = {
+      icon: platform && platform.allViews ? platform.allViews.components.includes("icon") : false,
+      label: platform && platform.allViews ? platform.allViews.components.includes("label") : false
+    };
+    let menu = new import_obsidian5.Menu();
+    menu.addItem((menuItem) => {
+      menuItem.setTitle(isComponentVisible.icon ? "Icon shows on " + platformLabel : "Icon hidden on " + platformLabel).setIcon("image").setChecked(isComponentVisible.icon).onClick(async (menuEvent) => {
+        if (isComponentVisible.icon) {
+          removeComponentVisibility(platform, "icon");
+          isComponentVisible.icon = false;
+        } else {
+          addComponentVisibility(platform, "icon");
+          isComponentVisible.icon = true;
+        }
+        this.toolbar.updated = new Date().toISOString();
+        await this.plugin.saveSettings();
+        this.display();
+      });
+    });
+    menu.addItem((menuItem) => {
+      menuItem.setTitle(isComponentVisible.label ? "Label shows on " + platformLabel : "Label hidden on " + platformLabel).setIcon("whole-word").setChecked(isComponentVisible.label).onClick(async (menuEvent) => {
+        if (isComponentVisible.label) {
+          removeComponentVisibility(platform, "label");
+          isComponentVisible.label = false;
+        } else {
+          addComponentVisibility(platform, "label");
+          isComponentVisible.label = true;
+        }
+        this.toolbar.updated = new Date().toISOString();
+        await this.plugin.saveSettings();
+        this.display();
+      });
+    });
+    return menu;
+  }
+  /**
+   * Gets the current state of visibility for a given platform.
+   * @param platform visibility to check
+   * @returns a single word (hidden, visible, or the component name), and a sentence for the tooltip
+   */
+  getPlatformStateLabel(platform, platformLabel) {
+    var _a;
+    if (platform && platform.allViews) {
+      let dkComponents = (_a = platform.allViews) == null ? void 0 : _a.components;
+      if (dkComponents) {
+        if (dkComponents.length === 2) {
+          return ["", "visible on " + platformLabel];
+        } else if (dkComponents.length === 1) {
+          return [dkComponents[0], dkComponents[0] + " visible on " + platformLabel];
+        } else {
+          return ["hidden", "hidden on " + platformLabel];
+        }
+      }
+    }
+    return ["hidden", "hidden on " + platformLabel];
+  }
+  /**
+   * Returns a fragment containing any applicable style disclaimers to show, for the provided styles.
+   * @param disclaimers List of disclaimers, corresponds with DEFAULT and MOBILE _STYLE_DISCLAIMERS
+   * @param stylesToCheck styles that have been applied by the user, to check for applicable disclaimers
+   * @returns DocumentFragment with disclaimers to show in settings UI
+   */
+  getStyleDisclaimersFr(disclaimers, stylesToCheck) {
+    let disclaimersFr = document.createDocumentFragment();
+    stylesToCheck.forEach((style) => {
+      disclaimers.find((disclaimer) => style in disclaimer) ? disclaimersFr.append(disclaimersFr.createEl("br"), "* ", this.getValueForKey(disclaimers, style)) : void 0;
+    });
+    return disclaimersFr;
+  }
+  /**
    * Returns the value for the provided key from the provided dictionary.
    * @param dict key-value dictionary
    * @param key string key
    * @returns value from the dictionary
    */
   getValueForKey(dict, key) {
-    const option = dict.find((option2) => key in option2);
-    return option ? Object.values(option)[0] : "INVALID OPTION";
+    const option2 = dict.find((option3) => key in option3);
+    return option2 ? Object.values(option2)[0] : "";
   }
 };
 
 // src/Settings/Suggesters/FolderSuggester.ts
-var import_obsidian5 = require("obsidian");
-var FolderSuggester = class extends import_obsidian5.AbstractInputSuggest {
+var import_obsidian6 = require("obsidian");
+var FolderSuggester = class extends import_obsidian6.AbstractInputSuggest {
   constructor(app, inputEl) {
     super(app, inputEl);
+    this.PATTERN_ALL_FILES = { pattern: "*", label: "*", desc: "all folders" };
+    this.PATTERN_ROOT_ONLY = { pattern: "/", label: "/", desc: "root folder only" };
     this.inputEl = inputEl;
   }
   getSuggestions(inputStr) {
     const abstractFiles = this.app.vault.getAllLoadedFiles();
     const folders = [];
     const lowerCaseInputStr = inputStr.toLowerCase();
+    folders.push(this.PATTERN_ALL_FILES.pattern);
     abstractFiles.forEach((folder) => {
-      if (folder instanceof import_obsidian5.TFolder && folder.path.toLowerCase().contains(lowerCaseInputStr)) {
-        folders.push(folder);
+      if (folder instanceof import_obsidian6.TFolder && folder.path.toLowerCase().contains(lowerCaseInputStr)) {
+        folders.push(folder.path);
       }
     });
     return folders;
   }
-  renderSuggestion(file, el) {
-    el.setText(file.path);
+  renderSuggestion(folder, el) {
+    if (folder === this.PATTERN_ALL_FILES.pattern) {
+      this.renderPattern(el, this.PATTERN_ALL_FILES);
+    } else if (folder === this.PATTERN_ROOT_ONLY.pattern) {
+      this.renderPattern(el, this.PATTERN_ROOT_ONLY);
+    } else {
+      el.setText(folder);
+    }
   }
-  selectSuggestion(file) {
-    this.inputEl.value = file.path;
+  selectSuggestion(folder) {
+    this.inputEl.value = folder;
     this.inputEl.trigger("input");
     this.close();
+  }
+  /*************************************************************************
+   * DISPLAY HELPERS
+   *************************************************************************/
+  renderPattern(el, suggestion) {
+    el.addClass("note-toolbar-setting-folder-suggestion-item-muted");
+    el.createSpan().setText(suggestion.label);
+    el.createSpan().setText(suggestion.desc);
   }
 };
 
 // src/Settings/Suggesters/ToolbarSuggester.ts
-var import_obsidian6 = require("obsidian");
-var ToolbarSuggester = class extends import_obsidian6.AbstractInputSuggest {
+var import_obsidian7 = require("obsidian");
+var ToolbarSuggester = class extends import_obsidian7.AbstractInputSuggest {
   constructor(app, plugin, inputEl) {
     super(app, inputEl);
     this.plugin = plugin;
@@ -781,14 +1135,2247 @@ var ToolbarSuggester = class extends import_obsidian6.AbstractInputSuggest {
   }
 };
 
+// node_modules/sortablejs/modular/sortable.esm.js
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) {
+      symbols = symbols.filter(function(sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+    }
+    keys.push.apply(keys, symbols);
+  }
+  return keys;
+}
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function(key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function(key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+  return target;
+}
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function(obj2) {
+      return typeof obj2;
+    };
+  } else {
+    _typeof = function(obj2) {
+      return obj2 && typeof Symbol === "function" && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
+    };
+  }
+  return _typeof(obj);
+}
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+function _extends() {
+  _extends = Object.assign || function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null)
+    return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0)
+      continue;
+    target[key] = source[key];
+  }
+  return target;
+}
+function _objectWithoutProperties(source, excluded) {
+  if (source == null)
+    return {};
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0)
+        continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key))
+        continue;
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+var version = "1.15.2";
+function userAgent(pattern) {
+  if (typeof window !== "undefined" && window.navigator) {
+    return !!/* @__PURE__ */ navigator.userAgent.match(pattern);
+  }
+}
+var IE11OrLess = userAgent(/(?:Trident.*rv[ :]?11\.|msie|iemobile|Windows Phone)/i);
+var Edge = userAgent(/Edge/i);
+var FireFox = userAgent(/firefox/i);
+var Safari = userAgent(/safari/i) && !userAgent(/chrome/i) && !userAgent(/android/i);
+var IOS = userAgent(/iP(ad|od|hone)/i);
+var ChromeForAndroid = userAgent(/chrome/i) && userAgent(/android/i);
+var captureMode = {
+  capture: false,
+  passive: false
+};
+function on(el, event, fn) {
+  el.addEventListener(event, fn, !IE11OrLess && captureMode);
+}
+function off(el, event, fn) {
+  el.removeEventListener(event, fn, !IE11OrLess && captureMode);
+}
+function matches(el, selector) {
+  if (!selector)
+    return;
+  selector[0] === ">" && (selector = selector.substring(1));
+  if (el) {
+    try {
+      if (el.matches) {
+        return el.matches(selector);
+      } else if (el.msMatchesSelector) {
+        return el.msMatchesSelector(selector);
+      } else if (el.webkitMatchesSelector) {
+        return el.webkitMatchesSelector(selector);
+      }
+    } catch (_) {
+      return false;
+    }
+  }
+  return false;
+}
+function getParentOrHost(el) {
+  return el.host && el !== document && el.host.nodeType ? el.host : el.parentNode;
+}
+function closest(el, selector, ctx, includeCTX) {
+  if (el) {
+    ctx = ctx || document;
+    do {
+      if (selector != null && (selector[0] === ">" ? el.parentNode === ctx && matches(el, selector) : matches(el, selector)) || includeCTX && el === ctx) {
+        return el;
+      }
+      if (el === ctx)
+        break;
+    } while (el = getParentOrHost(el));
+  }
+  return null;
+}
+var R_SPACE = /\s+/g;
+function toggleClass(el, name, state) {
+  if (el && name) {
+    if (el.classList) {
+      el.classList[state ? "add" : "remove"](name);
+    } else {
+      var className = (" " + el.className + " ").replace(R_SPACE, " ").replace(" " + name + " ", " ");
+      el.className = (className + (state ? " " + name : "")).replace(R_SPACE, " ");
+    }
+  }
+}
+function css(el, prop, val) {
+  var style = el && el.style;
+  if (style) {
+    if (val === void 0) {
+      if (document.defaultView && document.defaultView.getComputedStyle) {
+        val = document.defaultView.getComputedStyle(el, "");
+      } else if (el.currentStyle) {
+        val = el.currentStyle;
+      }
+      return prop === void 0 ? val : val[prop];
+    } else {
+      if (!(prop in style) && prop.indexOf("webkit") === -1) {
+        prop = "-webkit-" + prop;
+      }
+      style[prop] = val + (typeof val === "string" ? "" : "px");
+    }
+  }
+}
+function matrix(el, selfOnly) {
+  var appliedTransforms = "";
+  if (typeof el === "string") {
+    appliedTransforms = el;
+  } else {
+    do {
+      var transform = css(el, "transform");
+      if (transform && transform !== "none") {
+        appliedTransforms = transform + " " + appliedTransforms;
+      }
+    } while (!selfOnly && (el = el.parentNode));
+  }
+  var matrixFn = window.DOMMatrix || window.WebKitCSSMatrix || window.CSSMatrix || window.MSCSSMatrix;
+  return matrixFn && new matrixFn(appliedTransforms);
+}
+function find(ctx, tagName, iterator) {
+  if (ctx) {
+    var list = ctx.getElementsByTagName(tagName), i = 0, n = list.length;
+    if (iterator) {
+      for (; i < n; i++) {
+        iterator(list[i], i);
+      }
+    }
+    return list;
+  }
+  return [];
+}
+function getWindowScrollingElement() {
+  var scrollingElement = document.scrollingElement;
+  if (scrollingElement) {
+    return scrollingElement;
+  } else {
+    return document.documentElement;
+  }
+}
+function getRect(el, relativeToContainingBlock, relativeToNonStaticParent, undoScale, container) {
+  if (!el.getBoundingClientRect && el !== window)
+    return;
+  var elRect, top, left, bottom, right, height, width;
+  if (el !== window && el.parentNode && el !== getWindowScrollingElement()) {
+    elRect = el.getBoundingClientRect();
+    top = elRect.top;
+    left = elRect.left;
+    bottom = elRect.bottom;
+    right = elRect.right;
+    height = elRect.height;
+    width = elRect.width;
+  } else {
+    top = 0;
+    left = 0;
+    bottom = window.innerHeight;
+    right = window.innerWidth;
+    height = window.innerHeight;
+    width = window.innerWidth;
+  }
+  if ((relativeToContainingBlock || relativeToNonStaticParent) && el !== window) {
+    container = container || el.parentNode;
+    if (!IE11OrLess) {
+      do {
+        if (container && container.getBoundingClientRect && (css(container, "transform") !== "none" || relativeToNonStaticParent && css(container, "position") !== "static")) {
+          var containerRect = container.getBoundingClientRect();
+          top -= containerRect.top + parseInt(css(container, "border-top-width"));
+          left -= containerRect.left + parseInt(css(container, "border-left-width"));
+          bottom = top + elRect.height;
+          right = left + elRect.width;
+          break;
+        }
+      } while (container = container.parentNode);
+    }
+  }
+  if (undoScale && el !== window) {
+    var elMatrix = matrix(container || el), scaleX = elMatrix && elMatrix.a, scaleY = elMatrix && elMatrix.d;
+    if (elMatrix) {
+      top /= scaleY;
+      left /= scaleX;
+      width /= scaleX;
+      height /= scaleY;
+      bottom = top + height;
+      right = left + width;
+    }
+  }
+  return {
+    top,
+    left,
+    bottom,
+    right,
+    width,
+    height
+  };
+}
+function isScrolledPast(el, elSide, parentSide) {
+  var parent = getParentAutoScrollElement(el, true), elSideVal = getRect(el)[elSide];
+  while (parent) {
+    var parentSideVal = getRect(parent)[parentSide], visible = void 0;
+    if (parentSide === "top" || parentSide === "left") {
+      visible = elSideVal >= parentSideVal;
+    } else {
+      visible = elSideVal <= parentSideVal;
+    }
+    if (!visible)
+      return parent;
+    if (parent === getWindowScrollingElement())
+      break;
+    parent = getParentAutoScrollElement(parent, false);
+  }
+  return false;
+}
+function getChild(el, childNum, options, includeDragEl) {
+  var currentChild = 0, i = 0, children = el.children;
+  while (i < children.length) {
+    if (children[i].style.display !== "none" && children[i] !== Sortable.ghost && (includeDragEl || children[i] !== Sortable.dragged) && closest(children[i], options.draggable, el, false)) {
+      if (currentChild === childNum) {
+        return children[i];
+      }
+      currentChild++;
+    }
+    i++;
+  }
+  return null;
+}
+function lastChild(el, selector) {
+  var last = el.lastElementChild;
+  while (last && (last === Sortable.ghost || css(last, "display") === "none" || selector && !matches(last, selector))) {
+    last = last.previousElementSibling;
+  }
+  return last || null;
+}
+function index(el, selector) {
+  var index2 = 0;
+  if (!el || !el.parentNode) {
+    return -1;
+  }
+  while (el = el.previousElementSibling) {
+    if (el.nodeName.toUpperCase() !== "TEMPLATE" && el !== Sortable.clone && (!selector || matches(el, selector))) {
+      index2++;
+    }
+  }
+  return index2;
+}
+function getRelativeScrollOffset(el) {
+  var offsetLeft = 0, offsetTop = 0, winScroller = getWindowScrollingElement();
+  if (el) {
+    do {
+      var elMatrix = matrix(el), scaleX = elMatrix.a, scaleY = elMatrix.d;
+      offsetLeft += el.scrollLeft * scaleX;
+      offsetTop += el.scrollTop * scaleY;
+    } while (el !== winScroller && (el = el.parentNode));
+  }
+  return [offsetLeft, offsetTop];
+}
+function indexOfObject(arr, obj) {
+  for (var i in arr) {
+    if (!arr.hasOwnProperty(i))
+      continue;
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key) && obj[key] === arr[i][key])
+        return Number(i);
+    }
+  }
+  return -1;
+}
+function getParentAutoScrollElement(el, includeSelf) {
+  if (!el || !el.getBoundingClientRect)
+    return getWindowScrollingElement();
+  var elem = el;
+  var gotSelf = false;
+  do {
+    if (elem.clientWidth < elem.scrollWidth || elem.clientHeight < elem.scrollHeight) {
+      var elemCSS = css(elem);
+      if (elem.clientWidth < elem.scrollWidth && (elemCSS.overflowX == "auto" || elemCSS.overflowX == "scroll") || elem.clientHeight < elem.scrollHeight && (elemCSS.overflowY == "auto" || elemCSS.overflowY == "scroll")) {
+        if (!elem.getBoundingClientRect || elem === document.body)
+          return getWindowScrollingElement();
+        if (gotSelf || includeSelf)
+          return elem;
+        gotSelf = true;
+      }
+    }
+  } while (elem = elem.parentNode);
+  return getWindowScrollingElement();
+}
+function extend(dst, src) {
+  if (dst && src) {
+    for (var key in src) {
+      if (src.hasOwnProperty(key)) {
+        dst[key] = src[key];
+      }
+    }
+  }
+  return dst;
+}
+function isRectEqual(rect1, rect2) {
+  return Math.round(rect1.top) === Math.round(rect2.top) && Math.round(rect1.left) === Math.round(rect2.left) && Math.round(rect1.height) === Math.round(rect2.height) && Math.round(rect1.width) === Math.round(rect2.width);
+}
+var _throttleTimeout;
+function throttle(callback, ms) {
+  return function() {
+    if (!_throttleTimeout) {
+      var args = arguments, _this = this;
+      if (args.length === 1) {
+        callback.call(_this, args[0]);
+      } else {
+        callback.apply(_this, args);
+      }
+      _throttleTimeout = setTimeout(function() {
+        _throttleTimeout = void 0;
+      }, ms);
+    }
+  };
+}
+function cancelThrottle() {
+  clearTimeout(_throttleTimeout);
+  _throttleTimeout = void 0;
+}
+function scrollBy(el, x, y) {
+  el.scrollLeft += x;
+  el.scrollTop += y;
+}
+function clone(el) {
+  var Polymer = window.Polymer;
+  var $ = window.jQuery || window.Zepto;
+  if (Polymer && Polymer.dom) {
+    return Polymer.dom(el).cloneNode(true);
+  } else if ($) {
+    return $(el).clone(true)[0];
+  } else {
+    return el.cloneNode(true);
+  }
+}
+function getChildContainingRectFromElement(container, options, ghostEl2) {
+  var rect = {};
+  Array.from(container.children).forEach(function(child) {
+    var _rect$left, _rect$top, _rect$right, _rect$bottom;
+    if (!closest(child, options.draggable, container, false) || child.animated || child === ghostEl2)
+      return;
+    var childRect = getRect(child);
+    rect.left = Math.min((_rect$left = rect.left) !== null && _rect$left !== void 0 ? _rect$left : Infinity, childRect.left);
+    rect.top = Math.min((_rect$top = rect.top) !== null && _rect$top !== void 0 ? _rect$top : Infinity, childRect.top);
+    rect.right = Math.max((_rect$right = rect.right) !== null && _rect$right !== void 0 ? _rect$right : -Infinity, childRect.right);
+    rect.bottom = Math.max((_rect$bottom = rect.bottom) !== null && _rect$bottom !== void 0 ? _rect$bottom : -Infinity, childRect.bottom);
+  });
+  rect.width = rect.right - rect.left;
+  rect.height = rect.bottom - rect.top;
+  rect.x = rect.left;
+  rect.y = rect.top;
+  return rect;
+}
+var expando = "Sortable" + new Date().getTime();
+function AnimationStateManager() {
+  var animationStates = [], animationCallbackId;
+  return {
+    captureAnimationState: function captureAnimationState() {
+      animationStates = [];
+      if (!this.options.animation)
+        return;
+      var children = [].slice.call(this.el.children);
+      children.forEach(function(child) {
+        if (css(child, "display") === "none" || child === Sortable.ghost)
+          return;
+        animationStates.push({
+          target: child,
+          rect: getRect(child)
+        });
+        var fromRect = _objectSpread2({}, animationStates[animationStates.length - 1].rect);
+        if (child.thisAnimationDuration) {
+          var childMatrix = matrix(child, true);
+          if (childMatrix) {
+            fromRect.top -= childMatrix.f;
+            fromRect.left -= childMatrix.e;
+          }
+        }
+        child.fromRect = fromRect;
+      });
+    },
+    addAnimationState: function addAnimationState(state) {
+      animationStates.push(state);
+    },
+    removeAnimationState: function removeAnimationState(target) {
+      animationStates.splice(indexOfObject(animationStates, {
+        target
+      }), 1);
+    },
+    animateAll: function animateAll(callback) {
+      var _this = this;
+      if (!this.options.animation) {
+        clearTimeout(animationCallbackId);
+        if (typeof callback === "function")
+          callback();
+        return;
+      }
+      var animating = false, animationTime = 0;
+      animationStates.forEach(function(state) {
+        var time = 0, target = state.target, fromRect = target.fromRect, toRect = getRect(target), prevFromRect = target.prevFromRect, prevToRect = target.prevToRect, animatingRect = state.rect, targetMatrix = matrix(target, true);
+        if (targetMatrix) {
+          toRect.top -= targetMatrix.f;
+          toRect.left -= targetMatrix.e;
+        }
+        target.toRect = toRect;
+        if (target.thisAnimationDuration) {
+          if (isRectEqual(prevFromRect, toRect) && !isRectEqual(fromRect, toRect) && // Make sure animatingRect is on line between toRect & fromRect
+          (animatingRect.top - toRect.top) / (animatingRect.left - toRect.left) === (fromRect.top - toRect.top) / (fromRect.left - toRect.left)) {
+            time = calculateRealTime(animatingRect, prevFromRect, prevToRect, _this.options);
+          }
+        }
+        if (!isRectEqual(toRect, fromRect)) {
+          target.prevFromRect = fromRect;
+          target.prevToRect = toRect;
+          if (!time) {
+            time = _this.options.animation;
+          }
+          _this.animate(target, animatingRect, toRect, time);
+        }
+        if (time) {
+          animating = true;
+          animationTime = Math.max(animationTime, time);
+          clearTimeout(target.animationResetTimer);
+          target.animationResetTimer = setTimeout(function() {
+            target.animationTime = 0;
+            target.prevFromRect = null;
+            target.fromRect = null;
+            target.prevToRect = null;
+            target.thisAnimationDuration = null;
+          }, time);
+          target.thisAnimationDuration = time;
+        }
+      });
+      clearTimeout(animationCallbackId);
+      if (!animating) {
+        if (typeof callback === "function")
+          callback();
+      } else {
+        animationCallbackId = setTimeout(function() {
+          if (typeof callback === "function")
+            callback();
+        }, animationTime);
+      }
+      animationStates = [];
+    },
+    animate: function animate(target, currentRect, toRect, duration) {
+      if (duration) {
+        css(target, "transition", "");
+        css(target, "transform", "");
+        var elMatrix = matrix(this.el), scaleX = elMatrix && elMatrix.a, scaleY = elMatrix && elMatrix.d, translateX = (currentRect.left - toRect.left) / (scaleX || 1), translateY = (currentRect.top - toRect.top) / (scaleY || 1);
+        target.animatingX = !!translateX;
+        target.animatingY = !!translateY;
+        css(target, "transform", "translate3d(" + translateX + "px," + translateY + "px,0)");
+        this.forRepaintDummy = repaint(target);
+        css(target, "transition", "transform " + duration + "ms" + (this.options.easing ? " " + this.options.easing : ""));
+        css(target, "transform", "translate3d(0,0,0)");
+        typeof target.animated === "number" && clearTimeout(target.animated);
+        target.animated = setTimeout(function() {
+          css(target, "transition", "");
+          css(target, "transform", "");
+          target.animated = false;
+          target.animatingX = false;
+          target.animatingY = false;
+        }, duration);
+      }
+    }
+  };
+}
+function repaint(target) {
+  return target.offsetWidth;
+}
+function calculateRealTime(animatingRect, fromRect, toRect, options) {
+  return Math.sqrt(Math.pow(fromRect.top - animatingRect.top, 2) + Math.pow(fromRect.left - animatingRect.left, 2)) / Math.sqrt(Math.pow(fromRect.top - toRect.top, 2) + Math.pow(fromRect.left - toRect.left, 2)) * options.animation;
+}
+var plugins = [];
+var defaults = {
+  initializeByDefault: true
+};
+var PluginManager = {
+  mount: function mount(plugin) {
+    for (var option2 in defaults) {
+      if (defaults.hasOwnProperty(option2) && !(option2 in plugin)) {
+        plugin[option2] = defaults[option2];
+      }
+    }
+    plugins.forEach(function(p) {
+      if (p.pluginName === plugin.pluginName) {
+        throw "Sortable: Cannot mount plugin ".concat(plugin.pluginName, " more than once");
+      }
+    });
+    plugins.push(plugin);
+  },
+  pluginEvent: function pluginEvent(eventName, sortable, evt) {
+    var _this = this;
+    this.eventCanceled = false;
+    evt.cancel = function() {
+      _this.eventCanceled = true;
+    };
+    var eventNameGlobal = eventName + "Global";
+    plugins.forEach(function(plugin) {
+      if (!sortable[plugin.pluginName])
+        return;
+      if (sortable[plugin.pluginName][eventNameGlobal]) {
+        sortable[plugin.pluginName][eventNameGlobal](_objectSpread2({
+          sortable
+        }, evt));
+      }
+      if (sortable.options[plugin.pluginName] && sortable[plugin.pluginName][eventName]) {
+        sortable[plugin.pluginName][eventName](_objectSpread2({
+          sortable
+        }, evt));
+      }
+    });
+  },
+  initializePlugins: function initializePlugins(sortable, el, defaults2, options) {
+    plugins.forEach(function(plugin) {
+      var pluginName = plugin.pluginName;
+      if (!sortable.options[pluginName] && !plugin.initializeByDefault)
+        return;
+      var initialized = new plugin(sortable, el, sortable.options);
+      initialized.sortable = sortable;
+      initialized.options = sortable.options;
+      sortable[pluginName] = initialized;
+      _extends(defaults2, initialized.defaults);
+    });
+    for (var option2 in sortable.options) {
+      if (!sortable.options.hasOwnProperty(option2))
+        continue;
+      var modified = this.modifyOption(sortable, option2, sortable.options[option2]);
+      if (typeof modified !== "undefined") {
+        sortable.options[option2] = modified;
+      }
+    }
+  },
+  getEventProperties: function getEventProperties(name, sortable) {
+    var eventProperties = {};
+    plugins.forEach(function(plugin) {
+      if (typeof plugin.eventProperties !== "function")
+        return;
+      _extends(eventProperties, plugin.eventProperties.call(sortable[plugin.pluginName], name));
+    });
+    return eventProperties;
+  },
+  modifyOption: function modifyOption(sortable, name, value) {
+    var modifiedValue;
+    plugins.forEach(function(plugin) {
+      if (!sortable[plugin.pluginName])
+        return;
+      if (plugin.optionListeners && typeof plugin.optionListeners[name] === "function") {
+        modifiedValue = plugin.optionListeners[name].call(sortable[plugin.pluginName], value);
+      }
+    });
+    return modifiedValue;
+  }
+};
+function dispatchEvent(_ref) {
+  var sortable = _ref.sortable, rootEl2 = _ref.rootEl, name = _ref.name, targetEl = _ref.targetEl, cloneEl2 = _ref.cloneEl, toEl = _ref.toEl, fromEl = _ref.fromEl, oldIndex2 = _ref.oldIndex, newIndex2 = _ref.newIndex, oldDraggableIndex2 = _ref.oldDraggableIndex, newDraggableIndex2 = _ref.newDraggableIndex, originalEvent = _ref.originalEvent, putSortable2 = _ref.putSortable, extraEventProperties = _ref.extraEventProperties;
+  sortable = sortable || rootEl2 && rootEl2[expando];
+  if (!sortable)
+    return;
+  var evt, options = sortable.options, onName = "on" + name.charAt(0).toUpperCase() + name.substr(1);
+  if (window.CustomEvent && !IE11OrLess && !Edge) {
+    evt = new CustomEvent(name, {
+      bubbles: true,
+      cancelable: true
+    });
+  } else {
+    evt = document.createEvent("Event");
+    evt.initEvent(name, true, true);
+  }
+  evt.to = toEl || rootEl2;
+  evt.from = fromEl || rootEl2;
+  evt.item = targetEl || rootEl2;
+  evt.clone = cloneEl2;
+  evt.oldIndex = oldIndex2;
+  evt.newIndex = newIndex2;
+  evt.oldDraggableIndex = oldDraggableIndex2;
+  evt.newDraggableIndex = newDraggableIndex2;
+  evt.originalEvent = originalEvent;
+  evt.pullMode = putSortable2 ? putSortable2.lastPutMode : void 0;
+  var allEventProperties = _objectSpread2(_objectSpread2({}, extraEventProperties), PluginManager.getEventProperties(name, sortable));
+  for (var option2 in allEventProperties) {
+    evt[option2] = allEventProperties[option2];
+  }
+  if (rootEl2) {
+    rootEl2.dispatchEvent(evt);
+  }
+  if (options[onName]) {
+    options[onName].call(sortable, evt);
+  }
+}
+var _excluded = ["evt"];
+var pluginEvent2 = function pluginEvent3(eventName, sortable) {
+  var _ref = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, originalEvent = _ref.evt, data = _objectWithoutProperties(_ref, _excluded);
+  PluginManager.pluginEvent.bind(Sortable)(eventName, sortable, _objectSpread2({
+    dragEl,
+    parentEl,
+    ghostEl,
+    rootEl,
+    nextEl,
+    lastDownEl,
+    cloneEl,
+    cloneHidden,
+    dragStarted: moved,
+    putSortable,
+    activeSortable: Sortable.active,
+    originalEvent,
+    oldIndex,
+    oldDraggableIndex,
+    newIndex,
+    newDraggableIndex,
+    hideGhostForTarget: _hideGhostForTarget,
+    unhideGhostForTarget: _unhideGhostForTarget,
+    cloneNowHidden: function cloneNowHidden() {
+      cloneHidden = true;
+    },
+    cloneNowShown: function cloneNowShown() {
+      cloneHidden = false;
+    },
+    dispatchSortableEvent: function dispatchSortableEvent(name) {
+      _dispatchEvent({
+        sortable,
+        name,
+        originalEvent
+      });
+    }
+  }, data));
+};
+function _dispatchEvent(info) {
+  dispatchEvent(_objectSpread2({
+    putSortable,
+    cloneEl,
+    targetEl: dragEl,
+    rootEl,
+    oldIndex,
+    oldDraggableIndex,
+    newIndex,
+    newDraggableIndex
+  }, info));
+}
+var dragEl;
+var parentEl;
+var ghostEl;
+var rootEl;
+var nextEl;
+var lastDownEl;
+var cloneEl;
+var cloneHidden;
+var oldIndex;
+var newIndex;
+var oldDraggableIndex;
+var newDraggableIndex;
+var activeGroup;
+var putSortable;
+var awaitingDragStarted = false;
+var ignoreNextClick = false;
+var sortables = [];
+var tapEvt;
+var touchEvt;
+var lastDx;
+var lastDy;
+var tapDistanceLeft;
+var tapDistanceTop;
+var moved;
+var lastTarget;
+var lastDirection;
+var pastFirstInvertThresh = false;
+var isCircumstantialInvert = false;
+var targetMoveDistance;
+var ghostRelativeParent;
+var ghostRelativeParentInitialScroll = [];
+var _silent = false;
+var savedInputChecked = [];
+var documentExists = typeof document !== "undefined";
+var PositionGhostAbsolutely = IOS;
+var CSSFloatProperty = Edge || IE11OrLess ? "cssFloat" : "float";
+var supportDraggable = documentExists && !ChromeForAndroid && !IOS && "draggable" in document.createElement("div");
+var supportCssPointerEvents = function() {
+  if (!documentExists)
+    return;
+  if (IE11OrLess) {
+    return false;
+  }
+  var el = document.createElement("x");
+  el.style.cssText = "pointer-events:auto";
+  return el.style.pointerEvents === "auto";
+}();
+var _detectDirection = function _detectDirection2(el, options) {
+  var elCSS = css(el), elWidth = parseInt(elCSS.width) - parseInt(elCSS.paddingLeft) - parseInt(elCSS.paddingRight) - parseInt(elCSS.borderLeftWidth) - parseInt(elCSS.borderRightWidth), child1 = getChild(el, 0, options), child2 = getChild(el, 1, options), firstChildCSS = child1 && css(child1), secondChildCSS = child2 && css(child2), firstChildWidth = firstChildCSS && parseInt(firstChildCSS.marginLeft) + parseInt(firstChildCSS.marginRight) + getRect(child1).width, secondChildWidth = secondChildCSS && parseInt(secondChildCSS.marginLeft) + parseInt(secondChildCSS.marginRight) + getRect(child2).width;
+  if (elCSS.display === "flex") {
+    return elCSS.flexDirection === "column" || elCSS.flexDirection === "column-reverse" ? "vertical" : "horizontal";
+  }
+  if (elCSS.display === "grid") {
+    return elCSS.gridTemplateColumns.split(" ").length <= 1 ? "vertical" : "horizontal";
+  }
+  if (child1 && firstChildCSS["float"] && firstChildCSS["float"] !== "none") {
+    var touchingSideChild2 = firstChildCSS["float"] === "left" ? "left" : "right";
+    return child2 && (secondChildCSS.clear === "both" || secondChildCSS.clear === touchingSideChild2) ? "vertical" : "horizontal";
+  }
+  return child1 && (firstChildCSS.display === "block" || firstChildCSS.display === "flex" || firstChildCSS.display === "table" || firstChildCSS.display === "grid" || firstChildWidth >= elWidth && elCSS[CSSFloatProperty] === "none" || child2 && elCSS[CSSFloatProperty] === "none" && firstChildWidth + secondChildWidth > elWidth) ? "vertical" : "horizontal";
+};
+var _dragElInRowColumn = function _dragElInRowColumn2(dragRect, targetRect, vertical) {
+  var dragElS1Opp = vertical ? dragRect.left : dragRect.top, dragElS2Opp = vertical ? dragRect.right : dragRect.bottom, dragElOppLength = vertical ? dragRect.width : dragRect.height, targetS1Opp = vertical ? targetRect.left : targetRect.top, targetS2Opp = vertical ? targetRect.right : targetRect.bottom, targetOppLength = vertical ? targetRect.width : targetRect.height;
+  return dragElS1Opp === targetS1Opp || dragElS2Opp === targetS2Opp || dragElS1Opp + dragElOppLength / 2 === targetS1Opp + targetOppLength / 2;
+};
+var _detectNearestEmptySortable = function _detectNearestEmptySortable2(x, y) {
+  var ret;
+  sortables.some(function(sortable) {
+    var threshold = sortable[expando].options.emptyInsertThreshold;
+    if (!threshold || lastChild(sortable))
+      return;
+    var rect = getRect(sortable), insideHorizontally = x >= rect.left - threshold && x <= rect.right + threshold, insideVertically = y >= rect.top - threshold && y <= rect.bottom + threshold;
+    if (insideHorizontally && insideVertically) {
+      return ret = sortable;
+    }
+  });
+  return ret;
+};
+var _prepareGroup = function _prepareGroup2(options) {
+  function toFn(value, pull) {
+    return function(to, from, dragEl2, evt) {
+      var sameGroup = to.options.group.name && from.options.group.name && to.options.group.name === from.options.group.name;
+      if (value == null && (pull || sameGroup)) {
+        return true;
+      } else if (value == null || value === false) {
+        return false;
+      } else if (pull && value === "clone") {
+        return value;
+      } else if (typeof value === "function") {
+        return toFn(value(to, from, dragEl2, evt), pull)(to, from, dragEl2, evt);
+      } else {
+        var otherGroup = (pull ? to : from).options.group.name;
+        return value === true || typeof value === "string" && value === otherGroup || value.join && value.indexOf(otherGroup) > -1;
+      }
+    };
+  }
+  var group = {};
+  var originalGroup = options.group;
+  if (!originalGroup || _typeof(originalGroup) != "object") {
+    originalGroup = {
+      name: originalGroup
+    };
+  }
+  group.name = originalGroup.name;
+  group.checkPull = toFn(originalGroup.pull, true);
+  group.checkPut = toFn(originalGroup.put);
+  group.revertClone = originalGroup.revertClone;
+  options.group = group;
+};
+var _hideGhostForTarget = function _hideGhostForTarget2() {
+  if (!supportCssPointerEvents && ghostEl) {
+    css(ghostEl, "display", "none");
+  }
+};
+var _unhideGhostForTarget = function _unhideGhostForTarget2() {
+  if (!supportCssPointerEvents && ghostEl) {
+    css(ghostEl, "display", "");
+  }
+};
+if (documentExists && !ChromeForAndroid) {
+  document.addEventListener("click", function(evt) {
+    if (ignoreNextClick) {
+      evt.preventDefault();
+      evt.stopPropagation && evt.stopPropagation();
+      evt.stopImmediatePropagation && evt.stopImmediatePropagation();
+      ignoreNextClick = false;
+      return false;
+    }
+  }, true);
+}
+var nearestEmptyInsertDetectEvent = function nearestEmptyInsertDetectEvent2(evt) {
+  if (dragEl) {
+    evt = evt.touches ? evt.touches[0] : evt;
+    var nearest = _detectNearestEmptySortable(evt.clientX, evt.clientY);
+    if (nearest) {
+      var event = {};
+      for (var i in evt) {
+        if (evt.hasOwnProperty(i)) {
+          event[i] = evt[i];
+        }
+      }
+      event.target = event.rootEl = nearest;
+      event.preventDefault = void 0;
+      event.stopPropagation = void 0;
+      nearest[expando]._onDragOver(event);
+    }
+  }
+};
+var _checkOutsideTargetEl = function _checkOutsideTargetEl2(evt) {
+  if (dragEl) {
+    dragEl.parentNode[expando]._isOutsideThisEl(evt.target);
+  }
+};
+function Sortable(el, options) {
+  if (!(el && el.nodeType && el.nodeType === 1)) {
+    throw "Sortable: `el` must be an HTMLElement, not ".concat({}.toString.call(el));
+  }
+  this.el = el;
+  this.options = options = _extends({}, options);
+  el[expando] = this;
+  var defaults2 = {
+    group: null,
+    sort: true,
+    disabled: false,
+    store: null,
+    handle: null,
+    draggable: /^[uo]l$/i.test(el.nodeName) ? ">li" : ">*",
+    swapThreshold: 1,
+    // percentage; 0 <= x <= 1
+    invertSwap: false,
+    // invert always
+    invertedSwapThreshold: null,
+    // will be set to same as swapThreshold if default
+    removeCloneOnHide: true,
+    direction: function direction() {
+      return _detectDirection(el, this.options);
+    },
+    ghostClass: "sortable-ghost",
+    chosenClass: "sortable-chosen",
+    dragClass: "sortable-drag",
+    ignore: "a, img",
+    filter: null,
+    preventOnFilter: true,
+    animation: 0,
+    easing: null,
+    setData: function setData(dataTransfer, dragEl2) {
+      dataTransfer.setData("Text", dragEl2.textContent);
+    },
+    dropBubble: false,
+    dragoverBubble: false,
+    dataIdAttr: "data-id",
+    delay: 0,
+    delayOnTouchOnly: false,
+    touchStartThreshold: (Number.parseInt ? Number : window).parseInt(window.devicePixelRatio, 10) || 1,
+    forceFallback: false,
+    fallbackClass: "sortable-fallback",
+    fallbackOnBody: false,
+    fallbackTolerance: 0,
+    fallbackOffset: {
+      x: 0,
+      y: 0
+    },
+    supportPointer: Sortable.supportPointer !== false && "PointerEvent" in window && !Safari,
+    emptyInsertThreshold: 5
+  };
+  PluginManager.initializePlugins(this, el, defaults2);
+  for (var name in defaults2) {
+    !(name in options) && (options[name] = defaults2[name]);
+  }
+  _prepareGroup(options);
+  for (var fn in this) {
+    if (fn.charAt(0) === "_" && typeof this[fn] === "function") {
+      this[fn] = this[fn].bind(this);
+    }
+  }
+  this.nativeDraggable = options.forceFallback ? false : supportDraggable;
+  if (this.nativeDraggable) {
+    this.options.touchStartThreshold = 1;
+  }
+  if (options.supportPointer) {
+    on(el, "pointerdown", this._onTapStart);
+  } else {
+    on(el, "mousedown", this._onTapStart);
+    on(el, "touchstart", this._onTapStart);
+  }
+  if (this.nativeDraggable) {
+    on(el, "dragover", this);
+    on(el, "dragenter", this);
+  }
+  sortables.push(this.el);
+  options.store && options.store.get && this.sort(options.store.get(this) || []);
+  _extends(this, AnimationStateManager());
+}
+Sortable.prototype = /** @lends Sortable.prototype */
+{
+  constructor: Sortable,
+  _isOutsideThisEl: function _isOutsideThisEl(target) {
+    if (!this.el.contains(target) && target !== this.el) {
+      lastTarget = null;
+    }
+  },
+  _getDirection: function _getDirection(evt, target) {
+    return typeof this.options.direction === "function" ? this.options.direction.call(this, evt, target, dragEl) : this.options.direction;
+  },
+  _onTapStart: function _onTapStart(evt) {
+    if (!evt.cancelable)
+      return;
+    var _this = this, el = this.el, options = this.options, preventOnFilter = options.preventOnFilter, type = evt.type, touch = evt.touches && evt.touches[0] || evt.pointerType && evt.pointerType === "touch" && evt, target = (touch || evt).target, originalTarget = evt.target.shadowRoot && (evt.path && evt.path[0] || evt.composedPath && evt.composedPath()[0]) || target, filter = options.filter;
+    _saveInputCheckedState(el);
+    if (dragEl) {
+      return;
+    }
+    if (/mousedown|pointerdown/.test(type) && evt.button !== 0 || options.disabled) {
+      return;
+    }
+    if (originalTarget.isContentEditable) {
+      return;
+    }
+    if (!this.nativeDraggable && Safari && target && target.tagName.toUpperCase() === "SELECT") {
+      return;
+    }
+    target = closest(target, options.draggable, el, false);
+    if (target && target.animated) {
+      return;
+    }
+    if (lastDownEl === target) {
+      return;
+    }
+    oldIndex = index(target);
+    oldDraggableIndex = index(target, options.draggable);
+    if (typeof filter === "function") {
+      if (filter.call(this, evt, target, this)) {
+        _dispatchEvent({
+          sortable: _this,
+          rootEl: originalTarget,
+          name: "filter",
+          targetEl: target,
+          toEl: el,
+          fromEl: el
+        });
+        pluginEvent2("filter", _this, {
+          evt
+        });
+        preventOnFilter && evt.cancelable && evt.preventDefault();
+        return;
+      }
+    } else if (filter) {
+      filter = filter.split(",").some(function(criteria) {
+        criteria = closest(originalTarget, criteria.trim(), el, false);
+        if (criteria) {
+          _dispatchEvent({
+            sortable: _this,
+            rootEl: criteria,
+            name: "filter",
+            targetEl: target,
+            fromEl: el,
+            toEl: el
+          });
+          pluginEvent2("filter", _this, {
+            evt
+          });
+          return true;
+        }
+      });
+      if (filter) {
+        preventOnFilter && evt.cancelable && evt.preventDefault();
+        return;
+      }
+    }
+    if (options.handle && !closest(originalTarget, options.handle, el, false)) {
+      return;
+    }
+    this._prepareDragStart(evt, touch, target);
+  },
+  _prepareDragStart: function _prepareDragStart(evt, touch, target) {
+    var _this = this, el = _this.el, options = _this.options, ownerDocument = el.ownerDocument, dragStartFn;
+    if (target && !dragEl && target.parentNode === el) {
+      var dragRect = getRect(target);
+      rootEl = el;
+      dragEl = target;
+      parentEl = dragEl.parentNode;
+      nextEl = dragEl.nextSibling;
+      lastDownEl = target;
+      activeGroup = options.group;
+      Sortable.dragged = dragEl;
+      tapEvt = {
+        target: dragEl,
+        clientX: (touch || evt).clientX,
+        clientY: (touch || evt).clientY
+      };
+      tapDistanceLeft = tapEvt.clientX - dragRect.left;
+      tapDistanceTop = tapEvt.clientY - dragRect.top;
+      this._lastX = (touch || evt).clientX;
+      this._lastY = (touch || evt).clientY;
+      dragEl.style["will-change"] = "all";
+      dragStartFn = function dragStartFn2() {
+        pluginEvent2("delayEnded", _this, {
+          evt
+        });
+        if (Sortable.eventCanceled) {
+          _this._onDrop();
+          return;
+        }
+        _this._disableDelayedDragEvents();
+        if (!FireFox && _this.nativeDraggable) {
+          dragEl.draggable = true;
+        }
+        _this._triggerDragStart(evt, touch);
+        _dispatchEvent({
+          sortable: _this,
+          name: "choose",
+          originalEvent: evt
+        });
+        toggleClass(dragEl, options.chosenClass, true);
+      };
+      options.ignore.split(",").forEach(function(criteria) {
+        find(dragEl, criteria.trim(), _disableDraggable);
+      });
+      on(ownerDocument, "dragover", nearestEmptyInsertDetectEvent);
+      on(ownerDocument, "mousemove", nearestEmptyInsertDetectEvent);
+      on(ownerDocument, "touchmove", nearestEmptyInsertDetectEvent);
+      on(ownerDocument, "mouseup", _this._onDrop);
+      on(ownerDocument, "touchend", _this._onDrop);
+      on(ownerDocument, "touchcancel", _this._onDrop);
+      if (FireFox && this.nativeDraggable) {
+        this.options.touchStartThreshold = 4;
+        dragEl.draggable = true;
+      }
+      pluginEvent2("delayStart", this, {
+        evt
+      });
+      if (options.delay && (!options.delayOnTouchOnly || touch) && (!this.nativeDraggable || !(Edge || IE11OrLess))) {
+        if (Sortable.eventCanceled) {
+          this._onDrop();
+          return;
+        }
+        on(ownerDocument, "mouseup", _this._disableDelayedDrag);
+        on(ownerDocument, "touchend", _this._disableDelayedDrag);
+        on(ownerDocument, "touchcancel", _this._disableDelayedDrag);
+        on(ownerDocument, "mousemove", _this._delayedDragTouchMoveHandler);
+        on(ownerDocument, "touchmove", _this._delayedDragTouchMoveHandler);
+        options.supportPointer && on(ownerDocument, "pointermove", _this._delayedDragTouchMoveHandler);
+        _this._dragStartTimer = setTimeout(dragStartFn, options.delay);
+      } else {
+        dragStartFn();
+      }
+    }
+  },
+  _delayedDragTouchMoveHandler: function _delayedDragTouchMoveHandler(e) {
+    var touch = e.touches ? e.touches[0] : e;
+    if (Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) >= Math.floor(this.options.touchStartThreshold / (this.nativeDraggable && window.devicePixelRatio || 1))) {
+      this._disableDelayedDrag();
+    }
+  },
+  _disableDelayedDrag: function _disableDelayedDrag() {
+    dragEl && _disableDraggable(dragEl);
+    clearTimeout(this._dragStartTimer);
+    this._disableDelayedDragEvents();
+  },
+  _disableDelayedDragEvents: function _disableDelayedDragEvents() {
+    var ownerDocument = this.el.ownerDocument;
+    off(ownerDocument, "mouseup", this._disableDelayedDrag);
+    off(ownerDocument, "touchend", this._disableDelayedDrag);
+    off(ownerDocument, "touchcancel", this._disableDelayedDrag);
+    off(ownerDocument, "mousemove", this._delayedDragTouchMoveHandler);
+    off(ownerDocument, "touchmove", this._delayedDragTouchMoveHandler);
+    off(ownerDocument, "pointermove", this._delayedDragTouchMoveHandler);
+  },
+  _triggerDragStart: function _triggerDragStart(evt, touch) {
+    touch = touch || evt.pointerType == "touch" && evt;
+    if (!this.nativeDraggable || touch) {
+      if (this.options.supportPointer) {
+        on(document, "pointermove", this._onTouchMove);
+      } else if (touch) {
+        on(document, "touchmove", this._onTouchMove);
+      } else {
+        on(document, "mousemove", this._onTouchMove);
+      }
+    } else {
+      on(dragEl, "dragend", this);
+      on(rootEl, "dragstart", this._onDragStart);
+    }
+    try {
+      if (document.selection) {
+        _nextTick(function() {
+          document.selection.empty();
+        });
+      } else {
+        window.getSelection().removeAllRanges();
+      }
+    } catch (err) {
+    }
+  },
+  _dragStarted: function _dragStarted(fallback, evt) {
+    awaitingDragStarted = false;
+    if (rootEl && dragEl) {
+      pluginEvent2("dragStarted", this, {
+        evt
+      });
+      if (this.nativeDraggable) {
+        on(document, "dragover", _checkOutsideTargetEl);
+      }
+      var options = this.options;
+      !fallback && toggleClass(dragEl, options.dragClass, false);
+      toggleClass(dragEl, options.ghostClass, true);
+      Sortable.active = this;
+      fallback && this._appendGhost();
+      _dispatchEvent({
+        sortable: this,
+        name: "start",
+        originalEvent: evt
+      });
+    } else {
+      this._nulling();
+    }
+  },
+  _emulateDragOver: function _emulateDragOver() {
+    if (touchEvt) {
+      this._lastX = touchEvt.clientX;
+      this._lastY = touchEvt.clientY;
+      _hideGhostForTarget();
+      var target = document.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+      var parent = target;
+      while (target && target.shadowRoot) {
+        target = target.shadowRoot.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+        if (target === parent)
+          break;
+        parent = target;
+      }
+      dragEl.parentNode[expando]._isOutsideThisEl(target);
+      if (parent) {
+        do {
+          if (parent[expando]) {
+            var inserted = void 0;
+            inserted = parent[expando]._onDragOver({
+              clientX: touchEvt.clientX,
+              clientY: touchEvt.clientY,
+              target,
+              rootEl: parent
+            });
+            if (inserted && !this.options.dragoverBubble) {
+              break;
+            }
+          }
+          target = parent;
+        } while (parent = parent.parentNode);
+      }
+      _unhideGhostForTarget();
+    }
+  },
+  _onTouchMove: function _onTouchMove(evt) {
+    if (tapEvt) {
+      var options = this.options, fallbackTolerance = options.fallbackTolerance, fallbackOffset = options.fallbackOffset, touch = evt.touches ? evt.touches[0] : evt, ghostMatrix = ghostEl && matrix(ghostEl, true), scaleX = ghostEl && ghostMatrix && ghostMatrix.a, scaleY = ghostEl && ghostMatrix && ghostMatrix.d, relativeScrollOffset = PositionGhostAbsolutely && ghostRelativeParent && getRelativeScrollOffset(ghostRelativeParent), dx = (touch.clientX - tapEvt.clientX + fallbackOffset.x) / (scaleX || 1) + (relativeScrollOffset ? relativeScrollOffset[0] - ghostRelativeParentInitialScroll[0] : 0) / (scaleX || 1), dy = (touch.clientY - tapEvt.clientY + fallbackOffset.y) / (scaleY || 1) + (relativeScrollOffset ? relativeScrollOffset[1] - ghostRelativeParentInitialScroll[1] : 0) / (scaleY || 1);
+      if (!Sortable.active && !awaitingDragStarted) {
+        if (fallbackTolerance && Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) < fallbackTolerance) {
+          return;
+        }
+        this._onDragStart(evt, true);
+      }
+      if (ghostEl) {
+        if (ghostMatrix) {
+          ghostMatrix.e += dx - (lastDx || 0);
+          ghostMatrix.f += dy - (lastDy || 0);
+        } else {
+          ghostMatrix = {
+            a: 1,
+            b: 0,
+            c: 0,
+            d: 1,
+            e: dx,
+            f: dy
+          };
+        }
+        var cssMatrix = "matrix(".concat(ghostMatrix.a, ",").concat(ghostMatrix.b, ",").concat(ghostMatrix.c, ",").concat(ghostMatrix.d, ",").concat(ghostMatrix.e, ",").concat(ghostMatrix.f, ")");
+        css(ghostEl, "webkitTransform", cssMatrix);
+        css(ghostEl, "mozTransform", cssMatrix);
+        css(ghostEl, "msTransform", cssMatrix);
+        css(ghostEl, "transform", cssMatrix);
+        lastDx = dx;
+        lastDy = dy;
+        touchEvt = touch;
+      }
+      evt.cancelable && evt.preventDefault();
+    }
+  },
+  _appendGhost: function _appendGhost() {
+    if (!ghostEl) {
+      var container = this.options.fallbackOnBody ? document.body : rootEl, rect = getRect(dragEl, true, PositionGhostAbsolutely, true, container), options = this.options;
+      if (PositionGhostAbsolutely) {
+        ghostRelativeParent = container;
+        while (css(ghostRelativeParent, "position") === "static" && css(ghostRelativeParent, "transform") === "none" && ghostRelativeParent !== document) {
+          ghostRelativeParent = ghostRelativeParent.parentNode;
+        }
+        if (ghostRelativeParent !== document.body && ghostRelativeParent !== document.documentElement) {
+          if (ghostRelativeParent === document)
+            ghostRelativeParent = getWindowScrollingElement();
+          rect.top += ghostRelativeParent.scrollTop;
+          rect.left += ghostRelativeParent.scrollLeft;
+        } else {
+          ghostRelativeParent = getWindowScrollingElement();
+        }
+        ghostRelativeParentInitialScroll = getRelativeScrollOffset(ghostRelativeParent);
+      }
+      ghostEl = dragEl.cloneNode(true);
+      toggleClass(ghostEl, options.ghostClass, false);
+      toggleClass(ghostEl, options.fallbackClass, true);
+      toggleClass(ghostEl, options.dragClass, true);
+      css(ghostEl, "transition", "");
+      css(ghostEl, "transform", "");
+      css(ghostEl, "box-sizing", "border-box");
+      css(ghostEl, "margin", 0);
+      css(ghostEl, "top", rect.top);
+      css(ghostEl, "left", rect.left);
+      css(ghostEl, "width", rect.width);
+      css(ghostEl, "height", rect.height);
+      css(ghostEl, "opacity", "0.8");
+      css(ghostEl, "position", PositionGhostAbsolutely ? "absolute" : "fixed");
+      css(ghostEl, "zIndex", "100000");
+      css(ghostEl, "pointerEvents", "none");
+      Sortable.ghost = ghostEl;
+      container.appendChild(ghostEl);
+      css(ghostEl, "transform-origin", tapDistanceLeft / parseInt(ghostEl.style.width) * 100 + "% " + tapDistanceTop / parseInt(ghostEl.style.height) * 100 + "%");
+    }
+  },
+  _onDragStart: function _onDragStart(evt, fallback) {
+    var _this = this;
+    var dataTransfer = evt.dataTransfer;
+    var options = _this.options;
+    pluginEvent2("dragStart", this, {
+      evt
+    });
+    if (Sortable.eventCanceled) {
+      this._onDrop();
+      return;
+    }
+    pluginEvent2("setupClone", this);
+    if (!Sortable.eventCanceled) {
+      cloneEl = clone(dragEl);
+      cloneEl.removeAttribute("id");
+      cloneEl.draggable = false;
+      cloneEl.style["will-change"] = "";
+      this._hideClone();
+      toggleClass(cloneEl, this.options.chosenClass, false);
+      Sortable.clone = cloneEl;
+    }
+    _this.cloneId = _nextTick(function() {
+      pluginEvent2("clone", _this);
+      if (Sortable.eventCanceled)
+        return;
+      if (!_this.options.removeCloneOnHide) {
+        rootEl.insertBefore(cloneEl, dragEl);
+      }
+      _this._hideClone();
+      _dispatchEvent({
+        sortable: _this,
+        name: "clone"
+      });
+    });
+    !fallback && toggleClass(dragEl, options.dragClass, true);
+    if (fallback) {
+      ignoreNextClick = true;
+      _this._loopId = setInterval(_this._emulateDragOver, 50);
+    } else {
+      off(document, "mouseup", _this._onDrop);
+      off(document, "touchend", _this._onDrop);
+      off(document, "touchcancel", _this._onDrop);
+      if (dataTransfer) {
+        dataTransfer.effectAllowed = "move";
+        options.setData && options.setData.call(_this, dataTransfer, dragEl);
+      }
+      on(document, "drop", _this);
+      css(dragEl, "transform", "translateZ(0)");
+    }
+    awaitingDragStarted = true;
+    _this._dragStartId = _nextTick(_this._dragStarted.bind(_this, fallback, evt));
+    on(document, "selectstart", _this);
+    moved = true;
+    if (Safari) {
+      css(document.body, "user-select", "none");
+    }
+  },
+  // Returns true - if no further action is needed (either inserted or another condition)
+  _onDragOver: function _onDragOver(evt) {
+    var el = this.el, target = evt.target, dragRect, targetRect, revert, options = this.options, group = options.group, activeSortable = Sortable.active, isOwner = activeGroup === group, canSort = options.sort, fromSortable = putSortable || activeSortable, vertical, _this = this, completedFired = false;
+    if (_silent)
+      return;
+    function dragOverEvent(name, extra) {
+      pluginEvent2(name, _this, _objectSpread2({
+        evt,
+        isOwner,
+        axis: vertical ? "vertical" : "horizontal",
+        revert,
+        dragRect,
+        targetRect,
+        canSort,
+        fromSortable,
+        target,
+        completed,
+        onMove: function onMove(target2, after2) {
+          return _onMove(rootEl, el, dragEl, dragRect, target2, getRect(target2), evt, after2);
+        },
+        changed
+      }, extra));
+    }
+    function capture() {
+      dragOverEvent("dragOverAnimationCapture");
+      _this.captureAnimationState();
+      if (_this !== fromSortable) {
+        fromSortable.captureAnimationState();
+      }
+    }
+    function completed(insertion) {
+      dragOverEvent("dragOverCompleted", {
+        insertion
+      });
+      if (insertion) {
+        if (isOwner) {
+          activeSortable._hideClone();
+        } else {
+          activeSortable._showClone(_this);
+        }
+        if (_this !== fromSortable) {
+          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : activeSortable.options.ghostClass, false);
+          toggleClass(dragEl, options.ghostClass, true);
+        }
+        if (putSortable !== _this && _this !== Sortable.active) {
+          putSortable = _this;
+        } else if (_this === Sortable.active && putSortable) {
+          putSortable = null;
+        }
+        if (fromSortable === _this) {
+          _this._ignoreWhileAnimating = target;
+        }
+        _this.animateAll(function() {
+          dragOverEvent("dragOverAnimationComplete");
+          _this._ignoreWhileAnimating = null;
+        });
+        if (_this !== fromSortable) {
+          fromSortable.animateAll();
+          fromSortable._ignoreWhileAnimating = null;
+        }
+      }
+      if (target === dragEl && !dragEl.animated || target === el && !target.animated) {
+        lastTarget = null;
+      }
+      if (!options.dragoverBubble && !evt.rootEl && target !== document) {
+        dragEl.parentNode[expando]._isOutsideThisEl(evt.target);
+        !insertion && nearestEmptyInsertDetectEvent(evt);
+      }
+      !options.dragoverBubble && evt.stopPropagation && evt.stopPropagation();
+      return completedFired = true;
+    }
+    function changed() {
+      newIndex = index(dragEl);
+      newDraggableIndex = index(dragEl, options.draggable);
+      _dispatchEvent({
+        sortable: _this,
+        name: "change",
+        toEl: el,
+        newIndex,
+        newDraggableIndex,
+        originalEvent: evt
+      });
+    }
+    if (evt.preventDefault !== void 0) {
+      evt.cancelable && evt.preventDefault();
+    }
+    target = closest(target, options.draggable, el, true);
+    dragOverEvent("dragOver");
+    if (Sortable.eventCanceled)
+      return completedFired;
+    if (dragEl.contains(evt.target) || target.animated && target.animatingX && target.animatingY || _this._ignoreWhileAnimating === target) {
+      return completed(false);
+    }
+    ignoreNextClick = false;
+    if (activeSortable && !options.disabled && (isOwner ? canSort || (revert = parentEl !== rootEl) : putSortable === this || (this.lastPutMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) && group.checkPut(this, activeSortable, dragEl, evt))) {
+      vertical = this._getDirection(evt, target) === "vertical";
+      dragRect = getRect(dragEl);
+      dragOverEvent("dragOverValid");
+      if (Sortable.eventCanceled)
+        return completedFired;
+      if (revert) {
+        parentEl = rootEl;
+        capture();
+        this._hideClone();
+        dragOverEvent("revert");
+        if (!Sortable.eventCanceled) {
+          if (nextEl) {
+            rootEl.insertBefore(dragEl, nextEl);
+          } else {
+            rootEl.appendChild(dragEl);
+          }
+        }
+        return completed(true);
+      }
+      var elLastChild = lastChild(el, options.draggable);
+      if (!elLastChild || _ghostIsLast(evt, vertical, this) && !elLastChild.animated) {
+        if (elLastChild === dragEl) {
+          return completed(false);
+        }
+        if (elLastChild && el === evt.target) {
+          target = elLastChild;
+        }
+        if (target) {
+          targetRect = getRect(target);
+        }
+        if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, !!target) !== false) {
+          capture();
+          if (elLastChild && elLastChild.nextSibling) {
+            el.insertBefore(dragEl, elLastChild.nextSibling);
+          } else {
+            el.appendChild(dragEl);
+          }
+          parentEl = el;
+          changed();
+          return completed(true);
+        }
+      } else if (elLastChild && _ghostIsFirst(evt, vertical, this)) {
+        var firstChild = getChild(el, 0, options, true);
+        if (firstChild === dragEl) {
+          return completed(false);
+        }
+        target = firstChild;
+        targetRect = getRect(target);
+        if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, false) !== false) {
+          capture();
+          el.insertBefore(dragEl, firstChild);
+          parentEl = el;
+          changed();
+          return completed(true);
+        }
+      } else if (target.parentNode === el) {
+        targetRect = getRect(target);
+        var direction = 0, targetBeforeFirstSwap, differentLevel = dragEl.parentNode !== el, differentRowCol = !_dragElInRowColumn(dragEl.animated && dragEl.toRect || dragRect, target.animated && target.toRect || targetRect, vertical), side1 = vertical ? "top" : "left", scrolledPastTop = isScrolledPast(target, "top", "top") || isScrolledPast(dragEl, "top", "top"), scrollBefore = scrolledPastTop ? scrolledPastTop.scrollTop : void 0;
+        if (lastTarget !== target) {
+          targetBeforeFirstSwap = targetRect[side1];
+          pastFirstInvertThresh = false;
+          isCircumstantialInvert = !differentRowCol && options.invertSwap || differentLevel;
+        }
+        direction = _getSwapDirection(evt, target, targetRect, vertical, differentRowCol ? 1 : options.swapThreshold, options.invertedSwapThreshold == null ? options.swapThreshold : options.invertedSwapThreshold, isCircumstantialInvert, lastTarget === target);
+        var sibling;
+        if (direction !== 0) {
+          var dragIndex = index(dragEl);
+          do {
+            dragIndex -= direction;
+            sibling = parentEl.children[dragIndex];
+          } while (sibling && (css(sibling, "display") === "none" || sibling === ghostEl));
+        }
+        if (direction === 0 || sibling === target) {
+          return completed(false);
+        }
+        lastTarget = target;
+        lastDirection = direction;
+        var nextSibling = target.nextElementSibling, after = false;
+        after = direction === 1;
+        var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
+        if (moveVector !== false) {
+          if (moveVector === 1 || moveVector === -1) {
+            after = moveVector === 1;
+          }
+          _silent = true;
+          setTimeout(_unsilent, 30);
+          capture();
+          if (after && !nextSibling) {
+            el.appendChild(dragEl);
+          } else {
+            target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
+          }
+          if (scrolledPastTop) {
+            scrollBy(scrolledPastTop, 0, scrollBefore - scrolledPastTop.scrollTop);
+          }
+          parentEl = dragEl.parentNode;
+          if (targetBeforeFirstSwap !== void 0 && !isCircumstantialInvert) {
+            targetMoveDistance = Math.abs(targetBeforeFirstSwap - getRect(target)[side1]);
+          }
+          changed();
+          return completed(true);
+        }
+      }
+      if (el.contains(dragEl)) {
+        return completed(false);
+      }
+    }
+    return false;
+  },
+  _ignoreWhileAnimating: null,
+  _offMoveEvents: function _offMoveEvents() {
+    off(document, "mousemove", this._onTouchMove);
+    off(document, "touchmove", this._onTouchMove);
+    off(document, "pointermove", this._onTouchMove);
+    off(document, "dragover", nearestEmptyInsertDetectEvent);
+    off(document, "mousemove", nearestEmptyInsertDetectEvent);
+    off(document, "touchmove", nearestEmptyInsertDetectEvent);
+  },
+  _offUpEvents: function _offUpEvents() {
+    var ownerDocument = this.el.ownerDocument;
+    off(ownerDocument, "mouseup", this._onDrop);
+    off(ownerDocument, "touchend", this._onDrop);
+    off(ownerDocument, "pointerup", this._onDrop);
+    off(ownerDocument, "touchcancel", this._onDrop);
+    off(document, "selectstart", this);
+  },
+  _onDrop: function _onDrop(evt) {
+    var el = this.el, options = this.options;
+    newIndex = index(dragEl);
+    newDraggableIndex = index(dragEl, options.draggable);
+    pluginEvent2("drop", this, {
+      evt
+    });
+    parentEl = dragEl && dragEl.parentNode;
+    newIndex = index(dragEl);
+    newDraggableIndex = index(dragEl, options.draggable);
+    if (Sortable.eventCanceled) {
+      this._nulling();
+      return;
+    }
+    awaitingDragStarted = false;
+    isCircumstantialInvert = false;
+    pastFirstInvertThresh = false;
+    clearInterval(this._loopId);
+    clearTimeout(this._dragStartTimer);
+    _cancelNextTick(this.cloneId);
+    _cancelNextTick(this._dragStartId);
+    if (this.nativeDraggable) {
+      off(document, "drop", this);
+      off(el, "dragstart", this._onDragStart);
+    }
+    this._offMoveEvents();
+    this._offUpEvents();
+    if (Safari) {
+      css(document.body, "user-select", "");
+    }
+    css(dragEl, "transform", "");
+    if (evt) {
+      if (moved) {
+        evt.cancelable && evt.preventDefault();
+        !options.dropBubble && evt.stopPropagation();
+      }
+      ghostEl && ghostEl.parentNode && ghostEl.parentNode.removeChild(ghostEl);
+      if (rootEl === parentEl || putSortable && putSortable.lastPutMode !== "clone") {
+        cloneEl && cloneEl.parentNode && cloneEl.parentNode.removeChild(cloneEl);
+      }
+      if (dragEl) {
+        if (this.nativeDraggable) {
+          off(dragEl, "dragend", this);
+        }
+        _disableDraggable(dragEl);
+        dragEl.style["will-change"] = "";
+        if (moved && !awaitingDragStarted) {
+          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : this.options.ghostClass, false);
+        }
+        toggleClass(dragEl, this.options.chosenClass, false);
+        _dispatchEvent({
+          sortable: this,
+          name: "unchoose",
+          toEl: parentEl,
+          newIndex: null,
+          newDraggableIndex: null,
+          originalEvent: evt
+        });
+        if (rootEl !== parentEl) {
+          if (newIndex >= 0) {
+            _dispatchEvent({
+              rootEl: parentEl,
+              name: "add",
+              toEl: parentEl,
+              fromEl: rootEl,
+              originalEvent: evt
+            });
+            _dispatchEvent({
+              sortable: this,
+              name: "remove",
+              toEl: parentEl,
+              originalEvent: evt
+            });
+            _dispatchEvent({
+              rootEl: parentEl,
+              name: "sort",
+              toEl: parentEl,
+              fromEl: rootEl,
+              originalEvent: evt
+            });
+            _dispatchEvent({
+              sortable: this,
+              name: "sort",
+              toEl: parentEl,
+              originalEvent: evt
+            });
+          }
+          putSortable && putSortable.save();
+        } else {
+          if (newIndex !== oldIndex) {
+            if (newIndex >= 0) {
+              _dispatchEvent({
+                sortable: this,
+                name: "update",
+                toEl: parentEl,
+                originalEvent: evt
+              });
+              _dispatchEvent({
+                sortable: this,
+                name: "sort",
+                toEl: parentEl,
+                originalEvent: evt
+              });
+            }
+          }
+        }
+        if (Sortable.active) {
+          if (newIndex == null || newIndex === -1) {
+            newIndex = oldIndex;
+            newDraggableIndex = oldDraggableIndex;
+          }
+          _dispatchEvent({
+            sortable: this,
+            name: "end",
+            toEl: parentEl,
+            originalEvent: evt
+          });
+          this.save();
+        }
+      }
+    }
+    this._nulling();
+  },
+  _nulling: function _nulling() {
+    pluginEvent2("nulling", this);
+    rootEl = dragEl = parentEl = ghostEl = nextEl = cloneEl = lastDownEl = cloneHidden = tapEvt = touchEvt = moved = newIndex = newDraggableIndex = oldIndex = oldDraggableIndex = lastTarget = lastDirection = putSortable = activeGroup = Sortable.dragged = Sortable.ghost = Sortable.clone = Sortable.active = null;
+    savedInputChecked.forEach(function(el) {
+      el.checked = true;
+    });
+    savedInputChecked.length = lastDx = lastDy = 0;
+  },
+  handleEvent: function handleEvent(evt) {
+    switch (evt.type) {
+      case "drop":
+      case "dragend":
+        this._onDrop(evt);
+        break;
+      case "dragenter":
+      case "dragover":
+        if (dragEl) {
+          this._onDragOver(evt);
+          _globalDragOver(evt);
+        }
+        break;
+      case "selectstart":
+        evt.preventDefault();
+        break;
+    }
+  },
+  /**
+   * Serializes the item into an array of string.
+   * @returns {String[]}
+   */
+  toArray: function toArray() {
+    var order = [], el, children = this.el.children, i = 0, n = children.length, options = this.options;
+    for (; i < n; i++) {
+      el = children[i];
+      if (closest(el, options.draggable, this.el, false)) {
+        order.push(el.getAttribute(options.dataIdAttr) || _generateId(el));
+      }
+    }
+    return order;
+  },
+  /**
+   * Sorts the elements according to the array.
+   * @param  {String[]}  order  order of the items
+   */
+  sort: function sort(order, useAnimation) {
+    var items = {}, rootEl2 = this.el;
+    this.toArray().forEach(function(id, i) {
+      var el = rootEl2.children[i];
+      if (closest(el, this.options.draggable, rootEl2, false)) {
+        items[id] = el;
+      }
+    }, this);
+    useAnimation && this.captureAnimationState();
+    order.forEach(function(id) {
+      if (items[id]) {
+        rootEl2.removeChild(items[id]);
+        rootEl2.appendChild(items[id]);
+      }
+    });
+    useAnimation && this.animateAll();
+  },
+  /**
+   * Save the current sorting
+   */
+  save: function save() {
+    var store = this.options.store;
+    store && store.set && store.set(this);
+  },
+  /**
+   * For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
+   * @param   {HTMLElement}  el
+   * @param   {String}       [selector]  default: `options.draggable`
+   * @returns {HTMLElement|null}
+   */
+  closest: function closest$1(el, selector) {
+    return closest(el, selector || this.options.draggable, this.el, false);
+  },
+  /**
+   * Set/get option
+   * @param   {string} name
+   * @param   {*}      [value]
+   * @returns {*}
+   */
+  option: function option(name, value) {
+    var options = this.options;
+    if (value === void 0) {
+      return options[name];
+    } else {
+      var modifiedValue = PluginManager.modifyOption(this, name, value);
+      if (typeof modifiedValue !== "undefined") {
+        options[name] = modifiedValue;
+      } else {
+        options[name] = value;
+      }
+      if (name === "group") {
+        _prepareGroup(options);
+      }
+    }
+  },
+  /**
+   * Destroy
+   */
+  destroy: function destroy() {
+    pluginEvent2("destroy", this);
+    var el = this.el;
+    el[expando] = null;
+    off(el, "mousedown", this._onTapStart);
+    off(el, "touchstart", this._onTapStart);
+    off(el, "pointerdown", this._onTapStart);
+    if (this.nativeDraggable) {
+      off(el, "dragover", this);
+      off(el, "dragenter", this);
+    }
+    Array.prototype.forEach.call(el.querySelectorAll("[draggable]"), function(el2) {
+      el2.removeAttribute("draggable");
+    });
+    this._onDrop();
+    this._disableDelayedDragEvents();
+    sortables.splice(sortables.indexOf(this.el), 1);
+    this.el = el = null;
+  },
+  _hideClone: function _hideClone() {
+    if (!cloneHidden) {
+      pluginEvent2("hideClone", this);
+      if (Sortable.eventCanceled)
+        return;
+      css(cloneEl, "display", "none");
+      if (this.options.removeCloneOnHide && cloneEl.parentNode) {
+        cloneEl.parentNode.removeChild(cloneEl);
+      }
+      cloneHidden = true;
+    }
+  },
+  _showClone: function _showClone(putSortable2) {
+    if (putSortable2.lastPutMode !== "clone") {
+      this._hideClone();
+      return;
+    }
+    if (cloneHidden) {
+      pluginEvent2("showClone", this);
+      if (Sortable.eventCanceled)
+        return;
+      if (dragEl.parentNode == rootEl && !this.options.group.revertClone) {
+        rootEl.insertBefore(cloneEl, dragEl);
+      } else if (nextEl) {
+        rootEl.insertBefore(cloneEl, nextEl);
+      } else {
+        rootEl.appendChild(cloneEl);
+      }
+      if (this.options.group.revertClone) {
+        this.animate(dragEl, cloneEl);
+      }
+      css(cloneEl, "display", "");
+      cloneHidden = false;
+    }
+  }
+};
+function _globalDragOver(evt) {
+  if (evt.dataTransfer) {
+    evt.dataTransfer.dropEffect = "move";
+  }
+  evt.cancelable && evt.preventDefault();
+}
+function _onMove(fromEl, toEl, dragEl2, dragRect, targetEl, targetRect, originalEvent, willInsertAfter) {
+  var evt, sortable = fromEl[expando], onMoveFn = sortable.options.onMove, retVal;
+  if (window.CustomEvent && !IE11OrLess && !Edge) {
+    evt = new CustomEvent("move", {
+      bubbles: true,
+      cancelable: true
+    });
+  } else {
+    evt = document.createEvent("Event");
+    evt.initEvent("move", true, true);
+  }
+  evt.to = toEl;
+  evt.from = fromEl;
+  evt.dragged = dragEl2;
+  evt.draggedRect = dragRect;
+  evt.related = targetEl || toEl;
+  evt.relatedRect = targetRect || getRect(toEl);
+  evt.willInsertAfter = willInsertAfter;
+  evt.originalEvent = originalEvent;
+  fromEl.dispatchEvent(evt);
+  if (onMoveFn) {
+    retVal = onMoveFn.call(sortable, evt, originalEvent);
+  }
+  return retVal;
+}
+function _disableDraggable(el) {
+  el.draggable = false;
+}
+function _unsilent() {
+  _silent = false;
+}
+function _ghostIsFirst(evt, vertical, sortable) {
+  var firstElRect = getRect(getChild(sortable.el, 0, sortable.options, true));
+  var childContainingRect = getChildContainingRectFromElement(sortable.el, sortable.options, ghostEl);
+  var spacer = 10;
+  return vertical ? evt.clientX < childContainingRect.left - spacer || evt.clientY < firstElRect.top && evt.clientX < firstElRect.right : evt.clientY < childContainingRect.top - spacer || evt.clientY < firstElRect.bottom && evt.clientX < firstElRect.left;
+}
+function _ghostIsLast(evt, vertical, sortable) {
+  var lastElRect = getRect(lastChild(sortable.el, sortable.options.draggable));
+  var childContainingRect = getChildContainingRectFromElement(sortable.el, sortable.options, ghostEl);
+  var spacer = 10;
+  return vertical ? evt.clientX > childContainingRect.right + spacer || evt.clientY > lastElRect.bottom && evt.clientX > lastElRect.left : evt.clientY > childContainingRect.bottom + spacer || evt.clientX > lastElRect.right && evt.clientY > lastElRect.top;
+}
+function _getSwapDirection(evt, target, targetRect, vertical, swapThreshold, invertedSwapThreshold, invertSwap, isLastTarget) {
+  var mouseOnAxis = vertical ? evt.clientY : evt.clientX, targetLength = vertical ? targetRect.height : targetRect.width, targetS1 = vertical ? targetRect.top : targetRect.left, targetS2 = vertical ? targetRect.bottom : targetRect.right, invert = false;
+  if (!invertSwap) {
+    if (isLastTarget && targetMoveDistance < targetLength * swapThreshold) {
+      if (!pastFirstInvertThresh && (lastDirection === 1 ? mouseOnAxis > targetS1 + targetLength * invertedSwapThreshold / 2 : mouseOnAxis < targetS2 - targetLength * invertedSwapThreshold / 2)) {
+        pastFirstInvertThresh = true;
+      }
+      if (!pastFirstInvertThresh) {
+        if (lastDirection === 1 ? mouseOnAxis < targetS1 + targetMoveDistance : mouseOnAxis > targetS2 - targetMoveDistance) {
+          return -lastDirection;
+        }
+      } else {
+        invert = true;
+      }
+    } else {
+      if (mouseOnAxis > targetS1 + targetLength * (1 - swapThreshold) / 2 && mouseOnAxis < targetS2 - targetLength * (1 - swapThreshold) / 2) {
+        return _getInsertDirection(target);
+      }
+    }
+  }
+  invert = invert || invertSwap;
+  if (invert) {
+    if (mouseOnAxis < targetS1 + targetLength * invertedSwapThreshold / 2 || mouseOnAxis > targetS2 - targetLength * invertedSwapThreshold / 2) {
+      return mouseOnAxis > targetS1 + targetLength / 2 ? 1 : -1;
+    }
+  }
+  return 0;
+}
+function _getInsertDirection(target) {
+  if (index(dragEl) < index(target)) {
+    return 1;
+  } else {
+    return -1;
+  }
+}
+function _generateId(el) {
+  var str = el.tagName + el.className + el.src + el.href + el.textContent, i = str.length, sum = 0;
+  while (i--) {
+    sum += str.charCodeAt(i);
+  }
+  return sum.toString(36);
+}
+function _saveInputCheckedState(root) {
+  savedInputChecked.length = 0;
+  var inputs = root.getElementsByTagName("input");
+  var idx = inputs.length;
+  while (idx--) {
+    var el = inputs[idx];
+    el.checked && savedInputChecked.push(el);
+  }
+}
+function _nextTick(fn) {
+  return setTimeout(fn, 0);
+}
+function _cancelNextTick(id) {
+  return clearTimeout(id);
+}
+if (documentExists) {
+  on(document, "touchmove", function(evt) {
+    if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
+      evt.preventDefault();
+    }
+  });
+}
+Sortable.utils = {
+  on,
+  off,
+  css,
+  find,
+  is: function is(el, selector) {
+    return !!closest(el, selector, el, false);
+  },
+  extend,
+  throttle,
+  closest,
+  toggleClass,
+  clone,
+  index,
+  nextTick: _nextTick,
+  cancelNextTick: _cancelNextTick,
+  detectDirection: _detectDirection,
+  getChild
+};
+Sortable.get = function(element) {
+  return element[expando];
+};
+Sortable.mount = function() {
+  for (var _len = arguments.length, plugins2 = new Array(_len), _key = 0; _key < _len; _key++) {
+    plugins2[_key] = arguments[_key];
+  }
+  if (plugins2[0].constructor === Array)
+    plugins2 = plugins2[0];
+  plugins2.forEach(function(plugin) {
+    if (!plugin.prototype || !plugin.prototype.constructor) {
+      throw "Sortable: Mounted plugin must be a constructor function, not ".concat({}.toString.call(plugin));
+    }
+    if (plugin.utils)
+      Sortable.utils = _objectSpread2(_objectSpread2({}, Sortable.utils), plugin.utils);
+    PluginManager.mount(plugin);
+  });
+};
+Sortable.create = function(el, options) {
+  return new Sortable(el, options);
+};
+Sortable.version = version;
+var autoScrolls = [];
+var scrollEl;
+var scrollRootEl;
+var scrolling = false;
+var lastAutoScrollX;
+var lastAutoScrollY;
+var touchEvt$1;
+var pointerElemChangedInterval;
+function AutoScrollPlugin() {
+  function AutoScroll() {
+    this.defaults = {
+      scroll: true,
+      forceAutoScrollFallback: false,
+      scrollSensitivity: 30,
+      scrollSpeed: 10,
+      bubbleScroll: true
+    };
+    for (var fn in this) {
+      if (fn.charAt(0) === "_" && typeof this[fn] === "function") {
+        this[fn] = this[fn].bind(this);
+      }
+    }
+  }
+  AutoScroll.prototype = {
+    dragStarted: function dragStarted(_ref) {
+      var originalEvent = _ref.originalEvent;
+      if (this.sortable.nativeDraggable) {
+        on(document, "dragover", this._handleAutoScroll);
+      } else {
+        if (this.options.supportPointer) {
+          on(document, "pointermove", this._handleFallbackAutoScroll);
+        } else if (originalEvent.touches) {
+          on(document, "touchmove", this._handleFallbackAutoScroll);
+        } else {
+          on(document, "mousemove", this._handleFallbackAutoScroll);
+        }
+      }
+    },
+    dragOverCompleted: function dragOverCompleted(_ref2) {
+      var originalEvent = _ref2.originalEvent;
+      if (!this.options.dragOverBubble && !originalEvent.rootEl) {
+        this._handleAutoScroll(originalEvent);
+      }
+    },
+    drop: function drop3() {
+      if (this.sortable.nativeDraggable) {
+        off(document, "dragover", this._handleAutoScroll);
+      } else {
+        off(document, "pointermove", this._handleFallbackAutoScroll);
+        off(document, "touchmove", this._handleFallbackAutoScroll);
+        off(document, "mousemove", this._handleFallbackAutoScroll);
+      }
+      clearPointerElemChangedInterval();
+      clearAutoScrolls();
+      cancelThrottle();
+    },
+    nulling: function nulling() {
+      touchEvt$1 = scrollRootEl = scrollEl = scrolling = pointerElemChangedInterval = lastAutoScrollX = lastAutoScrollY = null;
+      autoScrolls.length = 0;
+    },
+    _handleFallbackAutoScroll: function _handleFallbackAutoScroll(evt) {
+      this._handleAutoScroll(evt, true);
+    },
+    _handleAutoScroll: function _handleAutoScroll(evt, fallback) {
+      var _this = this;
+      var x = (evt.touches ? evt.touches[0] : evt).clientX, y = (evt.touches ? evt.touches[0] : evt).clientY, elem = document.elementFromPoint(x, y);
+      touchEvt$1 = evt;
+      if (fallback || this.options.forceAutoScrollFallback || Edge || IE11OrLess || Safari) {
+        autoScroll(evt, this.options, elem, fallback);
+        var ogElemScroller = getParentAutoScrollElement(elem, true);
+        if (scrolling && (!pointerElemChangedInterval || x !== lastAutoScrollX || y !== lastAutoScrollY)) {
+          pointerElemChangedInterval && clearPointerElemChangedInterval();
+          pointerElemChangedInterval = setInterval(function() {
+            var newElem = getParentAutoScrollElement(document.elementFromPoint(x, y), true);
+            if (newElem !== ogElemScroller) {
+              ogElemScroller = newElem;
+              clearAutoScrolls();
+            }
+            autoScroll(evt, _this.options, newElem, fallback);
+          }, 10);
+          lastAutoScrollX = x;
+          lastAutoScrollY = y;
+        }
+      } else {
+        if (!this.options.bubbleScroll || getParentAutoScrollElement(elem, true) === getWindowScrollingElement()) {
+          clearAutoScrolls();
+          return;
+        }
+        autoScroll(evt, this.options, getParentAutoScrollElement(elem, false), false);
+      }
+    }
+  };
+  return _extends(AutoScroll, {
+    pluginName: "scroll",
+    initializeByDefault: true
+  });
+}
+function clearAutoScrolls() {
+  autoScrolls.forEach(function(autoScroll2) {
+    clearInterval(autoScroll2.pid);
+  });
+  autoScrolls = [];
+}
+function clearPointerElemChangedInterval() {
+  clearInterval(pointerElemChangedInterval);
+}
+var autoScroll = throttle(function(evt, options, rootEl2, isFallback) {
+  if (!options.scroll)
+    return;
+  var x = (evt.touches ? evt.touches[0] : evt).clientX, y = (evt.touches ? evt.touches[0] : evt).clientY, sens = options.scrollSensitivity, speed = options.scrollSpeed, winScroller = getWindowScrollingElement();
+  var scrollThisInstance = false, scrollCustomFn;
+  if (scrollRootEl !== rootEl2) {
+    scrollRootEl = rootEl2;
+    clearAutoScrolls();
+    scrollEl = options.scroll;
+    scrollCustomFn = options.scrollFn;
+    if (scrollEl === true) {
+      scrollEl = getParentAutoScrollElement(rootEl2, true);
+    }
+  }
+  var layersOut = 0;
+  var currentParent = scrollEl;
+  do {
+    var el = currentParent, rect = getRect(el), top = rect.top, bottom = rect.bottom, left = rect.left, right = rect.right, width = rect.width, height = rect.height, canScrollX = void 0, canScrollY = void 0, scrollWidth = el.scrollWidth, scrollHeight = el.scrollHeight, elCSS = css(el), scrollPosX = el.scrollLeft, scrollPosY = el.scrollTop;
+    if (el === winScroller) {
+      canScrollX = width < scrollWidth && (elCSS.overflowX === "auto" || elCSS.overflowX === "scroll" || elCSS.overflowX === "visible");
+      canScrollY = height < scrollHeight && (elCSS.overflowY === "auto" || elCSS.overflowY === "scroll" || elCSS.overflowY === "visible");
+    } else {
+      canScrollX = width < scrollWidth && (elCSS.overflowX === "auto" || elCSS.overflowX === "scroll");
+      canScrollY = height < scrollHeight && (elCSS.overflowY === "auto" || elCSS.overflowY === "scroll");
+    }
+    var vx = canScrollX && (Math.abs(right - x) <= sens && scrollPosX + width < scrollWidth) - (Math.abs(left - x) <= sens && !!scrollPosX);
+    var vy = canScrollY && (Math.abs(bottom - y) <= sens && scrollPosY + height < scrollHeight) - (Math.abs(top - y) <= sens && !!scrollPosY);
+    if (!autoScrolls[layersOut]) {
+      for (var i = 0; i <= layersOut; i++) {
+        if (!autoScrolls[i]) {
+          autoScrolls[i] = {};
+        }
+      }
+    }
+    if (autoScrolls[layersOut].vx != vx || autoScrolls[layersOut].vy != vy || autoScrolls[layersOut].el !== el) {
+      autoScrolls[layersOut].el = el;
+      autoScrolls[layersOut].vx = vx;
+      autoScrolls[layersOut].vy = vy;
+      clearInterval(autoScrolls[layersOut].pid);
+      if (vx != 0 || vy != 0) {
+        scrollThisInstance = true;
+        autoScrolls[layersOut].pid = setInterval(function() {
+          if (isFallback && this.layer === 0) {
+            Sortable.active._onTouchMove(touchEvt$1);
+          }
+          var scrollOffsetY = autoScrolls[this.layer].vy ? autoScrolls[this.layer].vy * speed : 0;
+          var scrollOffsetX = autoScrolls[this.layer].vx ? autoScrolls[this.layer].vx * speed : 0;
+          if (typeof scrollCustomFn === "function") {
+            if (scrollCustomFn.call(Sortable.dragged.parentNode[expando], scrollOffsetX, scrollOffsetY, evt, touchEvt$1, autoScrolls[this.layer].el) !== "continue") {
+              return;
+            }
+          }
+          scrollBy(autoScrolls[this.layer].el, scrollOffsetX, scrollOffsetY);
+        }.bind({
+          layer: layersOut
+        }), 24);
+      }
+    }
+    layersOut++;
+  } while (options.bubbleScroll && currentParent !== winScroller && (currentParent = getParentAutoScrollElement(currentParent, false)));
+  scrolling = scrollThisInstance;
+}, 30);
+var drop = function drop2(_ref) {
+  var originalEvent = _ref.originalEvent, putSortable2 = _ref.putSortable, dragEl2 = _ref.dragEl, activeSortable = _ref.activeSortable, dispatchSortableEvent = _ref.dispatchSortableEvent, hideGhostForTarget = _ref.hideGhostForTarget, unhideGhostForTarget = _ref.unhideGhostForTarget;
+  if (!originalEvent)
+    return;
+  var toSortable = putSortable2 || activeSortable;
+  hideGhostForTarget();
+  var touch = originalEvent.changedTouches && originalEvent.changedTouches.length ? originalEvent.changedTouches[0] : originalEvent;
+  var target = document.elementFromPoint(touch.clientX, touch.clientY);
+  unhideGhostForTarget();
+  if (toSortable && !toSortable.el.contains(target)) {
+    dispatchSortableEvent("spill");
+    this.onSpill({
+      dragEl: dragEl2,
+      putSortable: putSortable2
+    });
+  }
+};
+function Revert() {
+}
+Revert.prototype = {
+  startIndex: null,
+  dragStart: function dragStart(_ref2) {
+    var oldDraggableIndex2 = _ref2.oldDraggableIndex;
+    this.startIndex = oldDraggableIndex2;
+  },
+  onSpill: function onSpill(_ref3) {
+    var dragEl2 = _ref3.dragEl, putSortable2 = _ref3.putSortable;
+    this.sortable.captureAnimationState();
+    if (putSortable2) {
+      putSortable2.captureAnimationState();
+    }
+    var nextSibling = getChild(this.sortable.el, this.startIndex, this.options);
+    if (nextSibling) {
+      this.sortable.el.insertBefore(dragEl2, nextSibling);
+    } else {
+      this.sortable.el.appendChild(dragEl2);
+    }
+    this.sortable.animateAll();
+    if (putSortable2) {
+      putSortable2.animateAll();
+    }
+  },
+  drop
+};
+_extends(Revert, {
+  pluginName: "revertOnSpill"
+});
+function Remove() {
+}
+Remove.prototype = {
+  onSpill: function onSpill2(_ref4) {
+    var dragEl2 = _ref4.dragEl, putSortable2 = _ref4.putSortable;
+    var parentSortable = putSortable2 || this.sortable;
+    parentSortable.captureAnimationState();
+    dragEl2.parentNode && dragEl2.parentNode.removeChild(dragEl2);
+    parentSortable.animateAll();
+  },
+  drop
+};
+_extends(Remove, {
+  pluginName: "removeOnSpill"
+});
+Sortable.mount(new AutoScrollPlugin());
+Sortable.mount(Remove, Revert);
+var sortable_esm_default = Sortable;
+
 // src/Settings/NoteToolbarSettingTab.ts
-var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
+var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
+    this.itemListOpen = true;
+    this.app = app;
     this.plugin = plugin;
   }
   openSettingsModal(toolbar) {
-    const modal = new ToolbarSettingsModal(this, toolbar);
+    const modal = new ToolbarSettingsModal(this.app, this.plugin, this, toolbar);
     modal.setTitle("Edit Toolbar");
     modal.open();
   }
@@ -801,10 +3388,17 @@ var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
   display(focusOnLastItem = false) {
     const { containerEl } = this;
     containerEl.empty();
+    if (this.plugin.settings.version !== SETTINGS_VERSION) {
+      new import_obsidian8.Setting(containerEl).setName("\u26A0\uFE0F Error loading plugin: Please reload").setDesc("Old settings file detected. Please restart plugin.").setClass("note-toolbar-setting-plugin-error").setHeading();
+    }
     this.displayToolbarList(containerEl);
-    new import_obsidian7.Setting(containerEl).setName("Display rules").setHeading();
+    new import_obsidian8.Setting(containerEl).setName("Display rules").setDesc(learnMoreFr(
+      "Define which notes to display toolbars on.",
+      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Defining-where-to-show-toolbars"
+    )).setHeading();
     this.displayPropertySetting(containerEl);
     this.displayFolderMap(containerEl);
+    this.displayMobileSettings(containerEl);
     if (focusOnLastItem) {
       let inputToFocus = this.containerEl.querySelector(
         "#note-toolbar-setting-item-field-" + (this.plugin.settings.folderMappings.length - 1) + ' input[type="search"]'
@@ -820,12 +3414,15 @@ var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
    * @param containerEl HTMLElement to add the settings to.
    */
   displayToolbarList(containerEl) {
+    let itemsContainer = createDiv();
+    itemsContainer.addClass("note-toolbar-setting-items-container");
+    itemsContainer.setAttribute("data-active", this.itemListOpen.toString());
     const toolbarsDesc = document.createDocumentFragment();
     toolbarsDesc.append(
       "Define the toolbars you want to add to your notes. ",
       toolbarsDesc.createEl("a", {
         href: "https://github.com/chrisgurney/obsidian-note-toolbar/wiki",
-        text: "User Guide"
+        text: "User\xA0Guide"
       }),
       " \u2022\xA0",
       toolbarsDesc.createEl("a", {
@@ -833,44 +3430,79 @@ var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
         text: "v" + this.plugin.manifest.version
       })
     );
-    new import_obsidian7.Setting(containerEl).setName("Toolbars").setDesc(toolbarsDesc).setClass("note-toolbar-setting-no-controls");
+    let toolbarListSetting = new import_obsidian8.Setting(itemsContainer).setName("Toolbars").setDesc(toolbarsDesc).setHeading();
+    if (this.plugin.settings.toolbars.length > 0) {
+      toolbarListSetting.addExtraButton((cb) => {
+        cb.setIcon("right-triangle").setTooltip("Collapse all items").onClick(async () => {
+          let itemsContainer2 = containerEl.querySelector(".note-toolbar-setting-items-container");
+          if (itemsContainer2) {
+            this.itemListOpen = !this.itemListOpen;
+            itemsContainer2.setAttribute("data-active", this.itemListOpen.toString());
+            let heading = itemsContainer2.querySelector(".setting-item-info .setting-item-name");
+            this.itemListOpen ? heading == null ? void 0 : heading.setText("Toolbars") : heading == null ? void 0 : heading.setText("Toolbars (" + this.plugin.settings.toolbars.length + ")");
+            cb.setTooltip(this.itemListOpen ? "Collapse all toolbars" : "Expand all toolbars");
+          }
+        }).extraSettingsEl.tabIndex = 0;
+        this.plugin.registerDomEvent(
+          cb.extraSettingsEl,
+          "keydown",
+          (e) => {
+            switch (e.key) {
+              case "Enter":
+              case " ":
+                e.preventDefault();
+                cb.extraSettingsEl.click();
+            }
+          }
+        );
+      });
+    }
+    let itemsListContainer = createDiv();
+    itemsListContainer.addClass("note-toolbar-setting-items-list-container");
     if (this.plugin.settings.toolbars.length == 0) {
       containerEl.createEl("div", { text: emptyMessageFr("Click the button to create a toolbar.") }).className = "note-toolbar-setting-empty-message";
     } else {
       let toolbarListDiv = containerEl.createDiv();
       toolbarListDiv.addClass("note-toolbar-setting-toolbar-list");
       this.plugin.settings.toolbars.forEach(
-        (toolbarItem, index) => {
-          new import_obsidian7.Setting(toolbarListDiv).setName(toolbarItem.name).setDesc(this.createToolbarPreviewFr(toolbarItem.items)).addButton((button) => {
+        (toolbarItem, index2) => {
+          new import_obsidian8.Setting(toolbarListDiv).setName(toolbarItem.name).setDesc(this.createToolbarPreviewFr(toolbarItem.items)).addButton((button) => {
             button.setTooltip("Update this toolbar's items").setButtonText("Edit").setCta().onClick(() => {
               this.openSettingsModal(toolbarItem);
             });
           });
         }
       );
-      containerEl.append(toolbarListDiv);
+      itemsListContainer.appendChild(toolbarListDiv);
     }
-    new import_obsidian7.Setting(containerEl).setClass("note-toolbar-setting-button").addButton((button) => {
+    new import_obsidian8.Setting(itemsListContainer).setClass("note-toolbar-setting-button").addButton((button) => {
       button.setTooltip("Add a new toolbar").setButtonText("+ New toolbar").setCta().onClick(async () => {
         let newToolbar = {
-          name: "",
-          updated: new Date().toISOString(),
-          items: [],
           defaultStyles: ["border", "even", "sticky"],
-          mobileStyles: []
+          items: [],
+          mobileStyles: [],
+          name: "",
+          position: {
+            desktop: { allViews: { position: "props" } },
+            mobile: { allViews: { position: "props" } },
+            tablet: { allViews: { position: "props" } }
+          },
+          updated: new Date().toISOString()
         };
         this.plugin.settings.toolbars.push(newToolbar);
         await this.plugin.saveSettings();
         this.openSettingsModal(newToolbar);
       });
     });
+    itemsContainer.appendChild(itemsListContainer);
+    containerEl.append(itemsContainer);
   }
   /**
    * Displays the property setting.
    * @param containerEl HTMLElement to add the settings to.
    */
   displayPropertySetting(containerEl) {
-    new import_obsidian7.Setting(containerEl).setName("Property").setDesc("If a toolbar name is found in this property, the toolbar will be displayed on the note. Takes precedence over any folder mappings.").addText((text) => text.setPlaceholder("Property").setValue(this.plugin.settings.toolbarProp).onChange((0, import_obsidian7.debounce)(async (value) => {
+    new import_obsidian8.Setting(containerEl).setName("Property").setDesc("If a toolbar name is found in this property, the toolbar will be displayed on the note. Takes precedence over any folder mappings. Set to 'none' to hide the toolbar.").addText((text) => text.setPlaceholder("Property").setValue(this.plugin.settings.toolbarProp).onChange((0, import_obsidian8.debounce)(async (value) => {
       this.plugin.settings.toolbarProp = value;
       await this.plugin.saveSettings();
     }, 750)));
@@ -880,24 +3512,36 @@ var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
    * @param containerEl HTMLElement to add the settings to.
    */
   displayFolderMap(containerEl) {
-    new import_obsidian7.Setting(containerEl).setName("Folder mappings").setDesc("Notes in folders below will display the toolbar mapped to it. Precedence is top to bottom.").setClass("note-toolbar-setting-no-controls");
+    new import_obsidian8.Setting(containerEl).setName("Folder mappings").setDesc("Notes in folders below will display the toolbar mapped to it. Precedence is top to bottom.").setClass("note-toolbar-setting-no-border");
     if (this.plugin.settings.folderMappings.length == 0) {
       containerEl.createEl("div", { text: emptyMessageFr("Click the button to create a mapping.") }).className = "note-toolbar-setting-empty-message";
     } else {
       let toolbarFolderListDiv = containerEl.createDiv();
+      toolbarFolderListDiv.addClass("note-toolbar-sortablejs-list");
       this.plugin.settings.folderMappings.forEach(
-        (mapping, index) => {
+        (mapping, index2) => {
           let toolbarFolderListItemDiv = containerEl.createDiv();
           toolbarFolderListItemDiv.className = "note-toolbar-setting-folder-list-item-container";
-          let textFieldsDiv = this.containerEl.createEl("div");
-          textFieldsDiv.id = "note-toolbar-setting-item-field-" + index;
+          let ds = new import_obsidian8.Setting(toolbarFolderListItemDiv).setClass("note-toolbar-setting-item-delete").addExtraButton((cb) => {
+            cb.setIcon("minus-circle").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, index2, "delete"));
+            cb.extraSettingsEl.tabIndex = 0;
+            this.plugin.registerDomEvent(
+              cb.extraSettingsEl,
+              "keydown",
+              (e) => this.listMoveHandler(e, index2, "delete")
+            );
+          });
+          let textFieldsDiv = this.containerEl.createDiv();
+          textFieldsDiv.id = "note-toolbar-setting-item-field-" + index2;
           textFieldsDiv.className = "note-toolbar-setting-item-fields";
-          const fs = new import_obsidian7.Setting(textFieldsDiv).setClass("note-toolbar-setting-item-field").addSearch((cb) => {
+          const fs = new import_obsidian8.Setting(textFieldsDiv).setClass("note-toolbar-setting-mapping-field").addSearch((cb) => {
             new FolderSuggester(this.app, cb.inputEl);
-            cb.setPlaceholder("Folder").setValue(mapping.folder).onChange((0, import_obsidian7.debounce)(async (newFolder) => {
+            cb.setPlaceholder("Folder").setValue(mapping.folder).onChange((0, import_obsidian8.debounce)(async (newFolder) => {
               var _a;
               if (newFolder && this.plugin.settings.folderMappings.some(
-                (e) => e.folder.toLowerCase() == newFolder.toLowerCase()
+                (mapping2, mapIndex) => {
+                  return index2 != mapIndex ? mapping2.folder.toLowerCase() === newFolder.toLowerCase() : void 0;
+                }
               )) {
                 if (document.getElementById("note-toolbar-name-error") === null) {
                   let errorDiv = containerEl.createEl("div", {
@@ -911,53 +3555,51 @@ var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
               } else {
                 (_a = document.getElementById("note-toolbar-name-error")) == null ? void 0 : _a.remove();
                 toolbarFolderListItemDiv.children[0].removeClass("note-toolbar-setting-error");
-                this.plugin.settings.folderMappings[index].folder = (0, import_obsidian7.normalizePath)(newFolder);
+                this.plugin.settings.folderMappings[index2].folder = newFolder ? (0, import_obsidian8.normalizePath)(newFolder) : "";
                 await this.plugin.saveSettings();
               }
             }, 250));
           });
-          const ts = new import_obsidian7.Setting(textFieldsDiv).setClass("note-toolbar-setting-item-field").addSearch((cb) => {
+          const ts = new import_obsidian8.Setting(textFieldsDiv).setClass("note-toolbar-setting-mapping-field").addSearch((cb) => {
             new ToolbarSuggester(this.app, this.plugin, cb.inputEl);
-            cb.setPlaceholder("Toolbar").setValue(mapping.toolbar).onChange((0, import_obsidian7.debounce)(async (newToolbar) => {
-              this.plugin.settings.folderMappings[index].toolbar = newToolbar;
+            cb.setPlaceholder("Toolbar").setValue(mapping.toolbar).onChange((0, import_obsidian8.debounce)(async (newToolbar) => {
+              this.plugin.settings.folderMappings[index2].toolbar = newToolbar;
               await this.plugin.saveSettings();
             }, 250));
           });
-          let itemControlsDiv = this.containerEl.createEl("div");
-          itemControlsDiv.className = "note-toolbar-setting-item-controls";
-          const s1d = new import_obsidian7.Setting(itemControlsDiv).addExtraButton((cb) => {
-            cb.setIcon("up-chevron-glyph").setTooltip("Move up").onClick(async () => this.listMoveHandler(null, index, "up"));
-            cb.extraSettingsEl.setAttribute("tabindex", "0");
+          let itemHandleDiv = this.containerEl.createDiv();
+          itemHandleDiv.addClass("note-toolbar-setting-item-controls");
+          const s1d = new import_obsidian8.Setting(itemHandleDiv).addExtraButton((cb) => {
+            cb.setIcon("menu").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
+            cb.extraSettingsEl.tabIndex = 0;
             this.plugin.registerDomEvent(
               cb.extraSettingsEl,
               "keydown",
-              (e) => this.listMoveHandler(e, index, "up")
-            );
-          }).addExtraButton((cb) => {
-            cb.setIcon("down-chevron-glyph").setTooltip("Move down").onClick(async () => this.listMoveHandler(null, index, "down"));
-            cb.extraSettingsEl.setAttribute("tabindex", "0");
-            this.plugin.registerDomEvent(
-              cb.extraSettingsEl,
-              "keydown",
-              (e) => this.listMoveHandler(e, index, "down")
-            );
-          }).addExtraButton((cb) => {
-            cb.setIcon("cross").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, index, "delete"));
-            cb.extraSettingsEl.setAttribute("tabindex", "0");
-            this.plugin.registerDomEvent(
-              cb.extraSettingsEl,
-              "keydown",
-              (e) => this.listMoveHandler(e, index, "delete")
+              (e) => this.listMoveHandler(e, index2)
             );
           });
           toolbarFolderListItemDiv.append(textFieldsDiv);
-          toolbarFolderListItemDiv.append(itemControlsDiv);
+          toolbarFolderListItemDiv.append(itemHandleDiv);
           toolbarFolderListDiv.append(toolbarFolderListItemDiv);
         }
       );
+      var sortable = sortable_esm_default.create(toolbarFolderListDiv, {
+        chosenClass: "sortable-chosen",
+        ghostClass: "sortable-ghost",
+        handle: ".sortable-handle",
+        onChange: (item) => navigator.vibrate(50),
+        onChoose: (item) => navigator.vibrate(50),
+        onSort: async (item) => {
+          debugLog("sortable: index: ", item.oldIndex, " -> ", item.newIndex);
+          if (item.oldIndex !== void 0 && item.newIndex !== void 0) {
+            moveElement(this.plugin.settings.folderMappings, item.oldIndex, item.newIndex);
+            await this.plugin.saveSettings();
+          }
+        }
+      });
       containerEl.append(toolbarFolderListDiv);
     }
-    new import_obsidian7.Setting(containerEl).setClass("note-toolbar-setting-button").addButton((button) => {
+    new import_obsidian8.Setting(containerEl).setClass("note-toolbar-setting-button").addButton((button) => {
       button.setTooltip("Add a new mapping").setButtonText("+ New mapping").setCta().onClick(async () => {
         let newMapping = {
           folder: "",
@@ -969,6 +3611,42 @@ var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
       });
     });
   }
+  /**
+   * 
+   * @param containerEl 
+   */
+  displayMobileSettings(containerEl) {
+    new import_obsidian8.Setting(containerEl).setName("Mobile settings").setHeading();
+    const s1 = new import_obsidian8.Setting(containerEl).setName("Mobile icon").setDesc("Sets the icon for the navigation bar (requires restart) and floating button.").addButton((cb) => {
+      cb.setIcon(this.plugin.settings.icon).setTooltip("Select icon").onClick(async (e) => {
+        e.preventDefault();
+        const modal = new IconSuggestModal(this.plugin, this.plugin.settings, cb.buttonEl);
+        modal.open();
+      });
+      cb.buttonEl.setAttribute("data-note-toolbar-no-icon", !this.plugin.settings.icon ? "true" : "false");
+      cb.buttonEl.setAttribute("tabindex", "0");
+      this.plugin.registerDomEvent(
+        cb.buttonEl,
+        "keydown",
+        (e) => {
+          switch (e.key) {
+            case "Enter":
+            case " ":
+              e.preventDefault();
+              const modal = new IconSuggestModal(this.plugin, this.plugin.settings, cb.buttonEl);
+              modal.open();
+          }
+        }
+      );
+    });
+    const s2 = new import_obsidian8.Setting(containerEl).setName("Show 'Edit toolbar' link in toolbar menus").setDesc("Add an item to access the toolbar's settings in the mobile toolbar menu.").addToggle((cb) => {
+      cb.setValue(this.plugin.settings.showEditInFabMenu);
+      cb.onChange(async (value) => {
+        this.plugin.settings.showEditInFabMenu = value;
+        this.plugin.saveSettings();
+      });
+    });
+  }
   /*************************************************************************
    * SETTINGS DISPLAY HANDLERS
    *************************************************************************/
@@ -976,34 +3654,41 @@ var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
    * Handles moving mappings up and down the list, and deletion, based on click or keyboard event.
    * @param keyEvent KeyboardEvent, if the keyboard is triggering this handler.
    * @param index Number of the item in the list we're moving/deleting.
-   * @param direction Direction of the move, or "delete".
+   * @param action Direction of the move, "delete", or don't provided if just checking the keyboard for the action
    */
-  async listMoveHandler(keyEvent, index, direction) {
+  async listMoveHandler(keyEvent, index2, action) {
     if (keyEvent) {
       switch (keyEvent.key) {
         case "ArrowUp":
-          direction = "up";
+          keyEvent.preventDefault();
+          action = "up";
           break;
         case "ArrowDown":
-          direction = "down";
+          keyEvent.preventDefault();
+          action = "down";
           break;
+        case "Delete":
+        case "Backspace":
+          keyEvent.preventDefault();
+          action = "delete";
         case "Enter":
+        case " ":
+          keyEvent.preventDefault();
           break;
         default:
           return;
       }
     }
-    switch (direction) {
+    switch (action) {
       case "up":
-        arraymove(this.plugin.settings.folderMappings, index, index - 1);
-        keyEvent == null ? void 0 : keyEvent.preventDefault();
+        arraymove(this.plugin.settings.folderMappings, index2, index2 - 1);
         break;
       case "down":
-        arraymove(this.plugin.settings.folderMappings, index, index + 1);
+        arraymove(this.plugin.settings.folderMappings, index2, index2 + 1);
         keyEvent == null ? void 0 : keyEvent.preventDefault();
         break;
       case "delete":
-        this.plugin.settings.folderMappings.splice(index, 1);
+        this.plugin.settings.folderMappings.splice(index2, 1);
         keyEvent == null ? void 0 : keyEvent.preventDefault();
         break;
     }
@@ -1044,7 +3729,7 @@ var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
         let iconFr = toolbarFr.createSpan();
         let labelFr = toolbarFr.createSpan();
         if (item.icon) {
-          (0, import_obsidian7.setIcon)(iconFr, item.icon);
+          (0, import_obsidian8.setIcon)(iconFr, item.icon);
           toolbarFr.append(iconFr);
         }
         if (item.label) {
@@ -1062,9 +3747,25 @@ var NoteToolbarSettingTab = class extends import_obsidian7.PluginSettingTab {
 };
 
 // src/main.ts
-var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
+var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
   constructor() {
     super(...arguments);
+    /* keeping for potential future use
+    	async storeLeafId(currentView: MarkdownView) {
+    		// @ts-ignore
+    		this.activeLeafIds.push(currentView?.file?.path + '_' + currentView?.leaf.id);
+    	}
+    
+    	haveLeafId(currentView: MarkdownView): boolean {
+    		// @ts-ignore
+    		return this.activeLeafIds.contains(currentView?.file?.path + '_' + currentView?.leaf.id);
+    	}
+    
+    	async removeLeafId(idToRemove: string) {
+    		// not sure when to call this; can't find event that's fired when leaf closes
+    		this.activeLeafIds.remove(idToRemove);
+    	}
+    	*/
     /*************************************************************************
      * LISTENERS
      *************************************************************************/
@@ -1080,18 +3781,21 @@ var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
       }
     };
     /**
-     * On layout changes, check and render toolbar if necessary. 
+     * On layout changes, delete, check and render toolbar if necessary.
      */
     this.layoutChangeListener = () => {
-      let currentView = this.app.workspace.getActiveViewOfType(import_obsidian8.MarkdownView);
+      let currentView = this.app.workspace.getActiveViewOfType(import_obsidian9.MarkdownView);
       let viewMode = currentView == null ? void 0 : currentView.getMode();
-      debugLog("layout-change: ", viewMode);
+      debugLog("===== LAYOUT-CHANGE ===== ", viewMode);
       switch (viewMode) {
         case "source":
         case "preview":
           debugLog("layout-change: ", viewMode, " -> re-rendering toolbar");
-          this.removeActiveToolbar();
-          this.app.workspace.onLayoutReady((0, import_obsidian8.debounce)(() => {
+          let toolbarEl = this.getToolbarEl();
+          let toolbarPos = toolbarEl == null ? void 0 : toolbarEl.getAttribute("data-tbar-position");
+          debugLog("layout-change: position: ", toolbarPos);
+          toolbarPos === "props" ? this.removeActiveToolbar() : void 0;
+          this.app.workspace.onLayoutReady((0, import_obsidian9.debounce)(() => {
             debugLog("LAYOUT READY");
             this.renderToolbarForActiveFile();
           }, viewMode === "preview" ? 200 : 0));
@@ -1101,9 +3805,29 @@ var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
       }
     };
     /**
+     * On leaf changes, delete, check and render toolbar if necessary. 
+     */
+    this.leafChangeListener = (event) => {
+      var _a;
+      let currentView = this.app.workspace.getActiveViewOfType(import_obsidian9.MarkdownView);
+      let viewMode = currentView == null ? void 0 : currentView.getMode();
+      debugLog("===== LEAF-CHANGE ===== ", viewMode, event);
+      debugLog((_a = currentView == null ? void 0 : currentView.file) == null ? void 0 : _a.path, currentView == null ? void 0 : currentView.leaf.id);
+      switch (viewMode) {
+        case "source":
+        case "preview":
+          debugLog("leaf-change: ", viewMode, " -> re-rendering toolbar");
+          this.removeActiveToolbar();
+          this.renderToolbarForActiveFile();
+          break;
+        default:
+          return;
+      }
+    };
+    /**
      * On changes to metadata, trigger the checks and rendering of a toolbar if necessary.
      * @param file TFile in which metadata changed.
-     * @param data ???
+     * @param data ??? (not used)
      * @param cache CachedMetadata, from which we look at the frontmatter.
      */
     this.metadataCacheListener = (file, data, cache) => {
@@ -1119,12 +3843,39 @@ var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
    */
   async onload() {
     await this.loadSettings();
+    this.registerEvent(this.app.workspace.on("active-leaf-change", this.leafChangeListener));
     this.registerEvent(this.app.metadataCache.on("changed", this.metadataCacheListener));
     this.registerEvent(this.app.workspace.on("layout-change", this.layoutChangeListener));
     this.addCommand({ id: "focus", name: "Focus", callback: async () => this.focusCommand() });
+    this.addCommand({ id: "open-settings", name: "Open Plugin Settings", callback: async () => this.openSettingsCommand() });
+    this.addCommand({ id: "open-toolbar-settings", name: "Open Toolbar Settings", callback: async () => this.openToolbarSettingsCommand() });
+    this.addCommand({ id: "show-properties", name: "Show Properties", callback: async () => this.togglePropsCommand("show") });
+    this.addCommand({ id: "hide-properties", name: "Hide Properties", callback: async () => this.togglePropsCommand("hide") });
+    this.addCommand({ id: "toggle-properties", name: "Toggle Properties", callback: async () => this.togglePropsCommand("toggle") });
+    (0, import_obsidian9.addIcon)("note-toolbar-empty", '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="svg-icon note-toolbar-empty\u201D></svg>');
+    if (import_obsidian9.Platform.isMobile) {
+      debugLog("isMobile");
+      this.addRibbonIcon(this.settings.icon, "Note Toolbar", (event) => {
+        var _a;
+        let activeFile = this.app.workspace.getActiveFile();
+        if (activeFile) {
+          let frontmatter = activeFile ? (_a = this.app.metadataCache.getFileCache(activeFile)) == null ? void 0 : _a.frontmatter : void 0;
+          let toolbar = this.getMatchingToolbar(frontmatter, activeFile);
+          if (toolbar) {
+            this.renderToolbarAsMenu(toolbar).then((menu) => {
+              menu.showAtPosition(event);
+            });
+          }
+        }
+      });
+    }
     this.addSettingTab(new NoteToolbarSettingTab(this.app, this));
-    await this.renderToolbarForActiveFile();
+    this.app.workspace.trigger("parse-style-settings");
     debugLog("LOADED");
+    this.app.workspace.onLayoutReady(() => {
+      debugLog("onload: rendering initial toolbar");
+      this.renderToolbarForActiveFile();
+    });
   }
   /**
    * When this plugin is unloaded (e.g., disabled in settings, or Obsidian is restarted):
@@ -1133,6 +3884,629 @@ var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
   async onunload() {
     this.removeAllToolbars();
     debugLog("UNLOADED");
+  }
+  /*************************************************************************
+   * TOOLBAR RENDERERS
+   *************************************************************************/
+  /**
+   * Checks if the provided file and frontmatter meets the criteria to render a toolbar,
+   * or if we need to remove the toolbar if it shouldn't be there.
+   * @param file TFile (note) to check if we need to create a toolbar.
+   * @param frontmatter FrontMatterCache to check if there's a prop for the toolbar.
+   */
+  async checkAndRenderToolbar(file, frontmatter) {
+    debugLog("checkAndRenderToolbar()");
+    let matchingToolbar = this.getMatchingToolbar(frontmatter, file);
+    let toolbarRemoved = this.removeToolbarIfNeeded(matchingToolbar);
+    if (matchingToolbar && toolbarRemoved) {
+      debugLog("-- RENDERING TOOLBAR: ", matchingToolbar, " for file: ", file);
+      this.renderToolbar(matchingToolbar);
+    }
+  }
+  /**
+   * Get toolbar for the given frontmatter (based on a toolbar prop), and failing that the file (based on folder mappings).
+   * @param frontmatter FrontMatterCache to check if there's a prop for the toolbar.
+   * @param file The note to check if we have a toolbar for.
+   * @returns ToolbarSettings or undefined, if there is no matching toolbar.
+   */
+  getMatchingToolbar(frontmatter, file) {
+    var _a, _b;
+    debugLog("getMatchingToolbar()");
+    let matchingToolbar = void 0;
+    const propName = this.settings.toolbarProp;
+    let ignoreToolbar = false;
+    const notetoolbarProp = (_a = frontmatter == null ? void 0 : frontmatter[propName]) != null ? _a : null;
+    if (notetoolbarProp !== null) {
+      notetoolbarProp.includes("none") ? ignoreToolbar = true : false;
+      ignoreToolbar ? void 0 : matchingToolbar = this.getToolbarSettingsFromProps(notetoolbarProp);
+    }
+    if (!matchingToolbar && !ignoreToolbar) {
+      let mapping;
+      let filePath;
+      for (let index2 = 0; index2 < this.settings.folderMappings.length; index2++) {
+        mapping = this.settings.folderMappings[index2];
+        filePath = ((_b = file.parent) == null ? void 0 : _b.path) === "/" ? "/" : file.path.toLowerCase();
+        if (["*"].includes(mapping.folder) || filePath.toLowerCase().startsWith(mapping.folder.toLowerCase())) {
+          matchingToolbar = this.getToolbarSettings(mapping.toolbar);
+          if (matchingToolbar) {
+            break;
+          }
+        }
+      }
+    }
+    return matchingToolbar;
+  }
+  /**
+   * Renders the toolbar for the provided toolbar settings.
+   * @param toolbar ToolbarSettings
+   */
+  async renderToolbar(toolbar) {
+    var _a, _b, _c, _d, _e, _f;
+    debugLog("renderToolbar: ", toolbar);
+    let position;
+    import_obsidian9.Platform.isMobile ? position = (_c = (_b = (_a = toolbar.position.mobile) == null ? void 0 : _a.allViews) == null ? void 0 : _b.position) != null ? _c : "props" : position = (_f = (_e = (_d = toolbar.position.desktop) == null ? void 0 : _d.allViews) == null ? void 0 : _e.position) != null ? _f : "props";
+    let noteToolbarElement;
+    let embedBlock = activeDocument.createElement("div");
+    embedBlock.addClass("cg-note-toolbar-container");
+    embedBlock.setAttribute("data-tbar-position", position);
+    switch (position) {
+      case "fabl":
+      case "fabr":
+        noteToolbarElement = await this.renderToolbarAsFab(toolbar);
+        position === "fabl" ? noteToolbarElement.setAttribute("data-fab-position", "left") : void 0;
+        embedBlock.append(noteToolbarElement);
+        this.registerDomEvent(embedBlock, "click", (e) => this.toolbarFabHandler(e, noteToolbarElement));
+        break;
+      case "props":
+      case "top":
+        noteToolbarElement = await this.renderToolbarAsCallout(toolbar);
+        let div = activeDocument.createElement("div");
+        div.append(noteToolbarElement);
+        embedBlock.addClasses(["cm-embed-block", "cm-callout", "cg-note-toolbar-bar-container"]);
+        embedBlock.append(div);
+        embedBlock.oncontextmenu = (e) => this.toolbarContextMenuHandler(e);
+        this.registerDomEvent(embedBlock, "keydown", (e) => this.toolbarKeyboardHandler(e));
+        break;
+      case "hidden":
+      default:
+        break;
+    }
+    embedBlock.setAttribute("data-name", toolbar.name);
+    embedBlock.setAttribute("data-updated", toolbar.updated);
+    let currentView = this.app.workspace.getActiveViewOfType(import_obsidian9.MarkdownView);
+    switch (position) {
+      case "fabl":
+      case "fabr":
+        currentView == null ? void 0 : currentView.containerEl.appendChild(embedBlock);
+        break;
+      case "top":
+        embedBlock.addClass("cg-note-toolbar-position-top");
+        let viewHeader = currentView == null ? void 0 : currentView.containerEl.querySelector(".view-header");
+        viewHeader ? viewHeader.insertAdjacentElement("afterend", embedBlock) : debugLog("\u{1F6D1} renderToolbarFromSettings: Unable to find .view-header to insert toolbar");
+        break;
+      case "hidden":
+      case "props":
+      default:
+        let propsEl = this.getPropsEl();
+        if (!propsEl) {
+          debugLog("\u{1F6D1} renderToolbarFromSettings: Unable to find .metadata-container to insert toolbar");
+        }
+        propsEl == null ? void 0 : propsEl.insertAdjacentElement("afterend", embedBlock);
+        break;
+    }
+  }
+  /**
+   * Renders the given toolbar as a callout (to add to the container) and returns it.
+   * @param toolbar
+   * @returns HTMLElement cg-note-toolbar-callout
+   */
+  async renderToolbarAsCallout(toolbar) {
+    let noteToolbarUl = activeDocument.createElement("ul");
+    noteToolbarUl.setAttribute("role", "menu");
+    toolbar.items.filter((item) => {
+      return item.label === "" && item.icon === "" ? false : true;
+    }).map((item) => {
+      let toolbarItem = activeDocument.createElement("span");
+      toolbarItem.className = "external-link";
+      toolbarItem.setAttribute("href", item.link);
+      toolbarItem.setAttribute("role", "link");
+      toolbarItem.tabIndex = 0;
+      Object.entries(item.linkAttr).forEach(([key, value]) => {
+        toolbarItem.setAttribute(`data-toolbar-link-attr-${key}`, value);
+      });
+      item.tooltip ? (0, import_obsidian9.setTooltip)(toolbarItem, item.tooltip, { placement: "top" }) : void 0;
+      toolbarItem.setAttribute("rel", "noopener");
+      toolbarItem.onclick = (e) => this.toolbarClickHandler(e);
+      const [dkHasIcon, dkHasLabel, mbHasIcon, mbHasLabel, tabHasIcon, tabHasLabel] = calcComponentVisToggles(item.visibility);
+      if (item.label) {
+        if (item.icon) {
+          let itemIcon = toolbarItem.createSpan();
+          this.setComponentDisplayClass(itemIcon, dkHasIcon, mbHasIcon);
+          (0, import_obsidian9.setIcon)(itemIcon, item.icon);
+          let itemLabel = toolbarItem.createSpan();
+          this.setComponentDisplayClass(itemLabel, dkHasLabel, mbHasLabel);
+          itemLabel.innerText = item.label;
+        } else {
+          this.setComponentDisplayClass(toolbarItem, dkHasLabel, mbHasLabel);
+          toolbarItem.innerText = item.label;
+        }
+      } else {
+        this.setComponentDisplayClass(toolbarItem, dkHasIcon, mbHasIcon);
+        (0, import_obsidian9.setIcon)(toolbarItem, item.icon);
+      }
+      let noteToolbarLi = activeDocument.createElement("li");
+      const [showOnDesktop, showOnMobile, showOnTablet] = calcItemVisToggles(item.visibility);
+      !showOnMobile ? noteToolbarLi.addClass("hide-on-mobile") : false;
+      !showOnDesktop ? noteToolbarLi.addClass("hide-on-desktop") : false;
+      noteToolbarLi.append(toolbarItem);
+      noteToolbarUl.appendChild(noteToolbarLi);
+    });
+    let noteToolbarCallout = activeDocument.createElement("div");
+    if (toolbar.items.length > 0) {
+      let noteToolbarCalloutContent = activeDocument.createElement("div");
+      noteToolbarCalloutContent.className = "callout-content";
+      noteToolbarCalloutContent.append(noteToolbarUl);
+      noteToolbarCallout.className = "callout cg-note-toolbar-callout";
+      noteToolbarCallout.setAttribute("data-callout", "note-toolbar");
+      noteToolbarCallout.setAttribute("data-callout-metadata", [...toolbar.defaultStyles, ...toolbar.mobileStyles].join("-"));
+      noteToolbarCallout.append(noteToolbarCalloutContent);
+    }
+    return noteToolbarCallout;
+  }
+  /**
+   * 
+   * @param toolbar 
+   * @returns HTMLElement cg-note-toolbar-fab
+   */
+  async renderToolbarAsFab(toolbar) {
+    let noteToolbarFabContainer = activeDocument.createElement("div");
+    noteToolbarFabContainer.addClass("cg-note-toolbar-fab-container");
+    noteToolbarFabContainer.setAttribute("role", "group");
+    noteToolbarFabContainer.setAttribute("aria-label", "Note Toolbar button");
+    let noteToolbarFabButton = activeDocument.createElement("button");
+    noteToolbarFabButton.addClass("cg-note-toolbar-fab");
+    noteToolbarFabButton.setAttribute("title", "Open Note Toolbar");
+    noteToolbarFabButton.setAttribute("aria-label", "Open Note Toolbar");
+    (0, import_obsidian9.setIcon)(noteToolbarFabButton, this.settings.icon);
+    noteToolbarFabContainer.append(noteToolbarFabButton);
+    return noteToolbarFabContainer;
+  }
+  /**
+   * Renders the given toolbar as a menu and returns it.
+   * @param toolbar 
+   * @returns Menu with toolbar's items
+   */
+  async renderToolbarAsMenu(toolbar) {
+    let menu = new import_obsidian9.Menu();
+    toolbar.items.forEach((toolbarItem, index2) => {
+      const [showOnDesktop, showOnMobile, showOnTablet] = calcItemVisToggles(toolbarItem.visibility);
+      if (showOnMobile) {
+        menu.addItem((item) => {
+          item.setIcon(toolbarItem.icon ? toolbarItem.icon : "note-toolbar-empty").setTitle(toolbarItem.label ? toolbarItem.label : toolbarItem.tooltip).onClick(async (menuEvent) => {
+            debugLog(toolbarItem.link, toolbarItem.linkAttr, toolbarItem.contexts);
+            await this.handleLink(toolbarItem.link, toolbarItem.linkAttr);
+          });
+        });
+      }
+    });
+    if (this.settings.showEditInFabMenu) {
+      menu.addSeparator();
+      menu.addItem((item) => {
+        item.setTitle("Edit toolbar: " + toolbar.name + "...").setIcon("lucide-pen-box").onClick((menuEvent) => {
+          const modal = new ToolbarSettingsModal(this.app, this, null, toolbar);
+          modal.setTitle("Edit Toolbar: " + toolbar.name);
+          modal.open();
+        });
+      });
+    }
+    return menu;
+  }
+  /**
+   * Creates the toolbar in the active file (assuming it needs one).
+   */
+  async renderToolbarForActiveFile() {
+    var _a;
+    let activeFile = this.app.workspace.getActiveFile();
+    if (activeFile) {
+      let frontmatter = activeFile ? (_a = this.app.metadataCache.getFileCache(activeFile)) == null ? void 0 : _a.frontmatter : void 0;
+      this.checkAndRenderToolbar(activeFile, frontmatter);
+    }
+  }
+  /**
+   * Sets the appropriate class on the given component, based on its visibility settings.
+   * @param element HTMLElement to set the display class on
+   * @param dkVisible true if component is visible on desktop
+   * @param mbVisibile true if component is visible on mobile
+   */
+  setComponentDisplayClass(element, dkVisible, mbVisibile) {
+    if (!dkVisible && !mbVisibile) {
+      element.addClass("hide");
+    } else {
+      !dkVisible && element.addClass("hide-on-desktop");
+      !mbVisibile && element.addClass("hide-on-mobile");
+    }
+  }
+  /*************************************************************************
+   * COMMANDS
+   *************************************************************************/
+  /**
+   * Sets the focus on the first item in the toolbar.
+   */
+  async focusCommand() {
+    debugLog("focusCommand()");
+    let toolbarEl = this.getToolbarEl();
+    let toolbarPosition = toolbarEl == null ? void 0 : toolbarEl.getAttribute("data-tbar-position");
+    switch (toolbarPosition) {
+      case "fabr":
+      case "fabl":
+        let toolbarFab = toolbarEl == null ? void 0 : toolbarEl.querySelector("button.cg-note-toolbar-fab");
+        debugLog("focusCommand: button: ", toolbarFab);
+        toolbarFab.click();
+        break;
+      case "props":
+      case "top":
+        let itemsUl = this.getToolbarListEl();
+        if (itemsUl) {
+          debugLog("focusCommand: toolbar: ", itemsUl);
+          let items = Array.from(itemsUl.children);
+          const visibleItems = items.filter((item) => {
+            return window.getComputedStyle(item).getPropertyValue("display") !== "none";
+          });
+          const link = visibleItems[0] ? visibleItems[0].querySelector("span") : null;
+          debugLog("focusCommand: focussed item: ", link);
+          link == null ? void 0 : link.focus();
+        }
+        break;
+      case "hidden":
+      default:
+        break;
+    }
+  }
+  /**
+   * Convenience command to open Note Toolbar's settings.
+   */
+  async openSettingsCommand() {
+    const settings = this.app.setting;
+    settings.open();
+    settings.openTabById("note-toolbar");
+  }
+  /**
+   * Convenience command to open this toolbar's settings.
+   */
+  async openToolbarSettingsCommand() {
+    let toolbarEl = this.getToolbarEl();
+    let toolbarName = toolbarEl == null ? void 0 : toolbarEl.getAttribute("data-name");
+    let toolbarSettings = toolbarName ? this.getToolbarSettings(toolbarName) : void 0;
+    if (toolbarSettings) {
+      const modal = new ToolbarSettingsModal(this.app, this, null, toolbarSettings);
+      modal.setTitle("Edit Toolbar: " + toolbarName);
+      modal.open();
+    }
+  }
+  /**
+   * Shows, completely hides, or toggles the visibility of this note's Properties.
+   * @param visibility Set to 'show', 'hide', or 'toggle'
+   */
+  async togglePropsCommand(visibility) {
+    let propsEl = this.getPropsEl();
+    let currentView = this.app.workspace.getActiveViewOfType(import_obsidian9.MarkdownView);
+    debugLog("togglePropsCommand: ", "visibility: ", visibility, "props: ", propsEl);
+    if (propsEl && !currentView.editMode.sourceMode) {
+      let propsDisplayStyle = getComputedStyle(propsEl).getPropertyValue("display");
+      visibility === "toggle" ? propsDisplayStyle === "none" ? visibility = "show" : visibility = "hide" : void 0;
+      switch (visibility) {
+        case "show":
+          propsEl.style.display = "var(--metadata-display-editing)";
+          if (propsEl.classList.contains("is-collapsed")) {
+            propsEl.querySelector(".metadata-properties-heading").click();
+          }
+          break;
+        case "hide":
+          propsEl.style.display = "none";
+          break;
+      }
+    }
+  }
+  /*************************************************************************
+   * HANDLERS
+   *************************************************************************/
+  /**
+   * Handles the floating action button specifically on mobile.
+   * @param event MouseEvent
+   * @param posAtElement HTMLElement to position the menu at, which might be different from where the event originated
+   */
+  async toolbarFabHandler(event, posAtElement) {
+    var _a;
+    debugLog("toolbarFabHandler: ", event);
+    event.preventDefault();
+    let activeFile = this.app.workspace.getActiveFile();
+    if (activeFile) {
+      let frontmatter = activeFile ? (_a = this.app.metadataCache.getFileCache(activeFile)) == null ? void 0 : _a.frontmatter : void 0;
+      let toolbar = this.getMatchingToolbar(frontmatter, activeFile);
+      if (toolbar) {
+        this.renderToolbarAsMenu(toolbar).then((menu) => {
+          let elemRect = posAtElement.getBoundingClientRect();
+          menu.showAtPosition({
+            x: elemRect.x,
+            y: elemRect.bottom,
+            width: elemRect.width,
+            overlap: true,
+            left: true
+          });
+        });
+      }
+    }
+  }
+  /**
+   * Handles keyboard navigation within the toolbar.
+   * @param e KeyboardEvent
+   */
+  async toolbarKeyboardHandler(e) {
+    var _a, _b, _c;
+    debugLog("toolbarKeyboardHandler: ", e);
+    let itemsUl = this.getToolbarListEl();
+    if (itemsUl) {
+      e.key ? ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp", "Enter", " "].includes(e.key) ? e.preventDefault() : void 0 : void 0;
+      let items = Array.from(itemsUl.children);
+      const visibleItems = items.filter((item) => {
+        return window.getComputedStyle(item).getPropertyValue("display") !== "none";
+      });
+      let currentIndex = visibleItems.indexOf((_a = activeDocument.activeElement) == null ? void 0 : _a.parentElement);
+      switch (e.key) {
+        case "ArrowRight":
+        case "ArrowDown":
+          const nextIndex = (currentIndex + 1) % visibleItems.length;
+          (_b = visibleItems[nextIndex].querySelector("span")) == null ? void 0 : _b.focus();
+          break;
+        case "ArrowLeft":
+        case "ArrowUp":
+          const prevIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+          (_c = visibleItems[prevIndex].querySelector("span")) == null ? void 0 : _c.focus();
+          break;
+        case "Enter":
+        case " ":
+          (activeDocument == null ? void 0 : activeDocument.activeElement).click();
+          break;
+        case "Escape":
+          let currentView = this.app.workspace.getActiveViewOfType(import_obsidian9.MarkdownView);
+          let viewMode = currentView == null ? void 0 : currentView.getMode();
+          if (viewMode === "preview") {
+            (activeDocument == null ? void 0 : activeDocument.activeElement).blur();
+          }
+          break;
+      }
+    }
+  }
+  /**
+   * On click of an item in the toolbar, we replace any variables that might
+   * be in the URL, and then open it.
+   * @param e MouseEvent
+   */
+  async toolbarClickHandler(e) {
+    debugLog("toolbarClickHandler: ", e);
+    let clickedEl = e.currentTarget;
+    let linkHref = clickedEl.getAttribute("href");
+    if (linkHref != null) {
+      let linkType = clickedEl.getAttribute("data-toolbar-link-attr-type");
+      linkType ? ["command", "file", "uri"].includes(linkType) ? e.preventDefault() : void 0 : void 0;
+      debugLog("toolbarClickHandler: ", "clickedEl: ", clickedEl);
+      let linkHasVars = clickedEl.getAttribute("data-toolbar-link-attr-hasVars") ? clickedEl.getAttribute("data-toolbar-link-attr-hasVars") === "true" : true;
+      let linkCommandId = clickedEl.getAttribute("data-toolbar-link-attr-commandid");
+      if ((e == null ? void 0 : e.pointerType) === "mouse") {
+        clickedEl.blur();
+      }
+      this.handleLink(linkHref, { commandId: linkCommandId, hasVars: linkHasVars, type: linkType });
+    }
+  }
+  /**
+   * Handles the link provided.
+   * @param linkHref What the link is for.
+   * @param linkAttr Attributes of the link.
+   */
+  async handleLink(linkHref, linkAttr) {
+    var _a, _b, _c, _d;
+    if (linkAttr.hasVars) {
+      let activeFile = this.app.workspace.getActiveFile();
+      linkHref = this.replaceVars(linkHref, activeFile, false);
+      debugLog("- uri vars replaced: ", linkHref);
+    }
+    switch (linkAttr.type) {
+      case "command":
+        debugLog("- executeCommandById: ", linkAttr.commandId);
+        linkAttr.commandId ? this.app.commands.executeCommandById(linkAttr.commandId) : void 0;
+        break;
+      case "file":
+        let activeFile = (_b = (_a = this.app.workspace.getActiveFile()) == null ? void 0 : _a.path) != null ? _b : "";
+        debugLog("- openLinkText: ", linkHref, " from: ", activeFile);
+        this.app.workspace.openLinkText(linkHref, activeFile);
+        break;
+      case "uri":
+        if (isValidUri(linkHref)) {
+          window.open(linkHref, "_blank");
+        } else {
+          let activeFile2 = (_d = (_c = this.app.workspace.getActiveFile()) == null ? void 0 : _c.path) != null ? _d : "";
+          this.app.workspace.openLinkText(linkHref, activeFile2);
+        }
+        break;
+    }
+    if (false) {
+      if (href.toLowerCase().startsWith("onclick:")) {
+        let functionName = href.slice(8);
+        if (typeof window[functionName] === "function") {
+          window[functionName]();
+        }
+      }
+    }
+  }
+  /**
+   * Shows a context menu with links to settings/configuration.
+   * @param e MouseEvent
+   */
+  async toolbarContextMenuHandler(e) {
+    var _a, _b, _c, _d;
+    e.preventDefault();
+    let toolbarEl = e.target.closest(".cg-note-toolbar-container");
+    let toolbarName = toolbarEl == null ? void 0 : toolbarEl.getAttribute("data-name");
+    let toolbarSettings = toolbarName ? this.getToolbarSettings(toolbarName) : void 0;
+    let contextMenu = new import_obsidian9.Menu();
+    if (toolbarSettings !== void 0) {
+      contextMenu.addItem((item) => {
+        item.setTitle("Edit toolbar: " + toolbarName + "...").setIcon("lucide-pen-box").onClick((menuEvent) => {
+          const modal = new ToolbarSettingsModal(this.app, this, null, toolbarSettings);
+          modal.setTitle("Edit Toolbar: " + toolbarName);
+          modal.open();
+        });
+      });
+    }
+    contextMenu.addItem((item) => {
+      item.setTitle("Note Toolbar settings...").setIcon("lucide-wrench").onClick((menuEvent) => {
+        this.openSettingsCommand();
+      });
+    });
+    if (toolbarSettings !== void 0) {
+      let currentPosition;
+      let platform;
+      if (import_obsidian9.Platform.isDesktop) {
+        currentPosition = (_b = (_a = toolbarSettings.position.desktop) == null ? void 0 : _a.allViews) == null ? void 0 : _b.position;
+        platform = "desktop";
+      } else if (import_obsidian9.Platform.isMobile) {
+        currentPosition = (_d = (_c = toolbarSettings.position.mobile) == null ? void 0 : _c.allViews) == null ? void 0 : _d.position;
+        platform = "mobile";
+      }
+      if (platform !== void 0 && (currentPosition === "props" || currentPosition === "top")) {
+        contextMenu.addSeparator();
+        contextMenu.addItem((item) => {
+          item.setTitle(currentPosition === "props" ? "Set position: Top (fixed)" : "Set position: Below Properties").setIcon(currentPosition === "props" ? "arrow-up-to-line" : "arrow-down-narrow-wide").onClick((menuEvent) => {
+            let newPosition = currentPosition === "props" ? "top" : "props";
+            if (toolbarSettings == null ? void 0 : toolbarSettings.position) {
+              platform === "desktop" ? toolbarSettings.position.desktop = { allViews: { position: newPosition } } : toolbarSettings.position.mobile = { allViews: { position: newPosition } };
+              toolbarSettings.updated = new Date().toISOString();
+              this.saveSettings();
+            }
+          });
+        });
+      }
+    }
+    contextMenu.showAtPosition(e);
+  }
+  /**
+   * Replace variables in the given string of the format {{variablename}}, with metadata from the file.
+   * @param s String to replace the variables in.
+   * @param file File with the metadata (name, frontmatter) we'll use to fill in the variables.
+   * @param encode True if we should encode the variables (recommended if part of external URL).
+   * @returns String with the variables replaced.
+   */
+  replaceVars(s, file, encode) {
+    var _a;
+    let noteTitle = file == null ? void 0 : file.basename;
+    if (noteTitle != null) {
+      s = s.replace("{{note_title}}", encode ? encodeURIComponent(noteTitle) : noteTitle);
+    }
+    let frontmatter = file ? (_a = this.app.metadataCache.getFileCache(file)) == null ? void 0 : _a.frontmatter : void 0;
+    if (frontmatter) {
+      s = s.replace(/{{prop_(.*?)}}/g, (match, p1) => {
+        const key = p1.trim();
+        if (frontmatter && frontmatter[key] !== void 0) {
+          let fm = Array.isArray(frontmatter[key]) ? frontmatter[key].join(",") : frontmatter[key];
+          const linkWrap = /\[\[|\]\]/g;
+          return encode ? encodeURIComponent(fm.replace(linkWrap, "")) : fm.replace(linkWrap, "");
+        } else {
+          return "";
+        }
+      });
+    }
+    return s;
+  }
+  /*************************************************************************
+   * ELEMENT GETTERS
+   *************************************************************************/
+  /**
+   * Gets the Properties container in the current view.
+   * @returns HTMLElement or null, if it doesn't exist.
+   */
+  getPropsEl() {
+    let currentView = this.app.workspace.getActiveViewOfType(import_obsidian9.MarkdownView);
+    let propertiesContainer = activeDocument.querySelector(".workspace-leaf.mod-active .markdown-" + (currentView == null ? void 0 : currentView.getMode()) + "-view .metadata-container");
+    debugLog("getPropsEl: ", ".workspace-leaf.mod-active .markdown-" + (currentView == null ? void 0 : currentView.getMode()) + "-view .metadata-container");
+    return propertiesContainer;
+  }
+  /**
+   * Get the toolbar element, in the current view.
+   * @param positionsToCheck 
+   * @returns HTMLElement or null, if it doesn't exist.
+   */
+  getToolbarEl() {
+    let existingToolbarEl = activeDocument.querySelector(".workspace-leaf.mod-active .cg-note-toolbar-container");
+    debugLog("getToolbarEl: ", existingToolbarEl);
+    return existingToolbarEl;
+  }
+  /**
+   * Get the toolbar element's <ul> element, in the current view.
+   * @returns HTMLElement or null, if it doesn't exist.
+   */
+  getToolbarListEl() {
+    let itemsUl = activeDocument.querySelector(".workspace-leaf.mod-active .cg-note-toolbar-container .callout-content > ul");
+    return itemsUl;
+  }
+  /*************************************************************************
+   * TOOLBAR REMOVAL
+   *************************************************************************/
+  /**
+   * Remove the toolbar on the active file.
+   */
+  async removeActiveToolbar() {
+    let existingToolbar = activeDocument.querySelector(".workspace-leaf.mod-active .cg-note-toolbar-container");
+    debugLog("removeActiveToolbar: existingToolbar: ", existingToolbar);
+    existingToolbar == null ? void 0 : existingToolbar.remove();
+  }
+  /**
+   * Remove any toolbars in all open files.
+   */
+  async removeAllToolbars() {
+    let existingToolbars = activeDocument.querySelectorAll(".cg-note-toolbar-container");
+    existingToolbars.forEach((toolbar) => {
+      toolbar.remove();
+    });
+  }
+  /**
+   * Removes toolbar in the current view only if needed: there is no valid toolbar to check against; 
+   * the toolbar names don't match; it's out of date with the settings; or it's not in the correct DOM position. 
+   * @param correctToolbar ToolbarSettings for the toolbar that should be used.
+   * @returns true if the toolbar was removed (or doesn't exist), false otherwise.
+   */
+  removeToolbarIfNeeded(correctToolbar) {
+    let toolbarRemoved = false;
+    let existingToolbarEl = this.getToolbarEl();
+    debugLog("removeToolbarIfNeeded: correct: ", correctToolbar, "existing: ", existingToolbarEl);
+    if (existingToolbarEl) {
+      let existingToolbarName = existingToolbarEl == null ? void 0 : existingToolbarEl.getAttribute("data-name");
+      let existingToolbarUpdated = existingToolbarEl.getAttribute("data-updated");
+      let existingToolbarHasSibling = existingToolbarEl.nextElementSibling;
+      if (!correctToolbar) {
+        debugLog("- toolbar not needed, removing existing toolbar: " + existingToolbarName);
+        toolbarRemoved = true;
+      } else if (correctToolbar.name !== existingToolbarName) {
+        debugLog("- toolbar needed, removing existing toolbar (name does not match): " + existingToolbarName);
+        toolbarRemoved = true;
+      } else if (correctToolbar.updated !== existingToolbarUpdated) {
+        debugLog("- existing toolbar out of date, removing existing toolbar");
+        toolbarRemoved = true;
+      } else if (existingToolbarHasSibling == null ? void 0 : existingToolbarHasSibling.hasClass("inline-title")) {
+        debugLog("- not in the correct position (sibling is `inline-title`), removing existing toolbar");
+        toolbarRemoved = true;
+      }
+      if (toolbarRemoved) {
+        existingToolbarEl.remove();
+        existingToolbarEl = null;
+      }
+    } else {
+      debugLog("- no existing toolbar");
+      toolbarRemoved = true;
+    }
+    if (!toolbarRemoved) {
+      debugLog("removeToolbarIfNeeded: nothing done");
+    }
+    return toolbarRemoved;
   }
   /*************************************************************************
    * SETTINGS LOADERS
@@ -1147,7 +4521,7 @@ var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
    * @link https://discord.com/channels/686053708261228577/840286264964022302/1213507979782127707
    */
   async loadSettings() {
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e;
     const loaded_settings = await this.loadData();
     debugLog("loadSettings: loaded settings: ", loaded_settings);
     this.settings = Object.assign({}, DEFAULT_SETTINGS, loaded_settings);
@@ -1159,14 +4533,14 @@ var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
       if (!old_version) {
         new_version = 202403181e-1;
         debugLog("- starting migration: " + old_version + " -> " + new_version);
-        (_a = loaded_settings.toolbars) == null ? void 0 : _a.forEach((tb, index) => {
+        (_a = loaded_settings.toolbars) == null ? void 0 : _a.forEach((tb, index2) => {
           if (tb.styles) {
             debugLog("	- OLD SETTING: " + tb.styles);
-            debugLog("		- SETTING: this.settings.toolbars[index].defaultStyles: " + this.settings.toolbars[index].defaultStyles);
-            this.settings.toolbars[index].defaultStyles = tb.styles;
-            debugLog("		- SET: " + this.settings.toolbars[index].defaultStyles);
+            debugLog("		- SETTING: this.settings.toolbars[index].defaultStyles: " + this.settings.toolbars[index2].defaultStyles);
+            this.settings.toolbars[index2].defaultStyles = tb.styles;
+            debugLog("		- SET: " + this.settings.toolbars[index2].defaultStyles);
             debugLog("		- SETTING: this.settings.toolbars[index].mobileStyles = []");
-            this.settings.toolbars[index].mobileStyles = [];
+            this.settings.toolbars[index2].mobileStyles = [];
             delete tb.styles;
           }
         });
@@ -1175,7 +4549,7 @@ var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
       if (old_version === 202403181e-1) {
         new_version = 202403221e-1;
         debugLog("- starting migration: " + old_version + " -> " + new_version);
-        (_b = loaded_settings.toolbars) == null ? void 0 : _b.forEach((tb, index) => {
+        (_b = loaded_settings.toolbars) == null ? void 0 : _b.forEach((tb, index2) => {
           tb.items.forEach((item, item_index) => {
             if (!(item == null ? void 0 : item.urlAttr)) {
               debugLog("  - add urlAttr for: ", tb.name, item.label);
@@ -1191,20 +4565,129 @@ var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
       if (old_version === 202403221e-1) {
         new_version = 202403301e-1;
         debugLog("- starting migration: " + old_version + " -> " + new_version);
-        (_c = loaded_settings.toolbars) == null ? void 0 : _c.forEach((tb, index) => {
+        (_c = loaded_settings.toolbars) == null ? void 0 : _c.forEach((tb, index2) => {
           tb.items.forEach((item, item_index) => {
-            this.settings.toolbars[index].items[item_index].icon = "";
+            this.settings.toolbars[index2].items[item_index].icon = "";
             if (item.url) {
-              this.settings.toolbars[index].items[item_index].link = item.url;
+              this.settings.toolbars[index2].items[item_index].link = item.url;
               delete item.url;
             }
             if (item.urlAttr) {
-              this.settings.toolbars[index].items[item_index].linkAttr = {
+              this.settings.toolbars[index2].items[item_index].linkAttr = {
                 commandId: "",
                 hasVars: item.urlAttr.hasVars,
                 type: item.urlAttr.isUri ? "uri" : "file"
               };
               delete item.urlAttr;
+            }
+          });
+        });
+        old_version = new_version;
+      }
+      if (old_version === 202403301e-1) {
+        new_version = 202404161e-1;
+        debugLog("- starting migration: " + old_version + " -> " + new_version);
+        (_d = loaded_settings.toolbars) == null ? void 0 : _d.forEach((tb, index2) => {
+          tb.items.forEach((item, item_index) => {
+            this.settings.toolbars[index2].items[item_index].contexts = [{
+              platform: migrateItemVisPlatform(item.hideOnDesktop, item.hideOnMobile),
+              view: "all"
+            }];
+            delete item.hideOnDesktop;
+            delete item.hideOnMobile;
+          });
+          this.settings.toolbars[index2].positions = [{
+            position: "props",
+            contexts: [{
+              platform: "all",
+              view: "all"
+            }]
+          }];
+        });
+        old_version = new_version;
+      }
+      if (old_version === 202404161e-1) {
+        new_version = 202404261e-1;
+        debugLog("- starting migration: " + old_version + " -> " + new_version);
+        (_e = loaded_settings.toolbars) == null ? void 0 : _e.forEach((tb, index2) => {
+          var _a2;
+          if (this.settings.toolbars[index2].positions) {
+            (_a2 = this.settings.toolbars[index2].positions) == null ? void 0 : _a2.forEach((pos, posIndex) => {
+              var _a3;
+              this.settings.toolbars[index2].position = {};
+              if (pos.contexts) {
+                (_a3 = pos.contexts) == null ? void 0 : _a3.forEach((ctx, ctxIndex) => {
+                  if (pos.position) {
+                    switch (ctx.platform) {
+                      case "desktop":
+                        this.settings.toolbars[index2].position.desktop = {
+                          allViews: { position: pos.position }
+                        };
+                        break;
+                      case "mobile":
+                        this.settings.toolbars[index2].position.mobile = {
+                          allViews: { position: pos.position }
+                        };
+                        this.settings.toolbars[index2].position.tablet = {
+                          allViews: { position: pos.position }
+                        };
+                        break;
+                      case "all":
+                        this.settings.toolbars[index2].position.desktop = {
+                          allViews: { position: pos.position }
+                        };
+                        this.settings.toolbars[index2].position.mobile = {
+                          allViews: { position: pos.position }
+                        };
+                        this.settings.toolbars[index2].position.tablet = {
+                          allViews: { position: pos.position }
+                        };
+                        break;
+                    }
+                  }
+                });
+              }
+            });
+            delete this.settings.toolbars[index2].positions;
+          }
+          tb.items.forEach((item, item_index) => {
+            var _a3;
+            if (this.settings.toolbars[index2].items[item_index].contexts) {
+              (_a3 = this.settings.toolbars[index2].items[item_index].contexts) == null ? void 0 : _a3.forEach((ctx, ctxIndex) => {
+                if (!this.settings.toolbars[index2].items[item_index].visibility) {
+                  this.settings.toolbars[index2].items[item_index].visibility = {};
+                  switch (ctx.platform) {
+                    case "desktop":
+                      this.settings.toolbars[index2].items[item_index].visibility.desktop = {
+                        allViews: { components: ["icon", "label"] }
+                      };
+                      break;
+                    case "mobile":
+                      this.settings.toolbars[index2].items[item_index].visibility.mobile = {
+                        allViews: { components: ["icon", "label"] }
+                      };
+                      this.settings.toolbars[index2].items[item_index].visibility.tablet = {
+                        allViews: { components: ["icon", "label"] }
+                      };
+                      break;
+                    case "all":
+                      this.settings.toolbars[index2].items[item_index].visibility.desktop = {
+                        allViews: { components: ["icon", "label"] }
+                      };
+                      this.settings.toolbars[index2].items[item_index].visibility.mobile = {
+                        allViews: { components: ["icon", "label"] }
+                      };
+                      this.settings.toolbars[index2].items[item_index].visibility.tablet = {
+                        allViews: { components: ["icon", "label"] }
+                      };
+                      break;
+                    case "none":
+                    default:
+                      break;
+                  }
+                }
+              });
+              delete this.settings.toolbars[index2].items[item_index].contexts;
             }
           });
         });
@@ -1259,298 +4742,14 @@ var NoteToolbarPlugin = class extends import_obsidian8.Plugin {
   deleteToolbarFromSettings(name) {
     this.settings.toolbars = this.settings.toolbars.filter((tbar) => tbar.name !== name);
   }
-  /*************************************************************************
-   * TOOLBAR RENDERERS
-   *************************************************************************/
-  /**
-   * Checks if the provided file and frontmatter meets the criteria to render a toolbar,
-   * or if we need to remove the toolbar if it shouldn't be there.
-   * @param file TFile (note) to check if we need to create a toolbar.
-   * @param frontmatter FrontMatterCache to check if there's a prop for the toolbar.
-   */
-  async checkAndRenderToolbar(file, frontmatter) {
-    var _a;
-    debugLog("checkAndRenderToolbar()");
-    let matchingToolbar = void 0;
-    const propName = this.settings.toolbarProp;
-    const notetoolbarProp = (_a = frontmatter == null ? void 0 : frontmatter[propName]) != null ? _a : null;
-    if (notetoolbarProp !== null) {
-      matchingToolbar = this.getToolbarSettingsFromProps(notetoolbarProp);
-    }
-    if (!matchingToolbar) {
-      let mapping;
-      for (let index = 0; index < this.settings.folderMappings.length; index++) {
-        mapping = this.settings.folderMappings[index];
-        if (file.path.toLowerCase().startsWith(mapping.folder.toLowerCase())) {
-          matchingToolbar = this.getToolbarSettings(mapping.toolbar);
-          if (matchingToolbar) {
-            break;
-          }
-        }
-      }
-    }
-    let currentView = this.app.workspace.getActiveViewOfType(import_obsidian8.MarkdownView);
-    let existingToolbarEl = document.querySelector(".workspace-leaf.mod-active .markdown-" + (currentView == null ? void 0 : currentView.getMode()) + "-view .cg-note-toolbar-container");
-    debugLog("- view mode: ", currentView == null ? void 0 : currentView.getMode(), " existingToolbarEl: ", existingToolbarEl);
-    if (existingToolbarEl) {
-      let existingToolbarName = existingToolbarEl == null ? void 0 : existingToolbarEl.getAttribute("data-name");
-      let existingToolbarUpdated = existingToolbarEl.getAttribute("data-updated");
-      let existingToolbarHasSibling = existingToolbarEl.nextElementSibling;
-      if (!matchingToolbar) {
-        debugLog("- toolbar not needed, removing existing toolbar: " + existingToolbarName);
-        existingToolbarEl.remove();
-        existingToolbarEl = null;
-      } else if (matchingToolbar.name !== existingToolbarName) {
-        debugLog("- toolbar needed, removing existing toolbar (name does not match): " + existingToolbarName);
-        existingToolbarEl.remove();
-        existingToolbarEl = null;
-      } else if (matchingToolbar.updated !== existingToolbarUpdated) {
-        debugLog("- existing toolbar out of date, removing existing toolbar");
-        existingToolbarEl.remove();
-        existingToolbarEl = null;
-      } else if (existingToolbarHasSibling) {
-        debugLog("- not in the correct position (has next sibling), removing existing toolbar");
-        existingToolbarEl.remove();
-        existingToolbarEl = null;
-      }
-    }
-    if (matchingToolbar && !existingToolbarEl) {
-      debugLog("-- RENDERING TOOLBAR: ", matchingToolbar, " for file: ", file);
-      this.renderToolbarFromSettings(matchingToolbar);
-    }
-  }
-  /**
-   * Renders the toolbar for the provided toolbar settings.
-   * @param toolbar ToolbarSettings
-   */
-  async renderToolbarFromSettings(toolbar) {
-    debugLog("renderToolbarFromSettings: ", toolbar);
-    let noteToolbarUl = document.createElement("ul");
-    noteToolbarUl.setAttribute("role", "menu");
-    toolbar.items.filter((item) => {
-      return item.label === "" && item.icon === "" ? false : true;
-    }).map((item) => {
-      let toolbarItem = document.createElement("a");
-      toolbarItem.className = "external-link";
-      toolbarItem.setAttribute("href", item.link);
-      Object.entries(item.linkAttr).forEach(([key, value]) => {
-        toolbarItem.setAttribute(`data-toolbar-link-attr-${key}`, value);
-      });
-      item.tooltip ? (0, import_obsidian8.setTooltip)(toolbarItem, item.tooltip, { placement: "top" }) : void 0;
-      toolbarItem.setAttribute("rel", "noopener");
-      toolbarItem.onclick = (e) => this.toolbarClickHandler(e);
-      if (item.label) {
-        if (item.icon) {
-          let itemIcon = toolbarItem.createSpan();
-          (0, import_obsidian8.setIcon)(itemIcon, item.icon);
-          let itemLabel = toolbarItem.createSpan();
-          itemLabel.innerText = item.label;
-        } else {
-          toolbarItem.innerText = item.label;
-        }
-      } else {
-        (0, import_obsidian8.setIcon)(toolbarItem, item.icon);
-      }
-      let noteToolbarLi = document.createElement("li");
-      item.hideOnMobile ? noteToolbarLi.className = "hide-on-mobile" : false;
-      item.hideOnDesktop ? noteToolbarLi.className += "hide-on-desktop" : false;
-      noteToolbarLi.append(toolbarItem);
-      noteToolbarUl.appendChild(noteToolbarLi);
-    });
-    let noteToolbarCalloutContent = document.createElement("div");
-    noteToolbarCalloutContent.className = "callout-content";
-    noteToolbarCalloutContent.append(noteToolbarUl);
-    let noteToolbarCallout = document.createElement("div");
-    noteToolbarCallout.className = "callout cg-note-toolbar-callout";
-    noteToolbarCallout.setAttribute("data-callout", "note-toolbar");
-    noteToolbarCallout.setAttribute("data-callout-metadata", [...toolbar.defaultStyles, ...toolbar.mobileStyles].join("-"));
-    noteToolbarCallout.append(noteToolbarCalloutContent);
-    let div = document.createElement("div");
-    div.append(noteToolbarCallout);
-    let embedBlock = document.createElement("div");
-    embedBlock.className = "cm-embed-block cm-callout cg-note-toolbar-container";
-    embedBlock.setAttribute("data-name", toolbar.name);
-    embedBlock.setAttribute("data-updated", toolbar.updated);
-    embedBlock.append(div);
-    this.registerDomEvent(embedBlock, "keydown", (e) => this.toolbarKeyboardHandler(e));
-    let currentView = this.app.workspace.getActiveViewOfType(import_obsidian8.MarkdownView);
-    let propertiesContainer = document.querySelector(".workspace-leaf.mod-active .markdown-" + (currentView == null ? void 0 : currentView.getMode()) + "-view .metadata-container");
-    if (!propertiesContainer) {
-      console.error("Unable to find propertiesContainer to insert toolbar");
-      debugLog(document.readyState);
-    }
-    propertiesContainer == null ? void 0 : propertiesContainer.insertAdjacentElement("afterend", embedBlock);
-  }
-  /**
-   * Creates the toolbar in the active file (assuming it needs one).
-   */
-  async renderToolbarForActiveFile() {
-    var _a;
-    let activeFile = this.app.workspace.getActiveFile();
-    if (activeFile) {
-      let frontmatter = activeFile ? (_a = this.app.metadataCache.getFileCache(activeFile)) == null ? void 0 : _a.frontmatter : void 0;
-      this.checkAndRenderToolbar(activeFile, frontmatter);
-    }
-  }
-  /*************************************************************************
-   * COMMANDS
-   *************************************************************************/
-  /**
-   * Sets the focus on the first item in the toolbar.
-   */
-  async focusCommand() {
-    let currentView = this.app.workspace.getActiveViewOfType(import_obsidian8.MarkdownView);
-    let itemsUl = document.querySelector(".workspace-leaf.mod-active .markdown-" + (currentView == null ? void 0 : currentView.getMode()) + "-view .cg-note-toolbar-container .callout-content > ul");
-    if (itemsUl) {
-      debugLog("focus command: toolbar: ", itemsUl);
-      let items = Array.from(itemsUl.children);
-      const visibleItems = items.filter((item) => {
-        return window.getComputedStyle(item).getPropertyValue("display") !== "none";
-      });
-      const link = visibleItems[0] ? visibleItems[0].querySelector("a") : null;
-      debugLog("focus command: focussed item: ", link);
-      link == null ? void 0 : link.focus();
-    }
-  }
-  /*************************************************************************
-   * HANDLERS
-   *************************************************************************/
-  /**
-   * Handles keyboard navigation within the toolbar.
-   * @param e KeyboardEvent
-   */
-  async toolbarKeyboardHandler(e) {
-    var _a, _b, _c;
-    debugLog("toolbarKeyboardHandler: ", e);
-    let currentView = this.app.workspace.getActiveViewOfType(import_obsidian8.MarkdownView);
-    let itemsUl = document.querySelector(".workspace-leaf.mod-active .markdown-" + (currentView == null ? void 0 : currentView.getMode()) + "-view .cg-note-toolbar-container .callout-content > ul");
-    if (itemsUl) {
-      let items = Array.from(itemsUl.children);
-      const visibleItems = items.filter((item) => {
-        return window.getComputedStyle(item).getPropertyValue("display") !== "none";
-      });
-      let currentIndex = visibleItems.indexOf((_a = document.activeElement) == null ? void 0 : _a.parentElement);
-      switch (e.key) {
-        case "ArrowRight":
-        case "ArrowDown":
-          const nextIndex = (currentIndex + 1) % visibleItems.length;
-          (_b = visibleItems[nextIndex].querySelector("a")) == null ? void 0 : _b.focus();
-          e.preventDefault();
-          break;
-        case "ArrowLeft":
-        case "ArrowUp":
-          const prevIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
-          (_c = visibleItems[prevIndex].querySelector("a")) == null ? void 0 : _c.focus();
-          e.preventDefault();
-          break;
-        case " ":
-          (document == null ? void 0 : document.activeElement).click();
-          e.preventDefault();
-          break;
-      }
-    }
-  }
-  /**
-   * On click of an item in the toolbar, we replace any variables that might
-   * be in the URL, and then open it.
-   * @param e MouseEvent
-   */
-  async toolbarClickHandler(e) {
-    var _a, _b, _c, _d;
-    debugLog("toolbarClickHandler: ", e);
-    let clickedEl = e.currentTarget;
-    let url = clickedEl.getAttribute("href");
-    if (url != null) {
-      debugLog("- clicked el: ", clickedEl);
-      let linkType = clickedEl.getAttribute("data-toolbar-link-attr-type");
-      let linkHasVars = clickedEl.getAttribute("data-toolbar-link-attr-hasVars") ? clickedEl.getAttribute("data-toolbar-link-attr-hasVars") === "true" : true;
-      if (linkHasVars) {
-        let activeFile = this.app.workspace.getActiveFile();
-        url = this.replaceVars(url, activeFile, linkType === "uri");
-        debugLog("- url vars replaced: ", url);
-      }
-      if ((e == null ? void 0 : e.pointerType) === "mouse") {
-        clickedEl.blur();
-      }
-      switch (linkType) {
-        case "command":
-          let linkCommandId = clickedEl.getAttribute("data-toolbar-link-attr-commandid");
-          debugLog("- executeCommandById: ", linkCommandId);
-          linkCommandId ? this.app.commands.executeCommandById(linkCommandId) : void 0;
-          e.preventDefault();
-          break;
-        case "file":
-          let activeFile = (_b = (_a = this.app.workspace.getActiveFile()) == null ? void 0 : _a.path) != null ? _b : "";
-          debugLog("- openLinkText: ", url, " from: ", activeFile);
-          this.app.workspace.openLinkText(url, activeFile);
-          e.preventDefault();
-          break;
-        case "uri":
-          if (isValidUri(url)) {
-            window.open(url, "_blank");
-          } else {
-            let activeFile2 = (_d = (_c = this.app.workspace.getActiveFile()) == null ? void 0 : _c.path) != null ? _d : "";
-            this.app.workspace.openLinkText(url, activeFile2);
-          }
-          e.preventDefault();
-          break;
-      }
-      if (false) {
-        if (url.toLowerCase().startsWith("onclick:")) {
-          let functionName = url.slice(8);
-          if (typeof window[functionName] === "function") {
-            window[functionName]();
-            e.preventDefault();
-          }
-        }
-      }
-    }
-  }
-  /**
-   * Replace variables in the given string of the format {{variablename}}, with metadata from the file.
-   * @param s String to replace the variables in.
-   * @param file File with the metadata (name, frontmatter) we'll use to fill in the variables.
-   * @param encode True if we should encode the variables (recommended if part of external URL).
-   * @returns String with the variables replaced.
-   */
-  replaceVars(s, file, encode) {
-    var _a;
-    let noteTitle = file == null ? void 0 : file.basename;
-    if (noteTitle != null) {
-      s = s.replace("{{note_title}}", encode ? encodeURIComponent(noteTitle) : noteTitle);
-    }
-    let frontmatter = file ? (_a = this.app.metadataCache.getFileCache(file)) == null ? void 0 : _a.frontmatter : void 0;
-    if (frontmatter) {
-      s = s.replace(/{{prop_(.*?)}}/g, (match, p1) => {
-        const key = p1.trim();
-        if (frontmatter && frontmatter[key] !== void 0) {
-          let fm = Array.isArray(frontmatter[key]) ? frontmatter[key].join(",") : frontmatter[key];
-          const linkWrap = /\[\[|\]\]/g;
-          return encode ? encodeURIComponent(fm.replace(linkWrap, "")) : fm.replace(linkWrap, "");
-        } else {
-          return "";
-        }
-      });
-    }
-    return s;
-  }
-  /*************************************************************************
-   * TOOLBAR REMOVAL
-   *************************************************************************/
-  /**
-   * Remove the toolbar on the active file.
-   */
-  async removeActiveToolbar() {
-    let existingToolbar = document.querySelector(".workspace-leaf.mod-active .cg-note-toolbar-container");
-    existingToolbar == null ? void 0 : existingToolbar.remove();
-  }
-  /**
-   * Remove any toolbars in all open files.
-   */
-  async removeAllToolbars() {
-    let existingToolbars = document.querySelectorAll(".cg-note-toolbar-container");
-    existingToolbars.forEach((toolbar) => {
-      toolbar.remove();
-    });
-  }
 };
+/*! Bundled license information:
+
+sortablejs/modular/sortable.esm.js:
+  (**!
+   * Sortable 1.15.2
+   * @author	RubaXa   <trash@rubaxa.org>
+   * @author	owenm    <owen23355@gmail.com>
+   * @license MIT
+   *)
+*/
