@@ -5,8 +5,16 @@
       "path": "How to commit and push to Github through console.md"
     },
     {
+      "basename": "How to Excel at Math and Science",
+      "path": "How to Excel at Math and Science.md"
+    },
+    {
       "basename": "Summary Note",
       "path": "templates/Summary Note.md"
+    },
+    {
+      "basename": "Conceptual Note",
+      "path": "templates/Conceptual Note.md"
     },
     {
       "basename": "Speaking 4 Integrated Listen",
@@ -53,10 +61,6 @@
       "path": "_Toggl.md"
     },
     {
-      "basename": "Conceptual Note",
-      "path": "templates/Conceptual Note.md"
-    },
-    {
       "basename": "Optiver",
       "path": "Optiver.md"
     },
@@ -71,10 +75,6 @@
     {
       "basename": "Theo",
       "path": "Theo.md"
-    },
-    {
-      "basename": "How to Excel at Math and Science",
-      "path": "How to Excel at Math and Science.md"
     },
     {
       "basename": "The Economist Note",

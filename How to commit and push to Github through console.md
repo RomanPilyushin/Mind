@@ -8,6 +8,9 @@ aliases:
 
 ```bash
 cd F:\Programms\Obsidian\Mind
+git add .
+git commit -m "Add new files"
+git push -u origin master
 ```
 
 
@@ -23,13 +26,10 @@ Commit
 git commit -m "adding files"
 ```
 
-Add remote location
-
-```bash
-git remote add origin https://github.com/yourusername/your-repo-name.git
-```
-
-Add remote location
+> [!question]- Add remote origin
+> ```bash
+> git remote add origin https://github.com/yourusername/your-repo-name.git
+> ```
 
 ```bash
 git push -u origin master
