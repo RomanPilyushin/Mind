@@ -1,6 +1,14 @@
 {
   "recentFiles": [
     {
+      "basename": "How to commit and push to Github through console",
+      "path": "How to commit and push to Github through console.md"
+    },
+    {
+      "basename": "Summary Note",
+      "path": "templates/Summary Note.md"
+    },
+    {
       "basename": "Speaking 4 Integrated Listen",
       "path": "templates/toefl/Speaking 4 Integrated Listen.md"
     },
@@ -75,10 +83,6 @@
     {
       "basename": "Diffuse Mode",
       "path": "Diffuse Mode.md"
-    },
-    {
-      "basename": "Summary Note",
-      "path": "templates/Summary Note.md"
     },
     {
       "basename": "MathJax",

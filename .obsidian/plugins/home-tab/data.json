@@ -24,8 +24,16 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "Unbenannt.md",
+      "timestamp": 1716801638524
+    },
+    {
+      "filepath": "templates/Summary Note.md",
+      "timestamp": 1716801637972
+    },
+    {
       "filepath": "templates/toefl/Speaking 4 Integrated Listen.md",
-      "timestamp": 1716733710638
+      "timestamp": 1716801600706
     },
     {
       "filepath": "templates/toefl/Speaking 3 Integrated Read Listen.md",
@@ -34,14 +42,6 @@
     {
       "filepath": "templates/toefl/Writing 1 Integrated.md",
       "timestamp": 1716733415044
-    },
-    {
-      "filepath": "templates/toefl/Speaking 2 Campus Integrated.md",
-      "timestamp": 1716733390882
-    },
-    {
-      "filepath": "templates/toefl/Speaking 1 Independent.md",
-      "timestamp": 1716733386510
     }
   ],
   "starredFileStore": [],
