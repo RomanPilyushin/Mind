@@ -6,6 +6,7 @@ tags:
 ---
 >30 sec prep
 >60 sec speak
+>Campus discussion
 
 ```timer
 log: false

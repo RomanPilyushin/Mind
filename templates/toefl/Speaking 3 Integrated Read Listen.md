@@ -19,17 +19,19 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 **Question Three Template (General to Specific)**
 
 
-- The reading discusses the phenomenon of......  
+- The reading discusses the phenomenon of 
 
-- From the article we learn that..... ./It is stated in the article that......
+- According to the article
 
-- The professor illustrates it by giving the examples.  
 
-- In the first example he says that...... .  
 
-- In the second example he says that ...... .  
+- In the lecture, the professor elaborates on
 
-- Therefore, this example illustrates the...... .
+- He mentions that
+
+- The professor also highlights
+
+- This distinction/similarity has helped
 
 
 

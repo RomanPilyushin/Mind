@@ -1,32 +1,32 @@
 {
   "recentFiles": [
     {
-      "basename": "How to commit and push to Github through console",
-      "path": "How to commit and push to Github through console.md"
+      "basename": "How to add files, commit, and push to Github using console",
+      "path": "How to add files, commit, and push to Github using console.md"
     },
     {
-      "basename": "How to Excel at Math and Science",
-      "path": "How to Excel at Math and Science.md"
+      "basename": "_Note",
+      "path": "_Note.md"
     },
     {
-      "basename": "Summary Note",
-      "path": "templates/Summary Note.md"
-    },
-    {
-      "basename": "Conceptual Note",
-      "path": "templates/Conceptual Note.md"
-    },
-    {
-      "basename": "Speaking 4 Integrated Listen",
-      "path": "templates/toefl/Speaking 4 Integrated Listen.md"
+      "basename": "Writing 1 Integrated",
+      "path": "templates/toefl/Writing 1 Integrated.md"
     },
     {
       "basename": "Speaking 3 Integrated Read Listen",
       "path": "templates/toefl/Speaking 3 Integrated Read Listen.md"
     },
     {
-      "basename": "Writing 1 Integrated",
-      "path": "templates/toefl/Writing 1 Integrated.md"
+      "basename": "Speaking 4 Integrated Listen",
+      "path": "templates/toefl/Speaking 4 Integrated Listen.md"
+    },
+    {
+      "basename": "How to Excel at Math and Science",
+      "path": "How to Excel at Math and Science.md"
+    },
+    {
+      "basename": "Writing 2 Academic Discussion",
+      "path": "templates/toefl/Writing 2 Academic Discussion.md"
     },
     {
       "basename": "Speaking 2 Campus Integrated",
@@ -37,8 +37,24 @@
       "path": "templates/toefl/Speaking 1 Independent.md"
     },
     {
-      "basename": "Writing 2 Academic Discussion",
-      "path": "templates/toefl/Writing 2 Academic Discussion.md"
+      "basename": "Python Code Template",
+      "path": "templates/code/Python Code Template.md"
+    },
+    {
+      "basename": "Rustlings Template",
+      "path": "templates/code/Rustlings Template.md"
+    },
+    {
+      "basename": "Rust Code Template",
+      "path": "templates/code/Rust Code Template.md"
+    },
+    {
+      "basename": "Summary Note",
+      "path": "templates/Summary Note.md"
+    },
+    {
+      "basename": "Conceptual Note",
+      "path": "templates/Conceptual Note.md"
     },
     {
       "basename": "_Anki",
@@ -125,10 +141,6 @@
       "path": "pdf/deutsch/Basic German.pdf"
     },
     {
-      "basename": "Note",
-      "path": "Note.md"
-    },
-    {
       "basename": "UNTITLED CHAT 2024-05-10 19 09 02",
       "path": "smart-chats/UNTITLED CHAT 2024-05-10 19 09 02.md"
     },
@@ -171,18 +183,6 @@
     {
       "basename": "The Princeton Companion To Mathematics",
       "path": "pdf/math/The Princeton Companion To Mathematics.pdf"
-    },
-    {
-      "basename": "Python Code Template",
-      "path": "templates/code/Python Code Template.md"
-    },
-    {
-      "basename": "Rust Code Template",
-      "path": "templates/code/Rust Code Template.md"
-    },
-    {
-      "basename": "Rustlings Template",
-      "path": "templates/code/Rustlings Template.md"
     },
     {
       "basename": "Recording 20240423163030",

@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "33307bd83e3e2147",
+            "id": "53a6973dd3a33fbe",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "How to commit and push to Github through console.md",
+                "file": "How to add files, commit, and push to Github using console.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -114,7 +114,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5
+    "width": 307.5,
+    "collapsed": true
   },
   "right": {
     "id": "018a9fa1eebd5dc3",
@@ -131,7 +132,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "How to commit and push to Github through console.md",
+                "file": "How to add files, commit, and push to Github using console.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "How to commit and push to Github through console.md"
+                "file": "How to add files, commit, and push to Github using console.md"
               }
             }
           },
@@ -205,7 +206,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "How to commit and push to Github through console.md",
+                "file": "How to add files, commit, and push to Github using console.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -225,7 +226,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "How to commit and push to Github through console.md",
+                "file": "How to add files, commit, and push to Github using console.md",
                 "options": {
                   "collapse-filter": false,
                   "search": "",
@@ -307,18 +308,22 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "33307bd83e3e2147",
+  "active": "53a6973dd3a33fbe",
   "lastOpenFiles": [
-    "How to Excel at Math and Science.md",
-    "templates/Summary Note.md",
-    "How to commit and push to Github through console.md",
-    "templates/Conceptual Note.md",
-    "templates/toefl/Speaking 4 Integrated Listen.md",
-    "templates/toefl/Speaking 3 Integrated Read Listen.md",
+    "_Note.md",
     "templates/toefl/Writing 1 Integrated.md",
+    "templates/toefl/Speaking 3 Integrated Read Listen.md",
+    "templates/toefl/Speaking 4 Integrated Listen.md",
+    "How to Excel at Math and Science.md",
+    "How to add files, commit, and push to Github using console.md",
+    "templates/toefl/Writing 2 Academic Discussion.md",
     "templates/toefl/Speaking 2 Campus Integrated.md",
     "templates/toefl/Speaking 1 Independent.md",
-    "templates/toefl/Writing 2 Academic Discussion.md",
+    "templates/code/Python Code Template.md",
+    "templates/code/Rustlings Template.md",
+    "templates/code/Rust Code Template.md",
+    "templates/Summary Note.md",
+    "templates/Conceptual Note.md",
     "_Anki.md",
     "Writing 2 (1).md",
     "Writing 1 (1).md",
@@ -341,10 +346,6 @@
     "pdf/deutsch",
     "Diffuse Mode.md",
     "templates/MathJax.md",
-    "templates/Deutsch Perfekt Note.md",
-    "templates/Daily Note.md",
-    "Recall the Material.md",
-    "Solving Problems.md",
     "How to Excel at Math and SciencePT2M48.15S.png",
     "media/How to Excel at Math and SciencePT2M48.15S.png",
     "attachments/Anki.png",
