@@ -19,19 +19,12 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 **Question Three Template (General to Specific)**
 
 
-- The reading discusses the phenomenon of 
-
+- The reading delves into / discusses the phenomenon of 
 - According to the article
 
-
-
-- In the lecture, the professor elaborates on
-
-- He mentions that
-
-- The professor also highlights
-
-- This distinction/similarity has helped
+- In the lecture, the professor emphasizes that / expands on
+- Additionally, he mentions that
+- Futhermore, the professor also highlights
 
 
 

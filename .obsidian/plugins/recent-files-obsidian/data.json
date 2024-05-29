@@ -13,8 +13,16 @@
       "path": "templates/toefl/Writing 1 Integrated.md"
     },
     {
+      "basename": "Writing 2 (1)",
+      "path": "Writing 2 (1).md"
+    },
+    {
       "basename": "Speaking 3 Integrated Read Listen",
       "path": "templates/toefl/Speaking 3 Integrated Read Listen.md"
+    },
+    {
+      "basename": "Writing 1 (1)",
+      "path": "Writing 1 (1).md"
     },
     {
       "basename": "Speaking 4 Integrated Listen",
@@ -59,14 +67,6 @@
     {
       "basename": "_Anki",
       "path": "_Anki.md"
-    },
-    {
-      "basename": "Writing 2 (1)",
-      "path": "Writing 2 (1).md"
-    },
-    {
-      "basename": "Writing 1 (1)",
-      "path": "Writing 1 (1).md"
     },
     {
       "basename": "_Dataviewer",

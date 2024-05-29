@@ -13,6 +13,13 @@ git commit -m "Add new files"
 git push -u origin master
 ```
 
+
+```bash
+cd F:\Programms\Obsidian\Mind
+git pull origin master
+```
+
+
 ### Step-by-Step
 
 

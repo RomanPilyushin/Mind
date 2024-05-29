@@ -114,8 +114,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5,
-    "collapsed": true
+    "width": 307.5
   },
   "right": {
     "id": "018a9fa1eebd5dc3",
@@ -312,10 +311,12 @@
   "lastOpenFiles": [
     "_Note.md",
     "templates/toefl/Writing 1 Integrated.md",
+    "Writing 2 (1).md",
     "templates/toefl/Speaking 3 Integrated Read Listen.md",
+    "Writing 1 (1).md",
     "templates/toefl/Speaking 4 Integrated Listen.md",
-    "How to Excel at Math and Science.md",
     "How to add files, commit, and push to Github using console.md",
+    "How to Excel at Math and Science.md",
     "templates/toefl/Writing 2 Academic Discussion.md",
     "templates/toefl/Speaking 2 Campus Integrated.md",
     "templates/toefl/Speaking 1 Independent.md",
@@ -325,8 +326,6 @@
     "templates/Summary Note.md",
     "templates/Conceptual Note.md",
     "_Anki.md",
-    "Writing 2 (1).md",
-    "Writing 1 (1).md",
     "_Dataviewer.md",
     "pdf/math/How to Think Like a Mathematician.pdf",
     "pdf/math/How to Study as a Mathematics Major.pdf",
