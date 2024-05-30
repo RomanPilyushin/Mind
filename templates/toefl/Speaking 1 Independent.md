@@ -1,7 +1,7 @@
 ---
 tags:
   - toefl
-  - speaking-section/question-1
+  - speaking-section
   - english
 link: https://www.toeflresources.com/toefl-independent-speaking/
 ---
@@ -15,6 +15,9 @@ ms: true
 showResetButton: false
 _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 ```
+
+
+[TOEFL Speaking Practice Questions (2024) | Test Resources](https://www.toeflresources.com/speaking-section/toefl-speaking-samples/)
 
 ### Tips
 
@@ -30,19 +33,14 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 
 **Question One Template (Personal Choice)**
 
-**Main Point (pick one)**
+- Personally, I think that
+- I agree with
 
-- “I agree with the idea that…”
-- “I think it is better to…”
-- “I think it is a great/terrible idea to…”
+- First of all, I believe
+- For instance,
 
-**First Reason**
-
-- “First…” + “For example…” (and a personal example)
-
-**Second Reason**
-
-- “Second…” + “To be more specific…” (and a few more details)
+- Secondly, I think
+- For example, 
 
 
 

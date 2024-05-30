@@ -1,7 +1,7 @@
 ---
 tags:
   - toefl
-  - speaking-section/question-3
+  - speaking-section
   - english
 link: https://www.toeflresources.com/toefl-type-3-speaking-guide/
 ---
@@ -17,31 +17,23 @@ showResetButton: false
 _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 ```
 
+
+[TOEFL Speaking Practice Questions (2024) | Test Resources](https://www.toeflresources.com/speaking-section/toefl-speaking-samples/)
+
+
 ### Template
 
 **Question Three Template (General to Specific)**
 
+- According to the reading, [CONCEPT] is [DETAILS]
 
-**Stating the Term or Idea**
+- The professor elaborates on this
 
-- “The reading is about (TERM/CONCEPT)”
+- To begin with, he explains [FIRST EXAMPLE]
+- He says that [DETAILS]
 
-**Give a Small Amount of Detail from the Reading**
-
-- “It states that…”
-
-**Transition**
-
-- “The professor elaborates on this by providing an example.”
-- “The professor elaborates on this by providing two examples.”
-
-**First Example/First Part**
-
-- “To begin with, he mentions that…”
-
-**Second Example/Second Part**
-
-- “Next, he says that…”
+- Next, he notes that [SECOND EXAMPLE]
+- He mentions that [DETAILS]
 
 
 ### Prompt

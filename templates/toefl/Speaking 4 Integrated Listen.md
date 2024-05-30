@@ -1,7 +1,7 @@
 ---
 tags:
   - toefl
-  - speaking-section/question-4
+  - speaking-section
   - english
 link: https://www.toeflresources.com/speaking-section/toefl-type-4-speaking-question-general-to-specific-html/
 ---
@@ -15,6 +15,9 @@ ms: true
 showResetButton: false
 _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 ```
+
+
+[TOEFL Speaking Practice Questions (2024) | Test Resources](https://www.toeflresources.com/speaking-section/toefl-speaking-samples/)
 
 ### Tips
 
@@ -37,21 +40,13 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 
 **Question Four Template (Academic Lecture)**
 
-**Stating the Lecture Subject and detail**
+- The lecturer explains [SUBJECT/TERM]
 
-- “The lecturer explains SUBJECT/TERM by giving two examples/an example.”
+- To begin with, he describes
+- He says that
 
-**First Example/First Part (3-5 sentences)**
-
-- “First, he describes…”
-
-**Second Example/Second part (3-5 sentences)**
-
-- “Second, he mentions…”
-
-**Give a Short Conclusion**
-
-- “These examples (this example) demonstrate…”
+- Second, he describes
+- He also notes that
 
 
 

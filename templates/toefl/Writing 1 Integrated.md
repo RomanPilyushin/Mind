@@ -1,8 +1,8 @@
 ---
 tags:
   - toefl
-  - writing-section-1
   - english
+  - writing-section
 link: https://www.toeflresources.com/writing-section/integrated-writing/
 ---
 >Between 280 and 300 words
@@ -56,37 +56,27 @@ Here are my notes from the above samples (colonizing asteroids):
 
 ### Template
 
-**The Introduction**
+**The Introduction
 
-No matter what question style is used, write your introduction using the following template:
-
-- The reading and the lecture are both about _____. 
-- While the author of the article argues that ... , the lecturer disputes the claims mentioned in the article.
-- His position is that ...
+- The reading and the lecture are both about
+- While the author feels that this is a good idea due to
+- The lecturer does not believe that the author’s claims are correct
+- His position is that it might not be a good idea to
 
 **The Body Paragraphs**
 
-Use the following templates for the body paragraphs:
+- First of all, the author argues that
+- Moreover, the article notes that
+- This argument is challenged by the lecturer
+- He says that
 
-- According to the reading  _____.
-- The article mentions that _____.
-- This lecturer challenges this argument.
-- He claims that _____.
-- Additionally, he points out that ______.
+- Second, according to the article, there could be
+- In contrast, the lecturer notes that
+- As a result, it isn’t clear
 
--
-
-- Secondly, the author suggests ______.
-- The article notes that _____.
-- The lecturer, however, asserts that ______.
-- He goes on to say that ______.
-
--
-
-- Finally, the author puts forth the idea that _____.
-- The author contends that _____.
-- In contrast, the lecturer’s stance is  _____.
-- He says that _____.
+- Finally, the author claims that
+- To be more specific,
+- In contrast, the lecturer’s stance is that
 
 
 **You don’t need a conclusion.**

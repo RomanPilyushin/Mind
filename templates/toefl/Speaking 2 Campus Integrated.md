@@ -1,7 +1,7 @@
 ---
 tags:
   - toefl
-  - speaking-section/question-2
+  - speaking-section
   - english
 link: https://www.toeflresources.com/toefl-speaking-question-two/
 ---
@@ -16,7 +16,16 @@ showResetButton: false
 _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 ```
 
+[TOEFL Speaking Practice Questions (2024) | Test Resources](https://www.toeflresources.com/speaking-section/toefl-speaking-samples/)
+
+
 ### Tips
+
+- Link ideas by using discourse phrases like “as a result,” “consequently,” “moreover,” and “therefore.”
+- Spend about 10-15 seconds talking about the reading… at most. Spend the rest talking about the conversation. Remember that most of your score is based on your summary of the conversation.
+- If you are a slow speaker, don’t mention the reasons for the change.
+- Use a mix of simple and compound sentences.
+
 
 Set up your note paper so that half of the page is used for reading notes.  Quickly note what the change is.  Then clearly note each of the two reasons for the change, with a few details.  Take a look at my notes, below.  See how I used short forms like “fitness C,” “A/C” and how I use “X” to indicate negatives (can’t, not, etc).
 
@@ -32,26 +41,15 @@ Use the other half of the paper to take notes about the conversation.  Quickly 
 
 **Question Two Template (Campus Announcement)**
 
-**Reading Main Point**
 
-- “According to the announcement/article/letter…”
+- According to the announcement
+- This is because ___ and
 
-**Reasons from Reading**
+- The man opposes this
 
-- “This is because ___ and ___.”
-
-**Transition**
-
-- “There are two reasons why the man supports/opposes this change.”
-- “The man has a mixed opinion of this change.” (only for mixed-opinion conversations)
-
-**First Reason**
-
-- “First of all, he argues that…”
-
-**Second Reason**
-
-- “Moreover, he mentions that…”
+- To begin with, he points out that
+- Moreover, he argues that
+- Additionally, 
 
 
 

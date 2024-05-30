@@ -1,8 +1,8 @@
 ---
 tags:
   - toefl
-  - writing-section-2
   - english
+  - writing-section
 link: https://www.toeflresources.com/new-toefl-writing-task-description-and-guide/
 ---
 >At least 120 words
@@ -28,15 +28,17 @@ A subordinating conjunction is something like “while” or “when.”  A coo
 
 Here’s a template that focuses on expanding on and challenging the points mentioned by the other students.
 
-- This is a challenging topic, but I think that [respond directly to the question].
+- This is a challenging topic, but I think [respond directly to the question].
 - I strongly agree with [student]’s idea that [mention one point made by the student]. 
 - I would add that [expand on the point with your own idea].
-- While [other student] raised the relevant point that [mention one point made by the other student], he/she didn’t mention that [challenge that point].
+- While [other student] raised the relevant point that [mention one point made by the other student], he didn’t mention that [challenge that point].
 - For example [elaborate on your challenge with your own ideas].
+
+
 
 Here’s a template that focuses on giving an entirely new answer and ignoring the other student responses.
 
-- While I appreciate the points mentioned by both STUDENT 1 and STUDENT 2, I think that… [elaborate on your idea for a few sentences]
+- While I appreciate the points mentioned by both [STUDENT 1] and [STUDENT 2], I think that… [elaborate on your idea for a few sentences]
 - Remember that [elaborate on your point], so [elaborate on your point].
 - Some people may feel that [mention a potential challenge], but [respond to this challenge].
 

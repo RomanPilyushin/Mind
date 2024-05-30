@@ -2,6 +2,7 @@
 tags:
   - github
   - git
+  - how-to
 link: 
 aliases:
 ---
