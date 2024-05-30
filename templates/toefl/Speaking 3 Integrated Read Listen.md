@@ -3,6 +3,7 @@ tags:
   - toefl
   - speaking-section/question-3
   - english
+link: https://www.toeflresources.com/toefl-type-3-speaking-guide/
 ---
 >30 sec prep
 >60 sec speak
@@ -16,20 +17,31 @@ showResetButton: false
 _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 ```
 
+### Template
+
 **Question Three Template (General to Specific)**
 
 
-- The reading delves into / discusses the phenomenon of 
-- According to the article
+**Stating the Term or Idea**
 
-- In the lecture, the professor emphasizes that / expands on
-- Additionally, he mentions that
-- Futhermore, the professor also highlights
+- “The reading is about (TERM/CONCEPT)”
 
+**Give a Small Amount of Detail from the Reading**
 
+- “It states that…”
 
+**Transition**
 
+- “The professor elaborates on this by providing an example.”
+- “The professor elaborates on this by providing two examples.”
 
+**First Example/First Part**
+
+- “To begin with, he mentions that…”
+
+**Second Example/Second Part**
+
+- “Next, he says that…”
 
 
 ### Prompt
@@ -46,29 +58,4 @@ The concept of psychological flow describes a state of complete immersion in an 
 **Question 3:** According to the passage and the lecture, how can educators create learning experiences that promote a state of flow in students?
 
 **(Combine information from both the passage and the lecture)**
-
-### Notes
-
-
-
-### Audio / Transcription
-
-
-
-
-### Speech Analyzer's Report
-
-
-| Percentage    | 63                  |
-| ------------- | ------------------- |
-| IELTS         | 5.5                 |
-| toefl         | 16                  |
-| Pronunciation | 53                  |
-| Intonation    | 46 Hz Target 50-150 |
-| Fluency       | 98 wpm Slow         |
-| Pausing       | 68                  |
-| Grammar       | 53                  |
-| Vocabulary    | 88                  |
-
-
 

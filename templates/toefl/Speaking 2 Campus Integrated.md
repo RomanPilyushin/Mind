@@ -3,6 +3,7 @@ tags:
   - toefl
   - speaking-section/question-2
   - english
+link: https://www.toeflresources.com/toefl-speaking-question-two/
 ---
 >30 sec prep
 >60 sec speak
@@ -15,17 +16,42 @@ showResetButton: false
 _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 ```
 
+### Tips
+
+Set up your note paper so that half of the page is used for reading notes.  Quickly note what the change is.  Then clearly note each of the two reasons for the change, with a few details.  Take a look at my notes, below.  See how I used short forms like “fitness C,” “A/C” and how I use “X” to indicate negatives (can’t, not, etc).
+
+[![](https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_554,h_380/https://www.toeflresources.com/wp-content/uploads/2023/01/speak2notes-1024x702.jpg)](https://www.toeflresources.com/wp-content/uploads/2023/01/speak2notes-scaled.jpg)
+
+
+Use the other half of the paper to take notes about the conversation.  Quickly note whether the student agrees or disagrees with the change.  I used “XX” to indicate that they don’t.  Next, note how they respond to each of the reasons in the reading.  Use arrows to show how the reading and listening reasons match up.
+
+[![](https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_555,h_375/https://www.toeflresources.com/wp-content/uploads/2023/01/speak2notesb-1024x692.jpg)](https://www.toeflresources.com/wp-content/uploads/2023/01/speak2notesb-scaled.jpg)
+
+
+### Template
+
 **Question Two Template (Campus Announcement)**
 
-- According to the announcement/passage/letter...... .  
+**Reading Main Point**
 
-- And the student does/does not support this idea for several reasons.  
+- “According to the announcement/article/letter…”
 
-- First of all, he/she argues that..... .  
-- Therefore, ... .  
+**Reasons from Reading**
 
-- Second of all, he/she mentions that... .  
-- Hence, ... .
+- “This is because ___ and ___.”
+
+**Transition**
+
+- “There are two reasons why the man supports/opposes this change.”
+- “The man has a mixed opinion of this change.” (only for mixed-opinion conversations)
+
+**First Reason**
+
+- “First of all, he argues that…”
+
+**Second Reason**
+
+- “Moreover, he mentions that…”
 
 
 
@@ -56,26 +82,3 @@ The university library is launching a new program called "Silence Zones." These 
 **After listening, answer the following question in 60 seconds. You have 30 seconds to prepare your response.**
 
 **Question:** What is the woman's opinion on the new "Silence Zones" program in the library, and what reasons does she give to support her opinion?
-
-### Notes
-
-
-
-### Audio / Transcription
-
-
-
-
-### Speech Analyzer's Report
-
-
-| Percentage    | 63                  |
-| ------------- | ------------------- |
-| IELTS         | 5.5                 |
-| toefl         | 16                  |
-| Pronunciation | 53                  |
-| Intonation    | 46 Hz Target 50-150 |
-| Fluency       | 98 wpm Slow         |
-| Pausing       | 68                  |
-| Grammar       | 53                  |
-| Vocabulary    | 88                  |

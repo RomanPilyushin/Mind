@@ -192,7 +192,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "ef374a01047e02c6",
@@ -301,25 +302,25 @@
       "latex-ocr:LatexOCR": false,
       "smart-second-brain:Open S2B Chat": false,
       "media-extended:Open media": false,
-      "omnisearch:Omnisearch": false,
       "smart-connections:Open: View Smart Connections": false,
       "smart-connections:Open: Smart Chat Conversation": false,
-      "obsidian-trash-explorer:Open trash explorer": false
+      "obsidian-trash-explorer:Open trash explorer": false,
+      "omnisearch:Omnisearch": false
     }
   },
   "active": "53a6973dd3a33fbe",
   "lastOpenFiles": [
-    "_Note.md",
-    "templates/toefl/Writing 1 Integrated.md",
-    "Writing 2 (1).md",
-    "templates/toefl/Speaking 3 Integrated Read Listen.md",
-    "Writing 1 (1).md",
-    "templates/toefl/Speaking 4 Integrated Listen.md",
-    "How to add files, commit, and push to Github using console.md",
-    "How to Excel at Math and Science.md",
-    "templates/toefl/Writing 2 Academic Discussion.md",
-    "templates/toefl/Speaking 2 Campus Integrated.md",
     "templates/toefl/Speaking 1 Independent.md",
+    "templates/toefl/Writing 1 Integrated.md",
+    "templates/toefl/Writing 2 Academic Discussion.md",
+    "templates/toefl/Speaking 4 Integrated Listen.md",
+    "templates/toefl/Speaking 3 Integrated Read Listen.md",
+    "templates/toefl/Speaking 2 Campus Integrated.md",
+    "_Note.md",
+    "Writing 1 (1).md",
+    "How to add files, commit, and push to Github using console.md",
+    "Writing 2 (1).md",
+    "How to Excel at Math and Science.md",
     "templates/code/Python Code Template.md",
     "templates/code/Rustlings Template.md",
     "templates/code/Rust Code Template.md",

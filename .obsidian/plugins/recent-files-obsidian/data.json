@@ -5,44 +5,44 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
-      "basename": "_Note",
-      "path": "_Note.md"
+      "basename": "Speaking 1 Independent",
+      "path": "templates/toefl/Speaking 1 Independent.md"
     },
     {
       "basename": "Writing 1 Integrated",
       "path": "templates/toefl/Writing 1 Integrated.md"
     },
     {
-      "basename": "Writing 2 (1)",
-      "path": "Writing 2 (1).md"
-    },
-    {
-      "basename": "Speaking 3 Integrated Read Listen",
-      "path": "templates/toefl/Speaking 3 Integrated Read Listen.md"
-    },
-    {
-      "basename": "Writing 1 (1)",
-      "path": "Writing 1 (1).md"
+      "basename": "Writing 2 Academic Discussion",
+      "path": "templates/toefl/Writing 2 Academic Discussion.md"
     },
     {
       "basename": "Speaking 4 Integrated Listen",
       "path": "templates/toefl/Speaking 4 Integrated Listen.md"
     },
     {
-      "basename": "How to Excel at Math and Science",
-      "path": "How to Excel at Math and Science.md"
-    },
-    {
-      "basename": "Writing 2 Academic Discussion",
-      "path": "templates/toefl/Writing 2 Academic Discussion.md"
+      "basename": "Speaking 3 Integrated Read Listen",
+      "path": "templates/toefl/Speaking 3 Integrated Read Listen.md"
     },
     {
       "basename": "Speaking 2 Campus Integrated",
       "path": "templates/toefl/Speaking 2 Campus Integrated.md"
     },
     {
-      "basename": "Speaking 1 Independent",
-      "path": "templates/toefl/Speaking 1 Independent.md"
+      "basename": "_Note",
+      "path": "_Note.md"
+    },
+    {
+      "basename": "Writing 1 (1)",
+      "path": "Writing 1 (1).md"
+    },
+    {
+      "basename": "Writing 2 (1)",
+      "path": "Writing 2 (1).md"
+    },
+    {
+      "basename": "How to Excel at Math and Science",
+      "path": "How to Excel at Math and Science.md"
     },
     {
       "basename": "Python Code Template",
