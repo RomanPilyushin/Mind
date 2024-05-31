@@ -7,6 +7,16 @@ link:
 aliases:
 ---
 
+Local commit
+
+```bash
+cd F:\Programms\Obsidian\Mind
+git add .
+git commit -m "Add new files"
+```
+
+Commit and Push
+
 ```bash
 cd F:\Programms\Obsidian\Mind
 git add .
@@ -14,6 +24,7 @@ git commit -m "Add new files"
 git push -u origin master
 ```
 
+Pull to the master branch
 
 ```bash
 cd F:\Programms\Obsidian\Mind
