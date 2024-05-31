@@ -28,11 +28,12 @@ A subordinating conjunction is something like “while” or “when.”  A coo
 
 Here’s a template that focuses on expanding on and challenging the points mentioned by the other students.
 
-- This is a challenging topic, but I think [respond directly to the question].
-- I strongly agree with [student]’s idea that [mention one point made by the student]. 
-- I would add that [expand on the point with your own idea].
-- While [other student] raised the relevant point that [mention one point made by the other student], he didn’t mention that [challenge that point].
-- For example [elaborate on your challenge with your own ideas].
+- This is a challenging topic, but I believe [respond directly to the question]
+- I strongly agree with [student]’s perspective that [mention one point made by the student]. 
+- Furthermore, [expand on the point with your own idea].
+- While [other student] raises a valid point that [mention one point made by the other student], he overlooks the possibility that [challenge that point].
+- For instance, [elaborate on your challenge with your own ideas].
+
 
 
 

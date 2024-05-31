@@ -49,7 +49,6 @@ Use the other half of the paper to take notes about the conversation.  Quickly 
 
 - To begin with, he points out that
 - Moreover, he argues that
-- Additionally, 
 
 
 
