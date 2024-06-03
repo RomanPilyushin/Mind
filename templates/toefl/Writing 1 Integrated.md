@@ -59,20 +59,18 @@ Here are my notes from the above samples (colonizing asteroids):
 **The Introduction
 
 - The reading and the lecture are both about
-- While the author feels that this is a good idea due to
+- The author feels that this is a good idea due to
 - The lecturer does not believe that the author’s claims are correct
-- His position is that it might not be a good idea to
 
 **The Body Paragraphs**
 
-- First of all, the author argues that
+- First of all, the author argues that ... because ....
 - Moreover, the article notes that
-- This argument is challenged by the lecturer
-- He says that
+- On the other hand, the lecturer says that
 
-- Second, according to the article, there could be
-- In contrast, the lecturer notes that
-- As a result, it isn’t clear
+- Second, according to the article, there could be ... because ...
+- The lecturer challenges this idea as well. He notes that
+- As a result, it isn’t clear if
 
 - Finally, the author claims that
 - To be more specific,

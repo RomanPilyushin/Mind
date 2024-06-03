@@ -7,14 +7,6 @@ link:
 aliases:
 ---
 
-Local commit
-
-```bash
-cd F:\Programms\Obsidian\Mind
-git add .
-git commit -m "Add new files"
-```
-
 Commit and Push
 
 ```bash

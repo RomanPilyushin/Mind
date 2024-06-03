@@ -20,6 +20,28 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 
 [TOEFL Speaking Practice Questions (2024) | Test Resources](https://www.toeflresources.com/speaking-section/toefl-speaking-samples/)
 
+### Tips
+
+**General Strategies**
+
+- Try to use transitional phrases like “as a result,” “consequently,” “moreover,” and “therefore.”
+- Spend about 10-13 seconds summarizing the reading… at most. Remember that most of your score is based on the listening summary.
+- Use a mix of simple, compound and complex sentences if possible.
+- Paraphrase, but don’t be obsessed.
+- Don’t waste time on a conclusion.
+
+
+**Note-Taking Strategies**
+
+- Set up your page into two columns, with the reading on the right and the lecture on the left.
+- Note the title of the reading, and get two or three main points as you read.
+- Focus on the specific examples when you take notes from the lecture.
+- Use short forms like “x” (no, not, none) and abbreviated words as you take notes from the lecture.
+- Once the lecture is finished, immediately add missing details from your memory,
+- Clearly label the examples as #1 and #2 so you don’t mix them up.
+
+[![](https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024,h_712/https://www.toeflresources.com/wp-content/uploads/2023/03/convergentfinallecdture-1024x712.jpg)](https://www.toeflresources.com/wp-content/uploads/2023/03/convergentfinallecdture-scaled.jpg)
+
 
 ### Template
 
@@ -29,7 +51,7 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 
 - The professor elaborates on this
 
-- To begin with, he explains [FIRST EXAMPLE]
+- First, he explains [FIRST EXAMPLE]
 - He says that [DETAILS]
 
 - Next, he notes that [SECOND EXAMPLE]
