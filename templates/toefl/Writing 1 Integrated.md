@@ -54,13 +54,13 @@ Here are my notes from the above samples (colonizing asteroids):
 - Save about one minute to proofread your work.
 - I maintain a collection of [complete sample essays](https://www.toeflresources.com/sample-toefl-essays/) written using the above technique. Read them!
 
-### Template
+### Template 1
 
 **The Introduction
 
 - The reading and the lecture are both about
 - The author feels that this is a good idea due to
-- The lecturer does not believe that the author’s claims are correct
+- The lecturer does not believe that the author’s claims are correct.
 
 **The Body Paragraphs**
 
@@ -73,9 +73,65 @@ Here are my notes from the above samples (colonizing asteroids):
 - As a result, it isn’t clear if
 
 - Finally, the author claims that
-- To be more specific,
+- To be more specific, ...
 - In contrast, the lecturer’s stance is that
 
 
 **You don’t need a conclusion.**
+
+
+### Essay
+
+**The Introduction
+
+The reading and the lecture are both about
+The author feels that this is a good idea due to
+The lecturer does not believe that the author’s claims are correct.
+
+**The Body Paragraphs**
+
+First of all, the author argues that ... because ....
+Moreover, the article notes that
+On the other hand, the lecturer says that
+
+Second, according to the article, there could be ... because ...
+The lecturer challenges this idea as well. He notes that
+As a result, it isn’t clear if
+
+Finally, the author claims that
+To be more specific, ...
+In contrast, the lecturer’s stance is that
+
+
+
+### Template 2
+
+**The Introduction
+
+- The reading and the lecture discuss the feasibility and potential benefits of [CONCEPT]
+- While the reading presents [CONCEPT] as a highly beneficial and promising venture due to its [ADVANTAGES] advantages,
+- the lecturer raises significant concerns about these claims, arguing that they are overly optimistic
+
+**The Body Paragraphs**
+
+- First of all, the reading suggests that [FIRST] due to [ADVANTAGE]
+- However, the lecturer counters this argument by pointing out that [DISADVANTAGE]
+- He emphasizes that [DISADVANTAGE]
+- Furthermore, he highlights [DISADVANTAGE]
+
+- Secondly, the reading claims that [SECOND], as well as [SECOND]
+- On the contrary, the lecturer argues that [DISADVANTAGE]
+- He notes [ARGUMENT], as well as [ARGUMENT]
+- The lecturer suggests that [ARGUMENT]
+
+- Lastly, the reading posits that [THIRD]
+- However, the lecturer disputes this claim by explaining the severe challenges posed by [DISADVANTAGE]
+- He notes that [ARGUMENT]
+- Therefore, the lecturer concludes that idea of using[CONCEPT] is impractical
+
+
+**You don’t need a conclusion.**
+
+
+
 
