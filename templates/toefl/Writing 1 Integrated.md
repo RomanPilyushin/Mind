@@ -80,30 +80,6 @@ Here are my notes from the above samples (colonizing asteroids):
 **You don’t need a conclusion.**
 
 
-### Essay
-
-**The Introduction
-
-The reading and the lecture are both about
-The author feels that this is a good idea due to
-The lecturer does not believe that the author’s claims are correct.
-
-**The Body Paragraphs**
-
-First of all, the author argues that ... because ....
-Moreover, the article notes that
-On the other hand, the lecturer says that
-
-Second, according to the article, there could be ... because ...
-The lecturer challenges this idea as well. He notes that
-As a result, it isn’t clear if
-
-Finally, the author claims that
-To be more specific, ...
-In contrast, the lecturer’s stance is that
-
-
-
 ### Template 2
 
 **The Introduction

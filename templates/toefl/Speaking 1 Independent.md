@@ -21,7 +21,7 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 
 ### Tips
 
-- Don’t repeat words many times.  Vary your vocabulary.
+- Don’t repeat words many times. Vary your vocabulary.
 - Include one long reason and one short reason, like the template says above.
 - Or just include one really long reason.  That’s fine too!
 - Use transition phrases like “as a result,” “consequently,” “moreover,” and “therefore” to link ideas.
@@ -34,12 +34,12 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 **Question One Template (Personal Choice)**
 
 - Personally, I think that
-- I agree with
 
-- First of all, I believe
+- First of all,
 - For instance,
+- As a result,
 
-- Secondly, I think
+- Secondly,
 - For example, 
 
 
