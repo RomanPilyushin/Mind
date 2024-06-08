@@ -48,9 +48,9 @@
   "tinychart",
   "omnisearch",
   "text-extractor",
-  "smart-connections",
-  "smart-second-brain",
   "latex-ocr",
   "open-in-new-tab",
-  "obsidian-pandoc"
+  "obsidian-pandoc",
+  "smart-second-brain",
+  "smart-connections"
 ]

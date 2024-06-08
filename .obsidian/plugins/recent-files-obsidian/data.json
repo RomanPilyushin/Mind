@@ -5,40 +5,48 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
-      "basename": "Conditional Sentences",
-      "path": "Conditional Sentences.md"
+      "basename": "How to Excel at Math and Science",
+      "path": "How to Excel at Math and Science.md"
     },
     {
-      "basename": "Writing 2 Academic Discussion",
-      "path": "templates/toefl/Writing 2 Academic Discussion.md"
-    },
-    {
-      "basename": "Speaking 4 Integrated Listen",
-      "path": "templates/toefl/Speaking 4 Integrated Listen.md"
+      "basename": "toefl Speaking",
+      "path": "toefl Speaking.md"
     },
     {
       "basename": "Speaking 3 Integrated Read Listen",
       "path": "templates/toefl/Speaking 3 Integrated Read Listen.md"
     },
     {
-      "basename": "Speaking 1 Independent",
-      "path": "templates/toefl/Speaking 1 Independent.md"
-    },
-    {
-      "basename": "Writing 1 Integrated",
-      "path": "templates/toefl/Writing 1 Integrated.md"
-    },
-    {
-      "basename": "How to launch mkdocs blog",
-      "path": "How to launch mkdocs blog.md"
+      "basename": "Speaking 4 Integrated Listen",
+      "path": "templates/toefl/Speaking 4 Integrated Listen.md"
     },
     {
       "basename": "Speaking 2 Campus Integrated",
       "path": "templates/toefl/Speaking 2 Campus Integrated.md"
     },
     {
-      "basename": "How to Excel at Math and Science",
-      "path": "How to Excel at Math and Science.md"
+      "basename": "Speaking 1 Independent",
+      "path": "templates/toefl/Speaking 1 Independent.md"
+    },
+    {
+      "basename": "Writing 2 Academic Discussion",
+      "path": "templates/toefl/Writing 2 Academic Discussion.md"
+    },
+    {
+      "basename": "Writing 1 Integrated",
+      "path": "templates/toefl/Writing 1 Integrated.md"
+    },
+    {
+      "basename": "Conceptual Note",
+      "path": "templates/Conceptual Note.md"
+    },
+    {
+      "basename": "Conditional Sentences",
+      "path": "Conditional Sentences.md"
+    },
+    {
+      "basename": "How to launch mkdocs blog",
+      "path": "How to launch mkdocs blog.md"
     },
     {
       "basename": "_Note",
@@ -59,10 +67,6 @@
     {
       "basename": "Summary Note",
       "path": "templates/Summary Note.md"
-    },
-    {
-      "basename": "Conceptual Note",
-      "path": "templates/Conceptual Note.md"
     },
     {
       "basename": "_Anki",
