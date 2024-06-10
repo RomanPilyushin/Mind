@@ -5,6 +5,14 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
+      "basename": "toefl Speaking",
+      "path": "toefl Speaking.md"
+    },
+    {
+      "basename": "Theo",
+      "path": "Theo.md"
+    },
+    {
       "basename": "toefl Writing",
       "path": "toefl Writing.md"
     },
@@ -19,10 +27,6 @@
     {
       "basename": "How to Excel at Math and Science",
       "path": "How to Excel at Math and Science.md"
-    },
-    {
-      "basename": "toefl Speaking",
-      "path": "toefl Speaking.md"
     },
     {
       "basename": "Speaking 3 Integrated Read Listen",
@@ -95,10 +99,6 @@
     {
       "basename": "Einstellung Effect",
       "path": "Einstellung Effect.md"
-    },
-    {
-      "basename": "Theo",
-      "path": "Theo.md"
     },
     {
       "basename": "The Economist Note",

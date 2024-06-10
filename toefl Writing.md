@@ -1,3 +1,17 @@
+
+
+
+
+
+#### W2 - Grading Students
+
+This is a challenging topic, but I believe that students should be graded.
+I strongly agree with Jake's opinion that grades serve as a genuine benchmark for measuring students' knowledge.
+Furthermore, using grades could potentially foster the competitive environment for students, leading them to deeper understanding the content of the lectures and improving their performance during exam sessions. 
+While Lila raises the valid point that the students might focus too much on grades, she overlooks the possibility that without grading, students might only mimic the process of studying and fall into a cycle of self-deception.
+For instance, the students might open a textbook, listen to a lecture and take notes.
+However, after exams, which test their real understanding of the course material, they might enter a state of near depression.
+
 #### W1 - The Late Bronze Age Collapse
 
 The article and the lecture both discuss the Late Bronze Age Collapse.
@@ -20,11 +34,3 @@ However, the lecturer points out that many civilizations experienced the same ty
 For example, he mentioned that the Assyrian civilization faced the similar problems but managed to address them and continued to prosper.
 
 
-#### W2 - Grading Students
-
-This is a challenging topic, but I believe that students should be graded.
-I strongly agree with Jake's opinion that grades serve as a genuine benchmark for measuring students' knowledge.
-Furthermore, using grades could potentially foster the competitive environment for students, leading them to deeper understanding the content of the lectures and improving their performance during exam sessions. 
-While Lila raises the valid point that the students might focus too much on grades, she overlooks the possibility that without grading, students might only mimic the process of studying and fall into a cycle of self-deception.
-For instance, the students might open a textbook, listen to a lecture and take notes.
-However, after exams, which test their real understanding of the course material, they might enter a state of near depression.

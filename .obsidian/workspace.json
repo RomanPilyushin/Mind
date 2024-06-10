@@ -4,29 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b954a2ef61632c1f",
+        "id": "15fbb481aab0728b",
         "type": "tabs",
         "children": [
           {
-            "id": "4b8cbdccb0ecc8c6",
+            "id": "3012a0f3949ce5db",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "How to add files, commit, and push to Github using console.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ae7f074f4ca4afe1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "templates/toefl/Writing 2 Academic Discussion.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -234,7 +221,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 403.5
+    "width": 403.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -263,14 +251,15 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "4b8cbdccb0ecc8c6",
+  "active": "3012a0f3949ce5db",
   "lastOpenFiles": [
+    "toefl Speaking.md",
+    "Theo.md",
     "toefl Writing.md",
+    "How to add files, commit, and push to Github using console.md",
     "templates/toefl/Writing 2 Academic Discussion.md",
     "templates/toefl/Writing 1 Integrated.md",
-    "How to add files, commit, and push to Github using console.md",
     "How to Excel at Math and Science.md",
-    "toefl Speaking.md",
     "attachments/Recording 20240608130150.webm",
     "templates/toefl/Speaking 3 Integrated Read Listen.md",
     "templates/toefl/Speaking 4 Integrated Listen.md",
@@ -295,7 +284,6 @@
     "pdf/math/Algorithmic Puzzles.pdf",
     "_Toggl.md",
     "Optiver.md",
-    "templates/Chess Template.md",
     "pdf/papers",
     "pdf/chess",
     "pdf/statistics",

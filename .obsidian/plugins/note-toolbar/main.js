@@ -237,8 +237,12 @@ var DeleteModal = class extends import_obsidian.Modal {
   onOpen() {
     this.setTitle("Delete toolbar: " + this.toolbar.name);
     this.contentEl.createEl("p", { text: "Are you sure you want to delete this toolbar?" });
-    const delete_button = this.contentEl.createEl("button", { text: "Yes, delete" });
+    let delete_button = this.contentEl.createEl("button", { text: "Delete" });
+    delete_button.addClass("mod-warning");
     delete_button.onclick = async () => this.delete();
+    this.contentEl.createEl("span").setText("\xA0\xA0");
+    let cancel_button = this.contentEl.createEl("button", { text: "Cancel" });
+    cancel_button.onclick = async () => this.close();
   }
   async delete() {
     this.plugin.deleteToolbarFromSettings(this.toolbar.name);
@@ -320,12 +324,21 @@ var IconSuggestModal = class extends import_obsidian3.SuggestModal {
    * Saves the selected icon to settings, closes the modal, refreshes the parent.
    * @param selectedIcon Icon to save.
    */
-  onChooseSuggestion(item, evt) {
+  onChooseSuggestion(selectedIcon, evt) {
     debugLog("onChooseSuggestion: ", this.settingsWithIcon);
-    this.settingsWithIcon.icon = item === "No icon" ? "" : item;
+    this.settingsWithIcon.icon = selectedIcon === "No icon" ? "" : selectedIcon;
     this.plugin.saveSettings();
-    (0, import_obsidian3.setIcon)(this.parentEl, item === "No icon" ? "lucide-plus-square" : item);
-    this.parentEl.setAttribute("data-note-toolbar-no-icon", item === "No icon" ? "true" : "false");
+    debugLog("this.parentEl:", this.parentEl);
+    if (this.parentEl.hasClass("note-toolbar-setting-items-container-row")) {
+      let formEl = this.parentEl.querySelector(".note-toolbar-setting-item-icon .clickable-icon");
+      formEl ? (0, import_obsidian3.setIcon)(formEl, selectedIcon === "No icon" ? "lucide-plus-square" : selectedIcon) : void 0;
+      formEl.setAttribute("data-note-toolbar-no-icon", selectedIcon === "No icon" ? "true" : "false");
+      let previewEl = this.parentEl.querySelector(".note-toolbar-setting-item-preview > span");
+      previewEl ? (0, import_obsidian3.setIcon)(previewEl, selectedIcon === "No icon" ? "note-toolbar-empty" : selectedIcon) : void 0;
+    } else {
+      (0, import_obsidian3.setIcon)(this.parentEl, selectedIcon === "No icon" ? "lucide-plus-square" : selectedIcon);
+      this.parentEl.setAttribute("data-note-toolbar-no-icon", selectedIcon === "No icon" ? "true" : "false");
+    }
     this.close();
   }
 };
@@ -351,785 +364,6 @@ var FileSuggester = class extends import_obsidian4.AbstractInputSuggest {
   }
   selectSuggestion(file) {
     this.inputEl.value = file.path;
-    this.inputEl.trigger("input");
-    this.close();
-  }
-};
-
-// src/Settings/ToolbarSettingsModal.ts
-var ToolbarSettingsModal = class extends import_obsidian5.Modal {
-  /**
-   * Displays a new edit toolbar modal, for the given toolbar.
-   * @param app reference to the app
-   * @param plugin reference to the plugin
-   * @param parent NoteToolbarSettingTab if coming from settings UI; null if coming from editor 
-   * @param toolbar ToolbarSettings to edit
-   */
-  constructor(app, plugin, parent = null, toolbar) {
-    super(app);
-    this.itemListOpen = true;
-    this.parent = parent;
-    this.plugin = plugin;
-    this.toolbar = toolbar;
-  }
-  /**
-   * Displays the toolbar item's settings within the modal window.
-   */
-  onOpen() {
-    this.display();
-  }
-  /**
-   * Removes modal window and refreshes the parent settings window.
-   */
-  onClose() {
-    const { contentEl } = this;
-    contentEl.empty();
-    this.parent ? this.parent.display() : void 0;
-  }
-  /*************************************************************************
-   * SETTINGS DISPLAY
-   *************************************************************************/
-  /**
-   * Displays the toolbar item's settings.
-   */
-  display(focusOnLastItem = false) {
-    this.modalEl.addClass("note-toolbar-setting-modal-container");
-    this.contentEl.empty();
-    let settingsDiv = this.containerEl.createDiv();
-    settingsDiv.className = "vertical-tab-content note-toolbar-setting-modal";
-    this.displayNameSetting(settingsDiv);
-    this.displayItemList(settingsDiv);
-    this.displayPositionSetting(settingsDiv);
-    this.displayStyleSetting(settingsDiv);
-    this.displayDeleteButton(settingsDiv);
-    this.contentEl.appendChild(settingsDiv);
-    if (focusOnLastItem) {
-      let inputToFocus = this.contentEl.querySelector("#note-toolbar-setting-item-field-" + (this.toolbar.items.length - 1) + ' input[type="text"]');
-      let inputContainer = inputToFocus.closest(".note-toolbar-setting-item");
-      if ((inputToFocus == null ? void 0 : inputToFocus.value.length) === 0) {
-        inputToFocus.focus();
-        if (import_obsidian5.Platform.isMobile) {
-          setTimeout(() => {
-            inputContainer.scrollIntoView(true);
-          }, 100);
-        }
-      }
-    } else {
-      this.rememberLastPosition(this.contentEl.children[0]);
-    }
-  }
-  /**
-   * Displays the Name setting.
-   * @param settingsDiv HTMLElement to add the setting to.
-   */
-  displayNameSetting(settingsDiv) {
-    let toolbarNameDiv = this.containerEl.createDiv();
-    new import_obsidian5.Setting(toolbarNameDiv).setName("Name").setDesc("Give this toolbar a unique name.").addText((text) => text.setPlaceholder("Name").setValue(this.toolbar.name).onChange((0, import_obsidian5.debounce)(async (value) => {
-      var _a;
-      let existingToolbar = this.plugin.getToolbarSettings(value);
-      if (existingToolbar && existingToolbar !== this.toolbar) {
-        toolbarNameDiv.createEl("div", {
-          text: "A toolbar already exists with this name",
-          attr: { id: "note-toolbar-name-error" },
-          cls: "note-toolbar-setting-error-message"
-        });
-        toolbarNameDiv.addClass("note-toolbar-setting-error");
-      } else {
-        (_a = document.getElementById("note-toolbar-name-error")) == null ? void 0 : _a.remove();
-        toolbarNameDiv.removeClass("note-toolbar-setting-error");
-        this.toolbar.name = value;
-        this.toolbar.updated = new Date().toISOString();
-        this.plugin.settings.toolbars.sort((a, b) => a.name.localeCompare(b.name));
-        await this.plugin.saveSettings();
-      }
-    }, 750)));
-    settingsDiv.append(toolbarNameDiv);
-  }
-  /**
-   * Displays the list of toolbar items for editing.
-   * @param settingsDiv HTMLElement to add the settings to.
-   */
-  displayItemList(settingsDiv) {
-    let itemsContainer = createDiv();
-    itemsContainer.addClass("note-toolbar-setting-items-container");
-    itemsContainer.setAttribute("data-active", this.itemListOpen.toString());
-    let itemsSetting = new import_obsidian5.Setting(itemsContainer).setName("Items").setHeading().setDesc(learnMoreFr(
-      "Items in the toolbar, in order from left to right.",
-      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Creating-toolbar-items"
-    ));
-    if (this.toolbar.items.length > 0) {
-      itemsSetting.addExtraButton((cb) => {
-        cb.setIcon("right-triangle").setTooltip("Collapse all items").onClick(async () => {
-          let itemsContainer2 = settingsDiv.querySelector(".note-toolbar-setting-items-container");
-          if (itemsContainer2) {
-            this.itemListOpen = !this.itemListOpen;
-            itemsContainer2.setAttribute("data-active", this.itemListOpen.toString());
-            let heading = itemsContainer2.querySelector(".setting-item-heading .setting-item-name");
-            this.itemListOpen ? heading == null ? void 0 : heading.setText("Items") : heading == null ? void 0 : heading.setText("Items (" + this.toolbar.items.length + ")");
-            cb.setTooltip(this.itemListOpen ? "Collapse all items" : "Expand all items");
-          }
-        }).extraSettingsEl.tabIndex = 0;
-        this.plugin.registerDomEvent(
-          cb.extraSettingsEl,
-          "keydown",
-          (e) => {
-            switch (e.key) {
-              case "Enter":
-              case " ":
-                e.preventDefault();
-                cb.extraSettingsEl.click();
-            }
-          }
-        );
-      });
-    }
-    let itemLinkFields = [];
-    let itemsListContainer = createDiv();
-    itemsListContainer.addClass("note-toolbar-setting-items-list-container");
-    this.toolbar.items.forEach(
-      (toolbarItem, index2) => {
-        let itemDiv = this.containerEl.createDiv();
-        itemDiv.className = "note-toolbar-setting-item";
-        let itemTopContainer = this.containerEl.createDiv();
-        itemTopContainer.className = "note-toolbar-setting-item-top-container";
-        let textFieldsContainer = this.containerEl.createDiv();
-        textFieldsContainer.id = "note-toolbar-setting-item-field-" + index2;
-        textFieldsContainer.className = "note-toolbar-setting-item-fields";
-        const s1a = new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-icon").addExtraButton((cb) => {
-          cb.setIcon(toolbarItem.icon ? toolbarItem.icon : "lucide-plus-square").setTooltip("Select icon (optional)").onClick(async () => {
-            const modal = new IconSuggestModal(this.plugin, toolbarItem, cb.extraSettingsEl);
-            modal.open();
-          });
-          cb.extraSettingsEl.setAttribute("data-note-toolbar-no-icon", !toolbarItem.icon ? "true" : "false");
-          cb.extraSettingsEl.setAttribute("tabindex", "0");
-          this.plugin.registerDomEvent(
-            cb.extraSettingsEl,
-            "keydown",
-            (e) => {
-              switch (e.key) {
-                case "Enter":
-                case " ":
-                  const modal = new IconSuggestModal(this.plugin, toolbarItem, cb.extraSettingsEl);
-                  modal.open();
-                  e.preventDefault();
-              }
-            }
-          );
-        });
-        const s1b = new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Label (optional, if icon set)").setValue(toolbarItem.label).onChange(
-          (0, import_obsidian5.debounce)(async (value) => {
-            toolbarItem.label = value;
-            this.toolbar.updated = new Date().toISOString();
-            await this.plugin.saveSettings();
-          }, 750)
-        ));
-        const s1c = new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Tooltip (optional)").setValue(toolbarItem.tooltip).onChange(
-          (0, import_obsidian5.debounce)(async (value) => {
-            toolbarItem.tooltip = value;
-            this.toolbar.updated = new Date().toISOString();
-            await this.plugin.saveSettings();
-          }, 750)
-        ));
-        let linkContainer = this.containerEl.createDiv();
-        linkContainer.className = "note-toolbar-setting-item-link-container";
-        let linkTypeDiv = this.containerEl.createDiv();
-        const s1t = new import_obsidian5.Setting(linkTypeDiv).addDropdown(
-          (dropdown) => dropdown.addOptions({ command: "Command", file: "File", uri: "URI" }).setValue(toolbarItem.linkAttr.type).onChange(async (value) => {
-            toolbarItem.linkAttr.type = value;
-            switch (value) {
-              case "command":
-                toolbarItem.link = "";
-                itemLinkFields[index2].command.settingEl.setAttribute("data-active", "true");
-                itemLinkFields[index2].file.settingEl.setAttribute("data-active", "false");
-                itemLinkFields[index2].uri.settingEl.setAttribute("data-active", "false");
-                break;
-              case "file":
-                itemLinkFields[index2].command.settingEl.setAttribute("data-active", "false");
-                itemLinkFields[index2].file.settingEl.setAttribute("data-active", "true");
-                itemLinkFields[index2].uri.settingEl.setAttribute("data-active", "false");
-                break;
-              case "uri":
-                itemLinkFields[index2].command.settingEl.setAttribute("data-active", "false");
-                itemLinkFields[index2].file.settingEl.setAttribute("data-active", "false");
-                itemLinkFields[index2].uri.settingEl.setAttribute("data-active", "true");
-                break;
-            }
-            await this.plugin.saveSettings();
-            this.display();
-          })
-        );
-        let linkFieldDiv = this.containerEl.createDiv();
-        linkFieldDiv.className = "note-toolbar-setting-item-link-container";
-        let linkCommandFieldDiv = this.containerEl.createDiv();
-        let linkFileFieldDiv = this.containerEl.createDiv();
-        let linkUriFieldDiv = this.containerEl.createDiv();
-        let linkFieldHelpDiv = createEl("div");
-        linkFieldHelpDiv.addClass("note-toolbar-setting-field-help");
-        linkFieldHelpDiv.appendChild(
-          learnMoreFr(
-            "Tip: Use note properties in URIs.",
-            "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Variables"
-          )
-        );
-        itemLinkFields.push({
-          //
-          // command
-          //
-          command: new import_obsidian5.Setting(linkCommandFieldDiv).setClass("note-toolbar-setting-item-field-link").addSearch((cb) => {
-            new CommandSuggester(this.app, cb.inputEl);
-            cb.setPlaceholder("Search for command").setValue(toolbarItem.link).onChange((0, import_obsidian5.debounce)(async (command) => {
-              var _a, _b;
-              toolbarItem.link = command;
-              toolbarItem.linkAttr.type = "command";
-              toolbarItem.linkAttr.commandId = (_b = (_a = cb.inputEl) == null ? void 0 : _a.getAttribute("data-command-id")) != null ? _b : "";
-              await this.plugin.saveSettings();
-            }, 250));
-          }),
-          //
-          // file
-          //
-          file: new import_obsidian5.Setting(linkFileFieldDiv).setClass("note-toolbar-setting-item-field-link").addSearch((cb) => {
-            new FileSuggester(this.app, cb.inputEl);
-            cb.setPlaceholder("Search for file").setValue(toolbarItem.link).onChange((0, import_obsidian5.debounce)(async (value) => {
-              var _a;
-              toolbarItem.linkAttr.type = "file";
-              const file = this.app.vault.getAbstractFileByPath(value);
-              if (!(file instanceof import_obsidian5.TFile)) {
-                if (document.getElementById("note-toolbar-item-link-note-error") === null) {
-                  let errorDiv = this.containerEl.createEl("div", {
-                    text: "This file does not exist.",
-                    attr: { id: "note-toolbar-item-link-note-error" },
-                    cls: "note-toolbar-setting-error-message"
-                  });
-                  linkContainer.insertAdjacentElement("afterend", errorDiv);
-                  itemLinkFields[index2].file.settingEl.children[1].addClass("note-toolbar-setting-error");
-                }
-              } else {
-                toolbarItem.link = (0, import_obsidian5.normalizePath)(value);
-                toolbarItem.linkAttr.commandId = "";
-                (_a = document.getElementById("note-toolbar-item-link-note-error")) == null ? void 0 : _a.remove();
-                itemLinkFields[index2].file.settingEl.children[1].removeClass("note-toolbar-setting-error");
-                await this.plugin.saveSettings();
-              }
-            }, 750));
-          }),
-          //
-          // URI
-          //
-          uri: new import_obsidian5.Setting(linkUriFieldDiv).setClass("note-toolbar-setting-item-field-link").addText((text) => text.setPlaceholder("Website, URI, or note title").setValue(toolbarItem.link).onChange(
-            (0, import_obsidian5.debounce)(async (value) => {
-              toolbarItem.link = value;
-              toolbarItem.linkAttr.type = "uri";
-              toolbarItem.linkAttr.hasVars = hasVars(value);
-              toolbarItem.linkAttr.commandId = "";
-              this.toolbar.updated = new Date().toISOString();
-              await this.plugin.saveSettings();
-            }, 750)
-          ).inputEl.insertAdjacentElement("afterend", linkFieldHelpDiv))
-        });
-        linkFieldDiv.append(itemLinkFields[index2].command.settingEl);
-        linkFieldDiv.append(itemLinkFields[index2].file.settingEl);
-        linkFieldDiv.append(itemLinkFields[index2].uri.settingEl);
-        itemLinkFields[index2].command.settingEl.setAttribute(
-          "data-active",
-          toolbarItem.linkAttr.type === "command" ? "true" : "false"
-        );
-        itemLinkFields[index2].file.settingEl.setAttribute(
-          "data-active",
-          toolbarItem.linkAttr.type === "file" ? "true" : "false"
-        );
-        itemLinkFields[index2].uri.settingEl.setAttribute(
-          "data-active",
-          toolbarItem.linkAttr.type === "uri" ? "true" : "false"
-        );
-        linkContainer.append(linkTypeDiv);
-        linkContainer.append(linkFieldDiv);
-        let itemControlsContainer = this.containerEl.createDiv();
-        itemControlsContainer.className = "note-toolbar-setting-item-controls";
-        const s1d = new import_obsidian5.Setting(itemControlsContainer).addExtraButton((cb) => {
-          cb.setIcon("up-chevron-glyph").setTooltip("Move up").onClick(async () => this.listMoveHandler(null, this.toolbar.items, index2, "up"));
-          cb.extraSettingsEl.setAttribute("tabindex", "0");
-          this.plugin.registerDomEvent(
-            cb.extraSettingsEl,
-            "keydown",
-            (e) => this.listMoveHandler(e, this.toolbar.items, index2, "up")
-          );
-        }).addExtraButton((cb) => {
-          cb.setIcon("down-chevron-glyph").setTooltip("Move down").onClick(async () => this.listMoveHandler(null, this.toolbar.items, index2, "down"));
-          cb.extraSettingsEl.setAttribute("tabindex", "0");
-          this.plugin.registerDomEvent(
-            cb.extraSettingsEl,
-            "keydown",
-            (e) => this.listMoveHandler(e, this.toolbar.items, index2, "down")
-          );
-        }).addExtraButton((cb) => {
-          cb.setIcon("trash").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, this.toolbar.items, index2, "delete"));
-          cb.extraSettingsEl.setAttribute("tabindex", "0");
-          this.plugin.registerDomEvent(
-            cb.extraSettingsEl,
-            "keydown",
-            (e) => this.listMoveHandler(e, this.toolbar.items, index2, "delete")
-          );
-        });
-        let itemFieldsContainer = this.containerEl.createDiv();
-        itemFieldsContainer.className = "note-toolbar-setting-item-fields";
-        itemFieldsContainer.appendChild(textFieldsContainer);
-        itemTopContainer.appendChild(itemFieldsContainer);
-        itemTopContainer.appendChild(linkContainer);
-        itemDiv.appendChild(itemTopContainer);
-        let visibilityControlsContainer = this.containerEl.createDiv();
-        visibilityControlsContainer.className = "note-toolbar-setting-item-visibility-container";
-        const visButtons = new import_obsidian5.Setting(visibilityControlsContainer).setClass("note-toolbar-setting-item-visibility").addButton((cb) => {
-          let btnIcon = cb.buttonEl.createSpan();
-          (0, import_obsidian5.setIcon)(btnIcon, "monitor");
-          let [state, tooltip] = this.getPlatformStateLabel(toolbarItem.visibility.desktop, "desktop");
-          if (state) {
-            let btnLabel = cb.buttonEl.createSpan();
-            btnLabel.setText(state);
-          }
-          cb.setTooltip(tooltip).onClick(async () => {
-            var _a, _b;
-            (_b = (_a = toolbarItem.visibility).desktop) != null ? _b : _a.desktop = { allViews: { components: [] } };
-            let visibilityMenu = this.getItemVisibilityMenu(toolbarItem.visibility.desktop, "desktop");
-            visibilityMenu.showAtPosition(getPosition(cb.buttonEl));
-          });
-        }).addButton((cb) => {
-          let btnIcon = cb.buttonEl.createSpan();
-          (0, import_obsidian5.setIcon)(btnIcon, "tablet-smartphone");
-          let [state, tooltip] = this.getPlatformStateLabel(toolbarItem.visibility.mobile, "mobile");
-          if (state) {
-            let btnLabel = cb.buttonEl.createSpan();
-            btnLabel.setText(state);
-          }
-          cb.setTooltip(tooltip).onClick(async () => {
-            var _a, _b;
-            (_b = (_a = toolbarItem.visibility).mobile) != null ? _b : _a.mobile = { allViews: { components: [] } };
-            let visibilityMenu = this.getItemVisibilityMenu(toolbarItem.visibility.mobile, "mobile");
-            visibilityMenu.showAtPosition(getPosition(cb.buttonEl));
-          });
-        });
-        let itemVisilityAndControlsContainer = this.containerEl.createDiv();
-        itemVisilityAndControlsContainer.className = "note-toolbar-setting-item-visibility-and-controls";
-        itemVisilityAndControlsContainer.appendChild(visibilityControlsContainer);
-        itemVisilityAndControlsContainer.appendChild(itemControlsContainer);
-        itemDiv.appendChild(itemVisilityAndControlsContainer);
-        itemsListContainer.appendChild(itemDiv);
-      }
-    );
-    new import_obsidian5.Setting(itemsListContainer).setClass("note-toolbar-setting-button").addButton((button) => {
-      button.setTooltip("Add a new item to the toolbar").setButtonText("+ Add toolbar item").setCta().onClick(async () => {
-        var _a, _b;
-        this.toolbar.items.push({
-          label: "",
-          icon: "",
-          link: "",
-          linkAttr: {
-            commandId: "",
-            hasVars: false,
-            type: (_b = (_a = this.toolbar.items.last()) == null ? void 0 : _a.linkAttr.type) != null ? _b : "uri"
-          },
-          tooltip: "",
-          visibility: {
-            desktop: { allViews: { components: ["icon", "label"] } },
-            mobile: { allViews: { components: ["icon", "label"] } },
-            tablet: { allViews: { components: ["icon", "label"] } }
-          }
-        });
-        this.toolbar.updated = new Date().toISOString();
-        await this.plugin.saveSettings();
-        this.display(true);
-      });
-    });
-    itemsContainer.appendChild(itemsListContainer);
-    settingsDiv.appendChild(itemsContainer);
-  }
-  /**
-   * Displays the Position setting.
-   * @param settingsDiv HTMLElement to add the settings to.
-   */
-  displayPositionSetting(settingsDiv) {
-    var _a, _b;
-    new import_obsidian5.Setting(settingsDiv).setName("Position").setDesc(learnMoreFr(
-      "Where to position this toolbar.",
-      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Positioning-toolbars"
-    )).setHeading();
-    new import_obsidian5.Setting(settingsDiv).setName("Desktop").addDropdown(
-      (dropdown) => {
-        var _a2, _b2, _c;
-        return dropdown.addOptions(
-          POSITION_OPTIONS.desktop.reduce((acc, option2) => {
-            return { ...acc, ...option2 };
-          }, {})
-        ).setValue((_c = (_b2 = (_a2 = this.toolbar.position.desktop) == null ? void 0 : _a2.allViews) == null ? void 0 : _b2.position) != null ? _c : "props").onChange(async (val) => {
-          this.toolbar.position.desktop = { allViews: { position: val } };
-          this.toolbar.updated = new Date().toISOString();
-          await this.plugin.saveSettings();
-          this.display();
-        });
-      }
-    );
-    new import_obsidian5.Setting(settingsDiv).setName("Mobile").setDesc(
-      ((_b = (_a = this.toolbar.position.mobile) == null ? void 0 : _a.allViews) == null ? void 0 : _b.position) === "hidden" ? learnMoreFr(
-        "Tip: Access toolbars from the navigation bar.",
-        "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Navigation-bar"
-      ) : ""
-    ).addDropdown(
-      (dropdown) => {
-        var _a2, _b2, _c;
-        return dropdown.addOptions(
-          POSITION_OPTIONS.mobile.reduce((acc, option2) => {
-            return { ...acc, ...option2 };
-          }, {})
-        ).setValue((_c = (_b2 = (_a2 = this.toolbar.position.mobile) == null ? void 0 : _a2.allViews) == null ? void 0 : _b2.position) != null ? _c : "props").onChange(async (val) => {
-          this.toolbar.position.mobile = { allViews: { position: val } };
-          this.toolbar.position.tablet = { allViews: { position: val } };
-          this.toolbar.updated = new Date().toISOString();
-          await this.plugin.saveSettings();
-          this.display();
-        });
-      }
-    );
-  }
-  /**
-   * Displays the Style settings.
-   * @param settingsDiv HTMLElement to add the settings to.
-   */
-  displayStyleSetting(settingsDiv) {
-    new import_obsidian5.Setting(settingsDiv).setName("Styles").setDesc(learnMoreFr(
-      "List of styles to apply to the toolbar.",
-      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Styling-toolbars"
-    )).setHeading();
-    let defaultStyleDiv = this.containerEl.createDiv();
-    defaultStyleDiv.className = "note-toolbar-setting-item-style";
-    if (this.toolbar.defaultStyles.length == 0) {
-      let emptyMsg = this.containerEl.createEl(
-        "div",
-        { text: emptyMessageFr("No default styles set.") }
-      );
-      emptyMsg.className = "note-toolbar-setting-empty-message";
-      defaultStyleDiv.append(emptyMsg);
-    } else {
-      this.toolbar.defaultStyles.forEach(
-        (style, index2) => {
-          let styleDisclaimer = this.getValueForKey(DEFAULT_STYLE_DISCLAIMERS, style);
-          new import_obsidian5.Setting(defaultStyleDiv).setName(this.getValueForKey(DEFAULT_STYLE_OPTIONS, style)).setTooltip((styleDisclaimer ? styleDisclaimer + " " : "") + "Use in Callout or CSS: " + style).addExtraButton((cb) => {
-            cb.setIcon("cross").setTooltip("Remove").onClick(async () => this.listMoveHandler(null, this.toolbar.defaultStyles, index2, "delete"));
-            cb.extraSettingsEl.setAttribute("tabindex", "0");
-            this.plugin.registerDomEvent(
-              cb.extraSettingsEl,
-              "keydown",
-              (e) => this.listMoveHandler(e, this.toolbar.defaultStyles, index2, "delete")
-            );
-          });
-        }
-      );
-    }
-    new import_obsidian5.Setting(defaultStyleDiv).addDropdown(
-      (dropdown) => dropdown.addOptions(
-        DEFAULT_STYLE_OPTIONS.filter((option2) => {
-          return !this.toolbar.defaultStyles.includes(Object.keys(option2)[0]);
-        }).reduce((acc, option2) => {
-          return { ...acc, ...option2 };
-        }, {})
-      ).setValue("").onChange(async (val) => {
-        if (this.toolbar.defaultStyles.includes(val)) {
-          this.toolbar.defaultStyles = this.toolbar.defaultStyles.filter((i) => i !== val);
-        } else {
-          this.toolbar.defaultStyles.push(val);
-        }
-        await this.plugin.saveSettings();
-        this.display();
-      })
-    );
-    const defaultDesc = document.createDocumentFragment();
-    defaultDesc.append("Applies to all platforms unless overridden.");
-    defaultDesc.append(this.getStyleDisclaimersFr(DEFAULT_STYLE_DISCLAIMERS, this.toolbar.defaultStyles));
-    new import_obsidian5.Setting(settingsDiv).setName("Default").setDesc(defaultDesc).setClass("note-toolbar-setting-item-styles").settingEl.append(defaultStyleDiv);
-    let mobileStyleDiv = this.containerEl.createDiv();
-    mobileStyleDiv.className = "note-toolbar-setting-item-style";
-    if (this.toolbar.mobileStyles.length == 0) {
-      let emptyMsg = this.containerEl.createEl(
-        "div",
-        { text: emptyMessageFr("No mobile styles set.") }
-      );
-      emptyMsg.className = "note-toolbar-setting-empty-message";
-      mobileStyleDiv.append(emptyMsg);
-    } else {
-      this.toolbar.mobileStyles.forEach(
-        (style, index2) => {
-          let styleDisclaimer = this.getValueForKey(MOBILE_STYLE_DISCLAIMERS, style);
-          new import_obsidian5.Setting(mobileStyleDiv).setName(this.getValueForKey(MOBILE_STYLE_OPTIONS, style)).setTooltip((styleDisclaimer ? styleDisclaimer + " " : "") + "Use in Callout or CSS: " + style).addExtraButton((cb) => {
-            cb.setIcon("cross").setTooltip("Remove").onClick(async () => this.listMoveHandler(null, this.toolbar.mobileStyles, index2, "delete"));
-            cb.extraSettingsEl.setAttribute("tabindex", "0");
-            this.plugin.registerDomEvent(
-              cb.extraSettingsEl,
-              "keydown",
-              (e) => this.listMoveHandler(e, this.toolbar.mobileStyles, index2, "delete")
-            );
-          });
-        }
-      );
-    }
-    new import_obsidian5.Setting(mobileStyleDiv).addDropdown(
-      (dropdown) => dropdown.addOptions(
-        MOBILE_STYLE_OPTIONS.filter((option2) => {
-          return !this.toolbar.mobileStyles.includes(Object.keys(option2)[0]);
-        }).reduce((acc, option2) => {
-          return { ...acc, ...option2 };
-        }, {})
-      ).setValue(this.toolbar.mobileStyles.join(", ") || "").onChange(async (val) => {
-        if (this.toolbar.mobileStyles.includes(val)) {
-          this.toolbar.mobileStyles = this.toolbar.mobileStyles.filter((i) => i !== val);
-        } else {
-          this.toolbar.mobileStyles.push(val);
-        }
-        await this.plugin.saveSettings();
-        this.display();
-      })
-    );
-    const mobileDesc = document.createDocumentFragment();
-    mobileDesc.append("Override default styles.");
-    mobileDesc.append(this.getStyleDisclaimersFr(MOBILE_STYLE_DISCLAIMERS, this.toolbar.mobileStyles));
-    new import_obsidian5.Setting(settingsDiv).setName("Mobile").setDesc(mobileDesc).setClass("note-toolbar-setting-item-styles").settingEl.append(mobileStyleDiv);
-  }
-  /**
-   * Displays the Delete button.
-   * @param settingsDiv HTMLElement to add the settings to.
-   */
-  displayDeleteButton(settingsDiv) {
-    new import_obsidian5.Setting(settingsDiv).setName("Delete this toolbar").setHeading().setDesc("This action cannot be undone.").setClass("note-toolbar-setting-spaced").addButton((button) => {
-      button.setClass("mod-warning").setTooltip("Delete this toolbar").setButtonText("Delete...").setCta().onClick(() => {
-        const modal = new DeleteModal(this);
-        modal.open();
-      });
-    });
-  }
-  /*************************************************************************
-   * SETTINGS DISPLAY HANDLERS
-   *************************************************************************/
-  /**
-   * Handles moving items within a list, and deletion, based on click or keyboard event.
-   * @param keyEvent KeyboardEvent, if the keyboard is triggering this handler.
-   * @param itemArray Array that we're operating on.
-   * @param index Number of the item in the list we're moving/deleting.
-   * @param action Direction of the move, or "delete".
-   */
-  async listMoveHandler(keyEvent, itemArray, index2, action = void 0) {
-    if (keyEvent) {
-      switch (keyEvent.key) {
-        case "ArrowUp":
-          keyEvent.preventDefault();
-          action = "up";
-          break;
-        case "ArrowDown":
-          keyEvent.preventDefault();
-          action = "down";
-          break;
-        case "Delete":
-        case "Backspace":
-          keyEvent.preventDefault();
-          action = "delete";
-          break;
-        case "Enter":
-        case " ":
-          keyEvent.preventDefault();
-          break;
-        default:
-          return;
-      }
-    }
-    switch (action) {
-      case "up":
-        arraymove(itemArray, index2, index2 - 1);
-        this.toolbar.updated = new Date().toISOString();
-        break;
-      case "down":
-        arraymove(itemArray, index2, index2 + 1);
-        this.toolbar.updated = new Date().toISOString();
-        break;
-      case "delete":
-        itemArray.splice(index2, 1);
-        this.toolbar.updated = new Date().toISOString();
-        break;
-    }
-    await this.plugin.saveSettings();
-    this.display();
-  }
-  /**
-   * Remembers the scrolling position of the user and jumps to it on display.
-   * @author Taitava (Shell Commands plugin)
-   * @link https://github.com/Taitava/obsidian-shellcommands/blob/8d030a23540d587a85bd0dfe2e08c8e6b6b955ab/src/settings/SC_MainSettingsTab.ts#L701 
-  */
-  rememberLastPosition(containerEl) {
-    debugLog("rememberLastPosition:", containerEl);
-    containerEl.scrollTo({
-      top: this.lastScrollPosition,
-      behavior: "auto"
-    });
-    this.plugin.registerDomEvent(containerEl, "scroll", (event) => {
-      this.lastScrollPosition = containerEl.scrollTop;
-    });
-  }
-  /*************************************************************************
-   * UTILITIES
-   *************************************************************************/
-  /**
-   * Returns the visibility menu to display, for the given platform.
-   * @param platform visibility to check for component visibility
-   * @param platformLabel string to show in the menu 
-   * @returns Menu
-   */
-  getItemVisibilityMenu(platform, platformLabel) {
-    let isComponentVisible = {
-      icon: platform && platform.allViews ? platform.allViews.components.includes("icon") : false,
-      label: platform && platform.allViews ? platform.allViews.components.includes("label") : false
-    };
-    let menu = new import_obsidian5.Menu();
-    menu.addItem((menuItem) => {
-      menuItem.setTitle(isComponentVisible.icon ? "Icon shows on " + platformLabel : "Icon hidden on " + platformLabel).setIcon("image").setChecked(isComponentVisible.icon).onClick(async (menuEvent) => {
-        if (isComponentVisible.icon) {
-          removeComponentVisibility(platform, "icon");
-          isComponentVisible.icon = false;
-        } else {
-          addComponentVisibility(platform, "icon");
-          isComponentVisible.icon = true;
-        }
-        this.toolbar.updated = new Date().toISOString();
-        await this.plugin.saveSettings();
-        this.display();
-      });
-    });
-    menu.addItem((menuItem) => {
-      menuItem.setTitle(isComponentVisible.label ? "Label shows on " + platformLabel : "Label hidden on " + platformLabel).setIcon("whole-word").setChecked(isComponentVisible.label).onClick(async (menuEvent) => {
-        if (isComponentVisible.label) {
-          removeComponentVisibility(platform, "label");
-          isComponentVisible.label = false;
-        } else {
-          addComponentVisibility(platform, "label");
-          isComponentVisible.label = true;
-        }
-        this.toolbar.updated = new Date().toISOString();
-        await this.plugin.saveSettings();
-        this.display();
-      });
-    });
-    return menu;
-  }
-  /**
-   * Gets the current state of visibility for a given platform.
-   * @param platform visibility to check
-   * @returns a single word (hidden, visible, or the component name), and a sentence for the tooltip
-   */
-  getPlatformStateLabel(platform, platformLabel) {
-    var _a;
-    if (platform && platform.allViews) {
-      let dkComponents = (_a = platform.allViews) == null ? void 0 : _a.components;
-      if (dkComponents) {
-        if (dkComponents.length === 2) {
-          return ["", "visible on " + platformLabel];
-        } else if (dkComponents.length === 1) {
-          return [dkComponents[0], dkComponents[0] + " visible on " + platformLabel];
-        } else {
-          return ["hidden", "hidden on " + platformLabel];
-        }
-      }
-    }
-    return ["hidden", "hidden on " + platformLabel];
-  }
-  /**
-   * Returns a fragment containing any applicable style disclaimers to show, for the provided styles.
-   * @param disclaimers List of disclaimers, corresponds with DEFAULT and MOBILE _STYLE_DISCLAIMERS
-   * @param stylesToCheck styles that have been applied by the user, to check for applicable disclaimers
-   * @returns DocumentFragment with disclaimers to show in settings UI
-   */
-  getStyleDisclaimersFr(disclaimers, stylesToCheck) {
-    let disclaimersFr = document.createDocumentFragment();
-    stylesToCheck.forEach((style) => {
-      disclaimers.find((disclaimer) => style in disclaimer) ? disclaimersFr.append(disclaimersFr.createEl("br"), "* ", this.getValueForKey(disclaimers, style)) : void 0;
-    });
-    return disclaimersFr;
-  }
-  /**
-   * Returns the value for the provided key from the provided dictionary.
-   * @param dict key-value dictionary
-   * @param key string key
-   * @returns value from the dictionary
-   */
-  getValueForKey(dict, key) {
-    const option2 = dict.find((option3) => key in option3);
-    return option2 ? Object.values(option2)[0] : "";
-  }
-};
-
-// src/Settings/Suggesters/FolderSuggester.ts
-var import_obsidian6 = require("obsidian");
-var FolderSuggester = class extends import_obsidian6.AbstractInputSuggest {
-  constructor(app, inputEl) {
-    super(app, inputEl);
-    this.PATTERN_ALL_FILES = { pattern: "*", label: "*", desc: "all folders" };
-    this.PATTERN_ROOT_ONLY = { pattern: "/", label: "/", desc: "root folder only" };
-    this.inputEl = inputEl;
-  }
-  getSuggestions(inputStr) {
-    const abstractFiles = this.app.vault.getAllLoadedFiles();
-    const folders = [];
-    const lowerCaseInputStr = inputStr.toLowerCase();
-    folders.push(this.PATTERN_ALL_FILES.pattern);
-    abstractFiles.forEach((folder) => {
-      if (folder instanceof import_obsidian6.TFolder && folder.path.toLowerCase().contains(lowerCaseInputStr)) {
-        folders.push(folder.path);
-      }
-    });
-    return folders;
-  }
-  renderSuggestion(folder, el) {
-    if (folder === this.PATTERN_ALL_FILES.pattern) {
-      this.renderPattern(el, this.PATTERN_ALL_FILES);
-    } else if (folder === this.PATTERN_ROOT_ONLY.pattern) {
-      this.renderPattern(el, this.PATTERN_ROOT_ONLY);
-    } else {
-      el.setText(folder);
-    }
-  }
-  selectSuggestion(folder) {
-    this.inputEl.value = folder;
-    this.inputEl.trigger("input");
-    this.close();
-  }
-  /*************************************************************************
-   * DISPLAY HELPERS
-   *************************************************************************/
-  renderPattern(el, suggestion) {
-    el.addClass("note-toolbar-setting-folder-suggestion-item-muted");
-    el.createSpan().setText(suggestion.label);
-    el.createSpan().setText(suggestion.desc);
-  }
-};
-
-// src/Settings/Suggesters/ToolbarSuggester.ts
-var import_obsidian7 = require("obsidian");
-var ToolbarSuggester = class extends import_obsidian7.AbstractInputSuggest {
-  constructor(app, plugin, inputEl) {
-    super(app, inputEl);
-    this.plugin = plugin;
-    this.inputEl = inputEl;
-  }
-  getSuggestions(inputStr) {
-    const pluginToolbars = this.plugin.settings.toolbars;
-    const toolbarSuggestions = [];
-    const lowerCaseInputStr = inputStr.toLowerCase();
-    pluginToolbars.forEach((toolbar) => {
-      if (toolbar.name.toLowerCase().contains(lowerCaseInputStr)) {
-        toolbarSuggestions.push(toolbar);
-      }
-    });
-    return toolbarSuggestions;
-  }
-  renderSuggestion(toolbar, el) {
-    el.setText(toolbar.name);
-  }
-  selectSuggestion(toolbar) {
-    this.inputEl.value = toolbar.name;
     this.inputEl.trigger("input");
     this.close();
   }
@@ -3366,11 +2600,954 @@ Sortable.mount(new AutoScrollPlugin());
 Sortable.mount(Remove, Revert);
 var sortable_esm_default = Sortable;
 
+// src/Settings/ToolbarSettingsModal.ts
+var ToolbarSettingsModal = class extends import_obsidian5.Modal {
+  /**
+   * Displays a new edit toolbar modal, for the given toolbar.
+   * @param app reference to the app
+   * @param plugin reference to the plugin
+   * @param parent NoteToolbarSettingTab if coming from settings UI; null if coming from editor 
+   * @param toolbar ToolbarSettings to edit
+   */
+  constructor(app, plugin, parent = null, toolbar) {
+    super(app);
+    this.itemListOpen = true;
+    this.itemListIdCounter = 0;
+    this.parent = parent;
+    this.plugin = plugin;
+    this.toolbar = toolbar;
+  }
+  /**
+   * Displays the toolbar item's settings within the modal window.
+   */
+  onOpen() {
+    this.display();
+  }
+  /**
+   * Removes modal window and refreshes the parent settings window.
+   */
+  onClose() {
+    const { contentEl } = this;
+    contentEl.empty();
+    this.parent ? this.parent.display() : void 0;
+  }
+  /*************************************************************************
+   * SETTINGS DISPLAY
+   *************************************************************************/
+  /**
+   * Displays the toolbar item's settings.
+   */
+  display(focusId, scrollToClass) {
+    debugLog("\u{1F7E1} REDRAWING MODAL \u{1F7E1}");
+    this.modalEl.addClass("note-toolbar-setting-modal-container");
+    this.contentEl.empty();
+    let settingsDiv = createDiv();
+    settingsDiv.className = "vertical-tab-content note-toolbar-setting-modal";
+    this.displayNameSetting(settingsDiv);
+    this.displayItemList(settingsDiv);
+    this.displayPositionSetting(settingsDiv);
+    this.displayStyleSetting(settingsDiv);
+    this.displayDeleteButton(settingsDiv);
+    this.contentEl.appendChild(settingsDiv);
+    if (focusId) {
+      let focusEl = this.contentEl.querySelector(focusId);
+      focusEl == null ? void 0 : focusEl.focus();
+      setTimeout(() => {
+        let scrollToEl = scrollToClass ? focusEl.closest(scrollToClass) : void 0;
+        scrollToEl == null ? void 0 : scrollToEl.scrollIntoView(true);
+      }, import_obsidian5.Platform.isMobile ? 100 : 0);
+    } else {
+      this.rememberLastPosition(this.contentEl.children[0]);
+    }
+    this.plugin.registerDomEvent(settingsDiv, "click", (e) => {
+      let rowClicked = e.target.closest(".note-toolbar-setting-items-container-row");
+      let listItems = settingsDiv.querySelectorAll(".note-toolbar-sortablejs-list > div");
+      listItems.forEach((row, index2) => {
+        if (row !== rowClicked) {
+          let itemPreview = row.querySelector(".note-toolbar-setting-item-preview-container");
+          let itemForm = row.querySelector(".note-toolbar-setting-item");
+          itemPreview == null ? void 0 : itemPreview.setAttribute("data-active", "true");
+          itemForm == null ? void 0 : itemForm.setAttribute("data-active", "false");
+        }
+      });
+    });
+  }
+  /**
+   * Displays the Name setting.
+   * @param settingsDiv HTMLElement to add the setting to.
+   */
+  displayNameSetting(settingsDiv) {
+    let toolbarNameDiv = createDiv();
+    new import_obsidian5.Setting(toolbarNameDiv).setName("Name").setDesc("Give this toolbar a unique name.").addText((text) => text.setPlaceholder("Name").setValue(this.toolbar.name).onChange((0, import_obsidian5.debounce)(async (value) => {
+      var _a;
+      let existingToolbar = this.plugin.getToolbarSettings(value);
+      if (existingToolbar && existingToolbar !== this.toolbar) {
+        toolbarNameDiv.createEl("div", {
+          text: "A toolbar already exists with this name",
+          attr: { id: "note-toolbar-name-error" },
+          cls: "note-toolbar-setting-error-message"
+        });
+        toolbarNameDiv.addClass("note-toolbar-setting-error");
+      } else {
+        (_a = document.getElementById("note-toolbar-name-error")) == null ? void 0 : _a.remove();
+        toolbarNameDiv.removeClass("note-toolbar-setting-error");
+        this.toolbar.name = value;
+        this.toolbar.updated = new Date().toISOString();
+        this.plugin.settings.toolbars.sort((a, b) => a.name.localeCompare(b.name));
+        await this.plugin.saveSettings();
+      }
+    }, 750)));
+    settingsDiv.append(toolbarNameDiv);
+  }
+  /**
+   * Displays the list of toolbar items for editing.
+   * @param settingsDiv HTMLElement to add the settings to.
+   */
+  displayItemList(settingsDiv) {
+    let itemsContainer = createDiv();
+    itemsContainer.addClass("note-toolbar-setting-items-container");
+    itemsContainer.setAttribute("data-active", this.itemListOpen.toString());
+    let itemsSetting = new import_obsidian5.Setting(itemsContainer).setName("Items").setHeading().setDesc(learnMoreFr(
+      "Items in the toolbar, in order from left to right.",
+      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Creating-toolbar-items"
+    ));
+    if (this.toolbar.items.length > 0) {
+      itemsSetting.addExtraButton((cb) => {
+        cb.setIcon("right-triangle").setTooltip("Collapse all items").onClick(async () => {
+          let itemsContainer2 = settingsDiv.querySelector(".note-toolbar-setting-items-container");
+          if (itemsContainer2) {
+            this.itemListOpen = !this.itemListOpen;
+            itemsContainer2.setAttribute("data-active", this.itemListOpen.toString());
+            let heading = itemsContainer2.querySelector(".setting-item-heading .setting-item-name");
+            this.itemListOpen ? heading == null ? void 0 : heading.setText("Items") : heading == null ? void 0 : heading.setText("Items (" + this.toolbar.items.length + ")");
+            cb.setTooltip(this.itemListOpen ? "Collapse all items" : "Expand all items");
+          }
+        }).extraSettingsEl.tabIndex = 0;
+        this.plugin.registerDomEvent(
+          cb.extraSettingsEl,
+          "keydown",
+          (e) => {
+            switch (e.key) {
+              case "Enter":
+              case " ":
+                e.preventDefault();
+                cb.extraSettingsEl.click();
+            }
+          }
+        );
+      });
+    }
+    let itemsListContainer = createDiv();
+    itemsListContainer.addClass("note-toolbar-setting-items-list-container");
+    let itemsSortableContainer = createDiv();
+    itemsSortableContainer.addClass("note-toolbar-sortablejs-list");
+    this.toolbar.items.forEach((toolbarItem, index2) => {
+      let itemContainer = createDiv();
+      itemContainer.setAttribute("data-row-id", this.itemListIdCounter.toString());
+      itemContainer.addClass("note-toolbar-setting-items-container-row");
+      let itemPreview = this.generateItemPreview(toolbarItem, this.itemListIdCounter.toString());
+      itemContainer.appendChild(itemPreview);
+      let itemForm = this.generateItemForm(toolbarItem, this.itemListIdCounter.toString());
+      itemForm.setAttribute("data-active", "false");
+      itemContainer.appendChild(itemForm);
+      this.itemListIdCounter++;
+      itemsSortableContainer.appendChild(itemContainer);
+    });
+    var sortable = sortable_esm_default.create(itemsSortableContainer, {
+      chosenClass: "sortable-chosen",
+      ghostClass: "sortable-ghost",
+      handle: ".sortable-handle",
+      onChange: (item) => navigator.vibrate(50),
+      onChoose: (item) => navigator.vibrate(50),
+      onSort: async (item) => {
+        debugLog("sortable: index: ", item.oldIndex, " -> ", item.newIndex);
+        if (item.oldIndex !== void 0 && item.newIndex !== void 0) {
+          moveElement(this.toolbar.items, item.oldIndex, item.newIndex);
+          await this.plugin.saveSettings();
+        }
+      }
+    });
+    itemsListContainer.appendChild(itemsSortableContainer);
+    new import_obsidian5.Setting(itemsListContainer).setClass("note-toolbar-setting-button").addButton((button) => {
+      button.setTooltip("Add a new item to the toolbar").setButtonText("+ Add toolbar item").setCta().onClick(async () => {
+        var _a, _b;
+        let newToolbarItem = {
+          label: "",
+          icon: "",
+          link: "",
+          linkAttr: {
+            commandId: "",
+            hasVars: false,
+            type: (_b = (_a = this.toolbar.items.last()) == null ? void 0 : _a.linkAttr.type) != null ? _b : "uri"
+          },
+          tooltip: "",
+          visibility: {
+            desktop: { allViews: { components: ["icon", "label"] } },
+            mobile: { allViews: { components: ["icon", "label"] } },
+            tablet: { allViews: { components: ["icon", "label"] } }
+          }
+        };
+        this.toolbar.items.push(newToolbarItem);
+        this.toolbar.updated = new Date().toISOString();
+        await this.plugin.saveSettings();
+        let newItemContainer = createDiv();
+        newItemContainer.setAttribute("data-row-id", this.itemListIdCounter.toString());
+        newItemContainer.addClass("note-toolbar-setting-items-container-row");
+        let newItemPreview = this.generateItemPreview(newToolbarItem, this.itemListIdCounter.toString());
+        newItemPreview.setAttribute("data-active", "false");
+        newItemContainer.appendChild(newItemPreview);
+        let newItemForm = this.generateItemForm(newToolbarItem, this.itemListIdCounter.toString());
+        newItemForm.setAttribute("data-active", "true");
+        newItemContainer.appendChild(newItemForm);
+        this.itemListIdCounter++;
+        itemsSortableContainer.appendChild(newItemContainer);
+        let focusField = newItemForm == null ? void 0 : newItemForm.querySelector(".note-toolbar-setting-item-icon .setting-item-control .clickable-icon");
+        focusField ? focusField.focus() : void 0;
+      });
+    });
+    itemsContainer.appendChild(itemsListContainer);
+    settingsDiv.appendChild(itemsContainer);
+  }
+  /**
+   * Toggles the item to the provided state, or toggles it if no state is provided.
+   * @param itemContainer 
+   * @param state 
+   */
+  toggleItemView(itemPreviewContainer, state) {
+    let itemForm = itemPreviewContainer.nextElementSibling;
+    debugLog("toggleItemView", itemPreviewContainer, itemForm);
+    let previewState;
+    let formState;
+    if (state) {
+      switch (state) {
+        case "form":
+          previewState = "false";
+          formState = "true";
+          break;
+        case "preview":
+          previewState = "true";
+          formState = "false";
+          break;
+      }
+    } else {
+      previewState = (itemPreviewContainer == null ? void 0 : itemPreviewContainer.getAttribute("data-active")) === "true" ? "false" : "true";
+      formState = (itemForm == null ? void 0 : itemForm.getAttribute("data-active")) === "true" ? "false" : "true";
+    }
+    itemForm == null ? void 0 : itemForm.setAttribute("data-active", formState);
+    itemPreviewContainer == null ? void 0 : itemPreviewContainer.setAttribute("data-active", previewState);
+    if (formState === "true") {
+      let focusField = itemForm == null ? void 0 : itemForm.querySelector(".note-toolbar-setting-item-icon .setting-item-control .clickable-icon");
+      debugLog("toggleItemView focusField: ", focusField);
+      focusField ? focusField.focus() : void 0;
+    }
+  }
+  /**
+   * Returns the preview for a given toolbar item.
+   */
+  generateItemPreview(toolbarItem, rowId) {
+    let itemPreviewContainer = createDiv();
+    itemPreviewContainer.className = "note-toolbar-setting-item-preview-container";
+    let itemPreview = createDiv();
+    itemPreview.className = "note-toolbar-setting-item-preview";
+    itemPreview.tabIndex = 0;
+    let itemPreviewIcon = createSpan();
+    (0, import_obsidian5.setIcon)(itemPreviewIcon, toolbarItem.icon ? toolbarItem.icon : "note-toolbar-empty");
+    let itemPreviewLabel = createSpan();
+    toolbarItem.label ? itemPreviewLabel.setText(toolbarItem.label) : itemPreviewLabel.setText(toolbarItem.tooltip);
+    toolbarItem.label ? void 0 : itemPreviewLabel.addClass("note-toolbar-setting-item-preview-tooltip");
+    itemPreview.appendChild(itemPreviewIcon);
+    itemPreview.appendChild(itemPreviewLabel);
+    itemPreviewContainer.appendChild(itemPreview);
+    let itemHandleDiv = createDiv();
+    itemHandleDiv.addClass("note-toolbar-setting-item-controls");
+    new import_obsidian5.Setting(itemHandleDiv).addExtraButton((cb) => {
+      cb.setIcon("menu").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
+      cb.extraSettingsEl.setAttribute("data-row-id", rowId);
+      cb.extraSettingsEl.tabIndex = 0;
+      this.plugin.registerDomEvent(
+        cb.extraSettingsEl,
+        "keydown",
+        (e) => {
+          let currentEl = e.target;
+          let rowId2 = currentEl.getAttribute("data-row-id");
+          rowId2 ? this.listMoveHandlerById(e, this.toolbar.items, rowId2) : void 0;
+        }
+      );
+    });
+    itemPreviewContainer.append(itemHandleDiv);
+    this.plugin.registerDomEvent(
+      itemPreview,
+      "keydown",
+      (e) => {
+        switch (e.key) {
+          case "Enter":
+          case " ":
+            e.preventDefault();
+            this.toggleItemView(itemPreviewContainer, "form");
+        }
+      }
+    );
+    this.plugin.registerDomEvent(
+      itemPreview,
+      "click",
+      (e) => {
+        debugLog("clicked on: ", e.target);
+        this.toggleItemView(itemPreviewContainer, "form");
+      }
+    );
+    return itemPreviewContainer;
+  }
+  /**
+   * Returns the form to edit a given toolbar item.
+   * @param toolbarItem item to return the form for
+   * @param rowId row ID of the item in the toolbar item list
+   * @returns the form element as a div
+   */
+  generateItemForm(toolbarItem, rowId) {
+    let itemDiv = createDiv();
+    itemDiv.className = "note-toolbar-setting-item";
+    let itemTopContainer = createDiv();
+    itemTopContainer.className = "note-toolbar-setting-item-top-container";
+    let textFieldsContainer = createDiv();
+    textFieldsContainer.id = "note-toolbar-setting-item-field-id-" + rowId;
+    textFieldsContainer.className = "note-toolbar-setting-item-fields";
+    new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-icon").addExtraButton((cb) => {
+      cb.setIcon(toolbarItem.icon ? toolbarItem.icon : "lucide-plus-square").setTooltip("Select icon (optional)").onClick(async () => {
+        let itemRow = this.getItemRowElById(rowId);
+        const modal = new IconSuggestModal(this.plugin, toolbarItem, itemRow);
+        modal.open();
+      });
+      cb.extraSettingsEl.setAttribute("data-note-toolbar-no-icon", !toolbarItem.icon ? "true" : "false");
+      cb.extraSettingsEl.setAttribute("tabindex", "0");
+      this.plugin.registerDomEvent(
+        cb.extraSettingsEl,
+        "keydown",
+        (e) => {
+          switch (e.key) {
+            case "Enter":
+            case " ":
+              e.preventDefault();
+              let itemRow = this.getItemRowElById(rowId);
+              const modal = new IconSuggestModal(this.plugin, toolbarItem, itemRow);
+              modal.open();
+          }
+        }
+      );
+    });
+    new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Label (optional, if icon set)").setValue(toolbarItem.label).onChange(
+      (0, import_obsidian5.debounce)(async (value) => {
+        toolbarItem.label = value;
+        this.toolbar.updated = new Date().toISOString();
+        await this.plugin.saveSettings();
+        this.updatePreviewText(toolbarItem, rowId);
+      }, 750)
+    ));
+    new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Tooltip (optional)").setValue(toolbarItem.tooltip).onChange(
+      (0, import_obsidian5.debounce)(async (value) => {
+        toolbarItem.tooltip = value;
+        this.toolbar.updated = new Date().toISOString();
+        await this.plugin.saveSettings();
+        this.updatePreviewText(toolbarItem, rowId);
+      }, 750)
+    ));
+    let linkContainer = createDiv();
+    linkContainer.className = "note-toolbar-setting-item-link-container";
+    let uriFieldHelp = createDiv();
+    uriFieldHelp.addClass("note-toolbar-setting-field-help");
+    uriFieldHelp.appendChild(
+      learnMoreFr(
+        "Tip: Use note properties in URIs.",
+        "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Variables"
+      )
+    );
+    let linkSelector = createDiv();
+    const s1t = new import_obsidian5.Setting(linkSelector).addDropdown(
+      (dropdown) => dropdown.addOptions({ command: "Command", file: "File", uri: "URI" }).setValue(toolbarItem.linkAttr.type).onChange(async (value) => {
+        let itemRow = this.getItemRowElById(rowId);
+        let itemLinkFieldDiv = itemRow == null ? void 0 : itemRow.querySelector(".note-toolbar-setting-item-link-field");
+        if (itemLinkFieldDiv) {
+          toolbarItem.linkAttr.type = value;
+          itemLinkFieldDiv.empty();
+          switch (value) {
+            case "command":
+              this.getLinkSetting("command", itemLinkFieldDiv, toolbarItem, "");
+              break;
+            case "file":
+              this.getLinkSetting("file", itemLinkFieldDiv, toolbarItem, toolbarItem.link);
+              break;
+            case "uri":
+              this.getLinkSetting("uri", itemLinkFieldDiv, toolbarItem, toolbarItem.link, uriFieldHelp);
+              break;
+          }
+          await this.plugin.saveSettings();
+        }
+      })
+    );
+    let linkField = createDiv();
+    linkField.className = "note-toolbar-setting-item-link-field";
+    this.getLinkSetting(
+      toolbarItem.linkAttr.type,
+      linkField,
+      toolbarItem,
+      toolbarItem.link,
+      toolbarItem.linkAttr.type === "uri" ? uriFieldHelp : void 0
+    );
+    linkContainer.append(linkSelector);
+    linkContainer.append(linkField);
+    let itemControlsContainer = createDiv();
+    itemControlsContainer.className = "note-toolbar-setting-item-controls";
+    const c1e = new import_obsidian5.Setting(itemControlsContainer).setClass("note-toolbar-setting-item-delete").addExtraButton((cb) => {
+      cb.setIcon("minus-circle").setTooltip("Delete").onClick(async () => {
+        let rowId2 = cb.extraSettingsEl.getAttribute("data-row-id");
+        rowId2 ? this.listMoveHandlerById(null, this.toolbar.items, rowId2, "delete") : void 0;
+      });
+      cb.extraSettingsEl.setAttribute("tabindex", "0");
+      cb.extraSettingsEl.setAttribute("data-row-id", this.itemListIdCounter.toString());
+      this.plugin.registerDomEvent(
+        cb.extraSettingsEl,
+        "keydown",
+        (e) => {
+          let currentEl = e.target;
+          let rowId2 = currentEl.getAttribute("data-row-id");
+          rowId2 ? this.listMoveHandlerById(e, this.toolbar.items, rowId2, "delete") : void 0;
+        }
+      );
+    });
+    let itemFieldsContainer = createDiv();
+    itemFieldsContainer.className = "note-toolbar-setting-item-fields";
+    itemFieldsContainer.appendChild(textFieldsContainer);
+    itemTopContainer.appendChild(itemFieldsContainer);
+    itemTopContainer.appendChild(linkContainer);
+    itemDiv.appendChild(itemTopContainer);
+    let visibilityControlsContainer = createDiv();
+    visibilityControlsContainer.className = "note-toolbar-setting-item-visibility-container";
+    const visButtons = new import_obsidian5.Setting(visibilityControlsContainer).setClass("note-toolbar-setting-item-visibility").addButton((cb) => {
+      (0, import_obsidian5.setIcon)(cb.buttonEl, "monitor");
+      let [state, tooltip] = this.getPlatformStateLabel(toolbarItem.visibility.desktop, "desktop");
+      state ? cb.buttonEl.createSpan().setText(state) : void 0;
+      cb.setTooltip(tooltip).onClick(async () => {
+        var _a, _b;
+        (_b = (_a = toolbarItem.visibility).desktop) != null ? _b : _a.desktop = { allViews: { components: [] } };
+        let visibilityMenu = this.getItemVisibilityMenu(toolbarItem.visibility.desktop, "desktop", cb);
+        visibilityMenu.showAtPosition(getPosition(cb.buttonEl));
+      });
+    }).addButton((cb) => {
+      (0, import_obsidian5.setIcon)(cb.buttonEl, "tablet-smartphone");
+      let [state, tooltip] = this.getPlatformStateLabel(toolbarItem.visibility.mobile, "mobile");
+      state ? cb.buttonEl.createSpan().setText(state) : void 0;
+      cb.setTooltip(tooltip).onClick(async () => {
+        var _a, _b;
+        (_b = (_a = toolbarItem.visibility).mobile) != null ? _b : _a.mobile = { allViews: { components: [] } };
+        let visibilityMenu = this.getItemVisibilityMenu(toolbarItem.visibility.mobile, "mobile", cb);
+        visibilityMenu.showAtPosition(getPosition(cb.buttonEl));
+      });
+    }).addExtraButton((cb) => {
+      cb.setIcon("menu").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
+      cb.extraSettingsEl.setAttribute("data-row-id", this.itemListIdCounter.toString());
+      cb.extraSettingsEl.tabIndex = 0;
+      this.plugin.registerDomEvent(
+        cb.extraSettingsEl,
+        "keydown",
+        (e) => {
+          let currentEl = e.target;
+          let rowId2 = currentEl.getAttribute("data-row-id");
+          rowId2 ? this.listMoveHandlerById(e, this.toolbar.items, rowId2) : void 0;
+        }
+      );
+    });
+    let itemVisilityAndControlsContainer = createDiv();
+    itemVisilityAndControlsContainer.className = "note-toolbar-setting-item-visibility-and-controls";
+    itemVisilityAndControlsContainer.appendChild(itemControlsContainer);
+    itemVisilityAndControlsContainer.appendChild(visibilityControlsContainer);
+    itemDiv.appendChild(itemVisilityAndControlsContainer);
+    return itemDiv;
+  }
+  getLinkSetting(type, fieldDiv, toolbarItem, value, helpText) {
+    debugLog("getLinkSetting");
+    switch (type) {
+      case "command":
+        new import_obsidian5.Setting(fieldDiv).setClass("note-toolbar-setting-item-field-link").addSearch((cb) => {
+          new CommandSuggester(this.app, cb.inputEl);
+          cb.setPlaceholder("Search for command").setValue(value).onChange((0, import_obsidian5.debounce)(async (command) => {
+            var _a, _b;
+            toolbarItem.link = command;
+            toolbarItem.linkAttr.type = "command";
+            toolbarItem.linkAttr.commandId = (_b = (_a = cb.inputEl) == null ? void 0 : _a.getAttribute("data-command-id")) != null ? _b : "";
+            await this.plugin.saveSettings();
+          }, 250));
+        });
+        break;
+      case "file":
+        new import_obsidian5.Setting(fieldDiv).setClass("note-toolbar-setting-item-field-link").addSearch((cb) => {
+          new FileSuggester(this.app, cb.inputEl);
+          cb.setPlaceholder("Search for file").setValue(value).onChange((0, import_obsidian5.debounce)(async (value2) => {
+            var _a, _b, _c, _d;
+            toolbarItem.linkAttr.type = "file";
+            const file = this.app.vault.getAbstractFileByPath(value2);
+            if (!(file instanceof import_obsidian5.TFile)) {
+              if (document.getElementById("note-toolbar-item-link-note-error") === null) {
+                let errorDiv = this.containerEl.createEl("div", {
+                  text: "This file does not exist.",
+                  attr: { id: "note-toolbar-item-link-note-error" },
+                  cls: "note-toolbar-setting-field-error"
+                });
+                (_a = cb.inputEl.parentElement) == null ? void 0 : _a.insertAdjacentElement("afterend", errorDiv);
+                (_b = cb.inputEl.parentElement) == null ? void 0 : _b.addClass("note-toolbar-setting-error");
+              }
+            } else {
+              toolbarItem.link = (0, import_obsidian5.normalizePath)(value2);
+              toolbarItem.linkAttr.commandId = "";
+              (_c = document.getElementById("note-toolbar-item-link-note-error")) == null ? void 0 : _c.remove();
+              (_d = cb.inputEl.parentElement) == null ? void 0 : _d.removeClass("note-toolbar-setting-error");
+              await this.plugin.saveSettings();
+            }
+          }, 750));
+        });
+        break;
+      case "uri":
+        const uriSetting = new import_obsidian5.Setting(fieldDiv).setClass("note-toolbar-setting-item-field-link").addText(
+          (text) => text.setPlaceholder("Website, URI, or note title").setValue(value).onChange(
+            (0, import_obsidian5.debounce)(async (value2) => {
+              toolbarItem.link = value2;
+              toolbarItem.linkAttr.type = "uri";
+              toolbarItem.linkAttr.hasVars = hasVars(value2);
+              toolbarItem.linkAttr.commandId = "";
+              this.toolbar.updated = new Date().toISOString();
+              await this.plugin.saveSettings();
+            }, 750)
+          )
+        );
+        helpText ? uriSetting.controlEl.insertAdjacentElement("beforeend", helpText) : void 0;
+        break;
+    }
+  }
+  /**
+   * Displays the Position setting.
+   * @param settingsDiv HTMLElement to add the settings to.
+   */
+  displayPositionSetting(settingsDiv) {
+    var _a, _b;
+    new import_obsidian5.Setting(settingsDiv).setName("Position").setDesc(learnMoreFr(
+      "Where to position this toolbar.",
+      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Positioning-toolbars"
+    )).setHeading();
+    new import_obsidian5.Setting(settingsDiv).setName("Desktop").addDropdown(
+      (dropdown) => {
+        var _a2, _b2, _c;
+        return dropdown.addOptions(
+          POSITION_OPTIONS.desktop.reduce((acc, option2) => {
+            return { ...acc, ...option2 };
+          }, {})
+        ).setValue((_c = (_b2 = (_a2 = this.toolbar.position.desktop) == null ? void 0 : _a2.allViews) == null ? void 0 : _b2.position) != null ? _c : "props").onChange(async (val) => {
+          this.toolbar.position.desktop = { allViews: { position: val } };
+          this.toolbar.updated = new Date().toISOString();
+          await this.plugin.saveSettings();
+          this.display();
+        });
+      }
+    );
+    new import_obsidian5.Setting(settingsDiv).setName("Mobile").setDesc(
+      ((_b = (_a = this.toolbar.position.mobile) == null ? void 0 : _a.allViews) == null ? void 0 : _b.position) === "hidden" ? learnMoreFr(
+        "Tip: Access toolbars from the navigation bar.",
+        "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Navigation-bar"
+      ) : ""
+    ).addDropdown(
+      (dropdown) => {
+        var _a2, _b2, _c;
+        return dropdown.addOptions(
+          POSITION_OPTIONS.mobile.reduce((acc, option2) => {
+            return { ...acc, ...option2 };
+          }, {})
+        ).setValue((_c = (_b2 = (_a2 = this.toolbar.position.mobile) == null ? void 0 : _a2.allViews) == null ? void 0 : _b2.position) != null ? _c : "props").onChange(async (val) => {
+          this.toolbar.position.mobile = { allViews: { position: val } };
+          this.toolbar.position.tablet = { allViews: { position: val } };
+          this.toolbar.updated = new Date().toISOString();
+          await this.plugin.saveSettings();
+          this.display();
+        });
+      }
+    );
+  }
+  /**
+   * Displays the Style settings.
+   * @param settingsDiv HTMLElement to add the settings to.
+   */
+  displayStyleSetting(settingsDiv) {
+    new import_obsidian5.Setting(settingsDiv).setName("Styles").setDesc(learnMoreFr(
+      "List of styles to apply to the toolbar.",
+      "https://github.com/chrisgurney/obsidian-note-toolbar/wiki/Styling-toolbars"
+    )).setHeading();
+    let defaultStyleDiv = createDiv();
+    defaultStyleDiv.className = "note-toolbar-setting-item-style";
+    if (this.toolbar.defaultStyles.length == 0) {
+      let emptyMsg = this.containerEl.createEl(
+        "div",
+        { text: emptyMessageFr("No default styles set.") }
+      );
+      emptyMsg.className = "note-toolbar-setting-empty-message";
+      defaultStyleDiv.append(emptyMsg);
+    } else {
+      this.toolbar.defaultStyles.forEach(
+        (style, index2) => {
+          let styleDisclaimer = this.getValueForKey(DEFAULT_STYLE_DISCLAIMERS, style);
+          new import_obsidian5.Setting(defaultStyleDiv).setName(this.getValueForKey(DEFAULT_STYLE_OPTIONS, style)).setTooltip((styleDisclaimer ? styleDisclaimer + " " : "") + "Use in Callout or CSS: " + style).addExtraButton((cb) => {
+            cb.setIcon("cross").setTooltip("Remove").onClick(async () => this.listMoveHandler(null, this.toolbar.defaultStyles, index2, "delete"));
+            cb.extraSettingsEl.setAttribute("tabindex", "0");
+            this.plugin.registerDomEvent(
+              cb.extraSettingsEl,
+              "keydown",
+              (e) => this.listMoveHandler(e, this.toolbar.defaultStyles, index2, "delete")
+            );
+          });
+        }
+      );
+    }
+    new import_obsidian5.Setting(defaultStyleDiv).addDropdown(
+      (dropdown) => dropdown.addOptions(
+        DEFAULT_STYLE_OPTIONS.filter((option2) => {
+          return !this.toolbar.defaultStyles.includes(Object.keys(option2)[0]);
+        }).reduce((acc, option2) => {
+          return { ...acc, ...option2 };
+        }, {})
+      ).setValue("").onChange(async (val) => {
+        if (this.toolbar.defaultStyles.includes(val)) {
+          this.toolbar.defaultStyles = this.toolbar.defaultStyles.filter((i) => i !== val);
+        } else {
+          this.toolbar.defaultStyles.push(val);
+        }
+        await this.plugin.saveSettings();
+        this.display();
+      })
+    );
+    const defaultDesc = document.createDocumentFragment();
+    defaultDesc.append("Applies to all platforms unless overridden.");
+    defaultDesc.append(this.getStyleDisclaimersFr(DEFAULT_STYLE_DISCLAIMERS, this.toolbar.defaultStyles));
+    new import_obsidian5.Setting(settingsDiv).setName("Default").setDesc(defaultDesc).setClass("note-toolbar-setting-item-styles").settingEl.append(defaultStyleDiv);
+    let mobileStyleDiv = createDiv();
+    mobileStyleDiv.className = "note-toolbar-setting-item-style";
+    if (this.toolbar.mobileStyles.length == 0) {
+      let emptyMsg = this.containerEl.createEl(
+        "div",
+        { text: emptyMessageFr("No mobile styles set.") }
+      );
+      emptyMsg.className = "note-toolbar-setting-empty-message";
+      mobileStyleDiv.append(emptyMsg);
+    } else {
+      this.toolbar.mobileStyles.forEach(
+        (style, index2) => {
+          let styleDisclaimer = this.getValueForKey(MOBILE_STYLE_DISCLAIMERS, style);
+          new import_obsidian5.Setting(mobileStyleDiv).setName(this.getValueForKey(MOBILE_STYLE_OPTIONS, style)).setTooltip((styleDisclaimer ? styleDisclaimer + " " : "") + "Use in Callout or CSS: " + style).addExtraButton((cb) => {
+            cb.setIcon("cross").setTooltip("Remove").onClick(async () => this.listMoveHandler(null, this.toolbar.mobileStyles, index2, "delete"));
+            cb.extraSettingsEl.setAttribute("tabindex", "0");
+            this.plugin.registerDomEvent(
+              cb.extraSettingsEl,
+              "keydown",
+              (e) => this.listMoveHandler(e, this.toolbar.mobileStyles, index2, "delete")
+            );
+          });
+        }
+      );
+    }
+    new import_obsidian5.Setting(mobileStyleDiv).addDropdown(
+      (dropdown) => dropdown.addOptions(
+        MOBILE_STYLE_OPTIONS.filter((option2) => {
+          return !this.toolbar.mobileStyles.includes(Object.keys(option2)[0]);
+        }).reduce((acc, option2) => {
+          return { ...acc, ...option2 };
+        }, {})
+      ).setValue(this.toolbar.mobileStyles.join(", ") || "").onChange(async (val) => {
+        if (this.toolbar.mobileStyles.includes(val)) {
+          this.toolbar.mobileStyles = this.toolbar.mobileStyles.filter((i) => i !== val);
+        } else {
+          this.toolbar.mobileStyles.push(val);
+        }
+        await this.plugin.saveSettings();
+        this.display();
+      })
+    );
+    const mobileDesc = document.createDocumentFragment();
+    mobileDesc.append("Override default styles.");
+    mobileDesc.append(this.getStyleDisclaimersFr(MOBILE_STYLE_DISCLAIMERS, this.toolbar.mobileStyles));
+    new import_obsidian5.Setting(settingsDiv).setName("Mobile").setDesc(mobileDesc).setClass("note-toolbar-setting-item-styles").settingEl.append(mobileStyleDiv);
+  }
+  /**
+   * Displays the Delete button.
+   * @param settingsDiv HTMLElement to add the settings to.
+   */
+  displayDeleteButton(settingsDiv) {
+    new import_obsidian5.Setting(settingsDiv).setName("Delete this toolbar").setHeading().setDesc("This action cannot be undone.").setClass("note-toolbar-setting-spaced").addButton((button) => {
+      button.setClass("mod-warning").setTooltip("Delete this toolbar").setButtonText("Delete...").setCta().onClick(() => {
+        const modal = new DeleteModal(this);
+        modal.open();
+      });
+    });
+  }
+  /*************************************************************************
+   * SETTINGS DISPLAY HANDLERS
+   *************************************************************************/
+  /**
+   * Handles moving items within a list, and deletion, based on click or keyboard event.
+   * @param keyEvent KeyboardEvent, if the keyboard is triggering this handler.
+   * @param itemArray Array that we're operating on.
+   * @param index Number of the item in the list we're moving/deleting.
+   * @param action Direction of the move, or "delete".
+   */
+  async listMoveHandler(keyEvent, itemArray, index2, action) {
+    if (keyEvent) {
+      switch (keyEvent.key) {
+        case "ArrowUp":
+          keyEvent.preventDefault();
+          action = "up";
+          break;
+        case "ArrowDown":
+          keyEvent.preventDefault();
+          action = "down";
+          break;
+        case "Delete":
+        case "Backspace":
+          keyEvent.preventDefault();
+          action = "delete";
+          break;
+        case "Enter":
+        case " ":
+          keyEvent.preventDefault();
+          break;
+        default:
+          return;
+      }
+    }
+    switch (action) {
+      case "up":
+        arraymove(itemArray, index2, index2 - 1);
+        this.toolbar.updated = new Date().toISOString();
+        break;
+      case "down":
+        arraymove(itemArray, index2, index2 + 1);
+        this.toolbar.updated = new Date().toISOString();
+        break;
+      case "delete":
+        itemArray.splice(index2, 1);
+        this.toolbar.updated = new Date().toISOString();
+        break;
+    }
+    await this.plugin.saveSettings();
+    this.display();
+  }
+  async listMoveHandlerById(keyEvent, itemArray, rowId, action) {
+    let itemIndex = this.getIndexByRowId(rowId);
+    debugLog("listMoveHandlerById: moving index:", itemIndex);
+    await this.listMoveHandler(keyEvent, itemArray, itemIndex, action);
+  }
+  /**
+   * Remembers the scrolling position of the user and jumps to it on display.
+   * @author Taitava (Shell Commands plugin)
+   * @link https://github.com/Taitava/obsidian-shellcommands/blob/8d030a23540d587a85bd0dfe2e08c8e6b6b955ab/src/settings/SC_MainSettingsTab.ts#L701 
+  */
+  rememberLastPosition(containerEl) {
+    debugLog("rememberLastPosition:", containerEl);
+    containerEl.scrollTo({
+      top: this.lastScrollPosition,
+      behavior: "auto"
+    });
+    this.plugin.registerDomEvent(containerEl, "scroll", (event) => {
+      this.lastScrollPosition = containerEl.scrollTop;
+    });
+  }
+  /*************************************************************************
+   * UTILITIES
+   *************************************************************************/
+  /**
+   * Returns the visibility menu to display, for the given platform.
+   * @param platform visibility to check for component visibility
+   * @param platformLabel string to show in the menu 
+   * @returns Menu
+   */
+  getItemVisibilityMenu(platform, platformLabel, button) {
+    let isComponentVisible = {
+      icon: platform && platform.allViews ? platform.allViews.components.includes("icon") : false,
+      label: platform && platform.allViews ? platform.allViews.components.includes("label") : false
+    };
+    let menu = new import_obsidian5.Menu();
+    menu.addItem((menuItem) => {
+      menuItem.setTitle(isComponentVisible.icon ? "Icon shows on " + platformLabel : "Icon hidden on " + platformLabel).setIcon("image").setChecked(isComponentVisible.icon).onClick(async (menuEvent) => {
+        if (isComponentVisible.icon) {
+          removeComponentVisibility(platform, "icon");
+          isComponentVisible.icon = false;
+        } else {
+          addComponentVisibility(platform, "icon");
+          isComponentVisible.icon = true;
+        }
+        this.toolbar.updated = new Date().toISOString();
+        await this.plugin.saveSettings();
+        let [state, tooltip] = this.getPlatformStateLabel(platform, platformLabel);
+        let oldState = button.buttonEl.querySelector("span");
+        oldState ? button.buttonEl.removeChild(oldState) : void 0;
+        state ? button.buttonEl.createSpan().setText(state) : void 0;
+        button.setTooltip(tooltip);
+      });
+    });
+    menu.addItem((menuItem) => {
+      menuItem.setTitle(isComponentVisible.label ? "Label shows on " + platformLabel : "Label hidden on " + platformLabel).setIcon("whole-word").setChecked(isComponentVisible.label).onClick(async (menuEvent) => {
+        if (isComponentVisible.label) {
+          removeComponentVisibility(platform, "label");
+          isComponentVisible.label = false;
+        } else {
+          addComponentVisibility(platform, "label");
+          isComponentVisible.label = true;
+        }
+        this.toolbar.updated = new Date().toISOString();
+        await this.plugin.saveSettings();
+        let [state, tooltip] = this.getPlatformStateLabel(platform, platformLabel);
+        let oldState = button.buttonEl.querySelector("span");
+        oldState ? button.buttonEl.removeChild(oldState) : void 0;
+        state ? button.buttonEl.createSpan().setText(state) : void 0;
+        button.setTooltip(tooltip);
+      });
+    });
+    return menu;
+  }
+  /**
+   * Gets the current state of visibility for a given platform.
+   * @param platform visibility to check
+   * @returns a single word (hidden, visible, or the component name), and a sentence for the tooltip
+   */
+  getPlatformStateLabel(platform, platformLabel) {
+    var _a;
+    if (platform && platform.allViews) {
+      let dkComponents = (_a = platform.allViews) == null ? void 0 : _a.components;
+      if (dkComponents) {
+        if (dkComponents.length === 2) {
+          return ["", "visible on " + platformLabel];
+        } else if (dkComponents.length === 1) {
+          return [dkComponents[0], dkComponents[0] + " visible on " + platformLabel];
+        } else {
+          return ["hidden", "hidden on " + platformLabel];
+        }
+      }
+    }
+    return ["hidden", "hidden on " + platformLabel];
+  }
+  /**
+   * Returns a fragment containing any applicable style disclaimers to show, for the provided styles.
+   * @param disclaimers List of disclaimers, corresponds with DEFAULT and MOBILE _STYLE_DISCLAIMERS
+   * @param stylesToCheck styles that have been applied by the user, to check for applicable disclaimers
+   * @returns DocumentFragment with disclaimers to show in settings UI
+   */
+  getStyleDisclaimersFr(disclaimers, stylesToCheck) {
+    let disclaimersFr = document.createDocumentFragment();
+    stylesToCheck.forEach((style) => {
+      disclaimers.find((disclaimer) => style in disclaimer) ? disclaimersFr.append(disclaimersFr.createEl("br"), "* ", this.getValueForKey(disclaimers, style)) : void 0;
+    });
+    return disclaimersFr;
+  }
+  /**
+   * Returns the value for the provided key from the provided dictionary.
+   * @param dict key-value dictionary
+   * @param key string key
+   * @returns value from the dictionary
+   */
+  getValueForKey(dict, key) {
+    const option2 = dict.find((option3) => key in option3);
+    return option2 ? Object.values(option2)[0] : "";
+  }
+  updatePreviewText(toolbarItem, rowId) {
+    let itemPreviewContainer = this.getItemRowElById(rowId);
+    let itemPreviewEl = itemPreviewContainer.querySelector("span:last-child");
+    itemPreviewEl ? itemPreviewEl.setText(toolbarItem.label ? toolbarItem.label : toolbarItem.tooltip) : void 0;
+    toolbarItem.label ? itemPreviewEl == null ? void 0 : itemPreviewEl.removeClass("note-toolbar-setting-item-preview-tooltip") : itemPreviewEl == null ? void 0 : itemPreviewEl.addClass("note-toolbar-setting-item-preview-tooltip");
+  }
+  getIndexByRowId(rowId) {
+    const list = this.getItemListEls();
+    return Array.prototype.findIndex.call(list, (el) => el.getAttribute("data-row-id") === rowId);
+  }
+  getItemListEls() {
+    return this.contentEl.querySelectorAll(".note-toolbar-sortablejs-list > div[data-row-id]");
+  }
+  getItemRowElById(rowId) {
+    return this.contentEl.querySelector('.note-toolbar-sortablejs-list > div[data-row-id="' + rowId + '"]');
+  }
+};
+
+// src/Settings/Suggesters/FolderSuggester.ts
+var import_obsidian6 = require("obsidian");
+var FolderSuggester = class extends import_obsidian6.AbstractInputSuggest {
+  constructor(app, inputEl) {
+    super(app, inputEl);
+    this.PATTERN_ALL_FILES = { pattern: "*", label: "*", desc: "all folders" };
+    this.PATTERN_ROOT_ONLY = { pattern: "/", label: "/", desc: "root folder only" };
+    this.inputEl = inputEl;
+  }
+  getSuggestions(inputStr) {
+    const abstractFiles = this.app.vault.getAllLoadedFiles();
+    const folders = [];
+    const lowerCaseInputStr = inputStr.toLowerCase();
+    folders.push(this.PATTERN_ALL_FILES.pattern);
+    abstractFiles.forEach((folder) => {
+      if (folder instanceof import_obsidian6.TFolder && folder.path.toLowerCase().contains(lowerCaseInputStr)) {
+        folders.push(folder.path);
+      }
+    });
+    return folders;
+  }
+  renderSuggestion(folder, el) {
+    if (folder === this.PATTERN_ALL_FILES.pattern) {
+      this.renderPattern(el, this.PATTERN_ALL_FILES);
+    } else if (folder === this.PATTERN_ROOT_ONLY.pattern) {
+      this.renderPattern(el, this.PATTERN_ROOT_ONLY);
+    } else {
+      el.setText(folder);
+    }
+  }
+  selectSuggestion(folder) {
+    this.inputEl.value = folder;
+    this.inputEl.trigger("input");
+    this.close();
+  }
+  /*************************************************************************
+   * DISPLAY HELPERS
+   *************************************************************************/
+  renderPattern(el, suggestion) {
+    el.addClass("note-toolbar-setting-folder-suggestion-item-muted");
+    el.createSpan().setText(suggestion.label);
+    el.createSpan().setText(suggestion.desc);
+  }
+};
+
+// src/Settings/Suggesters/ToolbarSuggester.ts
+var import_obsidian7 = require("obsidian");
+var ToolbarSuggester = class extends import_obsidian7.AbstractInputSuggest {
+  constructor(app, plugin, inputEl) {
+    super(app, inputEl);
+    this.plugin = plugin;
+    this.inputEl = inputEl;
+  }
+  getSuggestions(inputStr) {
+    const pluginToolbars = this.plugin.settings.toolbars;
+    const toolbarSuggestions = [];
+    const lowerCaseInputStr = inputStr.toLowerCase();
+    pluginToolbars.forEach((toolbar) => {
+      if (toolbar.name.toLowerCase().contains(lowerCaseInputStr)) {
+        toolbarSuggestions.push(toolbar);
+      }
+    });
+    return toolbarSuggestions;
+  }
+  renderSuggestion(toolbar, el) {
+    el.setText(toolbar.name);
+  }
+  selectSuggestion(toolbar) {
+    this.inputEl.value = toolbar.name;
+    this.inputEl.trigger("input");
+    this.close();
+  }
+};
+
 // src/Settings/NoteToolbarSettingTab.ts
 var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     this.itemListOpen = true;
+    this.itemListIdCounter = 0;
     this.app = app;
     this.plugin = plugin;
   }
@@ -3385,7 +3562,7 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
   /**
    * Displays the main settings.
    */
-  display(focusOnLastItem = false) {
+  display(focusId) {
     const { containerEl } = this;
     containerEl.empty();
     if (this.plugin.settings.version !== SETTINGS_VERSION) {
@@ -3399,13 +3576,12 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
     this.displayPropertySetting(containerEl);
     this.displayFolderMap(containerEl);
     this.displayMobileSettings(containerEl);
-    if (focusOnLastItem) {
-      let inputToFocus = this.containerEl.querySelector(
-        "#note-toolbar-setting-item-field-" + (this.plugin.settings.folderMappings.length - 1) + ' input[type="search"]'
-      );
-      if ((inputToFocus == null ? void 0 : inputToFocus.value.length) === 0) {
-        inputToFocus.focus();
-      }
+    if (focusId) {
+      let focusEl = this.containerEl.querySelector(focusId);
+      focusEl == null ? void 0 : focusEl.focus();
+      setTimeout(() => {
+        focusEl == null ? void 0 : focusEl.scrollIntoView(true);
+      }, import_obsidian8.Platform.isMobile ? 100 : 0);
     }
     this.rememberLastPosition(this.containerEl);
   }
@@ -3462,7 +3638,7 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
     if (this.plugin.settings.toolbars.length == 0) {
       containerEl.createEl("div", { text: emptyMessageFr("Click the button to create a toolbar.") }).className = "note-toolbar-setting-empty-message";
     } else {
-      let toolbarListDiv = containerEl.createDiv();
+      let toolbarListDiv = createDiv();
       toolbarListDiv.addClass("note-toolbar-setting-toolbar-list");
       this.plugin.settings.toolbars.forEach(
         (toolbarItem, index2) => {
@@ -3516,73 +3692,12 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
     if (this.plugin.settings.folderMappings.length == 0) {
       containerEl.createEl("div", { text: emptyMessageFr("Click the button to create a mapping.") }).className = "note-toolbar-setting-empty-message";
     } else {
-      let toolbarFolderListDiv = containerEl.createDiv();
+      let toolbarFolderListDiv = createDiv();
       toolbarFolderListDiv.addClass("note-toolbar-sortablejs-list");
-      this.plugin.settings.folderMappings.forEach(
-        (mapping, index2) => {
-          let toolbarFolderListItemDiv = containerEl.createDiv();
-          toolbarFolderListItemDiv.className = "note-toolbar-setting-folder-list-item-container";
-          let ds = new import_obsidian8.Setting(toolbarFolderListItemDiv).setClass("note-toolbar-setting-item-delete").addExtraButton((cb) => {
-            cb.setIcon("minus-circle").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, index2, "delete"));
-            cb.extraSettingsEl.tabIndex = 0;
-            this.plugin.registerDomEvent(
-              cb.extraSettingsEl,
-              "keydown",
-              (e) => this.listMoveHandler(e, index2, "delete")
-            );
-          });
-          let textFieldsDiv = this.containerEl.createDiv();
-          textFieldsDiv.id = "note-toolbar-setting-item-field-" + index2;
-          textFieldsDiv.className = "note-toolbar-setting-item-fields";
-          const fs = new import_obsidian8.Setting(textFieldsDiv).setClass("note-toolbar-setting-mapping-field").addSearch((cb) => {
-            new FolderSuggester(this.app, cb.inputEl);
-            cb.setPlaceholder("Folder").setValue(mapping.folder).onChange((0, import_obsidian8.debounce)(async (newFolder) => {
-              var _a;
-              if (newFolder && this.plugin.settings.folderMappings.some(
-                (mapping2, mapIndex) => {
-                  return index2 != mapIndex ? mapping2.folder.toLowerCase() === newFolder.toLowerCase() : void 0;
-                }
-              )) {
-                if (document.getElementById("note-toolbar-name-error") === null) {
-                  let errorDiv = containerEl.createEl("div", {
-                    text: "This folder already has a toolbar associated with it.",
-                    attr: { id: "note-toolbar-name-error" },
-                    cls: "note-toolbar-setting-error-message"
-                  });
-                  toolbarFolderListItemDiv.insertAdjacentElement("afterend", errorDiv);
-                  toolbarFolderListItemDiv.children[0].addClass("note-toolbar-setting-error");
-                }
-              } else {
-                (_a = document.getElementById("note-toolbar-name-error")) == null ? void 0 : _a.remove();
-                toolbarFolderListItemDiv.children[0].removeClass("note-toolbar-setting-error");
-                this.plugin.settings.folderMappings[index2].folder = newFolder ? (0, import_obsidian8.normalizePath)(newFolder) : "";
-                await this.plugin.saveSettings();
-              }
-            }, 250));
-          });
-          const ts = new import_obsidian8.Setting(textFieldsDiv).setClass("note-toolbar-setting-mapping-field").addSearch((cb) => {
-            new ToolbarSuggester(this.app, this.plugin, cb.inputEl);
-            cb.setPlaceholder("Toolbar").setValue(mapping.toolbar).onChange((0, import_obsidian8.debounce)(async (newToolbar) => {
-              this.plugin.settings.folderMappings[index2].toolbar = newToolbar;
-              await this.plugin.saveSettings();
-            }, 250));
-          });
-          let itemHandleDiv = this.containerEl.createDiv();
-          itemHandleDiv.addClass("note-toolbar-setting-item-controls");
-          const s1d = new import_obsidian8.Setting(itemHandleDiv).addExtraButton((cb) => {
-            cb.setIcon("menu").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
-            cb.extraSettingsEl.tabIndex = 0;
-            this.plugin.registerDomEvent(
-              cb.extraSettingsEl,
-              "keydown",
-              (e) => this.listMoveHandler(e, index2)
-            );
-          });
-          toolbarFolderListItemDiv.append(textFieldsDiv);
-          toolbarFolderListItemDiv.append(itemHandleDiv);
-          toolbarFolderListDiv.append(toolbarFolderListItemDiv);
-        }
-      );
+      this.plugin.settings.folderMappings.forEach((mapping, index2) => {
+        let toolbarFolderListItemDiv = this.getMappingItem(mapping, index2);
+        toolbarFolderListDiv.append(toolbarFolderListItemDiv);
+      });
       var sortable = sortable_esm_default.create(toolbarFolderListDiv, {
         chosenClass: "sortable-chosen",
         ghostClass: "sortable-ghost",
@@ -3607,9 +3722,86 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
         };
         this.plugin.settings.folderMappings.push(newMapping);
         await this.plugin.saveSettings();
-        this.display(true);
+        this.display("#note-toolbar-setting-item-field-" + (this.plugin.settings.folderMappings.length - 1) + ' input[type="search"]');
       });
     });
+  }
+  /**
+   * Returns the form to edit a mapping line.
+   * @param mapping mapping to return the form for
+   * @param index index of the mapping in the mapping list
+   * @returns the form element as a div
+   */
+  getMappingItem(mapping, index2) {
+    let toolbarFolderListItemDiv = createDiv();
+    toolbarFolderListItemDiv.className = "note-toolbar-setting-folder-list-item-container";
+    toolbarFolderListItemDiv.setAttribute("data-row-id", this.itemListIdCounter.toString());
+    let textFieldsDiv = createDiv();
+    textFieldsDiv.id = "note-toolbar-setting-item-field-" + this.itemListIdCounter;
+    textFieldsDiv.className = "note-toolbar-setting-item-fields";
+    let ds = new import_obsidian8.Setting(toolbarFolderListItemDiv).setClass("note-toolbar-setting-item-delete").addExtraButton((cb) => {
+      cb.setIcon("minus-circle").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, index2, "delete"));
+      cb.extraSettingsEl.tabIndex = 0;
+      this.plugin.registerDomEvent(
+        cb.extraSettingsEl,
+        "keydown",
+        (e) => this.listMoveHandler(e, index2, "delete")
+      );
+    });
+    const fs = new import_obsidian8.Setting(textFieldsDiv).setClass("note-toolbar-setting-mapping-field").addSearch((cb) => {
+      new FolderSuggester(this.app, cb.inputEl);
+      cb.setPlaceholder("Folder").setValue(mapping.folder).onChange((0, import_obsidian8.debounce)(async (newFolder) => {
+        var _a;
+        if (newFolder && this.plugin.settings.folderMappings.some(
+          (mapping2, mapIndex) => {
+            return index2 != mapIndex ? mapping2.folder.toLowerCase() === newFolder.toLowerCase() : void 0;
+          }
+        )) {
+          if (document.getElementById("note-toolbar-name-error") === null) {
+            let errorDiv = createEl("div", {
+              text: "This folder already has a toolbar associated with it.",
+              attr: { id: "note-toolbar-name-error" },
+              cls: "note-toolbar-setting-error-message"
+            });
+            toolbarFolderListItemDiv.insertAdjacentElement("afterend", errorDiv);
+            toolbarFolderListItemDiv.children[0].addClass("note-toolbar-setting-error");
+          }
+        } else {
+          (_a = document.getElementById("note-toolbar-name-error")) == null ? void 0 : _a.remove();
+          toolbarFolderListItemDiv.children[0].removeClass("note-toolbar-setting-error");
+          this.plugin.settings.folderMappings[index2].folder = newFolder ? (0, import_obsidian8.normalizePath)(newFolder) : "";
+          await this.plugin.saveSettings();
+        }
+      }, 250));
+    });
+    const ts = new import_obsidian8.Setting(textFieldsDiv).setClass("note-toolbar-setting-mapping-field").addSearch((cb) => {
+      new ToolbarSuggester(this.app, this.plugin, cb.inputEl);
+      cb.setPlaceholder("Toolbar").setValue(mapping.toolbar).onChange((0, import_obsidian8.debounce)(async (newToolbar) => {
+        this.plugin.settings.folderMappings[index2].toolbar = newToolbar;
+        await this.plugin.saveSettings();
+      }, 250));
+    });
+    let itemHandleDiv = createDiv();
+    itemHandleDiv.addClass("note-toolbar-setting-item-controls");
+    const s1d = new import_obsidian8.Setting(itemHandleDiv).addExtraButton((cb) => {
+      cb.setIcon("menu").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
+      cb.extraSettingsEl.setAttribute("data-row-id", this.itemListIdCounter.toString());
+      cb.extraSettingsEl.tabIndex = 0;
+      this.plugin.registerDomEvent(
+        cb.extraSettingsEl,
+        "keydown",
+        (e) => {
+          let currentEl = e.target;
+          let rowId = currentEl.getAttribute("data-row-id");
+          debugLog("rowId", rowId);
+          rowId ? this.listMoveHandlerById(e, rowId) : void 0;
+        }
+      );
+    });
+    toolbarFolderListItemDiv.append(textFieldsDiv);
+    toolbarFolderListItemDiv.append(itemHandleDiv);
+    this.itemListIdCounter++;
+    return toolbarFolderListItemDiv;
   }
   /**
    * 
@@ -3695,6 +3887,11 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
     await this.plugin.saveSettings();
     this.display();
   }
+  async listMoveHandlerById(keyEvent, rowId, action) {
+    let itemIndex = this.getIndexByRowId(rowId);
+    debugLog("listMoveHandlerById: moving index:", itemIndex);
+    await this.listMoveHandler(keyEvent, itemIndex, action);
+  }
   /**
    * Remembers the scrolling position of the user and jumps to it on display.
    * @author Taitava (Shell Commands plugin)
@@ -3724,10 +3921,10 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
       toolbarItems.filter((item) => {
         return item.label === "" && item.icon === "" ? false : true;
       }).map((item) => {
-        let itemFr = toolbarFr.createDiv();
+        let itemFr = createDiv();
         itemFr.addClass("note-toolbar-setting-toolbar-list-preview-item");
-        let iconFr = toolbarFr.createSpan();
-        let labelFr = toolbarFr.createSpan();
+        let iconFr = createSpan();
+        let labelFr = createSpan();
         if (item.icon) {
           (0, import_obsidian8.setIcon)(iconFr, item.icon);
           toolbarFr.append(iconFr);
@@ -3743,6 +3940,13 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
       toolbarFr = emptyMessageFr("No toolbar items. Click Edit to update this toolbar.");
     }
     return toolbarFr;
+  }
+  getIndexByRowId(rowId) {
+    const list = this.getItemListEls();
+    return Array.prototype.findIndex.call(list, (el) => el.getAttribute("data-row-id") === rowId);
+  }
+  getItemListEls() {
+    return this.containerEl.querySelectorAll(".note-toolbar-sortablejs-list > div[data-row-id]");
   }
 };
 
