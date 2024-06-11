@@ -5,24 +5,24 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
-      "basename": "toefl Speaking",
-      "path": "toefl Speaking.md"
-    },
-    {
-      "basename": "Theo",
-      "path": "Theo.md"
-    },
-    {
       "basename": "toefl Writing",
       "path": "toefl Writing.md"
+    },
+    {
+      "basename": "Writing 1 Integrated",
+      "path": "templates/toefl/Writing 1 Integrated.md"
     },
     {
       "basename": "Writing 2 Academic Discussion",
       "path": "templates/toefl/Writing 2 Academic Discussion.md"
     },
     {
-      "basename": "Writing 1 Integrated",
-      "path": "templates/toefl/Writing 1 Integrated.md"
+      "basename": "toefl Speaking",
+      "path": "toefl Speaking.md"
+    },
+    {
+      "basename": "Theo",
+      "path": "Theo.md"
     },
     {
       "basename": "How to Excel at Math and Science",

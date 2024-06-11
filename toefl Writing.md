@@ -1,5 +1,31 @@
+#### W2 - Taxing Unhealthy Products
+
+This is a challenging topic, but I believe that taxing unhealthy products should be implemented.
+I strongly agree with Sam's opinion that these type of products, which contain high percentages of sugar, salt, and fat could be a main cause of health issues.
+Furthermore, companies that produce junk food offer alternative versions of their products that contain minimal amounts of salt and sugar.
+While Tanya rises a valid point that these products target vulnerable groups who lack means for proper food, she overlooks the possibility of healthy alternatives such as chicken, affordable fruits and, nuts.
+Additionally, low-income individuals tend to consume frozen meals, which are among the most dangerous of junk foods provided by supermarkets.
 
 
+#### W1 - Peregrine Falcons
+Both the author and the lecturer discuss methods to increase the peregrine falcon population.
+However, while the author presents three different approaches addressing this issue, the lecturer supports none of them. 
+
+First, the article underscores the importance of protecting nesting sites of peregrine falcons.
+Due to the specific locations of the nests, such as cliffs and tall buildings, nest sites could be destroyed by humans.
+The author suggests convincing landlords and developers to safeguard these sites.
+However, the lecturer does not agree with the article's statement, arguing that the sites would be difficult to identify and protect.
+Additionally, the nests could be located on private property.
+Furthermore, finding a balance between human and bird needs is difficult.
+
+Second, the author argues that protection and control of the entire population could help because falcons are very vulnerable while they are young.
+There is an idea to use non-lethal weapons and relocate birds to safer areas.
+The lecturer, however, challenges this initiative as well.
+He notes that artificial control can lead to unintended consequences such as an increase in the population of other species that prey on falcons.
+
+Finally, the author suggests treating sick and injured falcons affected by pollution and human interference and then releasing them back into the wild.
+On the other hand, the lecturer says that this is an expensive and time-consuming process that could only help individual birds.
+Furthermore, he also points out that many other factors pose greater threats to the population as a whole.
 
 
 
