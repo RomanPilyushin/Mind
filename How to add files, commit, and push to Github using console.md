@@ -9,8 +9,7 @@ aliases:
 
 Commit and Push
 
-![[script.bat]]
-
+![[Commit and Push.bat]]
 
 ```bash
 cd F:\Programms\Obsidian\Mind
