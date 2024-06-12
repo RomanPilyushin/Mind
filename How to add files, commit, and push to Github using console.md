@@ -9,6 +9,9 @@ aliases:
 
 Commit and Push
 
+![[script.bat]]
+
+
 ```bash
 cd F:\Programms\Obsidian\Mind
 git add .
