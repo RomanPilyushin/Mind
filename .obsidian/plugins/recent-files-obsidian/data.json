@@ -5,6 +5,10 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
+      "basename": "toefl Speaking",
+      "path": "toefl Speaking.md"
+    },
+    {
       "basename": "toefl Writing",
       "path": "toefl Writing.md"
     },
@@ -15,10 +19,6 @@
     {
       "basename": "Writing 2 Academic Discussion",
       "path": "templates/toefl/Writing 2 Academic Discussion.md"
-    },
-    {
-      "basename": "toefl Speaking",
-      "path": "toefl Speaking.md"
     },
     {
       "basename": "Theo",

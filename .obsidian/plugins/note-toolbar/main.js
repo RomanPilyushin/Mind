@@ -2659,17 +2659,24 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
     } else {
       this.rememberLastPosition(this.contentEl.children[0]);
     }
-    this.plugin.registerDomEvent(settingsDiv, "click", (e) => {
+    this.plugin.registerDomEvent(this.modalEl, "click", (e) => {
       let rowClicked = e.target.closest(".note-toolbar-setting-items-container-row");
-      let listItems = settingsDiv.querySelectorAll(".note-toolbar-sortablejs-list > div");
-      listItems.forEach((row, index2) => {
-        if (row !== rowClicked) {
-          let itemPreview = row.querySelector(".note-toolbar-setting-item-preview-container");
-          let itemForm = row.querySelector(".note-toolbar-setting-item");
-          itemPreview == null ? void 0 : itemPreview.setAttribute("data-active", "true");
-          itemForm == null ? void 0 : itemForm.setAttribute("data-active", "false");
-        }
-      });
+      this.collapseItemForms(settingsDiv, rowClicked);
+    });
+    this.plugin.registerDomEvent(settingsDiv, "focusin", (e) => {
+      let rowClicked = e.target.closest(".note-toolbar-setting-items-container-row");
+      this.collapseItemForms(settingsDiv, rowClicked);
+    });
+  }
+  collapseItemForms(settingsDiv, rowClicked) {
+    let listItems = settingsDiv.querySelectorAll(".note-toolbar-sortablejs-list > div");
+    listItems.forEach((row, index2) => {
+      if (row !== rowClicked) {
+        let itemPreview = row.querySelector(".note-toolbar-setting-item-preview-container");
+        let itemForm = row.querySelector(".note-toolbar-setting-item");
+        itemPreview == null ? void 0 : itemPreview.setAttribute("data-active", "true");
+        itemForm == null ? void 0 : itemForm.setAttribute("data-active", "false");
+      }
     });
   }
   /**
@@ -2813,7 +2820,7 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
    * @param itemContainer 
    * @param state 
    */
-  toggleItemView(itemPreviewContainer, state) {
+  toggleItemView(itemPreviewContainer, state, focusOn) {
     let itemForm = itemPreviewContainer.nextElementSibling;
     debugLog("toggleItemView", itemPreviewContainer, itemForm);
     let previewState;
@@ -2836,7 +2843,21 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
     itemForm == null ? void 0 : itemForm.setAttribute("data-active", formState);
     itemPreviewContainer == null ? void 0 : itemPreviewContainer.setAttribute("data-active", previewState);
     if (formState === "true") {
-      let focusField = itemForm == null ? void 0 : itemForm.querySelector(".note-toolbar-setting-item-icon .setting-item-control .clickable-icon");
+      let focusSelector = "#note-toolbar-item-field-icon .clickable-icon";
+      if (focusOn) {
+        switch (focusOn) {
+          case "label":
+            focusSelector = "#note-toolbar-item-field-label input";
+            break;
+          case "tooltip":
+            focusSelector = "#note-toolbar-item-field-tooltip input";
+            break;
+          case "icon":
+          default:
+            break;
+        }
+      }
+      let focusField = itemForm == null ? void 0 : itemForm.querySelector(focusSelector);
       debugLog("toggleItemView focusField: ", focusField);
       focusField ? focusField.focus() : void 0;
     }
@@ -2850,18 +2871,30 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
     let itemPreview = createDiv();
     itemPreview.className = "note-toolbar-setting-item-preview";
     itemPreview.tabIndex = 0;
+    (0, import_obsidian5.setTooltip)(itemPreview, "Edit toolbar item");
     let itemPreviewIcon = createSpan();
     (0, import_obsidian5.setIcon)(itemPreviewIcon, toolbarItem.icon ? toolbarItem.icon : "note-toolbar-empty");
     let itemPreviewLabel = createSpan();
+    itemPreviewLabel.id = "note-toolbar-item-preview-label";
     toolbarItem.label ? itemPreviewLabel.setText(toolbarItem.label) : itemPreviewLabel.setText(toolbarItem.tooltip);
     toolbarItem.label ? void 0 : itemPreviewLabel.addClass("note-toolbar-setting-item-preview-tooltip");
     itemPreview.appendChild(itemPreviewIcon);
-    itemPreview.appendChild(itemPreviewLabel);
+    if (import_obsidian5.Platform.isMobile) {
+      let itemPreviewLabelEditIcon = createDiv();
+      itemPreviewLabelEditIcon.addClass("note-toolbar-setting-item-preview-edit-mobile");
+      let itemPreviewMobileEditIcon = createSpan();
+      (0, import_obsidian5.setIcon)(itemPreviewMobileEditIcon, "lucide-pencil");
+      itemPreviewLabelEditIcon.appendChild(itemPreviewLabel);
+      itemPreviewLabelEditIcon.appendChild(itemPreviewMobileEditIcon);
+      itemPreview.appendChild(itemPreviewLabelEditIcon);
+    } else {
+      itemPreview.appendChild(itemPreviewLabel);
+    }
     itemPreviewContainer.appendChild(itemPreview);
     let itemHandleDiv = createDiv();
     itemHandleDiv.addClass("note-toolbar-setting-item-controls");
     new import_obsidian5.Setting(itemHandleDiv).addExtraButton((cb) => {
-      cb.setIcon("menu").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
+      cb.setIcon("grip-horizontal").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
       cb.extraSettingsEl.setAttribute("data-row-id", rowId);
       cb.extraSettingsEl.tabIndex = 0;
       this.plugin.registerDomEvent(
@@ -2891,8 +2924,17 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
       itemPreview,
       "click",
       (e) => {
+        const target = e.target;
         debugLog("clicked on: ", e.target);
-        this.toggleItemView(itemPreviewContainer, "form");
+        let focusOn = "label";
+        if (target instanceof SVGElement || (target == null ? void 0 : target.closest("svg"))) {
+          focusOn = "icon";
+        } else if (target instanceof HTMLSpanElement) {
+          if (target.classList.contains("note-toolbar-setting-item-preview-tooltip")) {
+            focusOn = "tooltip";
+          }
+        }
+        this.toggleItemView(itemPreviewContainer, "form", focusOn);
       }
     );
     return itemPreviewContainer;
@@ -2911,7 +2953,7 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
     let textFieldsContainer = createDiv();
     textFieldsContainer.id = "note-toolbar-setting-item-field-id-" + rowId;
     textFieldsContainer.className = "note-toolbar-setting-item-fields";
-    new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-icon").addExtraButton((cb) => {
+    let iconField = new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-icon").addExtraButton((cb) => {
       cb.setIcon(toolbarItem.icon ? toolbarItem.icon : "lucide-plus-square").setTooltip("Select icon (optional)").onClick(async () => {
         let itemRow = this.getItemRowElById(rowId);
         const modal = new IconSuggestModal(this.plugin, toolbarItem, itemRow);
@@ -2934,7 +2976,8 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
         }
       );
     });
-    new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Label (optional, if icon set)").setValue(toolbarItem.label).onChange(
+    iconField.settingEl.id = "note-toolbar-item-field-icon";
+    let labelField = new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Label (optional, if icon set)").setValue(toolbarItem.label).onChange(
       (0, import_obsidian5.debounce)(async (value) => {
         toolbarItem.label = value;
         this.toolbar.updated = new Date().toISOString();
@@ -2942,7 +2985,8 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
         this.updatePreviewText(toolbarItem, rowId);
       }, 750)
     ));
-    new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Tooltip (optional)").setValue(toolbarItem.tooltip).onChange(
+    labelField.settingEl.id = "note-toolbar-item-field-label";
+    let tooltipField = new import_obsidian5.Setting(textFieldsContainer).setClass("note-toolbar-setting-item-field").addText((text) => text.setPlaceholder("Tooltip (optional)").setValue(toolbarItem.tooltip).onChange(
       (0, import_obsidian5.debounce)(async (value) => {
         toolbarItem.tooltip = value;
         this.toolbar.updated = new Date().toISOString();
@@ -2950,6 +2994,7 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
         this.updatePreviewText(toolbarItem, rowId);
       }, 750)
     ));
+    tooltipField.settingEl.id = "note-toolbar-item-field-tooltip";
     let linkContainer = createDiv();
     linkContainer.className = "note-toolbar-setting-item-link-container";
     let uriFieldHelp = createDiv();
@@ -3042,7 +3087,7 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
         visibilityMenu.showAtPosition(getPosition(cb.buttonEl));
       });
     }).addExtraButton((cb) => {
-      cb.setIcon("menu").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
+      cb.setIcon("grip-horizontal").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
       cb.extraSettingsEl.setAttribute("data-row-id", this.itemListIdCounter.toString());
       cb.extraSettingsEl.tabIndex = 0;
       this.plugin.registerDomEvent(
@@ -3452,7 +3497,7 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
   }
   updatePreviewText(toolbarItem, rowId) {
     let itemPreviewContainer = this.getItemRowElById(rowId);
-    let itemPreviewEl = itemPreviewContainer.querySelector("span:last-child");
+    let itemPreviewEl = itemPreviewContainer.querySelector("#note-toolbar-item-preview-label");
     itemPreviewEl ? itemPreviewEl.setText(toolbarItem.label ? toolbarItem.label : toolbarItem.tooltip) : void 0;
     toolbarItem.label ? itemPreviewEl == null ? void 0 : itemPreviewEl.removeClass("note-toolbar-setting-item-preview-tooltip") : itemPreviewEl == null ? void 0 : itemPreviewEl.addClass("note-toolbar-setting-item-preview-tooltip");
   }
@@ -3722,7 +3767,7 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
         };
         this.plugin.settings.folderMappings.push(newMapping);
         await this.plugin.saveSettings();
-        this.display("#note-toolbar-setting-item-field-" + (this.plugin.settings.folderMappings.length - 1) + ' input[type="search"]');
+        this.display('.note-toolbar-sortablejs-list > div:last-child input[type="search"]');
       });
     });
   }
@@ -3740,12 +3785,20 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
     textFieldsDiv.id = "note-toolbar-setting-item-field-" + this.itemListIdCounter;
     textFieldsDiv.className = "note-toolbar-setting-item-fields";
     let ds = new import_obsidian8.Setting(toolbarFolderListItemDiv).setClass("note-toolbar-setting-item-delete").addExtraButton((cb) => {
-      cb.setIcon("minus-circle").setTooltip("Delete").onClick(async () => this.listMoveHandler(null, index2, "delete"));
+      cb.setIcon("minus-circle").setTooltip("Delete").onClick(async () => {
+        let rowId = cb.extraSettingsEl.getAttribute("data-row-id");
+        rowId ? this.listMoveHandlerById(null, rowId, "delete") : void 0;
+      });
       cb.extraSettingsEl.tabIndex = 0;
+      cb.extraSettingsEl.setAttribute("data-row-id", this.itemListIdCounter.toString());
       this.plugin.registerDomEvent(
         cb.extraSettingsEl,
         "keydown",
-        (e) => this.listMoveHandler(e, index2, "delete")
+        (e) => {
+          let currentEl = e.target;
+          let rowId = currentEl.getAttribute("data-row-id");
+          rowId ? this.listMoveHandlerById(e, rowId, "delete") : void 0;
+        }
       );
     });
     const fs = new import_obsidian8.Setting(textFieldsDiv).setClass("note-toolbar-setting-mapping-field").addSearch((cb) => {
@@ -3784,7 +3837,7 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
     let itemHandleDiv = createDiv();
     itemHandleDiv.addClass("note-toolbar-setting-item-controls");
     const s1d = new import_obsidian8.Setting(itemHandleDiv).addExtraButton((cb) => {
-      cb.setIcon("menu").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
+      cb.setIcon("grip-horizontal").setTooltip("Drag to rearrange").extraSettingsEl.addClass("sortable-handle");
       cb.extraSettingsEl.setAttribute("data-row-id", this.itemListIdCounter.toString());
       cb.extraSettingsEl.tabIndex = 0;
       this.plugin.registerDomEvent(

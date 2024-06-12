@@ -11,6 +11,12 @@ For instance,
 
 
 
+####
+Some people think that modern technology has made people's lives simpler. 
+Others believe it has made people's lives more complicated.
+Which point of view do you agree with? 
+Explain why.
+
 
 ####
 Some people believe that television has had a positive influence on society. 
@@ -30,6 +36,14 @@ The man opposes this initiative
 
 To begin with, he points out that
 Moreover, he argues that
+
+
+
+
+####
+New Parking Lot Location
+
+I was very pleased to read about the university's plans to build a new parking lot to accommodate the growing number of student cars on campus. Since the location for the new lot has not yet been determined, I would like to suggest that Sanders Field be used. Sanders Field has not been used for sports events since the new stadium was built two years ago. Right now: it is wasted space：so it would be an ideal area to turn into something useful like a parking lot. Students who live in the dorms really need a place to park their cars Students living off campus could really use the extra parking, too Sincerely, Jason Hill
 
 
 
@@ -57,6 +71,17 @@ Next, he notes that
 
 
 
+
+####
+illusion of Transparency
+
+When we experience strong emotions, we often believe, falsely, that other people can detect those emotions, even if we try to hide them. This false belief, that others can “see through us” and know even our innermost feelings that we try to hide, is called the illusion of transparency. Why are we susceptible to such an illusion? Why do we sometimes believe that our feelings are more obvious to others than they really are? Research suggests that the reason is this: when our emotions are very strong, we focus on them very intently and are extremely aware of them. This heightened awareness of our own feelings causes us to assume that they must be obvious to others as well.
+
+
+Explain how the professors experience at the dinner party illustrates the illusion of transparency
+
+
+
 ####
 
 Near Field Sound Detection
@@ -81,6 +106,8 @@ To begin with, he explains
 Second, he describes
 
 
+####
+Using the examples of the homed frog and the anole lizard, explain the differences between the two types of protective resemblance discussed by the professor.
 
 ####
 
