@@ -5,20 +5,36 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
-      "basename": "toefl Speaking",
-      "path": "toefl Speaking.md"
-    },
-    {
       "basename": "toefl Writing",
       "path": "toefl Writing.md"
+    },
+    {
+      "basename": "Chess Template",
+      "path": "templates/Chess Template.md"
+    },
+    {
+      "basename": "Writing 2 Academic Discussion",
+      "path": "templates/toefl/Writing 2 Academic Discussion.md"
     },
     {
       "basename": "Writing 1 Integrated",
       "path": "templates/toefl/Writing 1 Integrated.md"
     },
     {
-      "basename": "Writing 2 Academic Discussion",
-      "path": "templates/toefl/Writing 2 Academic Discussion.md"
+      "basename": "toefl Speaking",
+      "path": "toefl Speaking.md"
+    },
+    {
+      "basename": "Python Code Template",
+      "path": "templates/code/Python Code Template.md"
+    },
+    {
+      "basename": "Rustlings Template",
+      "path": "templates/code/Rustlings Template.md"
+    },
+    {
+      "basename": "Rust Code Template",
+      "path": "templates/code/Rust Code Template.md"
     },
     {
       "basename": "Theo",
@@ -61,18 +77,6 @@
       "path": "_Note.md"
     },
     {
-      "basename": "Python Code Template",
-      "path": "templates/code/Python Code Template.md"
-    },
-    {
-      "basename": "Rustlings Template",
-      "path": "templates/code/Rustlings Template.md"
-    },
-    {
-      "basename": "Rust Code Template",
-      "path": "templates/code/Rust Code Template.md"
-    },
-    {
       "basename": "Summary Note",
       "path": "templates/Summary Note.md"
     },
@@ -91,10 +95,6 @@
     {
       "basename": "Optiver",
       "path": "Optiver.md"
-    },
-    {
-      "basename": "Chess Template",
-      "path": "templates/Chess Template.md"
     },
     {
       "basename": "Einstellung Effect",

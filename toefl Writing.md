@@ -1,3 +1,36 @@
+
+#### W2 - AI
+
+This is a challenging topic, but I believe that the [benefits of] AI [outweigh] the threats.
+
+I strongly support David's opinion that AI could help us solve many vital problems and will [improve] our [quality of life].
+Moreover, while AI will disrupt [manual jobs], it will create new [opportunities] such as maintaining AI infrastructure, improving robots, and [so on].
+
+While Megan raises a valid point that AI must be [free of biases], she overlooks the possibility of developing AI [through] public funding [rather than] relying [on] profit-driven corporations.
+Governments could fund AI projects with [the aim of] building unbiased and ethical systems.
+
+#### W1 - The Phoenicians
+
+The author discusses the [possibility that] the Phoenicians may not have circumnavigated Africa, while the lecturer opposes this [view].
+
+First, the author argues that the Phoenicians used ships for trading along the coast.
+Furthermore, he adds that their ships were small, made [of] wood and have limited storage for cargo.
+Additionally, he notes that this type of ships [was] not suitable for long-distance expeditions and not strong enough [to withstand] the power of the ocean.
+However, the lecturer [casts doubt to] the author's arguments.
+He states that the Phoenicians incorporated metal plates in their ships and had [the skills] to repair and maintain their boats during long sea journeys.
+
+Second, the author of the reading notes that there are [many] geographical obstacles, such as The Cape of Good Hope, [along the route around] Africa.
+Moreover, even modern ships with advanced navigation systems experience problems [navigating] this particular part of South Africa's coastal line.
+On the other hand, the lecturer counters this argument.
+The Phoenicians had trading routes near this coastal line and were skilled enough to navigate their ships using [celestial objects].
+
+Finally, the author says that there [is] no evidence that the ancient nation even tried to reach Africa.
+Additionally, their interests lay in the realm of [establishing trading] routes in the Mediterranean and Red Seas.
+In contrast, the lecturer states that there is a reason [why] it is not correct.
+In ancient Egypt, there was a writing in which has been depicted the boat and the ancient nation which landed on the coast of Africa.
+Moreover, in ancient Greece, a historian made [a reference to sailors] who circumnavigated the African continent.
+
+
 #### W2 - Taxing Unhealthy Products
 
 This is a challenging topic, but I believe that taxing unhealthy products should be implemented.
@@ -5,7 +38,6 @@ I strongly agree with Sam's opinion that these type of products, which contain h
 Furthermore, companies that produce junk food offer alternative versions of their products that contain minimal amounts of salt and sugar.
 While Tanya rises a valid point that these products target vulnerable groups who lack means for proper food, she overlooks the possibility of healthy alternatives such as chicken, affordable fruits and, nuts.
 Additionally, low-income individuals tend to consume frozen meals, which are among the most dangerous of junk foods provided by supermarkets.
-
 
 #### W1 - Peregrine Falcons
 Both the author and the lecturer discuss methods to increase the peregrine falcon population.
