@@ -5,6 +5,14 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
+      "basename": "toefl Reading",
+      "path": "toefl Reading.md"
+    },
+    {
+      "basename": "toefl Speaking",
+      "path": "toefl Speaking.md"
+    },
+    {
       "basename": "toefl Writing",
       "path": "toefl Writing.md"
     },
@@ -19,10 +27,6 @@
     {
       "basename": "Writing 1 Integrated",
       "path": "templates/toefl/Writing 1 Integrated.md"
-    },
-    {
-      "basename": "toefl Speaking",
-      "path": "toefl Speaking.md"
     },
     {
       "basename": "Python Code Template",
@@ -195,10 +199,6 @@
     {
       "basename": "Recording 20240423163030",
       "path": "attachments/Recording 20240423163030.webm"
-    },
-    {
-      "basename": "Why Swiss Money Looks WeirdPT7M36.54S",
-      "path": "screenshots/Why Swiss Money Looks WeirdPT7M36.54S.webp"
     }
   ],
   "omittedPaths": [],

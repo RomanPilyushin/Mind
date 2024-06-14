@@ -10,6 +10,8 @@ Second,
 For instance,
 
 
+####
+Imagine that you must decide between two homes to live in. One place is very large and is brand new; but it is very far from your place of work or university. The second place is very small and is very old, but you would be able to get to work or university in less than five minutes. Which place would you prefer to live in? Explain why.
 
 ####
 Some people think that modern technology has made people's lives simpler. 
@@ -37,8 +39,13 @@ The man opposes this initiative
 To begin with, he points out that
 Moreover, he argues that
 
+####
+Cafeteria for Math Building
+
+Students who are majoring in math spend a lot of time in the math building. I think it would be more convenient for math students if the university turned the large empty room on the first floor of the math building into a small cafeteria Having a cafeteria in the math building would give students a place where they could get something to eat in between classes. Additionally, the university could add a number of electrical outlets to the room so students could recharge their laptops there. Sincerely, Justin Ruben
 
 
+The letter writer points out a problem with the math building and suggests an improvement. Briefly describe the improvement and explain the reasons why the woman agrees or disagrees with the letter writer’s suggestion.
 
 ####
 New Parking Lot Location
@@ -70,8 +77,12 @@ First, he says that
 Next, he notes that
 
 
+####
+Diffusion Effect in Health Studies
 
+When health education experts want to test the effectiveness of a program designed to improve a particular health condition, they often do a study with two groups of people. One group participates in the program, while the other does not: and the researchers compare the two groups to see if the program was effective in improving health. However, if the groups come into contact during the study, a diffusion effect may occur. Members of the group participating in the program may mistakenly share information about it with members of the other group. This often leads to the results of the study being useless
 
+Explain how the example from the lecture illustrates the concept of a diffusion effect.
 ####
 illusion of Transparency
 
@@ -105,6 +116,8 @@ To begin with, he explains
 
 Second, he describes
 
+####
+Using points and examples from the lecture, explain two adaptations that allow animals to run at high speeds
 
 ####
 Using the examples of the homed frog and the anole lizard, explain the differences between the two types of protective resemblance discussed by the professor.
