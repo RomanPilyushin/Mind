@@ -2801,7 +2801,10 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
         this.itemListIdCounter++;
         itemsSortableContainer.appendChild(newItemContainer);
         let focusField = newItemForm == null ? void 0 : newItemForm.querySelector(".note-toolbar-setting-item-icon .setting-item-control .clickable-icon");
-        focusField ? focusField.focus() : void 0;
+        if (focusField) {
+          focusField.focus();
+          this.scrollToPosition(".note-toolbar-setting-item-icon .setting-item-control .clickable-icon", "note-toolbar-setting-item");
+        }
       });
     });
     itemsContainer.appendChild(itemsListContainer);
@@ -2884,8 +2887,15 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
     (0, import_obsidian5.setIcon)(itemPreviewIcon, toolbarItem.icon ? toolbarItem.icon : "note-toolbar-empty");
     let itemPreviewLabel = createSpan();
     itemPreviewLabel.id = "note-toolbar-item-preview-label";
-    toolbarItem.label ? itemPreviewLabel.setText(toolbarItem.label) : toolbarItem.tooltip ? itemPreviewLabel.setText(toolbarItem.tooltip) : itemPreviewLabel.setText("No label or tooltip set");
-    toolbarItem.label ? void 0 : itemPreviewLabel.addClass("note-toolbar-setting-item-preview-tooltip");
+    if (toolbarItem.label) {
+      itemPreviewLabel.setText(toolbarItem.label);
+    } else if (toolbarItem.tooltip) {
+      itemPreviewLabel.setText(toolbarItem.tooltip);
+      itemPreviewLabel.addClass("note-toolbar-setting-item-preview-tooltip");
+    } else {
+      itemPreviewLabel.setText("No label or tooltip set");
+      itemPreviewLabel.addClass("note-toolbar-setting-item-preview-empty");
+    }
     itemPreview.appendChild(itemPreviewIcon);
     if (import_obsidian5.Platform.isMobile) {
       let itemPreviewLabelEditIcon = createDiv();
@@ -2935,7 +2945,7 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
         const target = e.target;
         debugLog("clicked on: ", e.target);
         let focusOn = "label";
-        if (target instanceof SVGElement || (target == null ? void 0 : target.closest("svg"))) {
+        if (target instanceof SVGElement || (target == null ? void 0 : target.closest("svg")) || !!target.querySelector(":scope > svg")) {
           focusOn = "icon";
         } else if (target instanceof HTMLSpanElement) {
           if (target.classList.contains("note-toolbar-setting-item-preview-tooltip")) {
@@ -3386,6 +3396,13 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
     await this.plugin.saveSettings();
     this.display();
   }
+  /**
+   * Handles moving items within a list, and deletion, based on click or keyboard event, given the ID of the row.
+   * @param keyEvent KeyboardEvent, if the keyboard is triggering this handler.
+   * @param itemArray Array that we're operating on.
+   * @param rowId ID of the item in the list we're moving/deleting.
+   * @param action Direction of the move, or "delete".
+   */
   async listMoveHandlerById(keyEvent, itemArray, rowId, action) {
     let itemIndex = this.getIndexByRowId(rowId);
     debugLog("listMoveHandlerById: moving index:", itemIndex);
@@ -3406,8 +3423,13 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
       this.lastScrollPosition = containerEl.scrollTop;
     });
   }
-  scrollToPosition(focusId, scrollToClass) {
-    let focusEl = this.contentEl.querySelector(focusId);
+  /**
+   * Scrolls to the element, or element with container class provided.
+   * @param selectors Looks for the element that matches these selectors.
+   * @param scrollToClass Looks for this containing class and scrolls to it if provided.
+   */
+  scrollToPosition(selectors, scrollToClass) {
+    let focusEl = this.contentEl.querySelector(selectors);
     focusEl == null ? void 0 : focusEl.focus();
     setTimeout(() => {
       let scrollToEl = scrollToClass ? focusEl.closest(scrollToClass) : void 0;
@@ -4006,7 +4028,7 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
         toolbarFr.append(itemFr);
       });
     } else {
-      toolbarFr = emptyMessageFr("No toolbar items. Edit this toolbar to add them.");
+      toolbarFr = emptyMessageFr("No items. Edit this toolbar to add items.");
     }
     return toolbarFr;
   }

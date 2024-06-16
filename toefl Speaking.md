@@ -10,6 +10,11 @@ Second,
 For instance,
 
 
+
+
+####
+A university wants to require all students to have their own laptop computers Do you agree or disagree with this policy? Give specific reasons to support your opinion.
+
 ####
 Imagine that you must decide between two homes to live in. One place is very large and is brand new; but it is very far from your place of work or university. The second place is very small and is very old, but you would be able to get to work or university in less than five minutes. Which place would you prefer to live in? Explain why.
 
@@ -38,6 +43,16 @@ The man opposes this initiative
 
 To begin with, he points out that
 Moreover, he argues that
+
+
+
+
+####
+Improving Dormitory Kitchen Use
+
+I've noticed that most students don't use the dormitory kitchens, which is unfortunate since students would probably enjoy preparing their own food. I think that the university should make improvements to the dormitory kitchens so that they will be more widely used. There are a few things that the university could do to encourage students to start using the kitchens regularly. First: I think the kitchens should be modernized with new cookware for students to use. Also, I think free cooking classes should be given to stimulate students' interest in cooking and make them want to use the kitchens. Sincerely, Jennifer Adler
+
+The students are discussing a proposal suggested in a letter written to the university newspaper. Briefly summarize the proposal and explain why the man agrees or disagrees with it.
 
 ####
 Cafeteria for Math Building
@@ -77,6 +92,15 @@ First, he says that
 Next, he notes that
 
 
+
+
+####
+Deceptive Caching
+
+When food is plentiful, animals often collect and hide extra food to eat when it is scarce. However, other animals may try to steal this stored food: and eat it themselves. To protect their food supply, some animals engage in deceptive caching. Using this technique: animals deceive other animals into thinking that food is hidden in one place： while it is actually hidden somewhere else. Deceptive caching tricks animals that try to steal food, making it harder for them to find the food supply. If their attempts at stealing food are repeatedly unsuccessful, the animals often become discouraged and stop trying to steal hidden food.
+
+Explain how the example of the eastern grey squirrel illustrates the concept of deceptive caching
+
 ####
 Diffusion Effect in Health Studies
 
@@ -115,6 +139,12 @@ The lecturer explains
 To begin with, he explains
 
 Second, he describes
+
+
+
+
+####
+Using points and examples from the lecture, explain two ways stores use product bundling to sell more products.
 
 ####
 Using points and examples from the lecture, explain two adaptations that allow animals to run at high speeds

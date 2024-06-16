@@ -8,19 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "3012a0f3949ce5db",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "toefl Speaking.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "dfe0acf03ff0bd71",
             "type": "leaf",
             "state": {
@@ -33,8 +20,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -267,9 +253,16 @@
   },
   "active": "dfe0acf03ff0bd71",
   "lastOpenFiles": [
-    "toefl Reading.md",
     "toefl Speaking.md",
+    "toefl Reading.md",
+    "attachments/toefl Reading-1.png",
+    "attachments/toefl Reading.png",
     "toefl Writing.md",
+    "attachments/004_025_Deutsch_perfekt_Audio_0719.mp3",
+    "attachments/toefl Reading 1.png",
+    "attachments/toefl Reading.png",
+    "attachments/toefl Reading-1.png",
+    "Theo.md",
     "How to add files, commit, and push to Github using console.md",
     "templates/Chess Template.md",
     "templates/toefl/Writing 2 Academic Discussion.md",
@@ -278,7 +271,6 @@
     "templates/code/Rustlings Template.md",
     "templates/code/Rust Code Template.md",
     "attachments/Commit and Push.bat",
-    "Theo.md",
     "How to Excel at Math and Science.md",
     "attachments/Recording 20240608130150.webm",
     "templates/toefl/Speaking 3 Integrated Read Listen.md",
@@ -294,7 +286,6 @@
     "_Note.md",
     "templates/Summary Note.md",
     "_Anki.md",
-    "_Dataviewer.md",
     "pdf/math/How to Think Like a Mathematician.pdf",
     "pdf/math/How to Study as a Mathematics Major.pdf",
     "pdf/chess/How To Reassess Your Chess.pdf",
@@ -302,17 +293,11 @@
     "pdf/papers",
     "pdf/chess",
     "pdf/statistics",
-    "pdf/math",
     "How to Excel at Math and SciencePT2M48.15S.png",
     "media/How to Excel at Math and SciencePT2M48.15S.png",
     "attachments/Anki.png",
     "Pasted image 20240508130912.png",
     "attachments/Pasted image 20240508130912.png",
-    "attachments/Pasted image 20240508130804.png",
-    "attachments/Pasted image 20240508130607.png",
-    "media/20231118_FND004.jpg",
-    "Untitled.canvas",
-    "screenshots/Why Swiss Money Looks WeirdPT12M20.101S.webp",
-    "screenshots/Why Swiss Money Looks WeirdPT7M36.54S.webp"
+    "Untitled.canvas"
   ]
 }
