@@ -9,8 +9,8 @@ For example,
 Second,
 For instance,
 
-
-
+####
+Some college students choose to prepare for careers where there are more job opportunities Others choose to study subjects that interest them regardless of job opportunities. Which do you think is better and why?
 
 ####
 A university wants to require all students to have their own laptop computers Do you agree or disagree with this policy? Give specific reasons to support your opinion.
@@ -45,6 +45,12 @@ To begin with, he points out that
 Moreover, he argues that
 
 
+####
+New Course Credit Policy
+
+Western University allows undergraduate students with a high grade average to take courses in our graduate school programs. Until now, these students received course credit toward their undergraduate degrees. Beginning next year, however, undergraduates taking graduate-level courses will not only receive credit toward their undergraduate degrees: if they go on to enroll as graduate students at Western, they can also apply these credits toward a graduate degree. This new policy will encourage our best undergraduates to take advantage of our graduate course offerings while they are undergraduates and also to make Western University their first choice for graduate school later on. Sincerely, Robert Steele
+
+The man disagrees with the new policy Explain why.
 
 
 ####
@@ -91,8 +97,12 @@ First, he says that
 
 Next, he notes that
 
+####
+Role Distancing
 
+Throughout our lives, we take on many social roles, such as son or daughter, friend, and parent. Roles help us know how to behave and we are generally comfortable in them. Sometimes, however：people want to separate themselves from a role they are enacting: they want to show that this role does not represent who they really are. When people use their behavior to convey such detachment from a role, they are engaged in role distancing People often use gestures, facial expressions, and tone of voice to distance themselves from roles they are uncomfortable performing
 
+Use the example described by the professor to explain what role distancing is.
 
 ####
 Deceptive Caching
@@ -140,8 +150,8 @@ To begin with, he explains
 
 Second, he describes
 
-
-
+####
+Using the points from the talk, describe the two theories that explain the extinction of the dinosaur.
 
 ####
 Using points and examples from the lecture, explain two ways stores use product bundling to sell more products.

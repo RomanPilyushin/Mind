@@ -9,6 +9,26 @@
       "path": "toefl Speaking.md"
     },
     {
+      "basename": "Algorithmic Puzzles",
+      "path": "pdf/math/Algorithmic Puzzles.pdf"
+    },
+    {
+      "basename": "How to Study as a Mathematics Major",
+      "path": "pdf/math/How to Study as a Mathematics Major.pdf"
+    },
+    {
+      "basename": "How to Think Like a Mathematician",
+      "path": "pdf/math/How to Think Like a Mathematician.pdf"
+    },
+    {
+      "basename": "The Princeton Companion To Applied Mathematics",
+      "path": "pdf/math/The Princeton Companion To Applied Mathematics.pdf"
+    },
+    {
+      "basename": "The Princeton Companion To Mathematics",
+      "path": "pdf/math/The Princeton Companion To Mathematics.pdf"
+    },
+    {
       "basename": "toefl Reading",
       "path": "toefl Reading.md"
     },
@@ -35,10 +55,6 @@
     {
       "basename": "Python Code Template",
       "path": "templates/code/Python Code Template.md"
-    },
-    {
-      "basename": "Rustlings Template",
-      "path": "templates/code/Rustlings Template.md"
     },
     {
       "basename": "Rust Code Template",
@@ -151,22 +167,6 @@
     {
       "basename": "Basic German",
       "path": "pdf/deutsch/Basic German.pdf"
-    },
-    {
-      "basename": "UNTITLED CHAT 2024-05-10 19 09 02",
-      "path": "smart-chats/UNTITLED CHAT 2024-05-10 19 09 02.md"
-    },
-    {
-      "basename": "UNTITLED CHAT 2024-05-10 18 54 58",
-      "path": "smart-chats/UNTITLED CHAT 2024-05-10 18 54 58.md"
-    },
-    {
-      "basename": "UNTITLED CHAT 2024-05-10 18 54 57",
-      "path": "smart-chats/UNTITLED CHAT 2024-05-10 18 54 57.md"
-    },
-    {
-      "basename": "UNTITLED CHAT 2024-05-10 18 54 27",
-      "path": "smart-chats/UNTITLED CHAT 2024-05-10 18 54 27.md"
     },
     {
       "basename": "Rust Variables",

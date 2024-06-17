@@ -2870,7 +2870,10 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
       }
       let focusField = itemForm == null ? void 0 : itemForm.querySelector(focusSelector);
       debugLog("toggleItemView focusField: ", focusField);
-      focusField ? focusField.focus() : void 0;
+      if (focusField) {
+        focusField.focus();
+        this.scrollToPosition(focusSelector, "note-toolbar-setting-item");
+      }
     }
   }
   /**
