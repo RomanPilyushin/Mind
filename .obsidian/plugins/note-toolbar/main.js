@@ -334,7 +334,7 @@ var IconSuggestModal = class extends import_obsidian3.SuggestModal {
       formEl ? (0, import_obsidian3.setIcon)(formEl, selectedIcon === "No icon" ? "lucide-plus-square" : selectedIcon) : void 0;
       formEl.setAttribute("data-note-toolbar-no-icon", selectedIcon === "No icon" ? "true" : "false");
       let previewEl = this.parentEl.querySelector(".note-toolbar-setting-item-preview > span");
-      previewEl ? (0, import_obsidian3.setIcon)(previewEl, selectedIcon === "No icon" ? "note-toolbar-empty" : selectedIcon) : void 0;
+      previewEl ? (0, import_obsidian3.setIcon)(previewEl, selectedIcon === "No icon" ? "note-toolbar-none" : selectedIcon) : void 0;
     } else {
       (0, import_obsidian3.setIcon)(this.parentEl, selectedIcon === "No icon" ? "lucide-plus-square" : selectedIcon);
       this.parentEl.setAttribute("data-note-toolbar-no-icon", selectedIcon === "No icon" ? "true" : "false");
@@ -2887,7 +2887,7 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
     itemPreview.tabIndex = 0;
     (0, import_obsidian5.setTooltip)(itemPreview, "Edit toolbar item");
     let itemPreviewIcon = createSpan();
-    (0, import_obsidian5.setIcon)(itemPreviewIcon, toolbarItem.icon ? toolbarItem.icon : "note-toolbar-empty");
+    (0, import_obsidian5.setIcon)(itemPreviewIcon, toolbarItem.icon ? toolbarItem.icon : "note-toolbar-none");
     let itemPreviewLabel = createSpan();
     itemPreviewLabel.id = "note-toolbar-item-preview-label";
     if (toolbarItem.label) {
@@ -2896,7 +2896,7 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
       itemPreviewLabel.setText(toolbarItem.tooltip);
       itemPreviewLabel.addClass("note-toolbar-setting-item-preview-tooltip");
     } else {
-      itemPreviewLabel.setText("No label or tooltip set");
+      itemPreviewLabel.setText("No label set");
       itemPreviewLabel.addClass("note-toolbar-setting-item-preview-empty");
     }
     itemPreview.appendChild(itemPreviewIcon);
@@ -3539,8 +3539,19 @@ var ToolbarSettingsModal = class extends import_obsidian5.Modal {
   updatePreviewText(toolbarItem, rowId) {
     let itemPreviewContainer = this.getItemRowElById(rowId);
     let itemPreviewEl = itemPreviewContainer.querySelector("#note-toolbar-item-preview-label");
-    itemPreviewEl ? itemPreviewEl.setText(toolbarItem.label ? toolbarItem.label : toolbarItem.tooltip) : void 0;
-    toolbarItem.label ? itemPreviewEl == null ? void 0 : itemPreviewEl.removeClass("note-toolbar-setting-item-preview-tooltip") : itemPreviewEl == null ? void 0 : itemPreviewEl.addClass("note-toolbar-setting-item-preview-tooltip");
+    if (toolbarItem.label) {
+      itemPreviewEl == null ? void 0 : itemPreviewEl.removeClass("note-toolbar-setting-item-preview-tooltip");
+      itemPreviewEl == null ? void 0 : itemPreviewEl.removeClass("note-toolbar-setting-item-preview-empty");
+      itemPreviewEl == null ? void 0 : itemPreviewEl.setText(toolbarItem.label);
+    } else if (toolbarItem.tooltip) {
+      itemPreviewEl == null ? void 0 : itemPreviewEl.addClass("note-toolbar-setting-item-preview-tooltip");
+      itemPreviewEl == null ? void 0 : itemPreviewEl.removeClass("note-toolbar-setting-item-preview-empty");
+      itemPreviewEl == null ? void 0 : itemPreviewEl.setText(toolbarItem.tooltip);
+    } else {
+      itemPreviewEl == null ? void 0 : itemPreviewEl.addClass("note-toolbar-setting-item-preview-empty");
+      itemPreviewEl == null ? void 0 : itemPreviewEl.removeClass("note-toolbar-setting-item-preview-tooltip");
+      itemPreviewEl == null ? void 0 : itemPreviewEl.setText("No label set");
+    }
   }
   getIndexByRowId(rowId) {
     const list = this.getItemListEls();
@@ -4151,6 +4162,7 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
     this.addCommand({ id: "hide-properties", name: "Hide Properties", callback: async () => this.togglePropsCommand("hide") });
     this.addCommand({ id: "toggle-properties", name: "Toggle Properties", callback: async () => this.togglePropsCommand("toggle") });
     (0, import_obsidian9.addIcon)("note-toolbar-empty", '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="svg-icon note-toolbar-empty\u201D></svg>');
+    (0, import_obsidian9.addIcon)("note-toolbar-none", '<svg xmlns="http://www.w3.org/2000/svg" width="0" height="24" viewBox="0 0 0 24" fill="none" class="svg-icon note-toolbar-none></svg>');
     if (import_obsidian9.Platform.isMobile) {
       debugLog("isMobile");
       this.addRibbonIcon(this.settings.icon, "Note Toolbar", (event) => {

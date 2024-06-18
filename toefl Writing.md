@@ -1,4 +1,38 @@
 
+#### W2 - Longevity
+
+This is a challenging question, but I believe the advanced medical technology brings more weight than the government services.
+
+I strongly support Lisa's opinion that recent breakthroughs in medicine paved the way to our long[er] lives.
+Moreover, in the near future the computational approach [will] help us break the code of [longevity] and provide formulas [for] a pill to [achieve] eternal life.
+
+While John raises a valid point that the government plays a significant role in the [betterment] of our health, he overlooks the possibility that only a human as individual could change his life and improve his health.
+Furthermore, if [someone] wants to smoke a cigarette, [no] government [campaigns] against smoking [will] help.
+
+
+#### W1 - Olive Trees
+
+The author presents three solutions how to save trees from a disease called quick decline syndrome (QDS). However, the lecturer argues that there are potential drawbacks.
+
+First, the author suggests to detect signs of the disease as early as possible. 
+These signs could [include] yellow leaves, slow grow[th], or dying branches. 
+If a particular tree [shows any] of these signs, it needs to be removed.
+On the other hand, the lecturer says [that] this could be a time-consuming and expensive option.
+Moreover, [in] the early stages it would be difficult to detect the disease.
+
+Second, the author notes that the improving [the] overall health of trees would also help to resist.
+The procedures such as proper irrigation, fertilization, and trimming safeguard trees.
+Also, planting saplings could provide an additional level of protection.
+However, the lecture challenges [these] suggestions.
+These procedures do note guarantee anything and could be extremly expensive.
+
+Finally, the autor suggests that chemicals could be a shield for trees.
+The farmers have to control the population of insects using insecticides.
+Additionally, [predators] such as ladybugs and wasps which hunt for this type of insects could provide more benefits in protection.
+However, the lecturer calls this into question as well.
+Insects could adapt to the chemicals that we use.
+Fu[r]thermore, we are not able to control [predators] and they can just fly away where the population of such insects [is] higher.
+
 #### W2 - AI
 
 This is a challenging topic, but I believe that the [benefits of] AI [outweigh] the threats.

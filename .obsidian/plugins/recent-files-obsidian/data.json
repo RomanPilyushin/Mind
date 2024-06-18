@@ -5,8 +5,88 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
+      "basename": "toefl Writing",
+      "path": "toefl Writing.md"
+    },
+    {
+      "basename": "Writing 1 Integrated",
+      "path": "templates/toefl/Writing 1 Integrated.md"
+    },
+    {
       "basename": "toefl Speaking",
       "path": "toefl Speaking.md"
+    },
+    {
+      "basename": "_Dataviewer",
+      "path": "_Dataviewer.md"
+    },
+    {
+      "basename": "_Toggl",
+      "path": "_Toggl.md"
+    },
+    {
+      "basename": "Diffuse mode",
+      "path": "Diffuse mode.md"
+    },
+    {
+      "basename": "Conditional sentences",
+      "path": "Conditional sentences.md"
+    },
+    {
+      "basename": "Einstellung effect",
+      "path": "Einstellung effect.md"
+    },
+    {
+      "basename": "The bid and ask prices",
+      "path": "The bid and ask prices.md"
+    },
+    {
+      "basename": "Rust variables",
+      "path": "Rust variables.md"
+    },
+    {
+      "basename": "Recall the material",
+      "path": "Recall the material.md"
+    },
+    {
+      "basename": "Optiver",
+      "path": "Optiver.md"
+    },
+    {
+      "basename": "How to launch mkdocs blog",
+      "path": "How to launch mkdocs blog.md"
+    },
+    {
+      "basename": "How to excel at math and science",
+      "path": "How to excel at math and science.md"
+    },
+    {
+      "basename": "MathJax",
+      "path": "templates/MathJax.md"
+    },
+    {
+      "basename": "Daily Note",
+      "path": "templates/Daily Note.md"
+    },
+    {
+      "basename": "Conceptual Note",
+      "path": "templates/Conceptual Note.md"
+    },
+    {
+      "basename": "Chess Template",
+      "path": "templates/Chess Template.md"
+    },
+    {
+      "basename": "Speaking 1 Independent",
+      "path": "templates/toefl/Speaking 1 Independent.md"
+    },
+    {
+      "basename": "_Anki",
+      "path": "_Anki.md"
+    },
+    {
+      "basename": "toefl Reading",
+      "path": "toefl Reading.md"
     },
     {
       "basename": "Algorithmic Puzzles",
@@ -29,28 +109,12 @@
       "path": "pdf/math/The Princeton Companion To Mathematics.pdf"
     },
     {
-      "basename": "toefl Reading",
-      "path": "toefl Reading.md"
-    },
-    {
-      "basename": "toefl Writing",
-      "path": "toefl Writing.md"
-    },
-    {
       "basename": "Theo",
       "path": "Theo.md"
     },
     {
-      "basename": "Chess Template",
-      "path": "templates/Chess Template.md"
-    },
-    {
       "basename": "Writing 2 Academic Discussion",
       "path": "templates/toefl/Writing 2 Academic Discussion.md"
-    },
-    {
-      "basename": "Writing 1 Integrated",
-      "path": "templates/toefl/Writing 1 Integrated.md"
     },
     {
       "basename": "Python Code Template",
@@ -59,10 +123,6 @@
     {
       "basename": "Rust Code Template",
       "path": "templates/code/Rust Code Template.md"
-    },
-    {
-      "basename": "How to Excel at Math and Science",
-      "path": "How to Excel at Math and Science.md"
     },
     {
       "basename": "Speaking 3 Integrated Read Listen",
@@ -75,78 +135,6 @@
     {
       "basename": "Speaking 2 Campus Integrated",
       "path": "templates/toefl/Speaking 2 Campus Integrated.md"
-    },
-    {
-      "basename": "Speaking 1 Independent",
-      "path": "templates/toefl/Speaking 1 Independent.md"
-    },
-    {
-      "basename": "Conceptual Note",
-      "path": "templates/Conceptual Note.md"
-    },
-    {
-      "basename": "Conditional Sentences",
-      "path": "Conditional Sentences.md"
-    },
-    {
-      "basename": "How to launch mkdocs blog",
-      "path": "How to launch mkdocs blog.md"
-    },
-    {
-      "basename": "_Note",
-      "path": "_Note.md"
-    },
-    {
-      "basename": "Summary Note",
-      "path": "templates/Summary Note.md"
-    },
-    {
-      "basename": "_Anki",
-      "path": "_Anki.md"
-    },
-    {
-      "basename": "_Dataviewer",
-      "path": "_Dataviewer.md"
-    },
-    {
-      "basename": "_Toggl",
-      "path": "_Toggl.md"
-    },
-    {
-      "basename": "Optiver",
-      "path": "Optiver.md"
-    },
-    {
-      "basename": "Einstellung Effect",
-      "path": "Einstellung Effect.md"
-    },
-    {
-      "basename": "The Economist Note",
-      "path": "templates/The Economist Note.md"
-    },
-    {
-      "basename": "Diffuse Mode",
-      "path": "Diffuse Mode.md"
-    },
-    {
-      "basename": "MathJax",
-      "path": "templates/MathJax.md"
-    },
-    {
-      "basename": "Deutsch Perfekt Note",
-      "path": "templates/Deutsch Perfekt Note.md"
-    },
-    {
-      "basename": "Daily Note",
-      "path": "templates/Daily Note.md"
-    },
-    {
-      "basename": "Recall the Material",
-      "path": "Recall the Material.md"
-    },
-    {
-      "basename": "The bid and ask prices",
-      "path": "The bid and ask prices.md"
     },
     {
       "basename": "Relational Deep Reinforcement Learning",
@@ -167,18 +155,6 @@
     {
       "basename": "Basic German",
       "path": "pdf/deutsch/Basic German.pdf"
-    },
-    {
-      "basename": "Rust Variables",
-      "path": "Rust Variables.md"
-    },
-    {
-      "basename": "Speaking",
-      "path": "templates/english/Speaking.md"
-    },
-    {
-      "basename": "Writing",
-      "path": "templates/english/Writing.md"
     },
     {
       "basename": "Secrets of Mental Math",

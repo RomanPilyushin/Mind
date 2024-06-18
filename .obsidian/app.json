@@ -5,5 +5,5 @@
   "attachmentFolderPath": "attachments",
   "showUnsupportedFiles": true,
   "readableLineLength": true,
-  "spellcheck": true
+  "spellcheck": false
 }
