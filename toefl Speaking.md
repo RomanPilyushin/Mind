@@ -10,6 +10,13 @@ Second,
 For instance,
 
 ####
+Some people are able to make decisions very quickly, based on their first thoughts. 
+Other people take a lot of time and think carefully before making a decision 
+Which do you think is better? 
+Explain why by using details and examples to support your opinion.
+
+
+####
 Some college students choose to prepare for careers where there are more job opportunities Others choose to study subjects that interest them regardless of job opportunities. Which do you think is better and why?
 
 ####
@@ -44,6 +51,14 @@ The man opposes this initiative
 To begin with, he points out that
 Moreover, he argues that
 
+
+####
+Extending Study Period
+
+The university now schedules one study day at the end of every semester for students to prepare for final exams. I suggest that the university consider extending this study period to three days. Most students have exams in several classes. Having only one study day between the end of classes and the beginning of the final exam period is not enough time to prepare for all of the exams. Additionally, having a three- day study period will give students extra time to consult with their professors if they need help or advice before the exam period begins. Sincerely, Robert Steele
+
+
+The woman expresses her opinion about the proposal in the letter. Briefly summarize the proposal. Then state her opinion about the proposal and explain the reasons she gives for holding that opinion.
 
 ####
 New Course Credit Policy
@@ -98,6 +113,14 @@ First, he says that
 Next, he notes that
 
 ####
+Root Communication
+
+All plants need water in order to grow. In desert environments, however, water is especially scarce. One way that some desert plants attempt to secure an adequate water supply is by maintaining a certain distance between themselves and other plants that might try to compete for the same water They maintain this distance through a process known as root communication. That is, the roots of one plant communicate with the roots of another plant in order to control the amount of distance separating them In this way: the communicating plant is able to protect its precious water supply.
+
+Using the example of the creosote plant from the lecture, explain how root communication helps desert plants to survive.
+
+
+####
 Role Distancing
 
 Throughout our lives, we take on many social roles, such as son or daughter, friend, and parent. Roles help us know how to behave and we are generally comfortable in them. Sometimes, however：people want to separate themselves from a role they are enacting: they want to show that this role does not represent who they really are. When people use their behavior to convey such detachment from a role, they are engaged in role distancing People often use gestures, facial expressions, and tone of voice to distance themselves from roles they are uncomfortable performing
@@ -149,6 +172,9 @@ The lecturer explains
 To begin with, he explains
 
 Second, he describes
+
+####
+Using the two examples from the talk: explain how a business can increase sales by creating a second interest.
 
 ####
 Using the points from the talk, describe the two theories that explain the extinction of the dinosaur.
