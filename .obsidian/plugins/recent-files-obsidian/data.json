@@ -9,6 +9,10 @@
       "path": "toefl Speaking.md"
     },
     {
+      "basename": "Competitive Programmer’s Handbook",
+      "path": "pdf/programming/Competitive Programmer’s Handbook.pdf"
+    },
+    {
       "basename": "toefl Writing",
       "path": "toefl Writing.md"
     },

@@ -10,6 +10,9 @@ Second,
 For instance,
 
 ####
+Imagine you are looking for a new place to live near your university. You have two choices. The first place is in a house, which you would share with several other students. The second place is a small apartment, which you would not have to share with others. Which would you choose? Explain why.
+
+####
 Some people are able to make decisions very quickly, based on their first thoughts. 
 Other people take a lot of time and think carefully before making a decision 
 Which do you think is better? 
@@ -51,6 +54,13 @@ The man opposes this initiative
 To begin with, he points out that
 Moreover, he argues that
 
+
+####
+Campus Bookstore Should Sell Snacks and Drinks
+
+In addition to selling books and textbooks, I think the campus bookstore should also offer drinks and snacks for sale. The bookstore could have a few chairs and tables available where students could sit and have a snack or something to drink, while the/re looking through books and deciding what to buy. It would also be convenient for students who got hungry between classes, and wanted to grab something to eat before going to their next class Sincerely, Matt Shapiro
+
+The woman expresses her opinion about the proposal described in the letter. Briefly summarize the proposal. Then state her opinion about the proposal and explain the reasons she gives for holding that opinion.
 
 ####
 Extending Study Period
@@ -113,6 +123,13 @@ First, he says that
 Next, he notes that
 
 ####
+Compound Nesting
+
+Sometimes two different species of insects live close together, side by side. The two insect groups might even share the same home. But the two species often are different enough that they do not have to compete for the same resources, and therefore they can avoid conflict. This is known as compound nesting. Compound nesting actually provides advantages to both species: because living closely together can result in a specific benefit to each group, benefits that increase both species’ chances of survival.
+
+Explain how the example from the professor‘s lecture illustrates the concept of compound nesting
+
+####
 Root Communication
 
 All plants need water in order to grow. In desert environments, however, water is especially scarce. One way that some desert plants attempt to secure an adequate water supply is by maintaining a certain distance between themselves and other plants that might try to compete for the same water They maintain this distance through a process known as root communication. That is, the roots of one plant communicate with the roots of another plant in order to control the amount of distance separating them In this way: the communicating plant is able to protect its precious water supply.
@@ -172,6 +189,9 @@ The lecturer explains
 To begin with, he explains
 
 Second, he describes
+
+####
+Using points and examples from the lecture, explain two ways that consumers reduce the feeling of risk when making a purchase.
 
 ####
 Using the two examples from the talk: explain how a business can increase sales by creating a second interest.

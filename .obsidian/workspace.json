@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "15fbb481aab0728b",
+        "id": "8419dcfdd6fff375",
         "type": "tabs",
         "children": [
           {
-            "id": "dfe0acf03ff0bd71",
+            "id": "521bf667dd5217fd",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -251,11 +251,13 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "dfe0acf03ff0bd71",
+  "active": "521bf667dd5217fd",
   "lastOpenFiles": [
     "toefl Speaking.md",
-    "toefl Writing.md",
+    "pdf/programming/Competitive Programmer’s Handbook.pdf",
+    "pdf/programming",
     "How to add files, commit, and push to Github using console.md",
+    "toefl Writing.md",
     "templates/toefl/Writing 1 Integrated.md",
     "_Dataviewer.md",
     "_Toggl.md",
@@ -278,7 +280,6 @@
     "templates/english/Speaking.md",
     "templates/english/Writing.md",
     "templates/toefl/Speaking 1 Independent.md",
-    "_Anki.md",
     "pdf/math/Algorithmic Puzzles.pdf",
     "pdf/math/How to Study as a Mathematics Major.pdf",
     "pdf/math/How to Think Like a Mathematician.pdf",
@@ -292,8 +293,6 @@
     "attachments/toefl Reading-1.png",
     "attachments/Commit and Push.bat",
     "attachments/Recording 20240608130150.webm",
-    "pdf/chess/How To Reassess Your Chess.pdf",
-    "pdf/papers",
     "How to Excel at Math and SciencePT2M48.15S.png",
     "media/How to Excel at Math and SciencePT2M48.15S.png",
     "attachments/Anki.png",
