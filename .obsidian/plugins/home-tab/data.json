@@ -22,7 +22,24 @@
   "showShortcuts": true,
   "markdownOnly": false,
   "unresolvedLinks": false,
-  "recentFilesStore": [],
+  "recentFilesStore": [
+    {
+      "filepath": "How to add files, commit, and push to Github using console.md",
+      "timestamp": 1718976337386
+    },
+    {
+      "filepath": "toefl Writing.md",
+      "timestamp": 1718976191650
+    },
+    {
+      "filepath": "templates/toefl/Writing 2 Academic Discussion.md",
+      "timestamp": 1718975288595
+    },
+    {
+      "filepath": "templates/toefl/Writing 1 Integrated.md",
+      "timestamp": 1718973338895
+    }
+  ],
   "starredFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,

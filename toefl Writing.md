@@ -1,4 +1,100 @@
 
+#### W2 - University Spending
+
+This is a challenging topic, but I believe the academic facilities like libraries [carry] more weight than sports programs [when it comes to university funding].
+
+I strongly support Rachel's opinion that academic facilities provide [significant] benefits for students and help [them] attain their professional goals.
+Moreover, [investing in] academic facilities and amenities, such as contemporary computer classes, grants, scholarships, and access to the top-notch academic journals, would be a wise investment in the bright future of [both] the students and the university.
+
+While the Mike's opinion hold[s] merit, he overlooks the possibility that sports [are] an integral part of the student life, but they are only one part.
+Moreover, if the university is able to fund sport events and provide sports scholarships, it is [beneficial].
+However, the [primary] purpose of the academia is to produce great scientists and industrial professionals.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### W1 - Living on the Moon
+
+The author presents three hardships which humanity will face if it tries to colonize the Moon.
+However, the lecturer challenges these obstacles and provides solutions for each of them.
+
+First, the author notes that the Moon does not have [a] substantial atmosphere like Earth.
+He adds that the atmosphere safeguards us from meteoroids and solar radiation.
+Furthermore, achieving [an] advanced level of technology to mitigate this obstacle will take a lot of time.
+On the other hand, the lecturer argues that we have low-tech solutions avaliable today [that] could address this problem.
+Additionally, Moon soil could be used [to] protect human colony from deadly meteoroids and radiation.
+
+Second, the author underscores that the Moon has meagre stocks of essential resources for humans, such as air and soil.
+Moreover, the transportation of these resources would be a hefty sum.
+[In response], the lecturer argues that the Moon has [an] immense amount of frozen water located [at] its North Pole.
+Furthermore, using this frozen water, [a] human colony could generate air, rocket fuel, and even grow green plants using a [technique] called hydroponics.
+
+Finally, the author says that humans in deep space experience psychological and social problem[s], [due to] isolation for extended periods.
+Moreover, the lack of natural environment could exacerbate psychological issues.
+In contrast, the lecturer [casts doubt on] the author's arguments.
+He emphasizes that these issues could be resolved with regular communications with Earth.
+Additionally, open spaces and natural lighting can also help to tackle these hardships.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### W2 - Longevity
 
 This is a challenging question, but I believe the advanced medical technology brings more weight than the government services.
