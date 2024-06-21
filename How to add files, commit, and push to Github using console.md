@@ -18,7 +18,10 @@ git commit -m "Add new files"
 git push -u origin master
 ```
 
-Pull to the master branch
+
+
+
+Pull from the master branch
 
 ```bash
 cd F:\Programms\Obsidian\Mind

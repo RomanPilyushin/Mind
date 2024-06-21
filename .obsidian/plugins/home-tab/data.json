@@ -22,20 +22,7 @@
   "showShortcuts": true,
   "markdownOnly": false,
   "unresolvedLinks": false,
-  "recentFilesStore": [
-    {
-      "filepath": "How to add files, commit, and push to Github using console.md",
-      "timestamp": 1718888423853
-    },
-    {
-      "filepath": "toefl Speaking.md",
-      "timestamp": 1718885576605
-    },
-    {
-      "filepath": "pdf/programming/Competitive Programmer’s Handbook.pdf",
-      "timestamp": 1718882377521
-    }
-  ],
+  "recentFilesStore": [],
   "starredFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
