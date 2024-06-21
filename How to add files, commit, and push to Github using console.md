@@ -19,7 +19,7 @@ git push -u origin master
 ```
 
 
-
+![[Pull.bat]]
 
 Pull from the master branch
 
