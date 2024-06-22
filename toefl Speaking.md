@@ -10,6 +10,9 @@ Second,
 For instance,
 
 ####
+Do you agree or disagree with the following statement? It is important for children to learn to draw or paint. Use details and examples to explain your opinion.
+
+####
 Imagine you are looking for a new place to live near your university. You have two choices. The first place is in a house, which you would share with several other students. The second place is a small apartment, which you would not have to share with others. Which would you choose? Explain why.
 
 ####
@@ -54,6 +57,12 @@ The man opposes this initiative
 To begin with, he points out that
 Moreover, he argues that
 
+####
+Students Need Campus Snack Shop
+
+I think the university should open a snack shop on campus-a snack shop that would be operated entirely by our students. A student-run snack shop would benefit students in two ways. First, it would create a number of job opportunities for students Second, the store would be a convenient place on campus to buy food, providing students with a fast； easy place to get snacks at any time of the day. Sincerely, Julia Wilson
+
+The man expresses his opinion about the letter writer's proposal. Briefly summarize the proposal. Then state the man's opinion and explain the reasons he gives for holding that opinion.
 
 ####
 Campus Bookstore Should Sell Snacks and Drinks
@@ -122,6 +131,14 @@ First, he says that
 
 Next, he notes that
 
+
+####
+Task Partitioning
+
+Different species of insects have different ways of organizing the essential tasks that need to be completed in order for them to survive. One way of accomplishing this process is through task partitioning. Insect groups that use this method divide, or partition, their work into several different stages that are ordered and performed in a fixed sequence by different groups of workers. An important benefit of this technique is increased efficiency, since the workers performing each task are specialized, which saves time and energy.
+
+Explain how the example of leaf-cutter ants illustrates the concept of task partitioning.
+
 ####
 Compound Nesting
 
@@ -189,6 +206,9 @@ The lecturer explains
 To begin with, he explains
 
 Second, he describes
+
+####
+Using the examples from the lecture, explain two ways the railroad system changed business in the United States
 
 ####
 Using points and examples from the lecture, explain two ways that consumers reduce the feeling of risk when making a purchase.

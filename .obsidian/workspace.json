@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "8419dcfdd6fff375",
+        "id": "24cca3919cfac24c",
         "type": "tabs",
         "children": [
           {
-            "id": "521bf667dd5217fd",
+            "id": "62dec44b38af569d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -251,24 +251,23 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "521bf667dd5217fd",
+  "active": "62dec44b38af569d",
   "lastOpenFiles": [
-    "pdf/Understanding Linux Kermel.pdf",
+    "templates/toefl/Writing 1 Integrated.md",
+    "toefl Speaking.md",
     "pdf/High-Frequency Trading.pdf",
+    "How to add files, commit, and push to Github using console.md",
+    "pdf/Understanding Linux Kermel.pdf",
     "pdf/Computer Systems.pdf",
     "pdf/Computer Architecture.pdf",
     "pdf/Beej’s Guide to C Programming.pdf",
     "toefl Writing.md",
     "templates/toefl/Writing 2 Academic Discussion.md",
-    "templates/toefl/Writing 1 Integrated.md",
-    "How to add files, commit, and push to Github using console.md",
     "pdf/competitive programming/USA Comp Olympiad.pdf",
     "attachments/Pull.bat~",
     "attachments/Pull.bat",
     "attachments/Commit and Push.txt.bat",
     "attachments/Commit and Push - Kopie.bat",
-    "pdf/competitive programming/Principles of Algorithmic Problem Solving.pdf",
-    "toefl Speaking.md",
     "_Dataviewer.md",
     "_Toggl.md",
     "Diffuse mode.md",
