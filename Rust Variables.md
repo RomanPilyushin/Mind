@@ -1,7 +1,7 @@
 ---
 tags:
   - rust
-  - rustlings/variables
+  - variables
   - uncompleted
 link: https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html
 ---

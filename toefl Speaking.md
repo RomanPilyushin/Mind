@@ -9,6 +9,9 @@ For example,
 Second,
 For instance,
 
+
+Some people like to specifically plan how they will spend their free time. Others prefer to keep their free time open and not schedule activities in advance. Which do you prefer and why?
+
 ####
 Do you agree or disagree with the following statement? It is important for children to learn to draw or paint. Use details and examples to explain your opinion.
 
@@ -57,6 +60,13 @@ The man opposes this initiative
 To begin with, he points out that
 Moreover, he argues that
 
+
+
+Volunteer Work Within the Community
+
+State University will now require all students to complete ten hours of volunteer work in the local community before graduating. Serving as a volunteer is not only helpful to communities, but also beneficial and convenient for students. When they take time to help others: students experience a deep sense of satisfaction. This sense of fulfillment leads them to continue working within their communities. Furthermore, volunteering will be convenient for students. There are a number of nearby organizations in need of student volunteers, so students can easily arrange to work locally.
+
+The woman expresses her opinion of the university’s new policy. State her opinion and explain the reasons she gives for holding that opinion.
 ####
 Students Need Campus Snack Shop
 
@@ -132,6 +142,13 @@ First, he says that
 Next, he notes that
 
 
+
+Ecosystem Resilience
+
+An ecosystem is a local environment with its complex community of organisms functioning together as a unit. An ecosystem can be damaged by natural disasters or by human activity. If the ecosystem has a limited variety of species, then destroying even one species of plant or animal can change the ecosystem forever. A resilient ecosystem, however, is able to restore itself to its original, pre-disturbance condition. Resilience in an ecosystem is possible when the ecosystem is populated by a large variety of species: if one species is eliminated by a disturbance, other species are able to take the place of that species, which allows the ecosystem to avoid long-term change.
+
+Using the coral reef as an example, explain what it means for an ecosystem to be resilient.
+
 ####
 Task Partitioning
 
@@ -206,6 +223,9 @@ The lecturer explains
 To begin with, he explains
 
 Second, he describes
+
+
+Using points and examples from the talk, explain what psychologists have learned about the formation of bonds between infants and their caregivers
 
 ####
 Using the examples from the lecture, explain two ways the railroad system changed business in the United States
