@@ -6,7 +6,7 @@ tags:
 link: https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html
 ---
 
-In Rust, variables are immutable by default. When a variable is immutable, once a value is bound to a name, you can’t change that value. You can make them mutable by adding `mut` in front of the variable name.
+#### Variables are immutable by default
 
 
 ```rust
@@ -23,7 +23,9 @@ fn main() {
 }
 ```
 
----
+
+#### Add [mut]
+
 
 ```rust
 fn main() {
@@ -43,13 +45,13 @@ fn main() {
 }
 ```
 
----
+#### Constants
 
 ```rust
 const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
 ```
 
----
+#### Inner scope
 
 ```rust
 fn main() {
@@ -66,7 +68,8 @@ fn main() {
 }
 ```
 
----
+
+#### Add type
 
 ```rust
 fn main() {  
@@ -82,7 +85,7 @@ fn main() {
 }
 ```
 
----
+#### Add value
 
 ```rust
 fn main() {  
@@ -106,5 +109,5 @@ fn main() {
 }
 ```
 
----
+
 

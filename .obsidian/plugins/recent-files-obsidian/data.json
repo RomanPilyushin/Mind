@@ -5,6 +5,18 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
+      "basename": "Rust variables",
+      "path": "Rust variables.md"
+    },
+    {
+      "basename": "Recall the material",
+      "path": "Recall the material.md"
+    },
+    {
+      "basename": "The bid and ask prices",
+      "path": "The bid and ask prices.md"
+    },
+    {
       "basename": "toefl Speaking",
       "path": "toefl Speaking.md"
     },
@@ -17,12 +29,24 @@
       "path": "toefl Reading.md"
     },
     {
-      "basename": "Theo",
-      "path": "Theo.md"
+      "basename": "_Dataviewer",
+      "path": "_Dataviewer.md"
     },
     {
-      "basename": "Rust variables",
-      "path": "Rust variables.md"
+      "basename": "_Toggl",
+      "path": "_Toggl.md"
+    },
+    {
+      "basename": "Rust Template",
+      "path": "templates/code/Rust Template.md"
+    },
+    {
+      "basename": "Python Template",
+      "path": "templates/code/Python Template.md"
+    },
+    {
+      "basename": "Theo",
+      "path": "Theo.md"
     },
     {
       "basename": "Writing 1 Integrated",
@@ -41,14 +65,6 @@
       "path": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
     },
     {
-      "basename": "_Dataviewer",
-      "path": "_Dataviewer.md"
-    },
-    {
-      "basename": "_Toggl",
-      "path": "_Toggl.md"
-    },
-    {
       "basename": "Diffuse mode",
       "path": "Diffuse mode.md"
     },
@@ -59,14 +75,6 @@
     {
       "basename": "Einstellung effect",
       "path": "Einstellung effect.md"
-    },
-    {
-      "basename": "The bid and ask prices",
-      "path": "The bid and ask prices.md"
-    },
-    {
-      "basename": "Recall the material",
-      "path": "Recall the material.md"
     },
     {
       "basename": "Optiver",
@@ -123,14 +131,6 @@
     {
       "basename": "The Princeton Companion To Mathematics",
       "path": "pdf/math/The Princeton Companion To Mathematics.pdf"
-    },
-    {
-      "basename": "Python Code Template",
-      "path": "templates/code/Python Code Template.md"
-    },
-    {
-      "basename": "Rust Code Template",
-      "path": "templates/code/Rust Code Template.md"
     },
     {
       "basename": "Speaking 3 Integrated Read Listen",

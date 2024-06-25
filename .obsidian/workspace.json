@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "24cca3919cfac24c",
+        "id": "6c7eaa62b2c2ef55",
         "type": "tabs",
         "children": [
           {
-            "id": "62dec44b38af569d",
+            "id": "eef92597f24f01a1",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -251,14 +251,20 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "62dec44b38af569d",
+  "active": "eef92597f24f01a1",
   "lastOpenFiles": [
+    "Rust variables.md",
+    "Recall the material.md",
+    "The bid and ask prices.md",
+    "How to add files, commit, and push to Github using console.md",
     "toefl Speaking.md",
     "toefl Writing.md",
     "toefl Reading.md",
+    "_Dataviewer.md",
+    "_Toggl.md",
+    "templates/code/Rust Template.md",
+    "templates/code/Python Template.md",
     "Theo.md",
-    "Rust variables.md",
-    "How to add files, commit, and push to Github using console.md",
     "templates/toefl/Writing 1 Integrated.md",
     "pdf/High-Frequency Trading.pdf",
     "pdf/Understanding Linux Kermel.pdf",
@@ -271,13 +277,9 @@
     "attachments/Pull.bat",
     "attachments/Commit and Push.txt.bat",
     "attachments/Commit and Push - Kopie.bat",
-    "_Dataviewer.md",
-    "_Toggl.md",
     "Diffuse mode.md",
     "Conditional sentences.md",
     "Einstellung effect.md",
-    "The bid and ask prices.md",
-    "Recall the material.md",
     "Optiver.md",
     "How to launch mkdocs blog.md",
     "How to excel at math and science.md",
@@ -287,8 +289,6 @@
     "templates/Daily Note.md",
     "templates/Deutsch Perfekt Note.md",
     "templates/Conceptual Note.md",
-    "templates/Chess Template.md",
-    "templates/english/Speaking.md",
     "attachments/toefl Reading-1.png",
     "attachments/toefl Reading.png",
     "attachments/toefl Reading 1.png",
