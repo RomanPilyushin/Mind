@@ -13,9 +13,6 @@ For instance,
 
 
 
-
-
-
 ### Campus
 
 According to the announcement,
@@ -24,7 +21,6 @@ The man opposes this initiative
 
 To begin with, he points out that
 Moreover, he argues that
-
 
 
 
@@ -55,5 +51,5 @@ To begin with, he explains
 Second, he describes
 
 
-
+Using the examples from the lecture, explain why forest fires are beneficial to the forest ecosystem.
 

@@ -5,6 +5,10 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
+      "basename": "toefl Speaking",
+      "path": "toefl Speaking.md"
+    },
+    {
       "basename": "Rust variables",
       "path": "Rust variables.md"
     },
@@ -15,10 +19,6 @@
     {
       "basename": "The bid and ask prices",
       "path": "The bid and ask prices.md"
-    },
-    {
-      "basename": "toefl Speaking",
-      "path": "toefl Speaking.md"
     },
     {
       "basename": "toefl Writing",
