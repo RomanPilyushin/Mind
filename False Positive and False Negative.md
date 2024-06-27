@@ -14,8 +14,6 @@ aliases:
 - **Example**: If a medical test indicates that a person has a disease when they actually do not, this is a false positive.
 - **Implications**: False positives can lead to unnecessary stress, additional tests, treatments, or interventions that are not needed.
 
-
-
 ## False Negative (**Type II Error**)
 
 - **Definition**: A false negative occurs when a test or classification model incorrectly identifies a condition or attribute as absent when it is actually present.
@@ -31,10 +29,8 @@ aliases:
 
 - **True Positive (TP)**: The test correctly identifies the presence of the condition.
 - **True Negative (TN)**: The test correctly identifies the absence of the condition.
-- **False Positive (FP)**: The test incorrectly identifies the condition as present.
-- **False Negative (FN)**: The test incorrectly identifies the condition as absent.
-
-
+- **False Positive (FP)**: The test incorrectly identifies the presence of the condition.
+- **False Negative (FN)**: The test incorrectly identifies the absence of the condition.
 
 ## Balancing the Errors
 
