@@ -1,4 +1,140 @@
 
+#### W2 - Economic Growth
+
+This is a challenging topic, but I believe that economic growth [carries more weight] than protection of the environment.
+
+I strongly support Maggie's opinion that economic growth is [essential] to [solving] our problems.
+Furthermore, without [a] strong economy, we cannot provide jobs, food, and strong education to people.
+Additionally, for swiftly switch to renewable sources, people have to reduce their energy consumption.
+However, sometimes people just want to use [the] benefits of fossil fuel[s] without overthink.
+
+While Alex's opinion holds merit and underscore[s] some potential benefits, he overlooks the possibility that renewable energy is not [as] efficient as traditional energy.
+Moreover, to invest in renewable sources of energy, we need strong economic growth to generate [the] means for capital investments and [to] research more effective forms of energy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### W1 - Machu Picchu
+
+The author presents three possible purposes for Machu Picchu.
+However, the lecturer [questions] these arguments.
+
+First, the author notes that Machu Picchu was constructed as a permanent royal estate for the Inca emperor.
+The mountain top was an ideal location for the emperor [to showcase] his wealth and power to his guests and could help him maintain control of the empire.
+On the other hand, the lecturer argues that [its] remoteness from the center of the empire would have been an obstacle for the ruler.
+This estate [was] suited more as a temporary vacation house, not as a main building.
+
+Second, the author underscores that Machu Picchu was a religious center. 
+The Inca were a very religious, and, possibly, this temple was further evidence of their dedication to their gods.
+However, the lecturer casts doubt on [the] author's argument.
+He emphasizes that there is [a] lack of evidence that Machu Picchu served as a temple.
+In other temple[s], there are clear indications of religious activities.
+
+Lastly, the author [suggests] that Machu Picchu was a defensive fortress.
+The building's location at the top of a mountain, surround[ed] by steep cliffs, served as a natural shield from [invaders] and [eased the burden] of [defending] the fortress.
+In response, the lecturer argues that there is no evidence that the building's purpose was [for] defence.
+Only a few tools and some weapons were found in Machu Picchu, [whereas] Inca weapons were found at other sites.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### W2 - University Spending
 
 This is a challenging topic, but I believe the academic facilities like libraries [carry] more weight than sports programs [when it comes to university funding].
