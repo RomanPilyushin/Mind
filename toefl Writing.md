@@ -1,4 +1,117 @@
 
+#### W2 - City Spending
+
+This is a challenging topic, but I believe that infrastructure [carries more weight] than social programs.
+
+I strongly support Maria's statement that advanced infrastructure can [significantly elevate the quality of life for] citizens.
+Additionally, the new infrastructure saves resources [for] the city government due to the lower [maintenance costs].
+Moreover, improved infrastructure can attract new investments from private companies.
+For instance, when a new airport [opens], large malls can be developed around it, creating new business opportunities in the town.
+
+While Tom's opinion holds merit, he overlooks the [fact] that new educational facilities and sport arenas are also [part of] infrastructure.
+For example, social programs for children can take place in college buildings.
+Furthermore, new roads will be used not only by personal cars but also by public and commercial [transportation].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### W1 - REM Sleep
+
+The author presents three ways why REM sleep is an integral part of our life, while the lecturer casts doubt on the author's arguments.
+
+First, the author argues that REM sleep helps the brain function effectively [by transferring] information acquired during the day [in]to long-term memory.
+Additionally, [individuals] who [consistently] achieve REM sleep have better problem-solving skills and retain new knowledges [more quickly].
+On the other hand, the lecture does not agree with the author's statement.
+He says that the nature of REM sleep is unclear.
+Moreover, the [other] stages of sleep are also important and play significant role[s] in our sleep.
+
+Second, the author emphasizes that REM sleep is crucial for stable emotional health.
+Additionally, the dreams can be a form of psychological release and help us overcome obstacles we face in real life.
+However, the lecturer opposes this idea.
+He argues that the dreams are a very personal experience.
+[Each] person can have [both] bad and good dreams, with a different array of connotations.
+
+Finally, the author underscores that REM sleep helps maintain [a] balance between sleep and [wakefulness].
+Furthermore, REM sleep prevents oversleeping[, which] could be harm[ful to] our routine.
+However, the lecturer [questions] this argument as well.
+He says that some people who do not have good REM sleep [still] have sufficient energy to maintain their day-to-day [lives].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### W2 - Economic Growth
 
 This is a challenging topic, but I believe that economic growth [carries more weight] than protection of the environment.
