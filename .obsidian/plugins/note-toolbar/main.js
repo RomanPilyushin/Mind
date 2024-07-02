@@ -333,8 +333,8 @@ var IconSuggestModal = class extends import_obsidian3.SuggestModal {
       let formEl = this.parentEl.querySelector(".note-toolbar-setting-item-icon .clickable-icon");
       formEl ? (0, import_obsidian3.setIcon)(formEl, selectedIcon === "No icon" ? "lucide-plus-square" : selectedIcon) : void 0;
       formEl.setAttribute("data-note-toolbar-no-icon", selectedIcon === "No icon" ? "true" : "false");
-      let previewEl = this.parentEl.querySelector(".note-toolbar-setting-item-preview > span");
-      previewEl ? (0, import_obsidian3.setIcon)(previewEl, selectedIcon === "No icon" ? "note-toolbar-none" : selectedIcon) : void 0;
+      let previewIconEl = this.parentEl.querySelector(".note-toolbar-setting-item-preview > span");
+      previewIconEl ? (0, import_obsidian3.setIcon)(previewIconEl, selectedIcon === "No icon" ? "note-toolbar-none" : selectedIcon) : void 0;
     } else {
       (0, import_obsidian3.setIcon)(this.parentEl, selectedIcon === "No icon" ? "lucide-plus-square" : selectedIcon);
       this.parentEl.setAttribute("data-note-toolbar-no-icon", selectedIcon === "No icon" ? "true" : "false");
@@ -3792,8 +3792,10 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
       let toolbarFolderListDiv = createDiv();
       toolbarFolderListDiv.addClass("note-toolbar-sortablejs-list");
       this.plugin.settings.folderMappings.forEach((mapping, index2) => {
-        let toolbarFolderListItemDiv = this.getMappingItem(mapping, index2);
+        let rowId = this.itemListIdCounter.toString();
+        let toolbarFolderListItemDiv = this.generateMappingForm(mapping, rowId);
         toolbarFolderListDiv.append(toolbarFolderListItemDiv);
+        this.itemListIdCounter++;
       });
       var sortable = sortable_esm_default.create(toolbarFolderListDiv, {
         chosenClass: "sortable-chosen",
@@ -3826,30 +3828,30 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
   /**
    * Returns the form to edit a mapping line.
    * @param mapping mapping to return the form for
-   * @param index index of the mapping in the mapping list
+   * @param rowId row ID of the mapping in the mapping list
    * @returns the form element as a div
    */
-  getMappingItem(mapping, index2) {
+  generateMappingForm(mapping, rowId) {
     let toolbarFolderListItemDiv = createDiv();
     toolbarFolderListItemDiv.className = "note-toolbar-setting-folder-list-item-container";
-    toolbarFolderListItemDiv.setAttribute("data-row-id", this.itemListIdCounter.toString());
+    toolbarFolderListItemDiv.setAttribute("data-row-id", rowId);
     let textFieldsDiv = createDiv();
     textFieldsDiv.id = "note-toolbar-setting-item-field-" + this.itemListIdCounter;
     textFieldsDiv.className = "note-toolbar-setting-item-fields";
     let ds = new import_obsidian8.Setting(toolbarFolderListItemDiv).setClass("note-toolbar-setting-item-delete").addExtraButton((cb) => {
       cb.setIcon("minus-circle").setTooltip("Delete").onClick(async () => {
-        let rowId = cb.extraSettingsEl.getAttribute("data-row-id");
-        rowId ? this.listMoveHandlerById(null, rowId, "delete") : void 0;
+        let rowId2 = cb.extraSettingsEl.getAttribute("data-row-id");
+        rowId2 ? this.listMoveHandlerById(null, rowId2, "delete") : void 0;
       });
       cb.extraSettingsEl.tabIndex = 0;
-      cb.extraSettingsEl.setAttribute("data-row-id", this.itemListIdCounter.toString());
+      cb.extraSettingsEl.setAttribute("data-row-id", rowId);
       this.plugin.registerDomEvent(
         cb.extraSettingsEl,
         "keydown",
         (e) => {
           let currentEl = e.target;
-          let rowId = currentEl.getAttribute("data-row-id");
-          rowId ? this.listMoveHandlerById(e, rowId, "delete") : void 0;
+          let rowId2 = currentEl.getAttribute("data-row-id");
+          rowId2 ? this.listMoveHandlerById(e, rowId2, "delete") : void 0;
         }
       );
     });
@@ -3858,8 +3860,8 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
       cb.setPlaceholder("Folder").setValue(mapping.folder).onChange((0, import_obsidian8.debounce)(async (newFolder) => {
         var _a;
         if (newFolder && this.plugin.settings.folderMappings.some(
-          (mapping2, mapIndex) => {
-            return index2 != mapIndex ? mapping2.folder.toLowerCase() === newFolder.toLowerCase() : void 0;
+          (map, mapIndex) => {
+            return mapping != map ? map.folder.toLowerCase() === newFolder.toLowerCase() : void 0;
           }
         )) {
           if (document.getElementById("note-toolbar-name-error") === null) {
@@ -3874,7 +3876,7 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
         } else {
           (_a = document.getElementById("note-toolbar-name-error")) == null ? void 0 : _a.remove();
           toolbarFolderListItemDiv.children[0].removeClass("note-toolbar-setting-error");
-          this.plugin.settings.folderMappings[index2].folder = newFolder ? (0, import_obsidian8.normalizePath)(newFolder) : "";
+          mapping.folder = newFolder ? (0, import_obsidian8.normalizePath)(newFolder) : "";
           await this.plugin.saveSettings();
         }
       }, 250));
@@ -3882,7 +3884,7 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
     const ts = new import_obsidian8.Setting(textFieldsDiv).setClass("note-toolbar-setting-mapping-field").addSearch((cb) => {
       new ToolbarSuggester(this.app, this.plugin, cb.inputEl);
       cb.setPlaceholder("Toolbar").setValue(mapping.toolbar).onChange((0, import_obsidian8.debounce)(async (newToolbar) => {
-        this.plugin.settings.folderMappings[index2].toolbar = newToolbar;
+        mapping.toolbar = newToolbar;
         await this.plugin.saveSettings();
       }, 250));
     });
@@ -3897,15 +3899,14 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
         "keydown",
         (e) => {
           let currentEl = e.target;
-          let rowId = currentEl.getAttribute("data-row-id");
-          debugLog("rowId", rowId);
-          rowId ? this.listMoveHandlerById(e, rowId) : void 0;
+          let rowId2 = currentEl.getAttribute("data-row-id");
+          debugLog("rowId", rowId2);
+          rowId2 ? this.listMoveHandlerById(e, rowId2) : void 0;
         }
       );
     });
     toolbarFolderListItemDiv.append(textFieldsDiv);
     toolbarFolderListItemDiv.append(itemHandleDiv);
-    this.itemListIdCounter++;
     return toolbarFolderListItemDiv;
   }
   /**
@@ -4160,6 +4161,7 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
     this.addCommand({ id: "open-toolbar-settings", name: "Open Toolbar Settings", callback: async () => this.openToolbarSettingsCommand() });
     this.addCommand({ id: "show-properties", name: "Show Properties", callback: async () => this.togglePropsCommand("show") });
     this.addCommand({ id: "hide-properties", name: "Hide Properties", callback: async () => this.togglePropsCommand("hide") });
+    this.addCommand({ id: "fold-properties", name: "Fold Properties", callback: async () => this.togglePropsCommand("fold") });
     this.addCommand({ id: "toggle-properties", name: "Toggle Properties", callback: async () => this.togglePropsCommand("toggle") });
     (0, import_obsidian9.addIcon)("note-toolbar-empty", '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="svg-icon note-toolbar-empty\u201D></svg>');
     (0, import_obsidian9.addIcon)("note-toolbar-none", '<svg xmlns="http://www.w3.org/2000/svg" width="0" height="24" viewBox="0 0 0 24" fill="none" class="svg-icon note-toolbar-none></svg>');
@@ -4494,8 +4496,8 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
     }
   }
   /**
-   * Shows, completely hides, or toggles the visibility of this note's Properties.
-   * @param visibility Set to 'show', 'hide', or 'toggle'
+   * Shows, completely hides, folds, or toggles the visibility of this note's Properties.
+   * @param visibility Set to 'show', 'hide', 'fold', or 'toggle'
    */
   async togglePropsCommand(visibility) {
     let propsEl = this.getPropsEl();
@@ -4513,6 +4515,11 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
           break;
         case "hide":
           propsEl.style.display = "none";
+          break;
+        case "fold":
+          if (!propsEl.classList.contains("is-collapsed")) {
+            propsEl.querySelector(".metadata-properties-heading").click();
+          }
           break;
       }
     }

@@ -5,16 +5,72 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
-      "basename": "toefl Writing",
-      "path": "toefl Writing.md"
-    },
-    {
       "basename": "toefl Speaking",
       "path": "toefl Speaking.md"
     },
     {
       "basename": "toefl Reading",
       "path": "toefl Reading.md"
+    },
+    {
+      "basename": "Computer Architecture",
+      "path": "pdf/Computer Architecture.pdf"
+    },
+    {
+      "basename": "Logical Chess",
+      "path": "pdf/chess/Logical Chess.pdf"
+    },
+    {
+      "basename": "How To Reassess Your Chess",
+      "path": "pdf/chess/How To Reassess Your Chess.pdf"
+    },
+    {
+      "basename": "Linux Kernel Development",
+      "path": "pdf/linux/Linux Kernel Development.pdf"
+    },
+    {
+      "basename": "Linux Device Drivers",
+      "path": "pdf/linux/Linux Device Drivers.pdf"
+    },
+    {
+      "basename": "Understanding Linux Kermel",
+      "path": "pdf/linux/Understanding Linux Kermel.pdf"
+    },
+    {
+      "basename": "Linux System Programming",
+      "path": "pdf/linux/Linux System Programming.pdf"
+    },
+    {
+      "basename": "USA Comp Olympiad",
+      "path": "pdf/competitive programming/USA Comp Olympiad.pdf"
+    },
+    {
+      "basename": "Principles of Algorithmic Problem Solving",
+      "path": "pdf/competitive programming/Principles of Algorithmic Problem Solving.pdf"
+    },
+    {
+      "basename": "Competitive Programmer’s Handbook",
+      "path": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
+    },
+    {
+      "basename": "Real-Time C++",
+      "path": "pdf/embedded/Real-Time C++.pdf"
+    },
+    {
+      "basename": "High-Frequency Trading",
+      "path": "pdf/High-Frequency Trading.pdf"
+    },
+    {
+      "basename": "Beej’s Guide to C Programming",
+      "path": "pdf/embedded/Beej’s Guide to C Programming.pdf"
+    },
+    {
+      "basename": "Computer Systems",
+      "path": "pdf/Computer Systems.pdf"
+    },
+    {
+      "basename": "toefl Writing",
+      "path": "toefl Writing.md"
     },
     {
       "basename": "False Positive and False Negative",
@@ -57,16 +113,8 @@
       "path": "templates/toefl/Writing 1 Integrated.md"
     },
     {
-      "basename": "High-Frequency Trading",
-      "path": "pdf/High-Frequency Trading.pdf"
-    },
-    {
       "basename": "Writing 2 Academic Discussion",
       "path": "templates/toefl/Writing 2 Academic Discussion.md"
-    },
-    {
-      "basename": "Competitive Programmer’s Handbook",
-      "path": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
     },
     {
       "basename": "Diffuse mode",
@@ -151,30 +199,6 @@
     {
       "basename": "Relational Deep Reinforcement Learning",
       "path": "pdf/papers/Relational Deep Reinforcement Learning.pdf"
-    },
-    {
-      "basename": "Logical Chess",
-      "path": "pdf/chess/Logical Chess.pdf"
-    },
-    {
-      "basename": "Naked Statistics",
-      "path": "pdf/statistics/Naked Statistics.pdf"
-    },
-    {
-      "basename": "Art of Statistics",
-      "path": "pdf/statistics/Art of Statistics.pdf"
-    },
-    {
-      "basename": "Basic German",
-      "path": "pdf/deutsch/Basic German.pdf"
-    },
-    {
-      "basename": "Secrets of Mental Math",
-      "path": "pdf/mental math/Secrets of Mental Math.pdf"
-    },
-    {
-      "basename": "Intermediate German",
-      "path": "pdf/deutsch/Intermediate German.pdf"
     }
   ],
   "omittedPaths": [],

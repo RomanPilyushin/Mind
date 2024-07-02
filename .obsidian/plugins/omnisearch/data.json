@@ -3,7 +3,9 @@
   "hideExcluded": false,
   "downrankedFoldersFilters": [],
   "ignoreDiacritics": true,
+  "ignoreArabicDiacritics": false,
   "indexedFileTypes": [],
+  "displayTitle": "",
   "PDFIndexing": true,
   "officeIndexing": true,
   "imagesIndexing": true,
@@ -32,5 +34,6 @@
   "httpApiNotice": true,
   "welcomeMessage": "1.21.0",
   "verboseLogging": false,
-  "DANGER_httpHost": null
+  "DANGER_httpHost": null,
+  "DANGER_forceSaveCache": false
 }
