@@ -3739,7 +3739,7 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
       toolbarListDiv.addClass("note-toolbar-setting-toolbar-list");
       this.plugin.settings.toolbars.forEach(
         (toolbarItem, index2) => {
-          new import_obsidian8.Setting(toolbarListDiv).setName(toolbarItem.name).setDesc(this.createToolbarPreviewFr(toolbarItem.items)).addButton((button) => {
+          new import_obsidian8.Setting(toolbarListDiv).setName(toolbarItem.name ? toolbarItem.name : "\u26A0\uFE0F Toolbar name not set").setDesc(this.createToolbarPreviewFr(toolbarItem.items)).addButton((button) => {
             button.setTooltip("Update this toolbar's items").setButtonText("Edit").setCta().onClick(() => {
               this.openSettingsModal(toolbarItem);
             });
@@ -3914,7 +3914,7 @@ var NoteToolbarSettingTab = class extends import_obsidian8.PluginSettingTab {
    * @param containerEl 
    */
   displayMobileSettings(containerEl) {
-    new import_obsidian8.Setting(containerEl).setName("Mobile settings").setHeading();
+    new import_obsidian8.Setting(containerEl).setName("Mobile").setHeading();
     const s1 = new import_obsidian8.Setting(containerEl).setName("Mobile icon").setDesc("Sets the icon for the navigation bar (requires restart) and floating button.").addButton((cb) => {
       cb.setIcon(this.plugin.settings.icon).setTooltip("Select icon").onClick(async (e) => {
         e.preventDefault();
@@ -4597,30 +4597,46 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
   /**
    * On click of an item in the toolbar, we replace any variables that might
    * be in the URL, and then open it.
-   * @param e MouseEvent
+   * @param event MouseEvent
    */
-  async toolbarClickHandler(e) {
-    debugLog("toolbarClickHandler: ", e);
-    let clickedEl = e.currentTarget;
+  async toolbarClickHandler(event) {
+    debugLog("toolbarClickHandler: ", event);
+    let clickedEl = event.currentTarget;
     let linkHref = clickedEl.getAttribute("href");
     if (linkHref != null) {
       let linkType = clickedEl.getAttribute("data-toolbar-link-attr-type");
-      linkType ? ["command", "file", "uri"].includes(linkType) ? e.preventDefault() : void 0 : void 0;
+      linkType ? ["command", "file", "uri"].includes(linkType) ? event.preventDefault() : void 0 : void 0;
       debugLog("toolbarClickHandler: ", "clickedEl: ", clickedEl);
       let linkHasVars = clickedEl.getAttribute("data-toolbar-link-attr-hasVars") ? clickedEl.getAttribute("data-toolbar-link-attr-hasVars") === "true" : true;
       let linkCommandId = clickedEl.getAttribute("data-toolbar-link-attr-commandid");
-      if ((e == null ? void 0 : e.pointerType) === "mouse") {
+      if ((event == null ? void 0 : event.pointerType) === "mouse") {
         clickedEl.blur();
       }
-      this.handleLink(linkHref, { commandId: linkCommandId, hasVars: linkHasVars, type: linkType });
+      this.handleLink(linkHref, { commandId: linkCommandId, hasVars: linkHasVars, type: linkType }, event);
     }
+  }
+  /**
+   * Determines where to open a link given any modifiers held on click.
+   * @param event MouseEvent
+   * @returns PaneType or undefined
+   */
+  getLinkDest(event) {
+    let linkDest = void 0;
+    if (event) {
+      const modifierPressed = import_obsidian9.Platform.isWin || import_obsidian9.Platform.isLinux ? event == null ? void 0 : event.ctrlKey : event == null ? void 0 : event.metaKey;
+      if (modifierPressed) {
+        linkDest = (event == null ? void 0 : event.altKey) ? (event == null ? void 0 : event.shiftKey) ? "window" : "split" : "tab";
+      }
+    }
+    return linkDest;
   }
   /**
    * Handles the link provided.
    * @param linkHref What the link is for.
    * @param linkAttr Attributes of the link.
+   * @param event MouseEvent (if link was clicked) to check if modifiers were pressed
    */
-  async handleLink(linkHref, linkAttr) {
+  async handleLink(linkHref, linkAttr, event) {
     var _a, _b, _c, _d;
     if (linkAttr.hasVars) {
       let activeFile = this.app.workspace.getActiveFile();
@@ -4635,14 +4651,14 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
       case "file":
         let activeFile = (_b = (_a = this.app.workspace.getActiveFile()) == null ? void 0 : _a.path) != null ? _b : "";
         debugLog("- openLinkText: ", linkHref, " from: ", activeFile);
-        this.app.workspace.openLinkText(linkHref, activeFile);
+        this.app.workspace.openLinkText(linkHref, activeFile, this.getLinkDest(event));
         break;
       case "uri":
         if (isValidUri(linkHref)) {
           window.open(linkHref, "_blank");
         } else {
           let activeFile2 = (_d = (_c = this.app.workspace.getActiveFile()) == null ? void 0 : _c.path) != null ? _d : "";
-          this.app.workspace.openLinkText(linkHref, activeFile2);
+          this.app.workspace.openLinkText(linkHref, activeFile2, this.getLinkDest(event));
         }
         break;
     }
@@ -4724,9 +4740,9 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
       s = s.replace(/{{prop_(.*?)}}/g, (match, p1) => {
         const key = p1.trim();
         if (frontmatter && frontmatter[key] !== void 0) {
+          const linkWrap = /\[\[([^\|\]]+)(?:\|[^\]]*)?\]\]/g;
           let fm = Array.isArray(frontmatter[key]) ? frontmatter[key].join(",") : frontmatter[key];
-          const linkWrap = /\[\[|\]\]/g;
-          return encode ? encodeURIComponent(fm.replace(linkWrap, "")) : fm.replace(linkWrap, "");
+          return encode ? encodeURIComponent(fm.replace(linkWrap, "$1")) : fm.replace(linkWrap, "$1");
         } else {
           return "";
         }
