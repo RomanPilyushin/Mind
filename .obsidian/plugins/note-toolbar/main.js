@@ -4210,9 +4210,12 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
     debugLog("checkAndRenderToolbar()");
     let matchingToolbar = this.getMatchingToolbar(frontmatter, file);
     let toolbarRemoved = this.removeToolbarIfNeeded(matchingToolbar);
-    if (matchingToolbar && toolbarRemoved) {
-      debugLog("-- RENDERING TOOLBAR: ", matchingToolbar, " for file: ", file);
-      this.renderToolbar(matchingToolbar);
+    if (matchingToolbar) {
+      if (toolbarRemoved) {
+        debugLog("-- RENDERING TOOLBAR: ", matchingToolbar, " for file: ", file);
+        await this.renderToolbar(matchingToolbar);
+      }
+      await this.updateToolbar(matchingToolbar, file);
     }
   }
   /**
@@ -4338,9 +4341,11 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
           let itemLabel = toolbarItem.createSpan();
           this.setComponentDisplayClass(itemLabel, dkHasLabel, mbHasLabel);
           itemLabel.innerText = item.label;
+          itemLabel.setAttribute("id", "label");
         } else {
           this.setComponentDisplayClass(toolbarItem, dkHasLabel, mbHasLabel);
           toolbarItem.innerText = item.label;
+          toolbarItem.setAttribute("id", "label");
         }
       } else {
         this.setComponentDisplayClass(toolbarItem, dkHasIcon, mbHasIcon);
@@ -4431,12 +4436,49 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
    * @param mbVisibile true if component is visible on mobile
    */
   setComponentDisplayClass(element, dkVisible, mbVisibile) {
+    element.removeClasses(["hide", "hide-on-desktop", "hide-on-mobile"]);
     if (!dkVisible && !mbVisibile) {
       element.addClass("hide");
     } else {
       !dkVisible && element.addClass("hide-on-desktop");
       !mbVisibile && element.addClass("hide-on-mobile");
     }
+  }
+  /**
+   * Updates any toolbar elements that use properties, including labels and tooltips.
+   * If the item resolves to a URI that's empty, the item is hidden.
+   * @param toolbar ToolbarSettings to get values from.
+   * @param activeFile TFile to update toolbar for.
+   */
+  async updateToolbar(toolbar, activeFile) {
+    let toolbarEl = this.getToolbarEl();
+    debugLog("updateToolar()", toolbarEl);
+    let toolbarElName = toolbarEl == null ? void 0 : toolbarEl.getAttribute("data-name");
+    let toolbarElUpdated = toolbarEl == null ? void 0 : toolbarEl.getAttribute("data-updated");
+    if (toolbarEl === null || toolbar.name !== toolbarElName || toolbar.updated !== toolbarElUpdated) {
+      return;
+    }
+    let toolbarItemEls = toolbarEl.querySelectorAll(".callout-content > ul > li > span");
+    toolbarItemEls.forEach((itemEl, index2) => {
+      let itemSetting = toolbar.items[index2];
+      let itemElHref = itemEl.getAttribute("href");
+      debugLog(itemEl, "should correspond to setting:", itemSetting);
+      if (itemElHref === itemSetting.link) {
+        if (hasVars(itemSetting.link) && this.replaceVars(itemSetting.link, activeFile, false) === "") {
+          itemEl.addClass("hide");
+          return;
+        }
+        if (hasVars(itemSetting.tooltip)) {
+          let newTooltip = this.replaceVars(itemSetting.tooltip, activeFile, false);
+          (0, import_obsidian9.setTooltip)(itemEl, newTooltip, { placement: "top" });
+        }
+        if (hasVars(itemSetting.label)) {
+          let newLabel = this.replaceVars(itemSetting.label, activeFile, false);
+          let itemElLabel = itemEl.querySelector("#label");
+          itemElLabel == null ? void 0 : itemElLabel.setText(newLabel);
+        }
+      }
+    });
   }
   /*************************************************************************
    * COMMANDS
@@ -4736,18 +4778,16 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
       s = s.replace("{{note_title}}", encode ? encodeURIComponent(noteTitle) : noteTitle);
     }
     let frontmatter = file ? (_a = this.app.metadataCache.getFileCache(file)) == null ? void 0 : _a.frontmatter : void 0;
-    if (frontmatter) {
-      s = s.replace(/{{prop_(.*?)}}/g, (match, p1) => {
-        const key = p1.trim();
-        if (frontmatter && frontmatter[key] !== void 0) {
-          const linkWrap = /\[\[([^\|\]]+)(?:\|[^\]]*)?\]\]/g;
-          let fm = Array.isArray(frontmatter[key]) ? frontmatter[key].join(",") : frontmatter[key];
-          return encode ? encodeURIComponent(fm.replace(linkWrap, "$1")) : fm.replace(linkWrap, "$1");
-        } else {
-          return "";
-        }
-      });
-    }
+    s = s.replace(/{{prop_(.*?)}}/g, (match, p1) => {
+      const key = p1.trim();
+      if (frontmatter && frontmatter[key] !== void 0) {
+        const linkWrap = /\[\[([^\|\]]+)(?:\|[^\]]*)?\]\]/g;
+        let fm = Array.isArray(frontmatter[key]) ? frontmatter[key].join(",") : frontmatter[key];
+        return encode ? encodeURIComponent(fm == null ? void 0 : fm.replace(linkWrap, "$1")) : fm == null ? void 0 : fm.replace(linkWrap, "$1");
+      } else {
+        return "";
+      }
+    });
     return s;
   }
   /*************************************************************************

@@ -1,4 +1,116 @@
 
+#### W2 - Work From Home
+
+This is a challenging topic, but I believe that the remote work policies carry more weight than working at the office. 
+
+I strongly support Sara's statement that we can save time [usually spent commuting, allowing us to work more productively].
+Additionally, the workers can plan their days [in a way that works for] them, [without] being distracted by annoying colleagues or long meetings.
+
+While Michael's opinion holds merit, he overlooks the fact that many companies have started [renting] coworking spaces for their workers around the world,  [eliminating the need for] a home office.
+Furthermore, according to the latest research, it does not matter not how many hours worker spend at the office, but how much [work gets done] due to some companies even suggest their workers [take breaks] and stay at home for several days during [the work week].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### W1 - The Cave of the Hands
+
+The author presents three possible theories [about the purpose] of the Cave of the Hands, a famous archaeological site in Argentina.
+However, the lecturer questions these theories.
+
+First, the author underscores that the Cave can serve both as an early form of communication and as some sort of the alphabet in ancient society.
+Moreover, the ancient inhabitants could [have used] this Cave either to depict their own lives or to [preserve] stories of historical events.
+On the other hand, the lecturer calls into question the author's argument.
+He argues that [these] symbols could be an artistic expression, rather than a deliberate [form] of communication.
+Furthermore, no logic or pattern [has] been found in these pictures.
+
+Second, the author emphasizes that this site could serve [a] religious purpose.
+Additionally, he notes that an ancient civilization often used art as an integral part of the religious rituals and the handprints could played a role in these rituals.
+The lecturer also does not agree with this theory.
+He says that there is no evidence that the Cave of the Hands played any role in the religious rituals because, [at] the other sites where such rituals took place, archaeologists found many items that [were] used in religious activities.
+
+Finally, the author argues that the Cave could be related to hunting.
+Moreover, the handprints of the walls [could have been] an ancient "leaderboard" [where] hunters recorded how many animals they had hunted[, as] these activities took place before the development of written language.
+In contrast, the lecturer casts doubt on the author's argument.
+He underscores that there are no hunting symbols in that Cave.
+Furthermore, the absence of hunting scenes and art depicting actual animals might suggest[s] that the real hunting [did] not take place there.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### W2 - City Spending
 
 This is a challenging topic, but I believe that infrastructure [carries more weight] than social programs.
