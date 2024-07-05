@@ -4174,7 +4174,7 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
           let frontmatter = activeFile ? (_a = this.app.metadataCache.getFileCache(activeFile)) == null ? void 0 : _a.frontmatter : void 0;
           let toolbar = this.getMatchingToolbar(frontmatter, activeFile);
           if (toolbar) {
-            this.renderToolbarAsMenu(toolbar).then((menu) => {
+            this.renderToolbarAsMenu(toolbar, activeFile).then((menu) => {
               menu.showAtPosition(event);
             });
           }
@@ -4393,13 +4393,17 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
    * @param toolbar 
    * @returns Menu with toolbar's items
    */
-  async renderToolbarAsMenu(toolbar) {
+  async renderToolbarAsMenu(toolbar, activeFile) {
     let menu = new import_obsidian9.Menu();
     toolbar.items.forEach((toolbarItem, index2) => {
       const [showOnDesktop, showOnMobile, showOnTablet] = calcItemVisToggles(toolbarItem.visibility);
       if (showOnMobile) {
+        if (hasVars(toolbarItem.link) && this.replaceVars(toolbarItem.link, activeFile, false) === "") {
+          return;
+        }
+        let title = toolbarItem.label ? hasVars(toolbarItem.label) ? this.replaceVars(toolbarItem.label, activeFile, false) : toolbarItem.label : hasVars(toolbarItem.tooltip) ? this.replaceVars(toolbarItem.tooltip, activeFile, false) : toolbarItem.tooltip;
         menu.addItem((item) => {
-          item.setIcon(toolbarItem.icon ? toolbarItem.icon : "note-toolbar-empty").setTitle(toolbarItem.label ? toolbarItem.label : toolbarItem.tooltip).onClick(async (menuEvent) => {
+          item.setIcon(toolbarItem.icon ? toolbarItem.icon : "note-toolbar-empty").setTitle(title).onClick(async (menuEvent) => {
             debugLog(toolbarItem.link, toolbarItem.linkAttr, toolbarItem.contexts);
             await this.handleLink(toolbarItem.link, toolbarItem.linkAttr);
           });
@@ -4460,13 +4464,17 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
     }
     let toolbarItemEls = toolbarEl.querySelectorAll(".callout-content > ul > li > span");
     toolbarItemEls.forEach((itemEl, index2) => {
+      var _a, _b;
       let itemSetting = toolbar.items[index2];
       let itemElHref = itemEl.getAttribute("href");
-      debugLog(itemEl, "should correspond to setting:", itemSetting);
       if (itemElHref === itemSetting.link) {
-        if (hasVars(itemSetting.link) && this.replaceVars(itemSetting.link, activeFile, false) === "") {
-          itemEl.addClass("hide");
-          return;
+        if (hasVars(itemSetting.link)) {
+          if (this.replaceVars(itemSetting.link, activeFile, false) === "") {
+            (_a = itemEl.parentElement) == null ? void 0 : _a.addClass("hide");
+            return;
+          } else {
+            (_b = itemEl.parentElement) == null ? void 0 : _b.removeClass("hide");
+          }
         }
         if (hasVars(itemSetting.tooltip)) {
           let newTooltip = this.replaceVars(itemSetting.tooltip, activeFile, false);
@@ -4475,7 +4483,13 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
         if (hasVars(itemSetting.label)) {
           let newLabel = this.replaceVars(itemSetting.label, activeFile, false);
           let itemElLabel = itemEl.querySelector("#label");
-          itemElLabel == null ? void 0 : itemElLabel.setText(newLabel);
+          if (newLabel) {
+            itemElLabel == null ? void 0 : itemElLabel.removeClass("hide");
+            itemElLabel == null ? void 0 : itemElLabel.setText(newLabel);
+          } else {
+            itemElLabel == null ? void 0 : itemElLabel.addClass("hide");
+            itemElLabel == null ? void 0 : itemElLabel.setText("");
+          }
         }
       }
     });
@@ -4583,7 +4597,7 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
       let frontmatter = activeFile ? (_a = this.app.metadataCache.getFileCache(activeFile)) == null ? void 0 : _a.frontmatter : void 0;
       let toolbar = this.getMatchingToolbar(frontmatter, activeFile);
       if (toolbar) {
-        this.renderToolbarAsMenu(toolbar).then((menu) => {
+        this.renderToolbarAsMenu(toolbar, activeFile).then((menu) => {
           let elemRect = posAtElement.getBoundingClientRect();
           menu.showAtPosition({
             x: elemRect.x,
@@ -4783,7 +4797,7 @@ var NoteToolbarPlugin = class extends import_obsidian9.Plugin {
       if (frontmatter && frontmatter[key] !== void 0) {
         const linkWrap = /\[\[([^\|\]]+)(?:\|[^\]]*)?\]\]/g;
         let fm = Array.isArray(frontmatter[key]) ? frontmatter[key].join(",") : frontmatter[key];
-        return encode ? encodeURIComponent(fm == null ? void 0 : fm.replace(linkWrap, "$1")) : fm == null ? void 0 : fm.replace(linkWrap, "$1");
+        return fm ? encode ? encodeURIComponent(fm == null ? void 0 : fm.replace(linkWrap, "$1")) : fm.replace(linkWrap, "$1") : "";
       } else {
         return "";
       }
