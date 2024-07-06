@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "toefl Reading.md",
+                "file": "How to add files, commit, and push to Github using console.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -26,15 +26,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "How to add files, commit, and push to Github using console.md",
+                "file": "toefl Reading.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -265,8 +264,10 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "9559ec94edf5026f",
+  "active": "18f1bcb0bf4a3e41",
   "lastOpenFiles": [
+    "toefl Reading.md",
+    "How to add files, commit, and push to Github using console.md",
     "attachments/Pull Thinkpad.bat~",
     "attachments/Pull Thinkpad.bat",
     "attachments/Commit and Push ThinkPad.bat",
@@ -274,14 +275,11 @@
     "attachments/Pull PC - Kopie.bat",
     "attachments/Pull PC.bat",
     "attachments/Commit and Push PC.bat",
-    "toefl Reading.md",
-    "How to add files, commit, and push to Github using console.md",
     "toefl Speaking.md",
     "toefl Writing.md",
     "pdf/Computer Architecture.pdf",
     "pdf/chess/Logical Chess.pdf",
     "pdf/chess/How To Reassess Your Chess.pdf",
-    "pdf/linux/Linux Kernel Development.pdf",
     "False Positive and False Negative.md",
     "Rust variables.md",
     "Recall the material.md",
