@@ -8,20 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "18f1bcb0bf4a3e41",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "toefl Reading.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9559ec94edf5026f",
+            "id": "b3a744eeb4f94ccf",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -33,8 +20,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -117,7 +103,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5
+    "width": 307.5,
+    "collapsed": true
   },
   "right": {
     "id": "018a9fa1eebd5dc3",
@@ -240,16 +227,16 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "zk-prefixer:Create new unique note": false,
-      "random-note:Open random note": false,
-      "audio-recorder:Start/stop recording": false,
-      "workspaces:Manage workspace layouts": false,
+      "switcher:Schnellauswahl öffnen": false,
+      "graph:Graphen-Ansicht öffnen": false,
+      "canvas:Neuen Canvas erstellen": false,
+      "daily-notes:Heutige Notiz öffnen": false,
+      "templates:Vorlage einfügen": false,
+      "command-palette:Befehlspalette öffnen": false,
+      "zk-prefixer:Neue eindeutige Notiz erstellen": false,
+      "random-note:Zufällige Notiz öffnen": false,
+      "audio-recorder:Audioaufzeichnung starten/stoppen": false,
+      "workspaces:Workspace-Layouts verwalten": false,
       "obsidian42-brat:BRAT": true,
       "reference-map:Reference Map": true,
       "local-backup:Run local backup": true,
@@ -265,22 +252,22 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "9559ec94edf5026f",
+  "active": "b3a744eeb4f94ccf",
   "lastOpenFiles": [
-    "toefl Reading.md",
+    "toefl Speaking.md",
     "How to add files, commit, and push to Github using console.md",
+    "toefl Reading.md",
     "attachments/Pull Thinkpad.bat~",
+    "attachments/Pull PC.bat~",
     "attachments/Pull Thinkpad.bat",
     "attachments/Commit and Push ThinkPad.bat",
     "attachments/Commit and Push PC - Kopie.bat",
     "attachments/Pull PC - Kopie.bat",
     "attachments/Pull PC.bat",
     "attachments/Commit and Push PC.bat",
-    "toefl Speaking.md",
     "toefl Writing.md",
     "pdf/Computer Architecture.pdf",
     "pdf/chess/Logical Chess.pdf",
-    "pdf/chess/How To Reassess Your Chess.pdf",
     "False Positive and False Negative.md",
     "Rust variables.md",
     "Recall the material.md",

@@ -12,7 +12,6 @@ For instance,
 
 
 
-
 ### Campus
 
 According to the announcement,
@@ -21,7 +20,6 @@ The man opposes this initiative
 
 To begin with, he points out that
 Moreover, he argues that
-
 
 
 

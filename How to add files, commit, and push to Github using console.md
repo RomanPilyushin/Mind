@@ -10,13 +10,11 @@ aliases:
 #### PC Bash
 
 ![[Commit and Push PC.bat]]
-
 ![[Pull PC.bat]]
 
 #### ThinkPad Bash
 
 ![[Commit and Push ThinkPad.bat]]
-
 ![[Pull Thinkpad.bat]]
 
 
