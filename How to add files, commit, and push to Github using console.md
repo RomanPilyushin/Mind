@@ -9,8 +9,6 @@ aliases:
 Test
 #### PC Bash
 
-Test
-
 ![[Commit and Push PC.bat]]
 ![[Pull PC.bat]]
 
