@@ -1,6 +1,6 @@
 @echo off
 REM
-cd F:\Programms\Obsidian\Mind
+cd E:\Programms\Obsidian\Mind
 git add .
 git commit -m "Add new files"
 git push -u origin master
