@@ -5,6 +5,26 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
+      "basename": "False Positive and False Negative",
+      "path": "False Positive and False Negative.md"
+    },
+    {
+      "basename": "High-Frequency Trading",
+      "path": "pdf/hft/High-Frequency Trading.pdf"
+    },
+    {
+      "basename": "Bare-metal programming for ARM",
+      "path": "pdf/embedded/Bare-metal programming for ARM.pdf"
+    },
+    {
+      "basename": "Beej’s Guide to C Programming",
+      "path": "pdf/c/Beej’s Guide to C Programming.pdf"
+    },
+    {
+      "basename": "Real-Time C++",
+      "path": "pdf/cpp/Real-Time C++.pdf"
+    },
+    {
       "basename": "How to Excel at Math and Science",
       "path": "How to Excel at Math and Science.md"
     },
@@ -30,7 +50,7 @@
     },
     {
       "basename": "Computer Architecture",
-      "path": "pdf/Computer Architecture.pdf"
+      "path": "pdf/computer/Computer Architecture.pdf"
     },
     {
       "basename": "Logical Chess",
@@ -69,24 +89,8 @@
       "path": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
     },
     {
-      "basename": "Real-Time C++",
-      "path": "pdf/embedded/Real-Time C++.pdf"
-    },
-    {
-      "basename": "High-Frequency Trading",
-      "path": "pdf/High-Frequency Trading.pdf"
-    },
-    {
-      "basename": "Beej’s Guide to C Programming",
-      "path": "pdf/embedded/Beej’s Guide to C Programming.pdf"
-    },
-    {
       "basename": "Computer Systems",
-      "path": "pdf/Computer Systems.pdf"
-    },
-    {
-      "basename": "False Positive and False Negative",
-      "path": "False Positive and False Negative.md"
+      "path": "pdf/computer/Computer Systems.pdf"
     },
     {
       "basename": "Rust variables",
@@ -195,10 +199,6 @@
     {
       "basename": "Speaking 4 Integrated Listen",
       "path": "templates/toefl/Speaking 4 Integrated Listen.md"
-    },
-    {
-      "basename": "Speaking 2 Campus Integrated",
-      "path": "templates/toefl/Speaking 2 Campus Integrated.md"
     }
   ],
   "omittedPaths": [],
