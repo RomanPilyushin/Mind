@@ -5,6 +5,18 @@
       "path": "How to add files, commit, and push to Github using console.md"
     },
     {
+      "basename": "How to Excel at Math and Science",
+      "path": "How to Excel at Math and Science.md"
+    },
+    {
+      "basename": "How to launch mkdocs blog",
+      "path": "How to launch mkdocs blog.md"
+    },
+    {
+      "basename": "_Dataviewer",
+      "path": "_Dataviewer.md"
+    },
+    {
       "basename": "toefl Writing",
       "path": "toefl Writing.md"
     },
@@ -89,10 +101,6 @@
       "path": "The bid and ask prices.md"
     },
     {
-      "basename": "_Dataviewer",
-      "path": "_Dataviewer.md"
-    },
-    {
       "basename": "_Toggl",
       "path": "_Toggl.md"
     },
@@ -131,10 +139,6 @@
     {
       "basename": "Optiver",
       "path": "Optiver.md"
-    },
-    {
-      "basename": "How to launch mkdocs blog",
-      "path": "How to launch mkdocs blog.md"
     },
     {
       "basename": "How to excel at math and science",
@@ -195,10 +199,6 @@
     {
       "basename": "Speaking 2 Campus Integrated",
       "path": "templates/toefl/Speaking 2 Campus Integrated.md"
-    },
-    {
-      "basename": "Relational Deep Reinforcement Learning",
-      "path": "pdf/papers/Relational Deep Reinforcement Learning.pdf"
     }
   ],
   "omittedPaths": [],

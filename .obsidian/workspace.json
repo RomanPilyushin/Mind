@@ -1,27 +1,14 @@
 {
   "main": {
-    "id": "ef229fe6fb76e6f3",
+    "id": "b0008953c796e450",
     "type": "split",
     "children": [
       {
-        "id": "c5c6c09c2b607207",
+        "id": "d38b4dbff42026bc",
         "type": "tabs",
         "children": [
           {
-            "id": "18f1bcb0bf4a3e41",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "toefl Reading.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9559ec94edf5026f",
+            "id": "1d71ca2a012f901f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -33,23 +20,21 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "bc1986e14c33d931",
+    "id": "91f3afcf8e810b19",
     "type": "split",
     "children": [
       {
-        "id": "f53eff160a497ecd",
+        "id": "79244e91f26a10df",
         "type": "tabs",
-        "dimension": 69.58333333333333,
         "children": [
           {
-            "id": "3b9858743f17ceae",
+            "id": "2b5a794e605d583f",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -59,22 +44,22 @@
             }
           },
           {
-            "id": "2a74392cf3b8fe56",
+            "id": "d88053f1224d66ba",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
                 "query": "",
                 "matchingCase": false,
-                "explainSearch": true,
-                "collapseAll": true,
-                "extraContext": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
                 "sortOrder": "alphabetical"
               }
             }
           },
           {
-            "id": "4088324b5b9c1559",
+            "id": "feba9f1ed650cee5",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -82,7 +67,7 @@
             }
           },
           {
-            "id": "c41d99a7dd6a99d9",
+            "id": "40019d23e887d58c",
             "type": "leaf",
             "state": {
               "type": "recent-files",
@@ -90,45 +75,21 @@
             }
           }
         ]
-      },
-      {
-        "id": "e00227eb846a8853",
-        "type": "tabs",
-        "dimension": 30.416666666666664,
-        "children": [
-          {
-            "id": "c5d671c6f0758889",
-            "type": "leaf",
-            "state": {
-              "type": "tags-overview-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "34284c347a632b34",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
-            }
-          }
-        ],
-        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 307.5
+    "width": 300
   },
   "right": {
-    "id": "018a9fa1eebd5dc3",
+    "id": "d55f1d0d7122810b",
     "type": "split",
     "children": [
       {
-        "id": "b65f64f7ea565699",
+        "id": "c1999d82ae567e48",
         "type": "tabs",
         "children": [
           {
-            "id": "059cc707853f99d9",
+            "id": "cb98e521a626513b",
             "type": "leaf",
             "state": {
               "type": "backlink",
@@ -140,75 +101,12 @@
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": false
+                "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "ddae7b7ad3100f14",
-            "type": "leaf",
-            "state": {
-              "type": "trash-explorer",
-              "state": {}
-            }
-          },
-          {
-            "id": "2be577d542912355",
-            "type": "leaf",
-            "state": {
-              "type": "code-execute-manage-executors",
-              "state": {}
-            }
-          },
-          {
-            "id": "60572abd1cae05b1",
-            "type": "leaf",
-            "state": {
-              "type": "tlfItemView",
-              "state": {}
-            }
-          },
-          {
-            "id": "3d1b2a28c67bc0eb",
-            "type": "leaf",
-            "state": {
-              "type": "graph-analysis",
-              "state": {}
-            }
-          },
-          {
-            "id": "169ac32b326b8c08",
-            "type": "leaf",
-            "state": {
-              "type": "toggl-report",
-              "state": {}
-            }
-          },
-          {
-            "id": "d3b26cbfac4f10cd",
-            "type": "leaf",
-            "state": {
-              "type": "reference-map-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "38862d56c8cb7741",
-            "type": "leaf",
-            "state": {
-              "type": "graph-analysis",
-              "state": {}
-            }
-          }
-        ],
-        "currentTab": 7
-      },
-      {
-        "id": "4b4fe034be790197",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "e162cba5ac033590",
+            "id": "f4075c650a43a270",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
@@ -220,7 +118,18 @@
             }
           },
           {
-            "id": "1daf017023089b15",
+            "id": "ecc26ccb557eb5db",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "dcf1cc8e55dd6fa5",
             "type": "leaf",
             "state": {
               "type": "outline",
@@ -230,21 +139,35 @@
             }
           },
           {
-            "id": "1d02bf679667e70c",
+            "id": "eac8d0a454a0f4be",
             "type": "leaf",
             "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true
-              }
+              "type": "reference-map-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "865284158d8343de",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {}
+            }
+          },
+          {
+            "id": "86831bc67e8057eb",
+            "type": "leaf",
+            "state": {
+              "type": "toggl-report",
+              "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 403.5,
+    "width": 300,
     "collapsed": true
   },
   "left-ribbon": {
@@ -259,24 +182,11 @@
       "random-note:Open random note": false,
       "audio-recorder:Start/stop recording": false,
       "workspaces:Manage workspace layouts": false,
-<<<<<<< HEAD
       "reference-map:Reference Map": false,
       "local-backup:Run local backup": false,
       "tags-overview:Tags overview": false,
       "obsidian42-brat:BRAT": false,
       "obsidian-file-info-plugin:File Info Panel": false,
-=======
-      "obsidian42-brat:BRAT": true,
-      "reference-map:Reference Map": true,
-      "local-backup:Run local backup": true,
-      "tags-overview:Tags overview": true,
-      "obsidian-file-info-plugin:File Info Panel": true,
-      "3d-graph:3D Graph": true,
-      "table-editor-obsidian:Advanced Tables Toolbar": true,
-      "obisidian-note-linker:Note Linker": true,
-      "obsidian-map-view:Open map view": true,
-      "latex-ocr:LatexOCR": false,
->>>>>>> 815dd9e74625b3616952db8df9e5a1c821debc9a
       "media-extended:Open media": false,
       "3d-graph:3D Graph": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
@@ -287,57 +197,16 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "9559ec94edf5026f",
+  "active": "1d71ca2a012f901f",
   "lastOpenFiles": [
-<<<<<<< HEAD
-=======
-    "toefl Writing.md",
-    "toefl Speaking.md",
->>>>>>> 815dd9e74625b3616952db8df9e5a1c821debc9a
-    "How to add files, commit, and push to Github using console.md",
-    "toefl Speaking.md",
-    "toefl Reading.md",
-    "attachments/Pull Thinkpad.bat~",
-    "attachments/Pull Thinkpad.bat",
-    "attachments/Commit and Push ThinkPad.bat",
-    "attachments/Commit and Push PC - Kopie.bat",
-    "attachments/Pull PC - Kopie.bat",
-    "attachments/Pull PC.bat",
-    "attachments/Commit and Push PC.bat",
-    "pdf/Computer Architecture.pdf",
-    "pdf/chess/Logical Chess.pdf",
-    "pdf/chess/How To Reassess Your Chess.pdf",
-    "False Positive and False Negative.md",
-    "Rust variables.md",
-    "Recall the material.md",
-    "The bid and ask prices.md",
-    "_Dataviewer.md",
-    "_Toggl.md",
-    "templates/code/Rust Template.md",
-    "templates/code/Python Template.md",
-    "Theo.md",
-    "templates/toefl/Writing 1 Integrated.md",
-    "templates/toefl/Writing 2 Academic Discussion.md",
-    "Diffuse mode.md",
-    "Conditional sentences.md",
-    "Einstellung effect.md",
-    "Optiver.md",
+    "How to Excel at Math and Science.md",
     "How to launch mkdocs blog.md",
-    "How to excel at math and science.md",
-    "templates/The Economist Note.md",
-    "templates/Summary Note.md",
-    "templates/MathJax.md",
-    "templates/Daily Note.md",
-    "attachments/toefl Reading-1.png",
-    "attachments/toefl Reading.png",
-    "attachments/toefl Reading 1.png",
-    "attachments/toefl Reading.png",
-    "attachments/toefl Reading-1.png",
-    "How to Excel at Math and SciencePT2M48.15S.png",
-    "media/How to Excel at Math and SciencePT2M48.15S.png",
-    "attachments/Anki.png",
-    "Pasted image 20240508130912.png",
-    "attachments/Pasted image 20240508130912.png",
-    "Untitled.canvas"
+    "How to add files, commit, and push to Github using console.md",
+    "_Dataviewer.md",
+    "pdf/TCP IP.pdf",
+    "pdf/Operating Systems.pdf",
+    "pdf/Inside Machine.pdf",
+    "pdf/Cpp Sotfware Design.pdf",
+    "pdf/Cpp Concurrency In Action.pdf"
   ]
 }

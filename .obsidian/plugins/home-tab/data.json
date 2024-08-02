@@ -25,23 +25,19 @@
   "recentFilesStore": [
     {
       "filepath": "How to add files, commit, and push to Github using console.md",
-<<<<<<< HEAD
-      "timestamp": 1722360918263
-=======
-      "timestamp": 1720511740755
+      "timestamp": 1722593785729
     },
     {
-      "filepath": "toefl Writing.md",
-      "timestamp": 1720511740461
+      "filepath": "How to Excel at Math and Science.md",
+      "timestamp": 1722593784605
     },
     {
-      "filepath": "toefl Speaking.md",
-      "timestamp": 1720511737337
+      "filepath": "How to launch mkdocs blog.md",
+      "timestamp": 1722593783794
     },
     {
-      "filepath": "toefl Reading.md",
-      "timestamp": 1720511719385
->>>>>>> 815dd9e74625b3616952db8df9e5a1c821debc9a
+      "filepath": "_Dataviewer.md",
+      "timestamp": 1722593778268
     }
   ],
   "starredFileStore": [],

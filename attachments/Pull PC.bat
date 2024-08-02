@@ -1,5 +1,5 @@
 @echo off
 REM
-cd E:\Programms\Obsidian\Mind
+cd C:\Users\rpily\Obsidian\Mind
 git reset --hard HEAD
 git pull origin master
