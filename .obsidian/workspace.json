@@ -183,7 +183,6 @@
       "audio-recorder:Start/stop recording": false,
       "workspaces:Manage workspace layouts": false,
       "reference-map:Reference Map": false,
-      "local-backup:Run local backup": false,
       "tags-overview:Tags overview": false,
       "obsidian42-brat:BRAT": false,
       "obsidian-file-info-plugin:File Info Panel": false,
@@ -197,13 +196,20 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "db107f2222e8d3ac",
+  "active": "2b5a794e605d583f",
   "lastOpenFiles": [
+    "pdf/computer/Beej's guide to network programming.pdf",
+    "_Toggl.md",
+    "_Dataviewer.md",
+    "_Commit Push Github.md",
+    "_Anki.md",
+    "Conditional Sentences.md",
+    "Einstellung Effect.md",
+    "Recall the Material.md",
     "pdf/computer/But How Do It Know.pdf",
     "False Positive and False Negative.md",
     "pdf/hft",
     "pdf/hft/High-Frequency Trading.pdf",
-    "_Commit Push Github.md",
     "pdf/computer",
     "pdf/cpp",
     "pdf/c",
@@ -212,8 +218,6 @@
     "pdf/cpp/Real-Time C++.pdf",
     "How to Excel at Math and Science.md",
     "How to launch mkdocs blog.md",
-    "_Dataviewer.md",
-    "pdf/computer/TCP IP.pdf",
-    "pdf/computer/Operating Systems.pdf"
+    "pdf/computer/TCP IP.pdf"
   ]
 }

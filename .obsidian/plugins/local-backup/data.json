@@ -1,6 +1,6 @@
 {
   "versionValue": "0.1.7",
-  "startupBackupStatus": true,
+  "startupBackupStatus": false,
   "lifecycleValue": "3",
   "backupsPerDayValue": "3",
   "maxRetriesValue": "1",
@@ -8,12 +8,12 @@
   "winSavePathValue": "D:\\Obsidian",
   "unixSavePathValue": "D:\\Obsidian",
   "fileNameFormatValue": "Mind-Backup-%Y_%m_%d-%H_%M_%S",
-  "intervalBackupStatus": true,
+  "intervalBackupStatus": false,
   "backupFrequencyValue": "120",
   "callingArchiverStatus": false,
   "archiverTypeValue": "sevenZip",
   "archiveFileTypeValue": "zip",
   "archiverWinPathValue": "",
   "archiverUnixPathValue": "",
-  "showRibbonIcon": true
+  "showRibbonIcon": false
 }

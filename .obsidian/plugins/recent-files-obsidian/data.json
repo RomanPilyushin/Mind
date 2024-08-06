@@ -5,6 +5,30 @@
       "path": "_Commit Push Github.md"
     },
     {
+      "basename": "_Toggl",
+      "path": "_Toggl.md"
+    },
+    {
+      "basename": "_Dataviewer",
+      "path": "_Dataviewer.md"
+    },
+    {
+      "basename": "_Anki",
+      "path": "_Anki.md"
+    },
+    {
+      "basename": "Conditional Sentences",
+      "path": "Conditional Sentences.md"
+    },
+    {
+      "basename": "Einstellung Effect",
+      "path": "Einstellung Effect.md"
+    },
+    {
+      "basename": "Recall the Material",
+      "path": "Recall the Material.md"
+    },
+    {
       "basename": "False Positive and False Negative",
       "path": "False Positive and False Negative.md"
     },
@@ -31,10 +55,6 @@
     {
       "basename": "How to launch mkdocs blog",
       "path": "How to launch mkdocs blog.md"
-    },
-    {
-      "basename": "_Dataviewer",
-      "path": "_Dataviewer.md"
     },
     {
       "basename": "toefl Writing",
@@ -105,10 +125,6 @@
       "path": "The bid and ask prices.md"
     },
     {
-      "basename": "_Toggl",
-      "path": "_Toggl.md"
-    },
-    {
       "basename": "Rust Template",
       "path": "templates/code/Rust Template.md"
     },
@@ -169,10 +185,6 @@
       "path": "templates/toefl/Speaking 1 Independent.md"
     },
     {
-      "basename": "_Anki",
-      "path": "_Anki.md"
-    },
-    {
       "basename": "Algorithmic Puzzles",
       "path": "pdf/math/Algorithmic Puzzles.pdf"
     },
@@ -187,18 +199,6 @@
     {
       "basename": "The Princeton Companion To Applied Mathematics",
       "path": "pdf/math/The Princeton Companion To Applied Mathematics.pdf"
-    },
-    {
-      "basename": "The Princeton Companion To Mathematics",
-      "path": "pdf/math/The Princeton Companion To Mathematics.pdf"
-    },
-    {
-      "basename": "Speaking 3 Integrated Read Listen",
-      "path": "templates/toefl/Speaking 3 Integrated Read Listen.md"
-    },
-    {
-      "basename": "Speaking 4 Integrated Listen",
-      "path": "templates/toefl/Speaking 4 Integrated Listen.md"
     }
   ],
   "omittedPaths": [],
