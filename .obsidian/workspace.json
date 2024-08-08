@@ -26,6 +26,32 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "Variables - Rust.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3f26c5be3c674ac3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Pointers - Cpp.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c6dbd849c52b3c98",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "_Commit Push.md",
                 "mode": "source",
                 "backlinks": true,
@@ -34,7 +60,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -210,13 +236,15 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "b268c5d2006a5511",
+  "active": "c6dbd849c52b3c98",
   "lastOpenFiles": [
+    "Pointers vs References - Cpp.md",
+    "Pointers - Cpp.md",
+    "Variables - Rust.md",
+    "_Commit Push.md",
     "Conditional Sentences.md",
     "The Present Tense - das Präsens.md",
-    "_Commit Push.md",
     "Launch Mkdocs.md",
-    "Rust Variables.md",
     "Recall the Material.md",
     "_Dataviewer.md",
     "_Toggl.md",

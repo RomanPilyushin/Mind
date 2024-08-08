@@ -5,6 +5,18 @@
       "path": "_Commit Push.md"
     },
     {
+      "basename": "Pointers vs References - Cpp",
+      "path": "Pointers vs References - Cpp.md"
+    },
+    {
+      "basename": "Pointers - Cpp",
+      "path": "Pointers - Cpp.md"
+    },
+    {
+      "basename": "Variables - Rust",
+      "path": "Variables - Rust.md"
+    },
+    {
       "basename": "Conditional Sentences",
       "path": "Conditional Sentences.md"
     },
@@ -15,10 +27,6 @@
     {
       "basename": "Launch Mkdocs",
       "path": "Launch Mkdocs.md"
-    },
-    {
-      "basename": "Rust Variables",
-      "path": "Rust Variables.md"
     },
     {
       "basename": "Recall the Material",
@@ -191,14 +199,6 @@
     {
       "basename": "Speaking 1 Independent",
       "path": "templates/toefl/Speaking 1 Independent.md"
-    },
-    {
-      "basename": "Algorithmic Puzzles",
-      "path": "pdf/math/Algorithmic Puzzles.pdf"
-    },
-    {
-      "basename": "How to Study as a Mathematics Major",
-      "path": "pdf/math/How to Study as a Mathematics Major.pdf"
     }
   ],
   "omittedPaths": [],
