@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "ad5b61d4e6041928",
+        "id": "18a2e2d96904a979",
         "type": "tabs",
         "children": [
           {
-            "id": "db107f2222e8d3ac",
+            "id": "fd705cba474f0bb4",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -162,8 +162,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "horizontal",
@@ -196,13 +195,15 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "2b5a794e605d583f",
+  "active": "fd705cba474f0bb4",
   "lastOpenFiles": [
+    "pdf/competitive programming/USA Comp Olympiad.pdf",
+    "_Anki.md",
+    "pdf/chess/Logical Chess.pdf",
+    "_Commit Push Github.md",
     "pdf/computer/Beej's guide to network programming.pdf",
     "_Toggl.md",
     "_Dataviewer.md",
-    "_Commit Push Github.md",
-    "_Anki.md",
     "Conditional Sentences.md",
     "Einstellung Effect.md",
     "Recall the Material.md",
@@ -214,10 +215,7 @@
     "pdf/cpp",
     "pdf/c",
     "pdf/embedded/Bare-metal programming for ARM.pdf",
-    "pdf/c/Beej’s Guide to C Programming.pdf",
-    "pdf/cpp/Real-Time C++.pdf",
     "How to Excel at Math and Science.md",
-    "How to launch mkdocs blog.md",
-    "pdf/computer/TCP IP.pdf"
+    "How to launch mkdocs blog.md"
   ]
 }

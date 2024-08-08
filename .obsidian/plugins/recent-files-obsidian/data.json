@@ -5,16 +5,24 @@
       "path": "_Commit Push Github.md"
     },
     {
+      "basename": "USA Comp Olympiad",
+      "path": "pdf/competitive programming/USA Comp Olympiad.pdf"
+    },
+    {
+      "basename": "_Anki",
+      "path": "_Anki.md"
+    },
+    {
+      "basename": "Logical Chess",
+      "path": "pdf/chess/Logical Chess.pdf"
+    },
+    {
       "basename": "_Toggl",
       "path": "_Toggl.md"
     },
     {
       "basename": "_Dataviewer",
       "path": "_Dataviewer.md"
-    },
-    {
-      "basename": "_Anki",
-      "path": "_Anki.md"
     },
     {
       "basename": "Conditional Sentences",
@@ -73,10 +81,6 @@
       "path": "pdf/computer/Computer Architecture.pdf"
     },
     {
-      "basename": "Logical Chess",
-      "path": "pdf/chess/Logical Chess.pdf"
-    },
-    {
       "basename": "How To Reassess Your Chess",
       "path": "pdf/chess/How To Reassess Your Chess.pdf"
     },
@@ -95,10 +99,6 @@
     {
       "basename": "Linux System Programming",
       "path": "pdf/linux/Linux System Programming.pdf"
-    },
-    {
-      "basename": "USA Comp Olympiad",
-      "path": "pdf/competitive programming/USA Comp Olympiad.pdf"
     },
     {
       "basename": "Principles of Algorithmic Problem Solving",

@@ -85,7 +85,7 @@ settings:
     -
         id: toolbar
         title: Toolbars
-        description: 'Styles for standard toolbars and items'
+        description: 'Styles for standard toolbars'
         type: heading
         level: 1
         collapsed: true
@@ -97,7 +97,7 @@ settings:
         collapsed: true
     -
         id: cg-nt-tbar-bg-color
-        title: 'Toolbar: Background color'
+        title: 'Background color'
         type: variable-themed-color
         opacity: true
         format: hex
@@ -105,40 +105,8 @@ settings:
         default-dark: '#'
     -
         id: cg-nt-tbar-border-color
-        title: 'Toolbar: Border color'
-        description: 'Toolbar: Top + Bottom borders'
-        type: variable-themed-color
-        opacity: true
-        format: hex
-        default-light: '#'
-        default-dark: '#'
-    -
-        id: cg-nt-item-bg-color-hover
-        title: 'Items: Background color (on hover)'
-        type: variable-themed-color
-        opacity: true
-        format: hex
-        default-light: '#'
-        default-dark: '#'
-    -
-        id: cg-nt-item-button-bg-color
-        title: 'Items: Button style: Background color'
-        type: variable-themed-color
-        opacity: true
-        format: hex
-        default-light: '#'
-        default-dark: '#'
-    -
-        id: cg-nt-item-text-color
-        title: 'Items: Text color'
-        type: variable-themed-color
-        opacity: true
-        format: hex
-        default-light: '#'
-        default-dark: '#'
-    -
-        id: cg-nt-item-text-color-hover
-        title: 'Items: Text color (on hover)'
+        title: 'Border color'
+        description: 'Top + Bottom borders'
         type: variable-themed-color
         opacity: true
         format: hex
@@ -184,30 +152,6 @@ settings:
         default: 0
         format: em
     -
-        id: cg-nt-item-font-size
-        title: 'Items: Font size (in em units)'
-        type: variable-number
-        default: 0.875
-        format: em
-    -
-        id: cg-nt-item-icon-size
-        title: 'Items: Icon size (in px units)'
-        type: variable-number
-        default: 18
-        format: px
-    -
-        id: cg-nt-item-padding-x
-        title: 'Items: Left + Right padding (in em units)'
-        type: variable-number
-        default: 0.75
-        format: em
-    -
-        id: cg-nt-item-padding-y
-        title: 'Items: Top + Bottom padding (in em units)'
-        type: variable-number
-        default: 0.5
-        format: em
-    -
         id: toolbar-styles
         title: '↳ 😎 Style'
         type: heading
@@ -215,25 +159,139 @@ settings:
         collapsed: true
     -    
         id: cg-nt-tbar-border-radius
-        title: 'Toolbar: Border radius (in px units)'
+        title: 'Border radius (in px units)'
         type: variable-number
         default: 0
         format: px
     -
-        id: cg-nt-item-border-radius
-        title: 'Items: Border radius (in px units)'
-        type: variable-number
-        default: 5
-        format: px        
-    -
         id: cg-nt-tbar-inactive-opacity
-        title: 'Toolbar: Inactive opacity'
+        title: 'Inactive opacity'
         description: 'When focus is in another tab, dim the toolbar'
         type: variable-number-slider
         default: 0.8
         min: 0
         max: 1
         step: 0.05
+    -
+        id: item
+        title: Items
+        description: 'Styles for toolbar items'
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: item-colors
+        title: '↳ 🎨 Colors'
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: cg-nt-item-bg-color-hover
+        title: 'Background color (on hover)'
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: cg-nt-item-button-bg-color
+        title: 'Background color (for button style)'
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: cg-nt-item-text-color
+        title: 'Text color'
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: cg-nt-item-text-color-hover
+        title: 'Text color (on hover)'
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: item-sizing-spacing
+        title: '↳ 📐 Sizing and Spacing'
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: cg-nt-item-font-size
+        title: 'Font size (in em units)'
+        type: variable-number
+        default: 0.875
+        format: em
+    -
+        id: cg-nt-item-icon-size
+        title: 'Icon size (in px units)'
+        type: variable-number
+        default: 18
+        format: px
+    -
+        id: cg-nt-item-padding-x
+        title: 'Left + Right padding (in em units)'
+        type: variable-number
+        default: 0.75
+        format: em
+    -
+        id: cg-nt-item-padding-y
+        title: 'Top + Bottom padding (in em units)'
+        type: variable-number
+        default: 0.5
+        format: em
+    -
+        id: item-styles
+        title: '↳ 😎 Style'
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: cg-nt-item-border-radius
+        title: 'Border radius (in px units)'
+        type: variable-number
+        default: 5
+        format: px
+    -
+        id: sep
+        title: Separators
+        description: 'Styles for toolbar separators'
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: cg-nt-item-sep-color
+        title: '🎨 Color'
+        type: variable-themed-color
+        opacity: true
+        format: hex        
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: cg-nt-item-sep-margin-x
+        title: '📐 Left + Right margin (in em units)'
+        type: variable-number
+        default: 0.25
+        format: em
+    -
+        id: cg-nt-item-sep-margin-y
+        title: '📐 Top + Bottom margin (in em units)'
+        type: variable-number
+        default: 0.25
+        format: em
+    -
+        id: cg-nt-item-sep-width
+        title: '📐 Width'
+        type: variable-number
+        default: 1
+        format: px
     -
         id: toolbar-fab-styles
         title: 'Floating Button'
@@ -249,7 +307,15 @@ settings:
         collapsed: true
     -
         id: cg-nt-fab-bg-color
-        title: Background color
+        title: Background color on mobile
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: cg-nt-fab-bg-color-desktop
+        title: Background color on desktop
         type: variable-themed-color
         opacity: true
         format: hex
@@ -257,7 +323,15 @@ settings:
         default-dark: '#'
     -
         id: cg-nt-fab-bg-color-hover
-        title: Background color (on press)
+        title: Background color on mobile (on press)
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: cg-nt-fab-bg-color-hover-desktop
+        title: Background color on desktop (on hover)
         type: variable-themed-color
         opacity: true
         format: hex
@@ -265,7 +339,15 @@ settings:
         default-dark: '#'
     -
         id: cg-nt-fab-icon-color
-        title: Icon color
+        title: Icon color on mobile
+        type: variable-themed-color
+        opacity: true
+        format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: cg-nt-fab-icon-color-desktop
+        title: Icon color on desktop
         type: variable-themed-color
         opacity: true
         format: hex
@@ -279,28 +361,28 @@ settings:
         collapsed: true
     -
         id: cg-nt-fab-pos-x
-        title: Button X position on mobile
+        title: X position on mobile
         description: As a percentage of the editor's width, from the left edge (reversed when button is on right).
         type: variable-number
         default: 82
         format: vw
     -
         id: cg-nt-fab-pos-y
-        title: Button Y position on mobile
+        title: Y position on mobile
         description: As a percentage of the editor's height, from the top edge.
         type: variable-number
         default: 90
         format: vh
     -
         id: cg-nt-fab-pos-x-desktop
-        title: Button X position on desktop (in em units)
+        title: X position on desktop (in em units)
         description: Distance from the edge of the editor view.
         type: variable-number
         default: 4
         format: em
     -
         id: cg-nt-fab-pos-y-desktop
-        title: Button Y position on desktop
+        title: Y position on desktop
         description: As a percentage of the editor's height, from the top edge.
         type: variable-number
         default: 90
@@ -313,20 +395,39 @@ settings:
         collapsed: true
     -
         id: cg-nt-fab-padding
-        title: Button padding (in px units)
+        title: Padding on mobile (in px units)
+        description: Spacing around the icon.
+        type: variable-number
+        default: 12
+        format: px
+    -
+        id: cg-nt-fab-padding-desktop
+        title: Padding on desktop (in px units)
         description: Spacing around the icon.
         type: variable-number
         default: 12
         format: px
     -
         id: cg-nt-fab-icon-size
-        title: Icon size (in px units)
+        title: Icon size on mobile (in px units)
+        type: variable-number
+        default: 24
+        format: px
+    -
+        id: cg-nt-fab-icon-size-desktop
+        title: Icon size on desktop (in px units)
         type: variable-number
         default: 24
         format: px
     -
         id: cg-nt-fab-icon-stroke-width
-        title: Icon stroke width (in px units)
+        title: Icon stroke width on mobile (in px units)
+        type: variable-number
+        default: 1.8
+        format: px
+    -
+        id: cg-nt-fab-icon-stroke-width-desktop
+        title: Icon stroke width on desktop (in px units)
         type: variable-number
         default: 1.8
         format: px
@@ -338,11 +439,27 @@ settings:
         collapsed: true
     -
         id: cg-nt-fab-border-radius
-        title: Border radius (in px units)
+        title: Border radius on mobile (in px units)
         description: 'How rounded the button is. The higher the number the more rounded. (Plugin defaults: Android = 16, iOS = 999)'
         type: variable-number
         default: 0
         format: px
+    -
+        id: cg-nt-fab-border-radius-desktop
+        title: Border radius on desktop (in px units)
+        description: 'How rounded the button is. The higher the number the more rounded. (Plugin defaults: Android = 16, iOS = 999)'
+        type: variable-number
+        default: 0
+        format: px
+    -
+        id: cg-nt-fab-inactive-opacity
+        title: 'Inactive opacity'
+        description: 'When focus is in another tab, dim the floatinb button'
+        type: variable-number-slider
+        default: 0.7
+        min: 0
+        max: 1
+        step: 0.05
     -
         id: toolbar-menus
         title: 'Item Menus'
@@ -444,16 +561,24 @@ body {
     --cg-nt-tbar-top-sticky-pos-desktop: calc(var(--header-height) * -1);
     --cg-nt-tbar-top-sticky-pos-mobile: -1rem;
     --cg-nt-fab-bg-color: var(--interactive-normal);
+    --cg-nt-fab-bg-color-desktop: var(--interactive-normal);
     --cg-nt-fab-bg-color-hover: var(--interactive-hover);
+    --cg-nt-fab-bg-color-hover-desktop: var(--interactive-hover);
+    --cg-nt-fab-inactive-opacity: 0.7;
     --cg-nt-fab-pos-x: 82vw;
     --cg-nt-fab-pos-y: 90vh;
     --cg-nt-fab-pos-x-desktop: 4em;
     --cg-nt-fab-pos-y-desktop: 90vh;
     --cg-nt-fab-icon-color: var(--icon-color);
+    --cg-nt-fab-icon-color-desktop: var(--icon-color);
     --cg-nt-fab-icon-size: var(--icon-l);
+    --cg-nt-fab-icon-size-desktop: 24px;
     --cg-nt-fab-icon-stroke-width: var(--icon-l-stroke-width);
+    --cg-nt-fab-icon-stroke-width-desktop: var(--icon-l-stroke-width);
     --cg-nt-fab-border-radius: 999px;
+    --cg-nt-fab-border-radius-desktop: 999px;
     --cg-nt-fab-padding: calc(var(--icon-l) / 2);
+    --cg-nt-fab-padding-desktop: calc(var(--icon-l) / 1.5);
     --cg-nt-item-bg-color-hover: var(--background-modifier-hover);
     --cg-nt-item-border-radius: var(--button-radius);
     --cg-nt-item-button-bg-color: var(--interactive-normal);
@@ -461,6 +586,10 @@ body {
     --cg-nt-item-icon-size: var(--icon-size);
     --cg-nt-item-padding-x: 0.75em;
     --cg-nt-item-padding-y: 0.5em;
+    --cg-nt-item-sep-color: var(--background-modifier-border);
+    --cg-nt-item-sep-width: 1px;
+    --cg-nt-item-sep-margin-x: 0.25em;
+    --cg-nt-item-sep-margin-y: 0.25em;
     --cg-nt-item-text-color: var(--metadata-label-text-color);
     --cg-nt-item-text-color-hover: var(--text-normal);
     --cg-nt-menu-bg-color: var(--background-secondary);
@@ -556,7 +685,7 @@ body {
             padding: 0;
             margin: 0;
             
-            & div.list-bullet {
+            & .list-bullet {
                 display: none; /* remove for reading mode */
             }
             &.hide {
@@ -590,6 +719,21 @@ body {
             &::before {
                 content: none !important; /* removes decoration added by ITS theme */
             }
+        }
+
+        & li:has(> data[data-ntb-sep]),
+        & li:has(> a.external-link + data[data-ntb-sep]) {
+            border-left: var(--cg-nt-item-sep-width) solid var(--cg-nt-item-sep-color);
+            margin: var(--cg-nt-item-sep-margin-y) var(--cg-nt-item-sep-margin-x);
+            width: 1px;
+            & a:hover {
+                background: none;
+            }
+        }
+        & li:has(> data[data-ntb-break]),
+        & li:has(> a.external-link + data[data-ntb-break]) {
+            flex-basis: 100%;
+            height: 0;
         }
 
         & a, span.external-link {
@@ -835,25 +979,46 @@ body {
             right: var(--cg-nt-fab-pos-x);
         }
     }
+    /* user feedback that toolbar interaction is not available; workaround for #69 */
+    &:not(.is-focused &), &:not(.mod-active &) {
+        opacity: var(--cg-nt-fab-inactive-opacity);
+    }
 }
 
 .cg-note-toolbar-fab {
-    padding: var(--cg-nt-fab-padding) !important;
-    border-radius: var(--cg-nt-fab-border-radius);
+    padding: var(--cg-nt-fab-padding-desktop) !important;
+    border-radius: var(--cg-nt-fab-border-radius-desktop);
+    .is-mobile & {
+        padding: var(--cg-nt-fab-padding) !important;
+        border-radius: var(--cg-nt-fab-border-radius);
+    }
     height: auto !important;
     aspect-ratio: 1;
     /* box-shadow: var(--input-shadow) !important; */
-    background-color: var(--cg-nt-fab-bg-color) !important;
-    color: var(--cg-nt-fab-icon-color);
+    background-color: var(--cg-nt-fab-bg-color-desktop) !important;
+    color: var(--cg-nt-fab-icon-color-desktop);
+    .is-mobile & {
+        background-color: var(--cg-nt-fab-bg-color) !important;
+        color: var(--cg-nt-fab-icon-color);        
+    }
     -webkit-tap-highlight-color: transparent;
     &:is(:active, :hover, :focus-visible) {
-        color: var(--cg-nt-fab-icon-color) !important;
-        background-color: var(--cg-nt-fab-bg-color-hover) !important;
+        color: var(--cg-nt-fab-icon-color-desktop) !important;
+        background-color: var(--cg-nt-fab-bg-color-hover-desktop) !important;
+        .is-mobile & {
+            color: var(--cg-nt-fab-icon-color) !important;
+            background-color: var(--cg-nt-fab-bg-color-hover) !important;
+        }
     }
     & > svg {
-        inline-size: var(--cg-nt-fab-icon-size);
-        block-size: var(--cg-nt-fab-icon-size);
-        stroke-width: var(--cg-nt-fab-icon-stroke-width);
+        inline-size: var(--cg-nt-fab-icon-size-desktop);
+        block-size: var(--cg-nt-fab-icon-size-desktop);
+        stroke-width: var(--cg-nt-fab-icon-stroke-width-desktop);
+        .is-mobile & {
+            inline-size: var(--cg-nt-fab-icon-size);
+            block-size: var(--cg-nt-fab-icon-size);    
+            stroke-width: var(--cg-nt-fab-icon-stroke-width);
+        }
         @media (prefers-reduced-motion: no-preference) {
           will-change: transform;
           transition: transform .5s var(--ease-squish-3);
@@ -1016,6 +1181,23 @@ body {
         padding-inline-start: 0;
         margin-inline-end: 0.25em;
     }
+    &[data-item-type="break"],
+    &[data-item-type="separator"] {
+        & span {
+            height: 1em;
+            width: 100%;
+        }
+        & hr {
+            margin: 0;
+            width: 100%
+        }
+    }
+    &[data-item-type="separator"] hr {
+        border: dashed 1px var(--color-base-40);
+    }
+    &[data-item-type="break"] hr {
+        border: solid 1px var(--color-base-50);
+    }
     & span {
         display: flex;
         align-items: center;
@@ -1142,6 +1324,25 @@ body {
             transform: rotate(-90deg);
             transition: 0.1s;
         }
+    }
+}
+
+.note-toolbar-setting-items-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    & .setting-item {
+        border-top: none;
+        padding: 0 !important;
+        & .setting-item-info {
+            display: none;
+        }
+        & .setting-item-control {
+            gap: var(--size-4-4);
+        }
+    }
+    & svg {
+        color: var(--interactive-accent);
     }
 }
 
@@ -1451,6 +1652,15 @@ body {
                     font-size: var(--font-smaller);
                 }
             }
+        }
+    }
+    &[data-item-type="break"],
+    &[data-item-type="separator"] {
+        padding-top: 0 !important;
+        & span {
+            align-content: center;
+            color: var(--text-muted);
+            margin-left: 0.25em;
         }
     }
 }
