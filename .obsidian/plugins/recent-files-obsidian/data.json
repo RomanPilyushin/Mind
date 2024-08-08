@@ -5,38 +5,6 @@
       "path": "_Commit Push Github.md"
     },
     {
-      "basename": "USA Comp Olympiad",
-      "path": "pdf/competitive programming/USA Comp Olympiad.pdf"
-    },
-    {
-      "basename": "_Anki",
-      "path": "_Anki.md"
-    },
-    {
-      "basename": "Logical Chess",
-      "path": "pdf/chess/Logical Chess.pdf"
-    },
-    {
-      "basename": "_Toggl",
-      "path": "_Toggl.md"
-    },
-    {
-      "basename": "_Dataviewer",
-      "path": "_Dataviewer.md"
-    },
-    {
-      "basename": "Conditional Sentences",
-      "path": "Conditional Sentences.md"
-    },
-    {
-      "basename": "Einstellung Effect",
-      "path": "Einstellung Effect.md"
-    },
-    {
-      "basename": "Recall the Material",
-      "path": "Recall the Material.md"
-    },
-    {
       "basename": "False Positive and False Negative",
       "path": "False Positive and False Negative.md"
     },
@@ -65,6 +33,10 @@
       "path": "How to launch mkdocs blog.md"
     },
     {
+      "basename": "_Dataviewer",
+      "path": "_Dataviewer.md"
+    },
+    {
       "basename": "toefl Writing",
       "path": "toefl Writing.md"
     },
@@ -79,6 +51,10 @@
     {
       "basename": "Computer Architecture",
       "path": "pdf/computer/Computer Architecture.pdf"
+    },
+    {
+      "basename": "Logical Chess",
+      "path": "pdf/chess/Logical Chess.pdf"
     },
     {
       "basename": "How To Reassess Your Chess",
@@ -99,6 +75,10 @@
     {
       "basename": "Linux System Programming",
       "path": "pdf/linux/Linux System Programming.pdf"
+    },
+    {
+      "basename": "USA Comp Olympiad",
+      "path": "pdf/competitive programming/USA Comp Olympiad.pdf"
     },
     {
       "basename": "Principles of Algorithmic Problem Solving",
@@ -123,6 +103,10 @@
     {
       "basename": "The bid and ask prices",
       "path": "The bid and ask prices.md"
+    },
+    {
+      "basename": "_Toggl",
+      "path": "_Toggl.md"
     },
     {
       "basename": "Rust Template",
@@ -185,6 +169,10 @@
       "path": "templates/toefl/Speaking 1 Independent.md"
     },
     {
+      "basename": "_Anki",
+      "path": "_Anki.md"
+    },
+    {
       "basename": "Algorithmic Puzzles",
       "path": "pdf/math/Algorithmic Puzzles.pdf"
     },
@@ -199,6 +187,18 @@
     {
       "basename": "The Princeton Companion To Applied Mathematics",
       "path": "pdf/math/The Princeton Companion To Applied Mathematics.pdf"
+    },
+    {
+      "basename": "The Princeton Companion To Mathematics",
+      "path": "pdf/math/The Princeton Companion To Mathematics.pdf"
+    },
+    {
+      "basename": "Speaking 3 Integrated Read Listen",
+      "path": "templates/toefl/Speaking 3 Integrated Read Listen.md"
+    },
+    {
+      "basename": "Speaking 4 Integrated Listen",
+      "path": "templates/toefl/Speaking 4 Integrated Listen.md"
     }
   ],
   "omittedPaths": [],

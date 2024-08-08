@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "18a2e2d96904a979",
+        "id": "ad5b61d4e6041928",
         "type": "tabs",
         "children": [
           {
-            "id": "fd705cba474f0bb4",
+            "id": "db107f2222e8d3ac",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -50,7 +50,7 @@
               "type": "search",
               "state": {
                 "query": "",
-                "matchingCase": true,
+                "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -162,7 +162,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -182,6 +183,7 @@
       "audio-recorder:Start/stop recording": false,
       "workspaces:Manage workspace layouts": false,
       "reference-map:Reference Map": false,
+      "local-backup:Run local backup": false,
       "tags-overview:Tags overview": false,
       "obsidian42-brat:BRAT": false,
       "obsidian-file-info-plugin:File Info Panel": false,
@@ -195,19 +197,12 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "fd705cba474f0bb4",
+  "active": "db107f2222e8d3ac",
   "lastOpenFiles": [
-    "pdf/competitive programming/USA Comp Olympiad.pdf",
-    "_Anki.md",
-    "pdf/chess/Logical Chess.pdf",
-    "_Commit Push Github.md",
-    "pdf/computer/Beej's guide to network programming.pdf",
-    "_Toggl.md",
-    "_Dataviewer.md",
-    "Conditional Sentences.md",
-    "Einstellung Effect.md",
-    "Recall the Material.md",
+    "How to add files, commit, and push to Github using console.md",
     "pdf/computer/But How Do It Know.pdf",
+    "pdf/computer/Beej's guide to network programming.pdf",
+    "_Commit Push Github.md",
     "False Positive and False Negative.md",
     "pdf/hft",
     "pdf/hft/High-Frequency Trading.pdf",
@@ -215,7 +210,10 @@
     "pdf/cpp",
     "pdf/c",
     "pdf/embedded/Bare-metal programming for ARM.pdf",
+    "pdf/c/Beej’s Guide to C Programming.pdf",
+    "pdf/cpp/Real-Time C++.pdf",
     "How to Excel at Math and Science.md",
-    "How to launch mkdocs blog.md"
+    "How to launch mkdocs blog.md",
+    "_Dataviewer.md"
   ]
 }
