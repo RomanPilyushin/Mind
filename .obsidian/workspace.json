@@ -13,14 +13,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Commit Push Github.md",
+                "file": "_Commit Push.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b268c5d2006a5511",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_Commit Push.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -94,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_Commit Push Github.md",
+                "file": "_Commit Push.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +125,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_Commit Push Github.md",
+                "file": "_Commit Push.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_Commit Push Github.md"
+                "file": "_Commit Push.md"
               }
             }
           },
@@ -183,7 +197,6 @@
       "audio-recorder:Start/stop recording": false,
       "workspaces:Manage workspace layouts": false,
       "reference-map:Reference Map": false,
-      "local-backup:Run local backup": false,
       "tags-overview:Tags overview": false,
       "obsidian42-brat:BRAT": false,
       "obsidian-file-info-plugin:File Info Panel": false,
@@ -197,12 +210,20 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "db107f2222e8d3ac",
+  "active": "b268c5d2006a5511",
   "lastOpenFiles": [
+    "Conditional Sentences.md",
+    "The Present Tense - das Präsens.md",
+    "_Commit Push.md",
+    "Launch Mkdocs.md",
+    "Rust Variables.md",
+    "Recall the Material.md",
+    "_Dataviewer.md",
+    "_Toggl.md",
+    "_Anki.md",
     "How to add files, commit, and push to Github using console.md",
     "pdf/computer/But How Do It Know.pdf",
     "pdf/computer/Beej's guide to network programming.pdf",
-    "_Commit Push Github.md",
     "False Positive and False Negative.md",
     "pdf/hft",
     "pdf/hft/High-Frequency Trading.pdf",
@@ -213,7 +234,6 @@
     "pdf/c/Beej’s Guide to C Programming.pdf",
     "pdf/cpp/Real-Time C++.pdf",
     "How to Excel at Math and Science.md",
-    "How to launch mkdocs blog.md",
-    "_Dataviewer.md"
+    "How to launch mkdocs blog.md"
   ]
 }
