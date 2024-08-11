@@ -4,50 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "ad5b61d4e6041928",
+        "id": "e086812b8c9c56fb",
         "type": "tabs",
         "children": [
           {
-            "id": "db107f2222e8d3ac",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Commit Push.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "b268c5d2006a5511",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Variables - Rust.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3f26c5be3c674ac3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Pointers - Cpp.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c6dbd849c52b3c98",
+            "id": "bd177c4b00e8a0bf",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -59,8 +20,7 @@
               }
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -236,12 +196,30 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "c6dbd849c52b3c98",
+  "active": "bd177c4b00e8a0bf",
   "lastOpenFiles": [
-    "Pointers vs References - Cpp.md",
+    "Insertion Sort.md",
+    "attachments/Insertion Sort-13.png",
+    "attachments/Insertion Sort-12.png",
+    "attachments/Insertion Sort-11.png",
+    "attachments/Insertion Sort-10.png",
+    "attachments/Insertion Sort-9.png",
+    "attachments/Insertion Sort-8.png",
+    "attachments/Insertion Sort-7.png",
+    "attachments/Insertion Sort-6.png",
+    "attachments/Insertion Sort-5.png",
+    "attachments/Insertion Sort-4.png",
+    "Selection Sort.md",
+    "Merge Sort.md",
+    "Bubble Sort.md",
+    "attachments/Bash Scripts",
+    "Quick Sort.md",
+    "media",
+    "Untitled 1.md",
+    "_Commit Push.md",
     "Pointers - Cpp.md",
     "Variables - Rust.md",
-    "_Commit Push.md",
+    "Pointers vs References - Cpp.md",
     "Conditional Sentences.md",
     "The Present Tense - das Präsens.md",
     "Launch Mkdocs.md",
@@ -259,8 +237,6 @@
     "pdf/cpp",
     "pdf/c",
     "pdf/embedded/Bare-metal programming for ARM.pdf",
-    "pdf/c/Beej’s Guide to C Programming.pdf",
-    "pdf/cpp/Real-Time C++.pdf",
     "How to Excel at Math and Science.md",
     "How to launch mkdocs blog.md"
   ]

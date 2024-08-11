@@ -5,8 +5,44 @@
       "path": "_Commit Push.md"
     },
     {
-      "basename": "Pointers vs References - Cpp",
-      "path": "Pointers vs References - Cpp.md"
+      "basename": "Insertion Sort",
+      "path": "Insertion Sort.md"
+    },
+    {
+      "basename": "Selection Sort",
+      "path": "Selection Sort.md"
+    },
+    {
+      "basename": "Merge Sort",
+      "path": "Merge Sort.md"
+    },
+    {
+      "basename": "Bubble Sort",
+      "path": "Bubble Sort.md"
+    },
+    {
+      "basename": "Quick Sort",
+      "path": "Quick Sort.md"
+    },
+    {
+      "basename": "asteroidnotes-1024x719",
+      "path": "media/asteroidnotes-1024x719.jpg"
+    },
+    {
+      "basename": "Taking_Notes_for_the_TOEFL_integrated_essay",
+      "path": "media/Taking_Notes_for_the_TOEFL_integrated_essay.png"
+    },
+    {
+      "basename": "speaking4notes-1024x716",
+      "path": "media/speaking4notes-1024x716.jpg"
+    },
+    {
+      "basename": "speak2notesb-1024x692",
+      "path": "media/speak2notesb-1024x692.jpg"
+    },
+    {
+      "basename": "convergentfinallecdture-1024x712",
+      "path": "media/convergentfinallecdture-1024x712.jpg"
     },
     {
       "basename": "Pointers - Cpp",
@@ -15,6 +51,10 @@
     {
       "basename": "Variables - Rust",
       "path": "Variables - Rust.md"
+    },
+    {
+      "basename": "Pointers vs References - Cpp",
+      "path": "Pointers vs References - Cpp.md"
     },
     {
       "basename": "Conditional Sentences",
@@ -159,46 +199,6 @@
     {
       "basename": "Writing 2 Academic Discussion",
       "path": "templates/toefl/Writing 2 Academic Discussion.md"
-    },
-    {
-      "basename": "Diffuse mode",
-      "path": "Diffuse mode.md"
-    },
-    {
-      "basename": "Conditional sentences",
-      "path": "Conditional sentences.md"
-    },
-    {
-      "basename": "Einstellung effect",
-      "path": "Einstellung effect.md"
-    },
-    {
-      "basename": "Optiver",
-      "path": "Optiver.md"
-    },
-    {
-      "basename": "How to excel at math and science",
-      "path": "How to excel at math and science.md"
-    },
-    {
-      "basename": "MathJax",
-      "path": "templates/MathJax.md"
-    },
-    {
-      "basename": "Daily Note",
-      "path": "templates/Daily Note.md"
-    },
-    {
-      "basename": "Conceptual Note",
-      "path": "templates/Conceptual Note.md"
-    },
-    {
-      "basename": "Chess Template",
-      "path": "templates/Chess Template.md"
-    },
-    {
-      "basename": "Speaking 1 Independent",
-      "path": "templates/toefl/Speaking 1 Independent.md"
     }
   ],
   "omittedPaths": [],

@@ -24,7 +24,6 @@
   "chesser-obsidian",
   "obsidian-admonition",
   "execute-code",
-  "media-extended",
   "url-into-selection",
   "3d-graph",
   "find-unlinked-files",
@@ -53,5 +52,6 @@
   "obsidian-pandoc",
   "smart-second-brain",
   "smart-connections",
-  "code-styler"
+  "code-styler",
+  "obsidian-image-toolkit"
 ]

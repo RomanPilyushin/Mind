@@ -28,11 +28,11 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 
 If you understand how the sources are structured, note-taking should be easy.  You can do something like this:
 
-[![Taking Notes for the TOEFL integrated essay](https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_399,h_376/https://www.toeflresources.com/wp-content/uploads/2019/11/notetaking.png)](https://www.toeflresources.com/wp-content/uploads/2019/11/notetaking.png)
+[![Taking Notes for the TOEFL integrated essay](media/Taking_Notes_for_the_TOEFL_integrated_essay.png)](https://www.toeflresources.com/wp-content/uploads/2019/11/notetaking.png)
 
 Here are my notes from the above samples (colonizing asteroids):
 
-[![](https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024,h_719/https://www.toeflresources.com/wp-content/uploads/2022/12/asteroidnotes-1024x719.jpg)](https://www.toeflresources.com/wp-content/uploads/2022/12/asteroidnotes-scaled.jpg)
+[![](media/asteroidnotes-1024x719.jpg)](https://www.toeflresources.com/wp-content/uploads/2022/12/asteroidnotes-scaled.jpg)
 
 **Note-Taking Tips**
 

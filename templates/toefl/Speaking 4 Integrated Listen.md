@@ -33,7 +33,7 @@ _timerUID:59879c23-545c-4b25-87e1-32af1a676ff6
 - Use short forms to take notes faster.
 - Use “x” to indicate negatives (don’t, can’t, won’t, never)
 
- [![](https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024,h_716/https://www.toeflresources.com/wp-content/uploads/2023/03/speaking4notes-1024x716.jpg)](https://www.toeflresources.com/wp-content/uploads/2023/03/speaking4notes-scaled.jpg)
+ [![](media/speaking4notes-1024x716.jpg)](https://www.toeflresources.com/wp-content/uploads/2023/03/speaking4notes-scaled.jpg)
 
 
 ### Template
