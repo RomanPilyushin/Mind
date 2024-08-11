@@ -5,6 +5,30 @@
       "path": "_Commit Push.md"
     },
     {
+      "basename": "Rust Template",
+      "path": "templates/code/Rust Template.md"
+    },
+    {
+      "basename": "Python Template",
+      "path": "templates/code/Python Template.md"
+    },
+    {
+      "basename": "Leetcode Problem",
+      "path": "templates/Leetcode Problem.md"
+    },
+    {
+      "basename": "Conceptual Note",
+      "path": "templates/Conceptual Note.md"
+    },
+    {
+      "basename": "Daily Note",
+      "path": "templates/Daily Note.md"
+    },
+    {
+      "basename": "Chess Template",
+      "path": "templates/Chess Template.md"
+    },
+    {
       "basename": "Insertion Sort",
       "path": "Insertion Sort.md"
     },
@@ -175,30 +199,6 @@
     {
       "basename": "Recall the material",
       "path": "Recall the material.md"
-    },
-    {
-      "basename": "The bid and ask prices",
-      "path": "The bid and ask prices.md"
-    },
-    {
-      "basename": "Rust Template",
-      "path": "templates/code/Rust Template.md"
-    },
-    {
-      "basename": "Python Template",
-      "path": "templates/code/Python Template.md"
-    },
-    {
-      "basename": "Theo",
-      "path": "Theo.md"
-    },
-    {
-      "basename": "Writing 1 Integrated",
-      "path": "templates/toefl/Writing 1 Integrated.md"
-    },
-    {
-      "basename": "Writing 2 Academic Discussion",
-      "path": "templates/toefl/Writing 2 Academic Discussion.md"
     }
   ],
   "omittedPaths": [],

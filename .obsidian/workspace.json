@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e086812b8c9c56fb",
+        "id": "2a071dbab7ee57b5",
         "type": "tabs",
         "children": [
           {
-            "id": "bd177c4b00e8a0bf",
+            "id": "be1571299f5a32d2",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -196,8 +196,15 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "bd177c4b00e8a0bf",
+  "active": "be1571299f5a32d2",
   "lastOpenFiles": [
+    "templates/code/Rust Template.md",
+    "templates/code/Python Template.md",
+    "templates/Leetcode Problem.md",
+    "templates/Conceptual Note.md",
+    "templates/Daily Note.md",
+    "templates/Chess Template.md",
+    "_Commit Push.md",
     "Insertion Sort.md",
     "attachments/Insertion Sort-13.png",
     "attachments/Insertion Sort-12.png",
@@ -216,7 +223,6 @@
     "Quick Sort.md",
     "media",
     "Untitled 1.md",
-    "_Commit Push.md",
     "Pointers - Cpp.md",
     "Variables - Rust.md",
     "Pointers vs References - Cpp.md",
@@ -237,7 +243,6 @@
     "pdf/cpp",
     "pdf/c",
     "pdf/embedded/Bare-metal programming for ARM.pdf",
-    "How to Excel at Math and Science.md",
-    "How to launch mkdocs blog.md"
+    "How to Excel at Math and Science.md"
   ]
 }

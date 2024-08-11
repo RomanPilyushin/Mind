@@ -25,23 +25,23 @@
   "recentFilesStore": [
     {
       "filepath": "_Commit Push.md",
-      "timestamp": 1723368738507
+      "timestamp": 1723369021167
     },
     {
-      "filepath": "Insertion Sort.md",
-      "timestamp": 1723368072495
+      "filepath": "templates/code/Rust Template.md",
+      "timestamp": 1723369011543
     },
     {
-      "filepath": "Selection Sort.md",
-      "timestamp": 1723367374217
+      "filepath": "templates/code/Python Template.md",
+      "timestamp": 1723369010502
     },
     {
-      "filepath": "Merge Sort.md",
-      "timestamp": 1723366710645
+      "filepath": "templates/Leetcode Problem.md",
+      "timestamp": 1723368998359
     },
     {
-      "filepath": "Bubble Sort.md",
-      "timestamp": 1723366296383
+      "filepath": "templates/Conceptual Note.md",
+      "timestamp": 1723368997187
     }
   ],
   "starredFileStore": [],
