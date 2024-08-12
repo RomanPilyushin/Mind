@@ -186,14 +186,12 @@
       "tags-overview:Tags overview": false,
       "obsidian42-brat:BRAT": false,
       "obsidian-file-info-plugin:File Info Panel": false,
-      "media-extended:Open media": false,
       "3d-graph:3D Graph": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obisidian-note-linker:Note Linker": false,
       "obsidian-map-view:Open map view": false,
       "latex-ocr:LatexOCR": false,
-      "omnisearch:Omnisearch": false,
-      "obsidian-trash-explorer:Open trash explorer": false
+      "omnisearch:Omnisearch": false
     }
   },
   "active": "be1571299f5a32d2",
