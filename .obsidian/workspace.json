@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "2a071dbab7ee57b5",
+        "id": "5f0fd37d6582031b",
         "type": "tabs",
         "children": [
           {
-            "id": "be1571299f5a32d2",
+            "id": "3483d67e6cbcba88",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Commit Push.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
+              "type": "home-tab-view",
+              "state": {}
             }
           }
         ]
@@ -94,7 +89,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_Commit Push.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +105,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_Commit Push.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,9 +126,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "_Commit Push.md"
-              }
+              "state": {}
             }
           },
           {
@@ -191,56 +182,56 @@
       "obisidian-note-linker:Note Linker": false,
       "obsidian-map-view:Open map view": false,
       "latex-ocr:LatexOCR": false,
-      "omnisearch:Omnisearch": false
+      "omnisearch:Omnisearch": false,
+      "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "be1571299f5a32d2",
+  "active": "3483d67e6cbcba88",
   "lastOpenFiles": [
+    "_Commit Push.md",
+    "In-place reversal of linked list.md",
+    "Fast and Slow pointers.md",
+    "Cyclic sort.md",
+    "Two Pointers or Iterators.md",
+    "Topological sort.md",
+    "Sliding Window.md",
+    "Top K-elements.md",
+    "Two heaps.md",
+    "Tree BFS.md",
+    "attachments/Topological sort.png",
+    "K-way Merge.md",
+    "attachments/K-way Merge.png",
+    "attachments/Top K-elements.png",
+    "Modified Binary Search.md",
+    "attachments/Modified Binary Search.png",
+    "Subsets.md",
+    "attachments/Subsets.png",
+    "], [1], [5], [1,5.md",
+    "Tree DFS.md",
+    "Merge Intervals.md",
+    "attachments/In-place reversal of linked list.png",
+    "attachments/Cyclic sort.png",
+    "attachments/Merge Intervals.png",
+    "attachments/Fast and Slow pointers.png",
+    "attachments/Two Pointers or Iterators.png",
+    "Untitled",
     "templates/code/Rust Template.md",
     "templates/code/Python Template.md",
     "templates/Leetcode Problem.md",
     "templates/Conceptual Note.md",
     "templates/Daily Note.md",
     "templates/Chess Template.md",
-    "_Commit Push.md",
     "Insertion Sort.md",
-    "attachments/Insertion Sort-13.png",
-    "attachments/Insertion Sort-12.png",
-    "attachments/Insertion Sort-11.png",
-    "attachments/Insertion Sort-10.png",
-    "attachments/Insertion Sort-9.png",
-    "attachments/Insertion Sort-8.png",
-    "attachments/Insertion Sort-7.png",
-    "attachments/Insertion Sort-6.png",
-    "attachments/Insertion Sort-5.png",
-    "attachments/Insertion Sort-4.png",
     "Selection Sort.md",
     "Merge Sort.md",
-    "Bubble Sort.md",
     "attachments/Bash Scripts",
-    "Quick Sort.md",
     "media",
-    "Untitled 1.md",
-    "Pointers - Cpp.md",
-    "Variables - Rust.md",
-    "Pointers vs References - Cpp.md",
-    "Conditional Sentences.md",
-    "The Present Tense - das Präsens.md",
-    "Launch Mkdocs.md",
-    "Recall the Material.md",
-    "_Dataviewer.md",
-    "_Toggl.md",
-    "_Anki.md",
-    "How to add files, commit, and push to Github using console.md",
     "pdf/computer/But How Do It Know.pdf",
     "pdf/computer/Beej's guide to network programming.pdf",
-    "False Positive and False Negative.md",
     "pdf/hft",
     "pdf/hft/High-Frequency Trading.pdf",
     "pdf/computer",
     "pdf/cpp",
-    "pdf/c",
-    "pdf/embedded/Bare-metal programming for ARM.pdf",
-    "How to Excel at Math and Science.md"
+    "pdf/c"
   ]
 }

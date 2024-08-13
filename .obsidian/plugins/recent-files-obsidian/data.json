@@ -5,6 +5,62 @@
       "path": "_Commit Push.md"
     },
     {
+      "basename": "In-place reversal of linked list",
+      "path": "In-place reversal of linked list.md"
+    },
+    {
+      "basename": "Fast and Slow pointers",
+      "path": "Fast and Slow pointers.md"
+    },
+    {
+      "basename": "Cyclic sort",
+      "path": "Cyclic sort.md"
+    },
+    {
+      "basename": "Two Pointers or Iterators",
+      "path": "Two Pointers or Iterators.md"
+    },
+    {
+      "basename": "Topological sort",
+      "path": "Topological sort.md"
+    },
+    {
+      "basename": "Sliding Window",
+      "path": "Sliding Window.md"
+    },
+    {
+      "basename": "Top K-elements",
+      "path": "Top K-elements.md"
+    },
+    {
+      "basename": "Two heaps",
+      "path": "Two heaps.md"
+    },
+    {
+      "basename": "Tree BFS",
+      "path": "Tree BFS.md"
+    },
+    {
+      "basename": "K-way Merge",
+      "path": "K-way Merge.md"
+    },
+    {
+      "basename": "Modified Binary Search",
+      "path": "Modified Binary Search.md"
+    },
+    {
+      "basename": "Subsets",
+      "path": "Subsets.md"
+    },
+    {
+      "basename": "Tree DFS",
+      "path": "Tree DFS.md"
+    },
+    {
+      "basename": "Merge Intervals",
+      "path": "Merge Intervals.md"
+    },
+    {
       "basename": "Rust Template",
       "path": "templates/code/Rust Template.md"
     },
@@ -143,62 +199,6 @@
     {
       "basename": "toefl Speaking",
       "path": "toefl Speaking.md"
-    },
-    {
-      "basename": "toefl Reading",
-      "path": "toefl Reading.md"
-    },
-    {
-      "basename": "Computer Architecture",
-      "path": "pdf/computer/Computer Architecture.pdf"
-    },
-    {
-      "basename": "Logical Chess",
-      "path": "pdf/chess/Logical Chess.pdf"
-    },
-    {
-      "basename": "How To Reassess Your Chess",
-      "path": "pdf/chess/How To Reassess Your Chess.pdf"
-    },
-    {
-      "basename": "Linux Kernel Development",
-      "path": "pdf/linux/Linux Kernel Development.pdf"
-    },
-    {
-      "basename": "Linux Device Drivers",
-      "path": "pdf/linux/Linux Device Drivers.pdf"
-    },
-    {
-      "basename": "Understanding Linux Kermel",
-      "path": "pdf/linux/Understanding Linux Kermel.pdf"
-    },
-    {
-      "basename": "Linux System Programming",
-      "path": "pdf/linux/Linux System Programming.pdf"
-    },
-    {
-      "basename": "USA Comp Olympiad",
-      "path": "pdf/competitive programming/USA Comp Olympiad.pdf"
-    },
-    {
-      "basename": "Principles of Algorithmic Problem Solving",
-      "path": "pdf/competitive programming/Principles of Algorithmic Problem Solving.pdf"
-    },
-    {
-      "basename": "Competitive Programmer’s Handbook",
-      "path": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
-    },
-    {
-      "basename": "Computer Systems",
-      "path": "pdf/computer/Computer Systems.pdf"
-    },
-    {
-      "basename": "Rust variables",
-      "path": "Rust variables.md"
-    },
-    {
-      "basename": "Recall the material",
-      "path": "Recall the material.md"
     }
   ],
   "omittedPaths": [],

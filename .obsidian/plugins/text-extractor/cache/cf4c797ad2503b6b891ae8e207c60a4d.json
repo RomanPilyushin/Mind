@@ -1,0 +1,1 @@
+{"path":"attachments/Modified Binary Search.png","text":"Search 'key’ ='5' start middle end As key > arr[middle], therefore start = middle + 1 middle startJ’ ¢ ¢end As key < arr[middle], therefore end = middle - 1 start, middle, end As key == arr[middle], return middle as the required index","libVersion":"0.3.2","langs":"eng"}

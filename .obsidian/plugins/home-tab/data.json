@@ -25,7 +25,23 @@
   "recentFilesStore": [
     {
       "filepath": "_Commit Push.md",
-      "timestamp": 1723490349207
+      "timestamp": 1723544525335
+    },
+    {
+      "filepath": "In-place reversal of linked list.md",
+      "timestamp": 1723544521382
+    },
+    {
+      "filepath": "Fast and Slow pointers.md",
+      "timestamp": 1723544521243
+    },
+    {
+      "filepath": "Cyclic sort.md",
+      "timestamp": 1723544521072
+    },
+    {
+      "filepath": "Two Pointers or Iterators.md",
+      "timestamp": 1723544520651
     }
   ],
   "starredFileStore": [],
