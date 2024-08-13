@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "The Present Tense das Präsens",
+      "path": "The Present Tense das Präsens.md"
+    },
+    {
       "basename": "_Commit Push",
       "path": "_Commit Push.md"
     },
@@ -139,10 +143,6 @@
     {
       "basename": "Conditional Sentences",
       "path": "Conditional Sentences.md"
-    },
-    {
-      "basename": "The Present Tense - das Präsens",
-      "path": "The Present Tense - das Präsens.md"
     },
     {
       "basename": "Launch Mkdocs",

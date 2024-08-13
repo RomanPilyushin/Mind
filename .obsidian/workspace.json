@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5f0fd37d6582031b",
+        "id": "0499e6fb0ef7e945",
         "type": "tabs",
         "children": [
           {
-            "id": "3483d67e6cbcba88",
+            "id": "c5f3d662f257f4c0",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -73,7 +73,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "d55f1d0d7122810b",
@@ -186,8 +187,11 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "3483d67e6cbcba88",
+  "active": "c5f3d662f257f4c0",
   "lastOpenFiles": [
+    "The Present Tense das Präsens.md",
+    "attachments/The Present Tense - das Präsens-1.png",
+    "attachments/The Present Tense - das Präsens.png",
     "_Commit Push.md",
     "In-place reversal of linked list.md",
     "Fast and Slow pointers.md",
@@ -212,8 +216,6 @@
     "attachments/In-place reversal of linked list.png",
     "attachments/Cyclic sort.png",
     "attachments/Merge Intervals.png",
-    "attachments/Fast and Slow pointers.png",
-    "attachments/Two Pointers or Iterators.png",
     "Untitled",
     "templates/code/Rust Template.md",
     "templates/code/Python Template.md",
