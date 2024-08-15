@@ -1,12 +1,16 @@
 {
   "recentFiles": [
     {
-      "basename": "The Present Tense das Präsens",
-      "path": "The Present Tense das Präsens.md"
+      "basename": "Commit Push",
+      "path": "Commit Push.md"
     },
     {
-      "basename": "_Commit Push",
-      "path": "_Commit Push.md"
+      "basename": "Anki",
+      "path": "Anki.md"
+    },
+    {
+      "basename": "The Present Tense das Präsens",
+      "path": "The Present Tense das Präsens.md"
     },
     {
       "basename": "In-place reversal of linked list",
@@ -159,10 +163,6 @@
     {
       "basename": "_Toggl",
       "path": "_Toggl.md"
-    },
-    {
-      "basename": "_Anki",
-      "path": "_Anki.md"
     },
     {
       "basename": "False Positive and False Negative",
