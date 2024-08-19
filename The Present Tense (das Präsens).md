@@ -5,6 +5,7 @@ tags:
   - grammar
   - present-tense
   - das-präsens
+  - present
 link: 
 aliases:
 ---

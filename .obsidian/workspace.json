@@ -11,11 +11,38 @@
             "id": "b27fae42007e2bc8",
             "type": "leaf",
             "state": {
+              "type": "markdown",
+              "state": {
+                "file": "The Present Tense (das Präsens).md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "281fc3573750bf04",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "The Simple Past or Imperfect Tense (das Präteritum).md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "58b222d4e166eb4a",
+            "type": "leaf",
+            "state": {
               "type": "home-tab-view",
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -73,7 +100,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "d55f1d0d7122810b",
@@ -183,11 +211,19 @@
       "obsidian-map-view:Open map view": false,
       "latex-ocr:LatexOCR": false,
       "omnisearch:Omnisearch": false,
-      "obsidian-trash-explorer:Open trash explorer": false
+      "obsidian-trash-explorer:Open trash explorer": false,
+      "media-extended:Open media": false
     }
   },
-  "active": "b27fae42007e2bc8",
+  "active": "58b222d4e166eb4a",
   "lastOpenFiles": [
+    "The Simple Past or Imperfect Tense (das Präteritum).md",
+    "attachments/Pasted image 20240819143919.png",
+    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-3.png",
+    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-2.png",
+    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-1.png",
+    "attachments/The Simple Past or Imperfect Tense (das Präteritum).png",
+    "The Present Tense (das Präsens).md",
     "Commit Push.md",
     "Anki.md",
     "templates/Leetcode Problem.md",
@@ -196,12 +232,7 @@
     "media/speak2notes-1024x702.jpg",
     "media/speak2notesb-1024x692.jpg",
     "media/convergentfinallecdture-1024x712.jpg",
-    "media/asteroidnotes-1024x719.jpg",
     "media",
-    "attachments/Two Pointers or Iterators.png",
-    "attachments/Topological sort.png",
-    "attachments/Top K-elements.png",
-    "attachments/The Present Tense - das Präsens.png",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",
     "attachments/Bash Scripts/Commit and Push PC.bat",
@@ -214,7 +245,6 @@
     "Tree BFS.md",
     "Topological sort.md",
     "Top K-elements.md",
-    "The Present Tense das Präsens.md",
     "Subsets.md",
     "Sliding Window.md",
     "Selection Sort.md",
@@ -228,8 +258,6 @@
     "Insertion Sort.md",
     "In-place reversal of linked list.md",
     "Fast and Slow pointers.md",
-    "Cyclic sort.md",
-    "Bubble Sort.md",
     "attachments/Pull Thinkpad.bat",
     "attachments/Pull PC.bat",
     "attachments/Commit and Push ThinkPad.bat",

@@ -1,16 +1,20 @@
 {
   "recentFiles": [
     {
+      "basename": "The Simple Past or Imperfect Tense (das Präteritum)",
+      "path": "The Simple Past or Imperfect Tense (das Präteritum).md"
+    },
+    {
+      "basename": "The Present Tense (das Präsens)",
+      "path": "The Present Tense (das Präsens).md"
+    },
+    {
       "basename": "Commit Push",
       "path": "Commit Push.md"
     },
     {
       "basename": "Anki",
       "path": "Anki.md"
-    },
-    {
-      "basename": "The Present Tense das Präsens",
-      "path": "The Present Tense das Präsens.md"
     },
     {
       "basename": "In-place reversal of linked list",
@@ -195,10 +199,6 @@
     {
       "basename": "toefl Writing",
       "path": "toefl Writing.md"
-    },
-    {
-      "basename": "toefl Speaking",
-      "path": "toefl Speaking.md"
     }
   ],
   "omittedPaths": [],
