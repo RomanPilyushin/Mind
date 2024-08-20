@@ -24,16 +24,24 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "1. Two Sum.md",
-      "timestamp": 1724161887524
+      "filepath": "Opcode (Operation Code) and Operands.md",
+      "timestamp": 1724168424721
     },
     {
-      "filepath": "templates/Leetcode Problem.md",
-      "timestamp": 1724161880465
+      "filepath": "Immediate and Direct Addressing.md",
+      "timestamp": 1724168424556
     },
     {
-      "filepath": "The Simple Past or Imperfect Tense (das Präteritum).md",
-      "timestamp": 1724160197937
+      "filepath": "Bus.md",
+      "timestamp": 1724168422371
+    },
+    {
+      "filepath": "Components of CPU (Central Processing Unit).md",
+      "timestamp": 1724168422274
+    },
+    {
+      "filepath": "Indirect Addressing.md",
+      "timestamp": 1724168420061
     }
   ],
   "starredFileStore": [],

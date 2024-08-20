@@ -1,6 +1,30 @@
 {
   "recentFiles": [
     {
+      "basename": "Opcode (Operation Code) and Operands",
+      "path": "Opcode (Operation Code) and Operands.md"
+    },
+    {
+      "basename": "Immediate and Direct Addressing",
+      "path": "Immediate and Direct Addressing.md"
+    },
+    {
+      "basename": "Bus",
+      "path": "Bus.md"
+    },
+    {
+      "basename": "Components of CPU (Central Processing Unit)",
+      "path": "Components of CPU (Central Processing Unit).md"
+    },
+    {
+      "basename": "Indirect Addressing",
+      "path": "Indirect Addressing.md"
+    },
+    {
+      "basename": "ARM1",
+      "path": "ARM1.md"
+    },
+    {
       "basename": "1. Two Sum",
       "path": "1. Two Sum.md"
     },
@@ -175,30 +199,6 @@
     {
       "basename": "Recall the Material",
       "path": "Recall the Material.md"
-    },
-    {
-      "basename": "_Dataviewer",
-      "path": "_Dataviewer.md"
-    },
-    {
-      "basename": "_Toggl",
-      "path": "_Toggl.md"
-    },
-    {
-      "basename": "False Positive and False Negative",
-      "path": "False Positive and False Negative.md"
-    },
-    {
-      "basename": "High-Frequency Trading",
-      "path": "pdf/hft/High-Frequency Trading.pdf"
-    },
-    {
-      "basename": "Bare-metal programming for ARM",
-      "path": "pdf/embedded/Bare-metal programming for ARM.pdf"
-    },
-    {
-      "basename": "Beej’s Guide to C Programming",
-      "path": "pdf/c/Beej’s Guide to C Programming.pdf"
     }
   ],
   "omittedPaths": [],

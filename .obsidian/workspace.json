@@ -8,28 +8,14 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a43e5f230e2853aa",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1. Two Sum.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "89f81851c619adaa",
+            "id": "1fdb49c82c553537",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -176,12 +162,12 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 391.5,
-    "collapsed": true
+    "width": 391.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -208,8 +194,23 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "89f81851c619adaa",
+  "active": "1fdb49c82c553537",
   "lastOpenFiles": [
+    "Opcode (Operation Code) and Operands.md",
+    "Immediate and Direct Addressing.md",
+    "Bus.md",
+    "Components of CPU (Central Processing Unit).md",
+    "Indirect Addressing.md",
+    "ARM1.md",
+    "attachments/Indirect Addressing.png",
+    "attachments/Immediate and Direct Addressing.png",
+    "attachments/Immediate and.png",
+    "attachments/Opcode (Operation Code) and Operands.png",
+    "attachments/Op Codes.png",
+    "attachments/Buses.png",
+    "Arithmetic Logic Unit (ALU) of CPU (Central Processing Unit).md",
+    "Control Unit of CPU (Central Processing Unit).md",
+    "attachments/Untitled.png",
     "1. Two Sum.md",
     "templates/Leetcode Problem.md",
     "The Simple Past or Imperfect Tense (das Präteritum).md",
@@ -218,18 +219,11 @@
     "attachments/The Simple Past or Imperfect Tense (das Präteritum)-1.png",
     "attachments/The Simple Past or Imperfect Tense (das Präteritum)-3.png",
     "attachments/The Present Perfect Tense (das Perfekt)-2.png",
-    "attachments/The Present Perfect Tense (das Perfekt)-1.png",
-    "attachments/The Present Perfect Tense (das Perfekt).png",
     "templates/code/Python Template.md",
     "templates/code/C++ Template.md",
     "templates/code/Rust Template.md",
-    "attachments/Pasted image 20240819143919.png",
-    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-2.png",
-    "attachments/The Simple Past or Imperfect Tense (das Präteritum).png",
     "Commit Push.md",
     "Anki.md",
-    "media/Taking_Notes_for_the_TOEFL_integrated_essay.png",
-    "media/speaking4notes-1024x716.jpg",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",
@@ -244,14 +238,6 @@
     "Topological sort.md",
     "Top K-elements.md",
     "Subsets.md",
-    "Sliding Window.md",
-    "Selection Sort.md",
-    "Quick Sort.md",
-    "Pointers vs References - Cpp.md",
-    "Pointers - Cpp.md",
-    "Modified Binary Search.md",
-    "Merge Sort.md",
-    "Merge Intervals.md",
     "attachments/Pull Thinkpad.bat",
     "attachments/Pull PC.bat",
     "attachments/Commit and Push ThinkPad.bat",
