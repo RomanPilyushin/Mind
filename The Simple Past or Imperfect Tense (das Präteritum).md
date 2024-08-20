@@ -9,13 +9,14 @@ tags:
   - imperfect-tense
 link: 
 aliases:
+  - das Präteritum
+  - Präteritum
 ---
-
 
 ### Introduction
 
 
-The Simple Past or Imperfect Tense, known as _das Präteritum_ in German, is primarily used in written language, especially in literature, reports, and formal writing. It's used to describe actions or events that happened in the past and are now completed. Unlike _das Perfekt_ (the present perfect tense), which is more commonly used in spoken German, _das Präteritum_ is preferred in written narratives.
+The Simple Past or Imperfect Tense, known as _das Präteritum_ in German, is primarily used in written language, especially in literature, reports, and formal writing. It's used to describe actions or events that happened in the past and are now completed. Unlike *[[The Present Perfect Tense (das Perfekt)|das Perfekt]]* (the present perfect tense), which is more commonly used in spoken German, _das Präteritum_ is preferred in written narratives.
 
 
 
@@ -112,9 +113,9 @@ _Das Präteritum_ is used in several contexts:
 - **Mixed Verb**: _Wir dachten darüber nach._ (We thought about it.)
 
 
-### Comparison with _das Perfekt_:
+### Comparison with _[[The Present Perfect Tense (das Perfekt)|das Perfekt]]_:
 
-- In spoken German, especially in the southern regions, _das Perfekt_ is used more frequently for past actions.
+- In spoken German, especially in the southern regions, _[[The Present Perfect Tense (das Perfekt)|das Perfekt]]_ is used more frequently for past actions.
 - In written German, _das Präteritum_ is preferred for the same actions.
 
 In summary, _das Präteritum_ is essential for storytelling and formal writing in German. While it might not be as common in everyday conversation, mastering it is important for understanding and creating written narratives.

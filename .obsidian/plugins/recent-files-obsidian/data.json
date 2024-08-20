@@ -1,16 +1,24 @@
 {
   "recentFiles": [
     {
-      "basename": "The Simple Past or Imperfect Tense (das Präteritum)",
-      "path": "The Simple Past or Imperfect Tense (das Präteritum).md"
+      "basename": "The Present Perfect Tense (das Perfekt)",
+      "path": "The Present Perfect Tense (das Perfekt).md"
     },
     {
       "basename": "The Present Tense (das Präsens)",
       "path": "The Present Tense (das Präsens).md"
     },
     {
-      "basename": "The Present Perfect Tense (das Perfekt)",
-      "path": "The Present Perfect Tense (das Perfekt).md"
+      "basename": "The Simple Past or Imperfect Tense (das Präteritum)",
+      "path": "The Simple Past or Imperfect Tense (das Präteritum).md"
+    },
+    {
+      "basename": "The Simple Past or Imperfect Tense (das Präteritum)-1",
+      "path": "attachments/The Simple Past or Imperfect Tense (das Präteritum)-1.png"
+    },
+    {
+      "basename": "The Simple Past or Imperfect Tense (das Präteritum)-3",
+      "path": "attachments/The Simple Past or Imperfect Tense (das Präteritum)-3.png"
     },
     {
       "basename": "Python Template",
@@ -191,14 +199,6 @@
     {
       "basename": "Real-Time C++",
       "path": "pdf/cpp/Real-Time C++.pdf"
-    },
-    {
-      "basename": "How to Excel at Math and Science",
-      "path": "How to Excel at Math and Science.md"
-    },
-    {
-      "basename": "How to launch mkdocs blog",
-      "path": "How to launch mkdocs blog.md"
     }
   ],
   "omittedPaths": [],

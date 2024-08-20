@@ -8,6 +8,8 @@ tags:
   - present
 link: 
 aliases:
+  - das Präsens
+  - Präsens
 ---
 
 ### Introduction
@@ -96,6 +98,7 @@ _Das Präsens_ is versatile and is used in various contexts:
 - _Er spielt Fußball._ (He plays soccer.)
 - _Wir gehen morgen ins Kino._ (We are going to the cinema tomorrow.)
 - _Sie isst keinen Fisch._ (She doesn't eat fish.)
+
 
 In summary, _das Präsens_ in German is straightforward in its use and covers a wide range of actions and meanings, from the immediate present to habitual actions and even planned future activities.
 

@@ -47,7 +47,7 @@
             }
           },
           {
-            "id": "8e3af61340a1f61c",
+            "id": "a1f3a3290d4c7edc",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -123,32 +123,14 @@
       {
         "id": "c1999d82ae567e48",
         "type": "tabs",
+        "dimension": 48.5,
         "children": [
           {
-            "id": "cb98e521a626513b",
+            "id": "dcf1cc8e55dd6fa5",
             "type": "leaf",
             "state": {
-              "type": "backlink",
-              "state": {
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "f4075c650a43a270",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              }
+              "type": "outline",
+              "state": {}
             }
           },
           {
@@ -160,14 +142,6 @@
                 "sortOrder": "frequency",
                 "useHierarchy": true
               }
-            }
-          },
-          {
-            "id": "dcf1cc8e55dd6fa5",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {}
             }
           },
           {
@@ -194,12 +168,45 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
+      },
+      {
+        "id": "c0eae2b40b9c8d42",
+        "type": "tabs",
+        "dimension": 51.5,
+        "children": [
+          {
+            "id": "cb98e521a626513b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "f4075c650a43a270",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          }
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 391.5,
     "collapsed": true
   },
   "left-ribbon": {
@@ -227,11 +234,13 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "8e3af61340a1f61c",
+  "active": "a1f3a3290d4c7edc",
   "lastOpenFiles": [
-    "The Simple Past or Imperfect Tense (das Präteritum).md",
-    "The Present Tense (das Präsens).md",
     "The Present Perfect Tense (das Perfekt).md",
+    "The Present Tense (das Präsens).md",
+    "The Simple Past or Imperfect Tense (das Präteritum).md",
+    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-1.png",
+    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-3.png",
     "attachments/The Present Perfect Tense (das Perfekt)-2.png",
     "attachments/The Present Perfect Tense (das Perfekt)-1.png",
     "attachments/The Present Perfect Tense (das Perfekt).png",
@@ -239,9 +248,7 @@
     "templates/code/C++ Template.md",
     "templates/code/Rust Template.md",
     "attachments/Pasted image 20240819143919.png",
-    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-3.png",
     "attachments/The Simple Past or Imperfect Tense (das Präteritum)-2.png",
-    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-1.png",
     "attachments/The Simple Past or Imperfect Tense (das Präteritum).png",
     "Commit Push.md",
     "Anki.md",

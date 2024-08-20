@@ -1,5 +1,6 @@
 {
   "pluginList": [
+    "tadashi-aikawa/obsidian-various-complements-plugin",
     "sissilab/obsidian-image-toolkit",
     "mayurankv/Obsidian-Code-Styler",
     "OliverBalfour/obsidian-pandoc",

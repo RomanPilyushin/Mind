@@ -9,12 +9,13 @@ tags:
   - das-perfekt
 link: 
 aliases:
+  - das Perfekt
+  - Perfekt
 ---
-
 
 ### Introduction
 
-The Present Perfect Tense, known as _das Perfekt_ in German, is commonly used in spoken and written German to describe past actions or events that have relevance to the present or are seen from the present perspective. Unlike English, where the present perfect is often used for actions that are still relevant or have consequences in the present, in German, _das Perfekt_ is frequently used in everyday conversation instead of the simple past tense (_Präteritum_), especially in southern Germany, Austria, and Switzerland.
+The Present Perfect Tense, known as _das Perfekt_ in German, is commonly used in spoken and written German to describe past actions or events that have relevance to the present or are seen from the present perspective. Unlike English, where the present perfect is often used for actions that are still relevant or have consequences in the present, in German, _das Perfekt_ is frequently used in everyday conversation instead of the simple past tense (_[[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_), especially in southern Germany, Austria, and Switzerland.
 
 
 
@@ -61,7 +62,28 @@ The structure of a sentence in _das Perfekt_ is as follows:
 - **To indicate actions that are relevant to the present**: _Sie hat das Essen vorbereitet._ (She has prepared the food.)
 
 
-In summary, _das Perfekt_ is the go-to past tense in conversational German, used widely in spoken language and less so in formal writing, where the simple past (_Präteritum_) might be preferred.
+In summary, _das Perfekt_ is the go-to past tense in conversational German, used widely in spoken language and less so in formal writing, where the simple past (_[[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_) might be preferred.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Dartmouth
