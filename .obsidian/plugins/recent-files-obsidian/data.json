@@ -1,16 +1,24 @@
 {
   "recentFiles": [
     {
+      "basename": "1. Two Sum",
+      "path": "1. Two Sum.md"
+    },
+    {
+      "basename": "Leetcode Problem",
+      "path": "templates/Leetcode Problem.md"
+    },
+    {
+      "basename": "The Simple Past or Imperfect Tense (das Präteritum)",
+      "path": "The Simple Past or Imperfect Tense (das Präteritum).md"
+    },
+    {
       "basename": "The Present Perfect Tense (das Perfekt)",
       "path": "The Present Perfect Tense (das Perfekt).md"
     },
     {
       "basename": "The Present Tense (das Präsens)",
       "path": "The Present Tense (das Präsens).md"
-    },
-    {
-      "basename": "The Simple Past or Imperfect Tense (das Präteritum)",
-      "path": "The Simple Past or Imperfect Tense (das Präteritum).md"
     },
     {
       "basename": "The Simple Past or Imperfect Tense (das Präteritum)-1",
@@ -91,10 +99,6 @@
     {
       "basename": "Merge Intervals",
       "path": "Merge Intervals.md"
-    },
-    {
-      "basename": "Leetcode Problem",
-      "path": "templates/Leetcode Problem.md"
     },
     {
       "basename": "Conceptual Note",
@@ -195,10 +199,6 @@
     {
       "basename": "Beej’s Guide to C Programming",
       "path": "pdf/c/Beej’s Guide to C Programming.pdf"
-    },
-    {
-      "basename": "Real-Time C++",
-      "path": "pdf/cpp/Real-Time C++.pdf"
     }
   ],
   "omittedPaths": [],

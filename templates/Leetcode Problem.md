@@ -10,7 +10,7 @@ aliases:
 ### Input Output
 
 
-### Explanation
+### Solution
 
 
 
