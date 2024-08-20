@@ -10,13 +10,116 @@ link:
 aliases:
 ---
 
+### Introduction
 
-### The Present Tense in English
+The Present Tense, known as _das Präsens_ in German, is the most commonly used tense and is used to describe actions happening right now, habitual actions, general truths, and sometimes even future events. It's the equivalent of the simple present tense in English.
+
+
+
+### Formation of _das Präsens_
+
+In German, verbs are conjugated according to the subject of the sentence. The present tense is formed by taking the verb stem and adding the appropriate endings, which change based on the subject pronoun (e.g., _ich_, _du_, _er/sie/es_, etc.).
+
+
+#### 1. **Verb Conjugation in _das Präsens_**
+
+Here’s how regular verbs are conjugated in the present tense:
+
+For the verb **spielen** (to play):
+
+- **ich spiele** (I play)
+- **du spielst** (you play - informal singular)
+- **er/sie/es spielt** (he/she/it plays)
+- **wir spielen** (we play)
+- **ihr spielt** (you all play - informal plural)
+- **sie/Sie spielen** (they/you play - formal singular and plural)
+
+**Steps to conjugate a regular verb:**
+
+1. **Find the verb stem** by removing the infinitive ending _-en_ or _-n_ from the verb.
+    
+    - _spielen_ → stem: _spiel-_
+2. **Add the appropriate ending** to the stem based on the subject.
+    
+    - _ich spiele_ (I play)
+
+
+
+#### 2. **Irregular Verbs in _das Präsens_**
+
+Some verbs are irregular and may involve vowel changes in the stem, especially in the _du_ and _er/sie/es_ forms. These changes are common in strong verbs.
+
+For example, with **lesen** (to read):
+
+- **ich lese** (I read)
+- **du liest** (you read - informal singular)
+- **er/sie/es liest** (he/she/it reads)
+- **wir lesen** (we read)
+- **ihr lest** (you all read - informal plural)
+- **sie/Sie lesen** (they/you read - formal singular and plural)
+
+Notice the vowel change from _e_ to _ie_ in the _du_ and _er/sie/es_ forms.
+
+
+### Usage of _das Präsens_
+
+_Das Präsens_ is versatile and is used in various contexts:
+
+1. **Actions happening right now**:
+    
+    - _Ich gehe jetzt nach Hause._ (I am going home now.)
+2. **Habitual actions** (things done regularly or frequently):
+    
+    - _Er fährt jeden Tag mit dem Fahrrad zur Arbeit._ (He rides his bike to work every day.)
+3. **General truths or facts**:
+    
+    - _Wasser kocht bei 100 Grad Celsius._ (Water boils at 100 degrees Celsius.)
+4. **Future actions** (especially when there is a time indicator):
+    
+    - _Morgen fahre ich nach Berlin._ (I am going to Berlin tomorrow.)
+5. **Instructions or commands** (in formal or instructional language):
+    
+    - _Du nimmst die zweite Straße rechts._ (You take the second street on the right.)
+
+
+
+### Important Notes:
+
+- German uses _das Präsens_ more frequently than English uses the present tense, especially when talking about the future.
+- Unlike in English, where auxiliary verbs like "do" or "does" are used to form questions or negative sentences, German simply rearranges the sentence structure or adds _nicht_ for negation.
+
+
+
+### Example Sentences:
+
+- _Ich lerne Deutsch._ (I am learning German.)
+- _Er spielt Fußball._ (He plays soccer.)
+- _Wir gehen morgen ins Kino._ (We are going to the cinema tomorrow.)
+- _Sie isst keinen Fisch._ (She doesn't eat fish.)
+
+In summary, _das Präsens_ in German is straightforward in its use and covers a wide range of actions and meanings, from the immediate present to habitual actions and even planned future activities.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Dartmouth
+#### The Present Tense in English
 
 English, in contrast to German, has a variety of tenses to indicate present time, and Germans who are learning English are often at a loss in deciding which to select: "I sing," "I do sing," "I am singing", or "I have been singing."
 
 
-### The Present Tense in German
+#### The Present Tense in German
 
 German makes it much easier by offering only one structure to cover all of these present-time meanings. 
 
@@ -59,7 +162,7 @@ As in English, the present tense is also frequently used to denote the future, a
 |------------------------------|-----------------------------------|
 
 
-### Variations on the regular forms
+#### Variations on the regular forms
 
 #### _-d, -t, -m,_ or _-n._
 
@@ -85,7 +188,7 @@ Verbs with stems ending in _-s, -ss, -ß,_ or _-z_ add only a _-t_ in the�
 *The average family has 1.66 children.*
 
 
-### Irregular forms
+#### Irregular forms
 
 A few common verbs, including _sein_ ("to be"), are irregular enough in the present tense to be learned separately:
 
@@ -101,7 +204,7 @@ A few common verbs, including _sein_ ("to be"), are irregular enough in the pr
 |               | Sie haben |                | Sie wissen  |
 | er/sie/es hat | sie haben | er/sie/es weiß | sie wissen  |
 
-### The Modal Auxiliaries 
+#### The Modal Auxiliaries 
 
 **[The Modal Auxiliaries](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Verbs/modals.html)** have irregular forms in the singular:
 
@@ -115,7 +218,7 @@ A few common verbs, including _sein_ ("to be"), are irregular enough in the pr
 | wollen     | will | willst | will      | wollen | wollt | wollen | wollen |
 
 
-### Strong Verbs
+#### Strong Verbs
 
 **Not all strong verbs have irregular forms in the present tense, but a number of them do change their stems in the "du" and 3rd-person singular forms.** 
 
@@ -161,7 +264,7 @@ Note that those irregular verbs whose stems end in _-t_ do not add an ending i
 | schelten     | schilt      | to scold            |
 
 
-### Separable Prefix
+#### Separable Prefix
 
 As in the [simple past tense,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html) the finite verb might have a [separable prefix](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Wortbildung/Separables.html), which then goes to the end of the clause:
 

@@ -9,6 +9,18 @@
       "path": "The Present Tense (das Präsens).md"
     },
     {
+      "basename": "The Present Perfect Tense (das Perfekt)",
+      "path": "The Present Perfect Tense (das Perfekt).md"
+    },
+    {
+      "basename": "Python Template",
+      "path": "templates/code/Python Template.md"
+    },
+    {
+      "basename": "Rust Template",
+      "path": "templates/code/Rust Template.md"
+    },
+    {
       "basename": "Commit Push",
       "path": "Commit Push.md"
     },
@@ -71,14 +83,6 @@
     {
       "basename": "Merge Intervals",
       "path": "Merge Intervals.md"
-    },
-    {
-      "basename": "Rust Template",
-      "path": "templates/code/Rust Template.md"
-    },
-    {
-      "basename": "Python Template",
-      "path": "templates/code/Python Template.md"
     },
     {
       "basename": "Leetcode Problem",
@@ -195,10 +199,6 @@
     {
       "basename": "How to launch mkdocs blog",
       "path": "How to launch mkdocs blog.md"
-    },
-    {
-      "basename": "toefl Writing",
-      "path": "toefl Writing.md"
     }
   ],
   "omittedPaths": [],
