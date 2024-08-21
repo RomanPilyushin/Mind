@@ -24,7 +24,7 @@ In computer architecture, **addressing modes** determine how the operand of an i
 
 ### 2. **Direct Addressing:**
 
-- **Definition**: In Direct Addressing, the operand is the address of the memory location where the actual data is stored. The instruction contains the address, and the CPU accesses the data at that memory location.
+- **Definition**: In Direct Addressing, the operand is the address of the memory location where the actual data is stored. The instruction contains the address, and the [[Components of CPU (Central Processing Unit)|CPU]] accesses the data at that memory location.
 - **Example**: As shown in your image, if the instruction is `01100111`, where `0110` is the [[Opcode (Operation Code) and Operands|opcode]] for `ADD` and `0111` is the operand, it means "Add the value found at memory address 7 to the accumulator." The operand `0111` represents the memory location where the data to be added is stored.
 - **Usage**: Direct Addressing is useful when the data is stored in memory rather than being a constant value. However, accessing memory is generally slower than accessing data that is immediately available in the instruction.
 

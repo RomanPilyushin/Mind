@@ -12,15 +12,15 @@ aliases:
 
 ### How Indirect Addressing Works:
 
-1. **Instruction**: The instruction shown is `ADD`, which tells the CPU to add a value to the accumulator.
+1. **Instruction**: The instruction shown is `ADD`, which tells the [[Components of CPU (Central Processing Unit)|CPU]] to add a value to the accumulator.
 2. **Operand**: The operand provided is `0111`, which represents a memory location (in this case, memory location 7).
 3. **First Step**:
-    - The CPU goes to memory location 7.
+    - The [[Components of CPU (Central Processing Unit)|CPU]] goes to memory location 7.
     - Instead of finding the actual data to be used in the operation, it finds another memory address (in this case, `6`).
 4. **Second Step**:
-    - The CPU then uses this address (`6`) to find the actual data value in memory location 6, which is `10`.
+    - The [[Components of CPU (Central Processing Unit)|CPU]] then uses this address (`6`) to find the actual data value in memory location 6, which is `10`.
 5. **Operation**:
-    - The CPU adds the value `10` (found in memory location 6) to the accumulator.
+    - The [[Components of CPU (Central Processing Unit)|CPU]] adds the value `10` (found in memory location 6) to the accumulator.
 
 ### Summary of Indirect Addressing:
 

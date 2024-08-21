@@ -16,6 +16,7 @@ aliases:
   - MAR
   - MDR
   - ACC
+  - CPU
 ---
 
 ![[Untitled.png]]

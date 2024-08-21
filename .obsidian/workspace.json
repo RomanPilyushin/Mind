@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "281fd34a72490d0e",
+            "id": "8d511b3154e2c3cb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1. Two Sum.md",
+                "file": "NES CPU.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -21,7 +21,20 @@
             }
           },
           {
-            "id": "1eb1aa906292a8db",
+            "id": "225ee0dd9fad16a9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "NES PPU.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "df4b763b5f7898f8",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -29,7 +42,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -199,7 +212,6 @@
       "reference-map:Reference Map": false,
       "omnisearch:Omnisearch": false,
       "obisidian-note-linker:Note Linker": false,
-      "media-extended:Open media": false,
       "obsidian-map-view:Open map view": false,
       "latex-ocr:LatexOCR": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
@@ -209,12 +221,27 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "1eb1aa906292a8db",
+  "active": "df4b763b5f7898f8",
   "lastOpenFiles": [
+    "NES PPU.md",
+    "attachments/NES PPU.png",
+    "NES CPU.md",
+    "Components of CPU (Central Processing Unit).md",
+    "ARM1.md",
+    "attachments/NES CPU.png",
+    "Bit-Fields.md",
+    "Bitwise Operations.md",
+    "attachments/Bit-Fields.png",
+    "attachments/Bitwise Operations-4.png",
+    "attachments/Bitwise Operations-3.png",
+    "attachments/Bitwise Operations-2.png",
+    "templates/Conceptual Note.md",
+    "attachments/Bitwise Operations-1.png",
+    "attachments/Bitwise Operations.png",
+    "attachments/Untitled-1.png",
     "1. Two Sum.md",
     "The Past Perfect Tense (das Plusquamperfekt).md",
     "attachments/The Past Perfect Tense (das Plusquamperfekt)-1.png",
-    "attachments/The Past Perfect Tense (das Plusquamperfekt).png",
     "The Present Perfect Tense (das Perfekt).md",
     "The Present Tense (das Präsens).md",
     "Selection Sort.md",
@@ -222,31 +249,15 @@
     "Fast and Slow pointers.md",
     "Conditional Sentences.md",
     "Anki.md",
-    "ARM1.md",
     "Commit Push.md",
     "Bus.md",
     "Bubble Sort.md",
-    "Components of CPU (Central Processing Unit).md",
     "False Positive and False Negative.md",
     "K-way Merge.md",
     "Immediate and Direct Addressing.md",
     "Insertion Sort.md",
     "Variables - Rust.md",
     "Two Pointers or Iterators.md",
-    "Two heaps.md",
-    "Tree DFS.md",
-    "toefl Speaking.md",
-    "toefl Reading.md",
-    "The Simple Past or Imperfect Tense (das Präteritum).md",
-    "In-place reversal of linked list.md",
-    "attachments/Indirect Addressing.png",
-    "attachments/Immediate and Direct Addressing.png",
-    "attachments/Immediate and.png",
-    "attachments/Opcode (Operation Code) and Operands.png",
-    "attachments/Op Codes.png",
-    "attachments/Buses.png",
-    "attachments/Untitled.png",
-    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-1.png",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",

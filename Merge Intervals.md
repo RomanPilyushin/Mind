@@ -28,5 +28,5 @@ Given two intervals (‘a’ and ‘b’), there will be six different ways the 
 ### Common Problems
 
 - Intervals Intersection (medium)
-- Maximum CPU Load (hard)
+- Maximum [[Components of CPU (Central Processing Unit)|CPU]] Load (hard)
 

@@ -1,6 +1,34 @@
 {
   "recentFiles": [
     {
+      "basename": "NES PPU",
+      "path": "NES PPU.md"
+    },
+    {
+      "basename": "NES CPU",
+      "path": "NES CPU.md"
+    },
+    {
+      "basename": "Components of CPU (Central Processing Unit)",
+      "path": "Components of CPU (Central Processing Unit).md"
+    },
+    {
+      "basename": "ARM1",
+      "path": "ARM1.md"
+    },
+    {
+      "basename": "Bit-Fields",
+      "path": "Bit-Fields.md"
+    },
+    {
+      "basename": "Bitwise Operations",
+      "path": "Bitwise Operations.md"
+    },
+    {
+      "basename": "Conceptual Note",
+      "path": "templates/Conceptual Note.md"
+    },
+    {
       "basename": "1. Two Sum",
       "path": "1. Two Sum.md"
     },
@@ -37,10 +65,6 @@
       "path": "Anki.md"
     },
     {
-      "basename": "ARM1",
-      "path": "ARM1.md"
-    },
-    {
       "basename": "Commit Push",
       "path": "Commit Push.md"
     },
@@ -51,10 +75,6 @@
     {
       "basename": "Bubble Sort",
       "path": "Bubble Sort.md"
-    },
-    {
-      "basename": "Components of CPU (Central Processing Unit)",
-      "path": "Components of CPU (Central Processing Unit).md"
     },
     {
       "basename": "False Positive and False Negative",
@@ -179,26 +199,6 @@
     {
       "basename": "Top K-elements",
       "path": "Top K-elements.md"
-    },
-    {
-      "basename": "Tree BFS",
-      "path": "Tree BFS.md"
-    },
-    {
-      "basename": "Modified Binary Search",
-      "path": "Modified Binary Search.md"
-    },
-    {
-      "basename": "Merge Intervals",
-      "path": "Merge Intervals.md"
-    },
-    {
-      "basename": "Conceptual Note",
-      "path": "templates/Conceptual Note.md"
-    },
-    {
-      "basename": "Daily Note",
-      "path": "templates/Daily Note.md"
     }
   ],
   "omittedPaths": [],
