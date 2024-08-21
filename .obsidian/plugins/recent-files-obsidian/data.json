@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "1. Two Sum",
+      "path": "1. Two Sum.md"
+    },
+    {
       "basename": "The Past Perfect Tense (das Plusquamperfekt)",
       "path": "The Past Perfect Tense (das Plusquamperfekt).md"
     },
@@ -111,10 +115,6 @@
     {
       "basename": "Diffuse Mode",
       "path": "Diffuse Mode.md"
-    },
-    {
-      "basename": "1. Two Sum",
-      "path": "1. Two Sum.md"
     },
     {
       "basename": "Subsets",

@@ -24,24 +24,12 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "1. Two Sum.md",
+      "timestamp": 1724241289729
+    },
+    {
       "filepath": "The Past Perfect Tense (das Plusquamperfekt).md",
-      "timestamp": 1724234764149
-    },
-    {
-      "filepath": "The Present Perfect Tense (das Perfekt).md",
-      "timestamp": 1724234756202
-    },
-    {
-      "filepath": "The Present Tense (das Präsens).md",
-      "timestamp": 1724234744484
-    },
-    {
-      "filepath": "Selection Sort.md",
-      "timestamp": 1724173709742
-    },
-    {
-      "filepath": "Sliding Window.md",
-      "timestamp": 1724173709149
+      "timestamp": 1724241285704
     }
   ],
   "bookmarkedFileStore": [],
