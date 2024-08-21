@@ -12,7 +12,7 @@ aliases:
 
 Quick Sort is a recursive sorting algorithm that is more effective than other O(nlogn) algorithms for large datasets that fit in memory, but is unstable. 
 
-Quick Sort in general does not requiere extra space while Merge Sort requires O(n) extra storage
+Quick Sort in general does not requiere extra space while [[Merge Sort]] requires O(n) extra storage
 
 
 ![[42190383-0923306a-7e5d-11e8-86b3-1e9f7a79b782.gif]]

@@ -12,7 +12,7 @@ aliases:
 
 Merge Sort is a Divide and Conquer algorithm that continually splits a list in half and then merge the sublists in a sorted way.  
 
-A single most important advantage of merge sort over quick sort is its stability: the elements compared equal retain their original order.
+A single most important advantage of merge sort over [[Quick Sort]] is its stability: the elements compared equal retain their original order.
 
 
 ![[42171944-ed5814c8-7e1a-11e8-9d30-10ae8047bb17.gif]]

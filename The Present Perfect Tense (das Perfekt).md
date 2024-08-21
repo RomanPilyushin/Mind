@@ -7,7 +7,7 @@ tags:
   - present
   - present-perfect
   - das-perfekt
-link: 
+link: https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html
 aliases:
   - das Perfekt
   - Perfekt

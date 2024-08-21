@@ -4,18 +4,32 @@
     "type": "split",
     "children": [
       {
-        "id": "3ef74fbbe2663e0f",
+        "id": "18902ea2847d6961",
         "type": "tabs",
         "children": [
           {
-            "id": "1fdb49c82c553537",
+            "id": "281fd34a72490d0e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "The Past Perfect Tense (das Plusquamperfekt).md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "dcdb417321cba809",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -44,7 +58,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:present-perfekt",
+                "query": "tag:#algorithm",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -113,18 +127,18 @@
             }
           },
           {
-            "id": "865284158d8343de",
-            "type": "leaf",
-            "state": {
-              "type": "graph-analysis",
-              "state": {}
-            }
-          },
-          {
             "id": "86831bc67e8057eb",
             "type": "leaf",
             "state": {
               "type": "toggl-report",
+              "state": {}
+            }
+          },
+          {
+            "id": "6bb90e744f71c093",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
               "state": {}
             }
           }
@@ -162,12 +176,12 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 391.5
+    "width": 391.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -181,63 +195,63 @@
       "random-note:Open random note": false,
       "audio-recorder:Start/stop recording": false,
       "workspaces:Manage workspace layouts": false,
-      "reference-map:Reference Map": false,
       "tags-overview:Tags overview": false,
-      "obsidian42-brat:BRAT": false,
-      "obsidian-file-info-plugin:File Info Panel": false,
-      "3d-graph:3D Graph": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "reference-map:Reference Map": false,
+      "omnisearch:Omnisearch": false,
       "obisidian-note-linker:Note Linker": false,
+      "media-extended:Open media": false,
       "obsidian-map-view:Open map view": false,
       "latex-ocr:LatexOCR": false,
-      "omnisearch:Omnisearch": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "3d-graph:3D Graph": false,
+      "obsidian42-brat:BRAT": false,
+      "obsidian-file-info-plugin:File Info Panel": false,
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "1fdb49c82c553537",
+  "active": "dcdb417321cba809",
   "lastOpenFiles": [
-    "Opcode (Operation Code) and Operands.md",
-    "Immediate and Direct Addressing.md",
-    "Bus.md",
-    "Components of CPU (Central Processing Unit).md",
-    "Indirect Addressing.md",
+    "The Past Perfect Tense (das Plusquamperfekt).md",
+    "attachments/The Past Perfect Tense (das Plusquamperfekt)-1.png",
+    "attachments/The Past Perfect Tense (das Plusquamperfekt).png",
+    "The Present Perfect Tense (das Perfekt).md",
+    "The Present Tense (das Präsens).md",
+    "Selection Sort.md",
+    "Sliding Window.md",
+    "Fast and Slow pointers.md",
+    "Conditional Sentences.md",
+    "Anki.md",
     "ARM1.md",
+    "Commit Push.md",
+    "Bus.md",
+    "Bubble Sort.md",
+    "Components of CPU (Central Processing Unit).md",
+    "False Positive and False Negative.md",
+    "K-way Merge.md",
+    "Immediate and Direct Addressing.md",
+    "Insertion Sort.md",
+    "Variables - Rust.md",
+    "Two Pointers or Iterators.md",
+    "Two heaps.md",
+    "Tree DFS.md",
+    "toefl Speaking.md",
+    "toefl Reading.md",
+    "The Simple Past or Imperfect Tense (das Präteritum).md",
+    "In-place reversal of linked list.md",
     "attachments/Indirect Addressing.png",
     "attachments/Immediate and Direct Addressing.png",
     "attachments/Immediate and.png",
     "attachments/Opcode (Operation Code) and Operands.png",
     "attachments/Op Codes.png",
     "attachments/Buses.png",
-    "Arithmetic Logic Unit (ALU) of CPU (Central Processing Unit).md",
-    "Control Unit of CPU (Central Processing Unit).md",
     "attachments/Untitled.png",
-    "1. Two Sum.md",
-    "templates/Leetcode Problem.md",
-    "The Simple Past or Imperfect Tense (das Präteritum).md",
-    "The Present Perfect Tense (das Perfekt).md",
-    "The Present Tense (das Präsens).md",
     "attachments/The Simple Past or Imperfect Tense (das Präteritum)-1.png",
-    "attachments/The Simple Past or Imperfect Tense (das Präteritum)-3.png",
-    "attachments/The Present Perfect Tense (das Perfekt)-2.png",
-    "templates/code/Python Template.md",
-    "templates/code/C++ Template.md",
-    "templates/code/Rust Template.md",
-    "Commit Push.md",
-    "Anki.md",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",
     "attachments/Bash Scripts/Commit and Push PC.bat",
     "attachments/Bash Scripts/Commit and Push ThinkPad.bat",
     "attachments/Bash Scripts",
-    "Variables - Rust.md",
-    "Two heaps.md",
-    "Two Pointers or Iterators.md",
-    "Tree DFS.md",
-    "Tree BFS.md",
-    "Topological sort.md",
-    "Top K-elements.md",
-    "Subsets.md",
     "attachments/Pull Thinkpad.bat",
     "attachments/Pull PC.bat",
     "attachments/Commit and Push ThinkPad.bat",

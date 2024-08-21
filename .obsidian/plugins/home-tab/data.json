@@ -13,7 +13,7 @@
   "fontColorType": "default",
   "fontWeight": 600,
   "maxResults": 5,
-  "showStarredFiles": false,
+  "showbookmarkedFiles": true,
   "showRecentFiles": false,
   "maxRecentFiles": 5,
   "storeRecentFile": true,
@@ -24,30 +24,33 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "Opcode (Operation Code) and Operands.md",
-      "timestamp": 1724168424721
+      "filepath": "The Past Perfect Tense (das Plusquamperfekt).md",
+      "timestamp": 1724234764149
     },
     {
-      "filepath": "Immediate and Direct Addressing.md",
-      "timestamp": 1724168424556
+      "filepath": "The Present Perfect Tense (das Perfekt).md",
+      "timestamp": 1724234756202
     },
     {
-      "filepath": "Bus.md",
-      "timestamp": 1724168422371
+      "filepath": "The Present Tense (das Präsens).md",
+      "timestamp": 1724234744484
     },
     {
-      "filepath": "Components of CPU (Central Processing Unit).md",
-      "timestamp": 1724168422274
+      "filepath": "Selection Sort.md",
+      "timestamp": 1724173709742
     },
     {
-      "filepath": "Indirect Addressing.md",
-      "timestamp": 1724168420061
+      "filepath": "Sliding Window.md",
+      "timestamp": 1724173709149
     }
   ],
-  "starredFileStore": [],
+  "bookmarkedFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
   "newTabOnStart": false,
   "closePreviousSessionTabs": false,
-  "omnisearch": false
+  "omnisearch": false,
+  "showOmnisearchExcerpt": true,
+  "showStarredFiles": false,
+  "starredFileStore": []
 }

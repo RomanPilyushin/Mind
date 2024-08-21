@@ -6,7 +6,7 @@ tags:
   - present-tense
   - das-präsens
   - present
-link: 
+link: https://germanstudiesdepartmenaluser.host.dartmouth.edu/PresentTense/Present.html
 aliases:
   - das Präsens
   - Präsens

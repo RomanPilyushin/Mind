@@ -71,6 +71,23 @@ var Entity = class {
     const json = response.json;
     return json.search.map(Entity.fromJson);
   }
+  static replaceCharacters(str, searchString, replaceString) {
+    let result = str;
+    for (let i = 0; i < searchString.length; i++) {
+      const searchChar = searchString[i];
+      const replaceChar = replaceString[Math.min(i, replaceString.length - 1)];
+      result = result.replace(
+        new RegExp("\\" + searchChar, "g"),
+        replaceChar
+      );
+    }
+    return result;
+  }
+  static buildLink(link, label, id) {
+    label = Entity.replaceCharacters(label, '*/:#?<>"', "_");
+    link = link.replace(/\$\{label\}/g, label).replace(/\$\{id\}/g, id);
+    return link;
+  }
   // TODO: incorporate https://query.wikidata.org/#SELECT%20%3FwdLabel%20%3Fps_Label%20%3FwdpqLabel%20%3Fpq_Label%20%7B%0A%20%20VALUES%20%28%3Fcompany%29%20%7B%28wd%3AQ5284%29%7D%0A%20%20%0A%20%20%3Fcompany%20%3Fp%20%3Fstatement%20.%0A%20%20%3Fstatement%20%3Fps%20%3Fps_%20.%0A%20%20%0A%20%20%3Fwd%20wikibase%3Aclaim%20%3Fp.%0A%20%20%3Fwd%20wikibase%3AstatementProperty%20%3Fps.%0A%20%20%0A%20%20OPTIONAL%20%7B%0A%20%20%3Fstatement%20%3Fpq%20%3Fpq_%20.%0A%20%20%3Fwdpq%20wikibase%3Aqualifier%20%3Fpq%20.%0A%20%20%7D%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20%7D%0A%7D%20ORDER%20BY%20%3Fwd%20%3Fstatement%20%3Fps_
   async getProperties(opts) {
     let query = `
@@ -129,7 +146,13 @@ var Entity = class {
       } else if (isString(type)) {
         toAdd = value;
       } else if (value.match(/Q\d+$/) && valueLabel) {
-        toAdd = `[[${opts.internalLinkPrefix}${valueLabel}]]`;
+        let id = value.match(/\d+$/);
+        var label = Entity.buildLink(
+          opts.internalLinkPrefix,
+          valueLabel,
+          id[0]
+        );
+        toAdd = `[[${label}]]`;
       }
       if (toAdd === null) {
         return;
@@ -147,15 +170,17 @@ var Entity = class {
 // main.ts
 var DEFAULT_SETTINGS = {
   entityIdKey: "wikidata entity id",
-  internalLinkPrefix: "db/",
+  internalLinkPrefix: "db/${label}",
   ignoreCategories: true,
   ignoreWikipediaPages: true,
   ignoreIDs: true,
   ignorePropertiesWithTimeRanges: true,
-  overwriteExistingProperties: false
+  overwriteExistingProperties: false,
+  blockedProperties: [],
+  allowedProperties: []
 };
 async function syncEntityToFile(plugin, entity, file) {
-  var _a;
+  var _a, _b, _c;
   let frontmatter = (_a = plugin.app.metadataCache.getFileCache(file)) == null ? void 0 : _a.frontmatter;
   if (!frontmatter) {
     frontmatter = {};
@@ -167,15 +192,28 @@ async function syncEntityToFile(plugin, entity, file) {
     ignorePropertiesWithTimeRanges: plugin.settings.ignorePropertiesWithTimeRanges,
     internalLinkPrefix: plugin.settings.internalLinkPrefix
   });
+  const filteredProperties = [];
   for (const [key, value] of Object.entries(properties)) {
+    if (
+      // If the "allowed properties" is defined, only import properties that are defined in the setting
+      // If the "blocked properties" is defined, do not import properties that are defined in the setting
+      ((_b = plugin.settings.allowedProperties) == null ? void 0 : _b.length) && !plugin.settings.allowedProperties.includes(key) || ((_c = plugin.settings.blockedProperties) == null ? void 0 : _c.length) && plugin.settings.blockedProperties.includes(key)
+    ) {
+      console.log(`Wikidata: skipping property ${key}`);
+      continue;
+    } else {
+      filteredProperties.push(key);
+    }
     frontmatter[key] = value.length === 1 ? value[0] : value;
   }
   await plugin.app.fileManager.processFrontMatter(file, (frontmatter2) => {
     for (const [key, value] of Object.entries(properties)) {
-      if (plugin.settings.overwriteExistingProperties) {
-        frontmatter2[key] = value.length === 1 ? value[0] : value;
-      } else if (!frontmatter2[key]) {
-        frontmatter2[key] = value.length === 1 ? value[0] : value;
+      if (filteredProperties.includes(key)) {
+        if (plugin.settings.overwriteExistingProperties) {
+          frontmatter2[key] = value.length === 1 ? value[0] : value;
+        } else if (!frontmatter2[key]) {
+          frontmatter2[key] = value.length === 1 ? value[0] : value;
+        }
       }
     }
     frontmatter2[plugin.settings.entityIdKey] = entity.id;
@@ -193,8 +231,15 @@ var WikidataEntitySuggestModal = class extends import_obsidian2.SuggestModal {
   async onChooseSuggestion(item, evt) {
     let loading = new import_obsidian2.Notice(`Importing entity ${item.id}...`);
     try {
-      let prefix = this.plugin.settings.internalLinkPrefix;
-      let name = `${prefix}${item.label}.md`;
+      if (this.plugin.settings.internalLinkPrefix === "db/") {
+        this.plugin.settings.internalLinkPrefix = "db/${label}";
+      }
+      let name = Entity.buildLink(
+        this.plugin.settings.internalLinkPrefix + `.md`,
+        item.label,
+        item.id.substring(1)
+      );
+      console.log(name);
       let file = this.app.vault.getAbstractFileByPath(name);
       if (!(file instanceof import_obsidian2.TFile)) {
         file = await this.app.vault.create(name, "");
@@ -228,8 +273,12 @@ var WikidataImporterPlugin = class extends import_obsidian2.Plugin {
     let entityId = frontmatter[this.settings.entityIdKey];
     if (!entityId || !entityId.startsWith("Q")) {
       new import_obsidian2.Notice(
-        "To import Wikidata properties, you must define a Wikidata entity ID in the frontmatter"
+        `No Wikidata entity ID found in frontmatter key "${this.settings.entityIdKey}", searching for a Wikidata entity from the file name "${file.basename}"...`
       );
+      const modal = new WikidataEntitySuggestModal(this);
+      modal.open();
+      modal.inputEl.value = file.basename;
+      modal.inputEl.dispatchEvent(new Event("input"));
       return;
     }
     let loading = new import_obsidian2.Notice("Loading properties from Wikidata...");
@@ -240,6 +289,45 @@ var WikidataImporterPlugin = class extends import_obsidian2.Plugin {
       new import_obsidian2.Notice(
         `Error importing properties for entity ${entity.id}: ${e}`
       );
+      return;
+    } finally {
+      loading.hide();
+    }
+  }
+  async importEntityFromHighlightedText() {
+    const file = this.app.workspace.getActiveFile();
+    if (!file) {
+      new import_obsidian2.Notice("No active file");
+      return;
+    }
+    let selection;
+    const view = this.app.workspace.getActiveViewOfType(import_obsidian2.MarkdownView);
+    if (view) {
+      const view_mode = view.getMode();
+      switch (view_mode) {
+        case "preview":
+          break;
+        case "source":
+          if ("editor" in view) {
+            selection = view.editor.getSelection();
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    if (!selection) {
+      new import_obsidian2.Notice("No text selected");
+      return;
+    }
+    const loading = new import_obsidian2.Notice("Loading entity from highlighted text...");
+    try {
+      const modal = new WikidataEntitySuggestModal(this);
+      modal.open();
+      modal.inputEl.value = selection;
+      modal.inputEl.dispatchEvent(new Event("input"));
+    } catch (e) {
+      new import_obsidian2.Notice(`Error importing entity from highlighted text: ${e}`);
       return;
     } finally {
       loading.hide();
@@ -258,6 +346,11 @@ var WikidataImporterPlugin = class extends import_obsidian2.Plugin {
       callback: () => {
         new WikidataEntitySuggestModal(this).open();
       }
+    });
+    this.addCommand({
+      id: "import-entity-from-highlighted-text",
+      name: "Import entity from highlighted text",
+      editorCallback: this.importEntityFromHighlightedText.bind(this)
     });
     this.addSettingTab(new WikidataImporterSettingsTab(this.app, this));
   }
@@ -337,6 +430,32 @@ var WikidataImporterSettingsTab = class extends import_obsidian2.PluginSettingTa
         this.plugin.settings.overwriteExistingProperties = value;
         await this.plugin.saveSettings();
       })
+    );
+    new import_obsidian2.Setting(containerEl).setName("Blocked properties").setDesc(
+      "Do not import properties with these labels, one per line, even if they are allowed by the 'allowed properties' setting"
+    ).addTextArea(
+      (text) => {
+        var _a;
+        return text.setPlaceholder("label1\nlabel2\n...").setValue(
+          (_a = this.plugin.settings.blockedProperties) == null ? void 0 : _a.join("\n")
+        ).onChange(async (value) => {
+          this.plugin.settings.blockedProperties = value.trim().split("\n").filter(Boolean);
+          await this.plugin.saveSettings();
+        });
+      }
+    );
+    new import_obsidian2.Setting(containerEl).setName("Allowed properties").setDesc(
+      "Only import properties with these labels, one per line, making the 'blocked properties' irrelevant"
+    ).addTextArea(
+      (text) => {
+        var _a;
+        return text.setPlaceholder("label1\nlabel2\n...").setValue(
+          (_a = this.plugin.settings.allowedProperties) == null ? void 0 : _a.join("\n")
+        ).onChange(async (value) => {
+          this.plugin.settings.allowedProperties = value.trim().split("\n").filter(Boolean);
+          await this.plugin.saveSettings();
+        });
+      }
     );
   }
 };
