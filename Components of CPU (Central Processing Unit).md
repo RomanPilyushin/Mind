@@ -4,8 +4,6 @@ tags:
   - cpu
   - registers
   - control-unit
-  - alu
-  - arithmetic-logic-unit
 link: 
 aliases:
   - Control Unit

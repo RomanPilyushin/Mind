@@ -24,24 +24,24 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "NES PPU.md",
-      "timestamp": 1724252080777
+      "filepath": "Bitwise Operations.md",
+      "timestamp": 1724255009731
     },
     {
-      "filepath": "NES CPU.md",
-      "timestamp": 1724252046721
+      "filepath": "Decoder Unit.md",
+      "timestamp": 1724254376447
+    },
+    {
+      "filepath": "Arithmetic Logic Unit (ALU).md",
+      "timestamp": 1724254068915
     },
     {
       "filepath": "Components of CPU (Central Processing Unit).md",
-      "timestamp": 1724252014357
+      "timestamp": 1724254064339
     },
     {
-      "filepath": "ARM1.md",
-      "timestamp": 1724251978821
-    },
-    {
-      "filepath": "Bit-Fields.md",
-      "timestamp": 1724251738580
+      "filepath": "NES PPU.md",
+      "timestamp": 1724253430972
     }
   ],
   "bookmarkedFileStore": [],

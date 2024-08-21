@@ -8,33 +8,72 @@
         "type": "tabs",
         "children": [
           {
-            "id": "8d511b3154e2c3cb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "NES CPU.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "225ee0dd9fad16a9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "NES PPU.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "df4b763b5f7898f8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Components of CPU (Central Processing Unit).md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "401b1bbb1cf2e9b6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Arithmetic Logic Unit (ALU).md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "7269e414c4f8cefd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Components of CPU (Central Processing Unit).md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "92e370725a7931e9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Arithmetic Logic Unit (ALU).md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bb566f6db175c8f6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Bitwise Operations.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9c52a1e5611bcaf4",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -42,7 +81,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -221,27 +260,29 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "df4b763b5f7898f8",
+  "active": "9c52a1e5611bcaf4",
   "lastOpenFiles": [
-    "NES PPU.md",
-    "attachments/NES PPU.png",
-    "NES CPU.md",
+    "Bitwise Operations.md",
+    "attachments/Bitwise Operations-9.png",
+    "attachments/Bitwise Operations-8.png",
+    "attachments/Bitwise Operations-7.png",
+    "attachments/Bitwise Operations-6.png",
+    "attachments/Bitwise Operations-5.png",
+    "Decoder Unit.md",
+    "attachments/Decoder-1.png",
+    "attachments/Decoder.png",
+    "Arithmetic Logic Unit (ALU).md",
     "Components of CPU (Central Processing Unit).md",
+    "attachments/ALU.png",
+    "NES PPU.md",
+    "NES CPU.md",
+    "attachments/NES PPU.png",
     "ARM1.md",
     "attachments/NES CPU.png",
     "Bit-Fields.md",
-    "Bitwise Operations.md",
-    "attachments/Bit-Fields.png",
-    "attachments/Bitwise Operations-4.png",
-    "attachments/Bitwise Operations-3.png",
-    "attachments/Bitwise Operations-2.png",
     "templates/Conceptual Note.md",
-    "attachments/Bitwise Operations-1.png",
-    "attachments/Bitwise Operations.png",
-    "attachments/Untitled-1.png",
     "1. Two Sum.md",
     "The Past Perfect Tense (das Plusquamperfekt).md",
-    "attachments/The Past Perfect Tense (das Plusquamperfekt)-1.png",
     "The Present Perfect Tense (das Perfekt).md",
     "The Present Tense (das Präsens).md",
     "Selection Sort.md",
@@ -256,8 +297,6 @@
     "K-way Merge.md",
     "Immediate and Direct Addressing.md",
     "Insertion Sort.md",
-    "Variables - Rust.md",
-    "Two Pointers or Iterators.md",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",

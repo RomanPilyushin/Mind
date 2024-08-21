@@ -8,6 +8,19 @@ aliases:
   - bitwise
 ---
 
+
+![[Bitwise Operations-5.png]]
+
+![[Bitwise Operations-6.png]]
+
+![[Bitwise Operations-7.png]]
+
+![[Bitwise Operations-8.png]]
+
+![[Bitwise Operations-9.png]]
+
+
+
 ### The Six Primary Bitwise Operators:
 
 ![[Bitwise Operations-4.png]]

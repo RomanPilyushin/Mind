@@ -1,6 +1,22 @@
 {
   "recentFiles": [
     {
+      "basename": "Bitwise Operations",
+      "path": "Bitwise Operations.md"
+    },
+    {
+      "basename": "Decoder Unit",
+      "path": "Decoder Unit.md"
+    },
+    {
+      "basename": "Arithmetic Logic Unit (ALU)",
+      "path": "Arithmetic Logic Unit (ALU).md"
+    },
+    {
+      "basename": "Components of CPU (Central Processing Unit)",
+      "path": "Components of CPU (Central Processing Unit).md"
+    },
+    {
       "basename": "NES PPU",
       "path": "NES PPU.md"
     },
@@ -9,20 +25,12 @@
       "path": "NES CPU.md"
     },
     {
-      "basename": "Components of CPU (Central Processing Unit)",
-      "path": "Components of CPU (Central Processing Unit).md"
-    },
-    {
       "basename": "ARM1",
       "path": "ARM1.md"
     },
     {
       "basename": "Bit-Fields",
       "path": "Bit-Fields.md"
-    },
-    {
-      "basename": "Bitwise Operations",
-      "path": "Bitwise Operations.md"
     },
     {
       "basename": "Conceptual Note",
@@ -191,14 +199,6 @@
     {
       "basename": "Cyclic sort",
       "path": "Cyclic sort.md"
-    },
-    {
-      "basename": "Topological sort",
-      "path": "Topological sort.md"
-    },
-    {
-      "basename": "Top K-elements",
-      "path": "Top K-elements.md"
     }
   ],
   "omittedPaths": [],
