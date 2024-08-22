@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "167267404d3d84f0",
+        "id": "b07d2f226bf1213e",
         "type": "tabs",
         "children": [
           {
-            "id": "9dccb0d6114a16e5",
+            "id": "29a143d18e68e9f0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "20. Valid Parentheses.md",
+                "file": "Fetch-Execute Cycle (FEC).md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -21,7 +21,20 @@
             }
           },
           {
-            "id": "08b7f40d0e4a12fa",
+            "id": "3230af1d7b7a1465",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CPU Scheduling.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "cc3dd9987091498a",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -29,7 +42,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -83,7 +96,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -208,8 +222,19 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "08b7f40d0e4a12fa",
+  "active": "cc3dd9987091498a",
   "lastOpenFiles": [
+    "CPU Scheduling.md",
+    "Fetch-Execute Cycle (FEC).md",
+    "Replicate FOR using JUMP.md",
+    "Von Neumann CPU Architecture.md",
+    "Harvard CPU Architecture.md",
+    "Components of CPU (Central Processing Unit).md",
+    "Arithmetic Logic Unit (ALU).md",
+    "attachments/ALU.png",
+    "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
+    "attachments/Harvard CPU.png",
+    "attachments/Von Neumann CPU.png",
     "20. Valid Parentheses.md",
     "The Present Perfect Tense (das Perfekt).md",
     "The Present Simple (das Präsens).md",
@@ -221,8 +246,6 @@
     "_Dataviewer.md",
     "Contribution Graph.md",
     "Bitwise Operations.md",
-    "Arithmetic Logic Unit (ALU).md",
-    "Components of CPU (Central Processing Unit).md",
     "attachments/Bitwise Operations-9.png",
     "attachments/Bitwise Operations-8.png",
     "attachments/Bitwise Operations-7.png",
@@ -230,22 +253,13 @@
     "attachments/Bitwise Operations-5.png",
     "Decoder Unit.md",
     "attachments/Decoder-1.png",
-    "attachments/Decoder.png",
-    "attachments/ALU.png",
     "NES PPU.md",
     "NES CPU.md",
-    "attachments/NES PPU.png",
     "ARM1.md",
-    "attachments/NES CPU.png",
     "Bit-Fields.md",
     "templates/Conceptual Note.md",
     "1. Two Sum.md",
     "Selection Sort.md",
-    "Sliding Window.md",
-    "Fast and Slow pointers.md",
-    "Conditional Sentences.md",
-    "Anki.md",
-    "Commit Push.md",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",

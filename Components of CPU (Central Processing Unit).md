@@ -8,7 +8,6 @@ link:
 aliases:
   - Control Unit
   - Arithmetic Logic Unit
-  - ALU
   - Registers
   - CIR
   - MAR
@@ -22,14 +21,14 @@ aliases:
 
 ### Control Unit:
 
-- **Function**: The Control Unit is responsible for directing the operation of the processor. It interprets instructions from memory, decodes them, and then signals the necessary operations to be performed by the other components of the CPU, including the ALU and registers.
+- **Function**: The Control Unit is responsible for directing the operation of the processor. It interprets instructions from memory, decodes them, and then signals the necessary operations to be performed by the other components of the CPU, including the [[Arithmetic Logic Unit (ALU)|ALU]] and registers.
 - **Role**: It orchestrates the fetching, decoding, and execution of instructions by sending control signals to other parts of the CPU and coordinating the activities of the various units and registers.
 
 
-### Arithmetic Logic Unit (ALU):
+### Arithmetic Logic Unit ([[Arithmetic Logic Unit (ALU)|ALU]]):
 
-- **Function**: The ALU is responsible for performing all arithmetic and logical operations within the CPU. This includes basic arithmetic operations like addition, subtraction, multiplication, and division, as well as logical operations such as AND, OR, NOT, and XOR.
-- **Role**: When an instruction requiring an arithmetic or logical operation is decoded by the Control Unit, the necessary data is sent to the ALU, which processes it and stores the result in a register (often the Accumulator, ACC).
+- **Function**: The [[Arithmetic Logic Unit (ALU)|ALU]] is responsible for performing all arithmetic and logical operations within the CPU. This includes basic arithmetic operations like addition, subtraction, multiplication, and division, as well as logical operations such as AND, OR, NOT, and XOR.
+- **Role**: When an instruction requiring an arithmetic or logical operation is decoded by the Control Unit, the necessary data is sent to the [[Arithmetic Logic Unit (ALU)|ALU]], which processes it and stores the result in a register (often the Accumulator, ACC).
 
 
 
@@ -51,7 +50,7 @@ Registers in the CPU (Central Processing Unit) are small storage locations that 
     - The Memory Data Register, also known as the Memory Buffer Register (MBR), holds the data that is being transferred to or from the memory. It works in conjunction with the MAR during read/write operations.
 5. **Accumulator (ACC):**
     
-    - The Accumulator is a register used in arithmetic and logic operations. It often holds the intermediate results of operations performed by the Arithmetic Logic Unit (ALU). For example, in an addition operation, one operand might be in the ACC while the other is fetched from memory.
+    - The Accumulator is a register used in arithmetic and logic operations. It often holds the intermediate results of operations performed by the [[Arithmetic Logic Unit (ALU)]]. For example, in an addition operation, one operand might be in the ACC while the other is fetched from memory.
 
 These registers play critical roles in the CPU's fetch-decode-execute cycle, ensuring smooth and efficient processing of instructions.
 

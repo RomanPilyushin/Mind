@@ -13,9 +13,9 @@ aliases:
 
 ### Key Components of the ALU Diagram:
 
-1. **Operand A and Operand B**: These are the inputs to the ALU. These operands are the values or data that the ALU will process. Typically, these values come from the CPU's registers.
+1. **Operand A and Operand B**: These are the inputs to the ALU. These operands are the values or data that the ALU will process. Typically, these values come from the [[Components of CPU (Central Processing Unit)|CPU]]'s [[Components of CPU (Central Processing Unit)|registers]].
     
-2. **Opcode**: This is the operation code that tells the ALU what operation to perform on the operands. The opcode is provided by the control unit of the CPU, which decodes instructions from a program.
+2. **Opcode**: This is the operation code that tells the ALU what operation to perform on the operands. The opcode is provided by the [[Components of CPU (Central Processing Unit)|control unit]] of the [[Components of CPU (Central Processing Unit)|CPU]], which decodes instructions from a program.
     
 3. **Status**: This represents the condition flags or status flags that indicate the result of the last operation performed by the ALU. These flags can indicate conditions such as zero, carry, overflow, or negative results.
     
@@ -39,12 +39,12 @@ The ALU is crucial in the execution of instructions in a computer, making it a c
 ### Performs calculations on binary integers only
 
 
-The CPU ALU performs calculations on binary integers only. Floating point arithmetic is performed by the FPU and other data types may need other specialist processors.
+The [[Components of CPU (Central Processing Unit)|CPU]] ALU performs calculations on binary integers only. Floating point arithmetic is performed by the FPU and other data types may need other specialist processors.
 
 
-**CPU's Arithmetic Logic Unit (ALU)** is primarily designed to perform calculations on binary integers, which means it handles operations like addition, subtraction, multiplication, and division of whole numbers in binary form. The ALU is integral to executing most of the basic arithmetic and logical operations in a computer.
+**[[Components of CPU (Central Processing Unit)|CPU]]'s [[Components of CPU (Central Processing Unit)|Arithmetic Logic Unit]] (ALU)** is primarily designed to perform calculations on binary integers, which means it handles operations like addition, subtraction, multiplication, and division of whole numbers in binary form. The ALU is integral to executing most of the basic arithmetic and logical operations in a computer.
 
-However, when it comes to **floating-point arithmetic** (operations involving real numbers, which can have fractional parts), these are generally performed by a specialized unit known as the **Floating Point Unit (FPU)**. The FPU is optimized for handling floating-point operations, which include addition, subtraction, multiplication, division, and square root calculations involving floating-point numbers. The FPU may be integrated into the CPU or exist as a separate coprocessor, depending on the architecture.
+However, when it comes to **floating-point arithmetic** (operations involving real numbers, which can have fractional parts), these are generally performed by a specialized unit known as the **Floating Point Unit (FPU)**. The FPU is optimized for handling floating-point operations, which include addition, subtraction, multiplication, division, and square root calculations involving floating-point numbers. The FPU may be integrated into the [[Components of CPU (Central Processing Unit)|CPU]] or exist as a separate coprocessor, depending on the architecture.
 
 For **other data types** and specific operations, additional specialized processors or coprocessors may be used:
 

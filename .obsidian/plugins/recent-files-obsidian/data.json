@@ -1,6 +1,38 @@
 {
   "recentFiles": [
     {
+      "basename": "CPU Scheduling",
+      "path": "CPU Scheduling.md"
+    },
+    {
+      "basename": "Fetch-Execute Cycle (FEC)",
+      "path": "Fetch-Execute Cycle (FEC).md"
+    },
+    {
+      "basename": "Replicate FOR using JUMP",
+      "path": "Replicate FOR using JUMP.md"
+    },
+    {
+      "basename": "Von Neumann CPU Architecture",
+      "path": "Von Neumann CPU Architecture.md"
+    },
+    {
+      "basename": "Harvard CPU Architecture",
+      "path": "Harvard CPU Architecture.md"
+    },
+    {
+      "basename": "Components of CPU (Central Processing Unit)",
+      "path": "Components of CPU (Central Processing Unit).md"
+    },
+    {
+      "basename": "Arithmetic Logic Unit (ALU)",
+      "path": "Arithmetic Logic Unit (ALU).md"
+    },
+    {
+      "basename": "ALU",
+      "path": "attachments/ALU.png"
+    },
+    {
       "basename": "20. Valid Parentheses",
       "path": "20. Valid Parentheses.md"
     },
@@ -43,14 +75,6 @@
     {
       "basename": "Bitwise Operations",
       "path": "Bitwise Operations.md"
-    },
-    {
-      "basename": "Arithmetic Logic Unit (ALU)",
-      "path": "Arithmetic Logic Unit (ALU).md"
-    },
-    {
-      "basename": "Components of CPU (Central Processing Unit)",
-      "path": "Components of CPU (Central Processing Unit).md"
     },
     {
       "basename": "Decoder Unit",
@@ -175,30 +199,6 @@
     {
       "basename": "Theo",
       "path": "Theo.md"
-    },
-    {
-      "basename": "Quick Sort",
-      "path": "Quick Sort.md"
-    },
-    {
-      "basename": "Merge Sort",
-      "path": "Merge Sort.md"
-    },
-    {
-      "basename": "Optiver",
-      "path": "Optiver.md"
-    },
-    {
-      "basename": "The bid and ask prices",
-      "path": "The bid and ask prices.md"
-    },
-    {
-      "basename": "Opcode (Operation Code) and Operands",
-      "path": "Opcode (Operation Code) and Operands.md"
-    },
-    {
-      "basename": "Indirect Addressing",
-      "path": "Indirect Addressing.md"
     }
   ],
   "omittedPaths": [],

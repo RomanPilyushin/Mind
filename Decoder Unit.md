@@ -9,7 +9,7 @@ aliases:
   - decoder
 ---
 
-In a computer's central processing unit (CPU), the **decoder unit** plays a crucial role in interpreting and executing instructions. The decoder unit interprets the binary instructions fetched from memory and generates the necessary control signals to execute those instructions. The implementation of the instruction set, which defines the operations the CPU can perform, can be done in two primary ways:
+In a computer's central processing unit ([[Components of CPU (Central Processing Unit)|CPU]]), the **decoder unit** plays a crucial role in interpreting and executing instructions. The decoder unit interprets the binary instructions fetched from memory and generates the necessary control signals to execute those instructions. The implementation of the instruction set, which defines the operations the [[Components of CPU (Central Processing Unit)|CPU]] can perform, can be done in two primary ways:
 
 1. **Hardwired Control**:
     
@@ -22,7 +22,7 @@ In a computer's central processing unit (CPU), the **decoder unit** plays a cruc
 
 - In modern complex CPUs, a hybrid approach is often used, where frequently used instructions might be implemented using hardwired logic for speed, while less common or more complex instructions rely on microprogramming for flexibility.
 
-This dual approach allows CPU designers to balance performance and flexibility, making the instruction set implementation both efficient and adaptable.
+This dual approach allows [[Components of CPU (Central Processing Unit)|CPU]] designers to balance performance and flexibility, making the instruction set implementation both efficient and adaptable.
 
 ### How a 2-to-4 Decoder Works:
 
