@@ -8,8 +8,8 @@ tags:
   - das-plusquamperfekt
 link: https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/PastPerfect.html
 aliases:
-  - Past Perfect
   - das Plusquamperfekt
+  - Past Perfect
 ---
 
 ### Introduction
@@ -24,7 +24,7 @@ _Das Plusquamperfekt_ is formed using two components:
 1. **Auxiliary Verb**: The past tense form of _haben_ (had) or _sein_ (was) as the auxiliary verb.
 2. **Past Participle** (_Partizip II_): The main verb in its past participle form.
 
-#### 1. **Auxiliary Verb in the Simple Past**
+#### 1. **Auxiliary Verb in the [[The Simple Past or Imperfect Tense (das Präteritum)|Simple Past]]**
 
 - **_Haben_ (to have)** is used with most verbs:
     - _Ich hatte_ (I had)
@@ -43,7 +43,7 @@ _Das Plusquamperfekt_ is formed using two components:
 
 #### 2. **Past Participle (_Partizip II_)**
 
-The past participle is the same form used in _das Perfekt_:
+The past participle is the same form used in _das [[The Present Perfect Tense (das Perfekt)|Perfekt]]_:
 
 - For regular (weak) verbs, it’s typically formed by adding _ge-_ to the beginning and _-t_ to the end of the verb stem.
     - Example: _spielen_ → _gespielt_ (played)
@@ -58,7 +58,7 @@ The past participle is the same form used in _das Perfekt_:
 
 The structure of a sentence in _das Plusquamperfekt_ is as follows:
 
-**Subject + Auxiliary Verb (haben/sein in simple past) + Other Elements + Past Participle**
+**Subject + Auxiliary Verb (haben/sein in [[The Simple Past or Imperfect Tense (das Präteritum)|simple past]]) + Other Elements + Past Participle**
 
 **Example Sentences:**
 
@@ -85,7 +85,7 @@ _Das Plusquamperfekt_ is used in the following situations:
 ### Key Points:
 
 - **Time Indicators**: Words like _bevor_ (before), _nachdem_ (after), and _als_ (when) are often used with _das Plusquamperfekt_ to clarify the sequence of events.
-- **Relation to _das Perfekt_ and _das Präteritum_**: While _das Perfekt_ and _das Präteritum_ describe past actions, _das Plusquamperfekt_ goes a step further to describe actions that were completed even earlier.
+- **Relation to _das [[The Present Perfect Tense (das Perfekt)|Perfekt]]_ and _das [[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_**: While _das [[The Present Perfect Tense (das Perfekt)|Perfekt]]_ and _das [[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_ describe past actions, _das Plusquamperfekt_ goes a step further to describe actions that were completed even earlier.
 
 
 
@@ -99,15 +99,13 @@ _Das Plusquamperfekt_ is used in the following situations:
 
 In summary, _das Plusquamperfekt_ is a crucial tense for describing actions that occurred before other past actions. It adds depth to storytelling and clarity to the sequence of events in the past.
   
-  
-  
-  
+
 
 ### Dartmouth
 
 #### The Past Perfect Tense in English
 
-The past perfect tense describes events or situations that precede another point in the past that has been established through the [the present perfect](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) or the [simple past.](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html)
+The past perfect tense describes events or situations that precede another point in the past that has been established through the [the [[The Present Perfect Tense (das Perfekt)|present perfect]]](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) or the [[[The Simple Past or Imperfect Tense (das Präteritum)|simple past]].](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html)
 
 English creates this tense with a past participle and, as the name suggests, with the auxiliary verb, "to have," conjugated in its past-tense forms:
 
@@ -117,7 +115,7 @@ English creates this tense with a past participle and, as the name suggests, wit
 |She was tired because she hadn't slept the night before.|
 |He had been living in his car for several months before finally finding an apartment.|
 
-For a discussion of how to form the past participle, consult the explanation of [the present perfect.](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html)
+For a discussion of how to form the past participle, consult the explanation of [the [[The Present Perfect Tense (das Perfekt)|present perfect]].](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html)
 
 
 #### The Past Perfect Tense (das Plusquamperfekt) in German
@@ -125,7 +123,7 @@ For a discussion of how to form the past participle, consult the explanation of�
 ![[The Past Perfect Tense (das Plusquamperfekt).png]]
 
 
-In German, as in English, the past perfect describes a time previous to another in the past. It is constructed just like [the present perfect tense,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) except that the auxiliary "haben" or "sein" is in its [simple past](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html) form: "hatte" or "war."
+In German, as in English, the past perfect describes a time previous to another in the past. It is constructed just like [the [[The Present Perfect Tense (das Perfekt)|present perfect]] tense,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) except that the auxiliary "haben" or "sein" is in its [[[The Simple Past or Imperfect Tense (das Präteritum)|simple past]]](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html) form: "hatte" or "war."
 
 |                                                                                       |                                                                                                 |
 | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |

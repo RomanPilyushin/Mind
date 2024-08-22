@@ -7,16 +7,18 @@ tags:
   - past-tense
   - das-präteritum
   - imperfect-tense
-link: 
+link: https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html
 aliases:
   - das Präteritum
   - Präteritum
+  - Simple Past
+  - Imperfect Tense
 ---
 
 ### Introduction
 
 
-The Simple Past or Imperfect Tense, known as _das Präteritum_ in German, is primarily used in written language, especially in literature, reports, and formal writing. It's used to describe actions or events that happened in the past and are now completed. Unlike *[[The Present Perfect Tense (das Perfekt)|das Perfekt]]* (the present perfect tense), which is more commonly used in spoken German, _das Präteritum_ is preferred in written narratives.
+The Simple Past or Imperfect Tense, known as _das Präteritum_ in German, is primarily used in written language, especially in literature, reports, and formal writing. It's used to describe actions or events that happened in the past and are now completed. Unlike *[[The Present Perfect Tense (das Perfekt)|das Perfekt]]* (the [[The Present Perfect Tense (das Perfekt)|present perfect]] tense), which is more commonly used in spoken German, _das Präteritum_ is preferred in written narratives.
 
 
 
@@ -121,36 +123,10 @@ _Das Präteritum_ is used in several contexts:
 In summary, _das Präteritum_ is essential for storytelling and formal writing in German. While it might not be as common in everyday conversation, mastering it is important for understanding and creating written narratives.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Dartmouth
 #### The Simple Past Tense in English
 
-The simple past describes an event within a time frame that is completed (compare the simple past "I cooked twice this week" with the [present perfect,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) "I have cooked twice this week" — the former implies that that's all the cooking I'm going to do, while the latter leaves open the possibility that I might cook more).
+The simple past describes an event within a time frame that is completed (compare the simple past "I cooked twice this week" with the [[[The Present Perfect Tense (das Perfekt)|present perfect]],](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) "I have cooked twice this week" — the former implies that that's all the cooking I'm going to do, while the latter leaves open the possibility that I might cook more).
 
 
 English forms this tense in several ways:
@@ -163,7 +139,7 @@ Strong, or irregular, verbs generally change the vowel in the stressed syllable.
 #### The Simple Past Tense in German
 
 
-In German, as in English, the simple past differs from the [present perfect,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) in that it describes past events that are interrelated within a time frame that is separate from the present. Hence it is typically used in narratives. German speakers are not always careful in making this distinction. Indeed, they sometimes even mix the two tenses indiscriminately.
+In German, as in English, the simple past differs from the [[[The Present Perfect Tense (das Perfekt)|present perfect]],](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) in that it describes past events that are interrelated within a time frame that is separate from the present. Hence it is typically used in narratives. German speakers are not always careful in making this distinction. Indeed, they sometimes even mix the two tenses indiscriminately.
 
 
 
@@ -241,10 +217,10 @@ These irregular forms fall into distinct categories. Here is a list of the most 
 *Erich Romann lived here until 1935, when, under pressure from the Nazi regime, he took his own life*
 
 
-#### Distinctions between the Simple Past and the Present Perfect
+#### Distinctions between the Simple Past and the [[The Present Perfect Tense (das Perfekt)|Present Perfect]]
 
 
-In spoken German, the simple past is perceived as formal. Colloquial narratives often use the [present perfect tense:](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) "Ich bin nach Hause gegangen und habe meinem Mann gesagt...." 
+In spoken German, the simple past is perceived as formal. Colloquial narratives often use the [[[The Present Perfect Tense (das Perfekt)|present perfect]] tense:](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.html) "Ich bin nach Hause gegangen und habe meinem Mann gesagt...." 
 
 Indeed, many dialects do not have a simple past. The simple past is reserved for more formal narratives; novels are one example.
 
@@ -253,7 +229,7 @@ In ordinary conversation, then, the simple past is unusual. There are however, a
 #### Separable prefix
 
 
-As in the [present tense,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Present/Present.html) the finite verb might have a [separable prefix](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Wortbildung/Separables.html), which then goes to the end of the clause:
+As in the [[[The Present Tense (das Präsens)|present tense]],](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Present/Present.html) the finite verb might have a [separable prefix](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Wortbildung/Separables.html), which then goes to the end of the clause:
 
 
 | Wir kauften immer montags ein.      | We always shopped on Monday.          |

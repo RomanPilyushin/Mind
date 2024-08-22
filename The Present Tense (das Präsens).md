@@ -10,6 +10,7 @@ link: https://germanstudiesdepartmenaluser.host.dartmouth.edu/PresentTense/Prese
 aliases:
   - das Präsens
   - Präsens
+  - Present Tense
 ---
 
 ### Introduction
@@ -101,18 +102,6 @@ _Das Präsens_ is versatile and is used in various contexts:
 
 
 In summary, _das Präsens_ in German is straightforward in its use and covers a wide range of actions and meanings, from the immediate present to habitual actions and even planned future activities.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -269,7 +258,7 @@ Note that those irregular verbs whose stems end in _-t_ do not add an ending i
 
 #### Separable Prefix
 
-As in the [simple past tense,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html) the finite verb might have a [separable prefix](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Wortbildung/Separables.html), which then goes to the end of the clause:
+As in the [[[The Simple Past or Imperfect Tense (das Präteritum)|simple past]] tense,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html) the finite verb might have a [separable prefix](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Wortbildung/Separables.html), which then goes to the end of the clause:
 
 | Wir kaufen immer montags ein.      | We always shop on Monday.                |
 |------------------------------------|------------------------------------------|

@@ -33,7 +33,7 @@ aliases:
 
 ### Third - Hypothetical Past
 
-- **Form**: If + past perfect, would have + past participle
+- **Form**: If + [[The Past Perfect Tense (das Plusquamperfekt)|past perfect]], would have + past participle
 
 - **Use**: To talk about **hypothetical situations in the past** that did **not happen**.
 
@@ -41,7 +41,7 @@ aliases:
 
 ### **Present** Result of a Past **Actions**
 
-- **Form**: If + past perfect, would + base verb
+- **Form**: If + [[The Past Perfect Tense (das Plusquamperfekt)|past perfect]], would + base verb
 
 - **Use**: To express how a **past action** or situation affects the **present**.
 

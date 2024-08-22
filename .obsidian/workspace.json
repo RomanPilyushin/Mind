@@ -4,84 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "18902ea2847d6961",
+        "id": "167267404d3d84f0",
         "type": "tabs",
         "children": [
           {
-            "id": "df4b763b5f7898f8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Components of CPU (Central Processing Unit).md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "401b1bbb1cf2e9b6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Arithmetic Logic Unit (ALU).md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "7269e414c4f8cefd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Components of CPU (Central Processing Unit).md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "92e370725a7931e9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Arithmetic Logic Unit (ALU).md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "bb566f6db175c8f6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Bitwise Operations.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9c52a1e5611bcaf4",
+            "id": "410c9e04eb9d5c9e",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
               "state": {}
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -260,9 +194,20 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "9c52a1e5611bcaf4",
+  "active": "410c9e04eb9d5c9e",
   "lastOpenFiles": [
+    "The Future Perfect Tense (das Futur II).md",
+    "The Future Tense (das Futur).md",
+    "The Past Perfect Tense (das Plusquamperfekt).md",
+    "The Present Perfect Tense (das Perfekt).md",
+    "The Simple Past or Imperfect Tense (das Präteritum).md",
+    "The Present Tense (das Präsens).md",
+    "_Toggl.md",
+    "_Dataviewer.md",
+    "Contribution Graph.md",
     "Bitwise Operations.md",
+    "Arithmetic Logic Unit (ALU).md",
+    "Components of CPU (Central Processing Unit).md",
     "attachments/Bitwise Operations-9.png",
     "attachments/Bitwise Operations-8.png",
     "attachments/Bitwise Operations-7.png",
@@ -271,8 +216,6 @@
     "Decoder Unit.md",
     "attachments/Decoder-1.png",
     "attachments/Decoder.png",
-    "Arithmetic Logic Unit (ALU).md",
-    "Components of CPU (Central Processing Unit).md",
     "attachments/ALU.png",
     "NES PPU.md",
     "NES CPU.md",
@@ -282,9 +225,6 @@
     "Bit-Fields.md",
     "templates/Conceptual Note.md",
     "1. Two Sum.md",
-    "The Past Perfect Tense (das Plusquamperfekt).md",
-    "The Present Perfect Tense (das Perfekt).md",
-    "The Present Tense (das Präsens).md",
     "Selection Sort.md",
     "Sliding Window.md",
     "Fast and Slow pointers.md",
@@ -292,11 +232,6 @@
     "Anki.md",
     "Commit Push.md",
     "Bus.md",
-    "Bubble Sort.md",
-    "False Positive and False Negative.md",
-    "K-way Merge.md",
-    "Immediate and Direct Addressing.md",
-    "Insertion Sort.md",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",

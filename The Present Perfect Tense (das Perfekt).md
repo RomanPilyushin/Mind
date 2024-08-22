@@ -11,11 +11,12 @@ link: https://germanstudiesdepartmenaluser.host.dartmouth.edu/Perfect/Perfect.ht
 aliases:
   - das Perfekt
   - Perfekt
+  - Present Perfect
 ---
 
 ### Introduction
 
-The Present Perfect Tense, known as _das Perfekt_ in German, is commonly used in spoken and written German to describe past actions or events that have relevance to the present or are seen from the present perspective. Unlike English, where the present perfect is often used for actions that are still relevant or have consequences in the present, in German, _das Perfekt_ is frequently used in everyday conversation instead of the simple past tense (_[[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_), especially in southern Germany, Austria, and Switzerland.
+The Present Perfect Tense, known as _das Perfekt_ in German, is commonly used in spoken and written German to describe past actions or events that have relevance to the present or are seen from the present perspective. Unlike English, where the present perfect is often used for actions that are still relevant or have consequences in the present, in German, _das Perfekt_ is frequently used in everyday conversation instead of the [[The Simple Past or Imperfect Tense (das Präteritum)|simple past]] tense (_[[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_), especially in southern Germany, Austria, and Switzerland.
 
 
 
@@ -62,27 +63,7 @@ The structure of a sentence in _das Perfekt_ is as follows:
 - **To indicate actions that are relevant to the present**: _Sie hat das Essen vorbereitet._ (She has prepared the food.)
 
 
-In summary, _das Perfekt_ is the go-to past tense in conversational German, used widely in spoken language and less so in formal writing, where the simple past (_[[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_) might be preferred.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+In summary, _das Perfekt_ is the go-to past tense in conversational German, used widely in spoken language and less so in formal writing, where the [[The Simple Past or Imperfect Tense (das Präteritum)|simple past]] (_[[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_) might be preferred.
 
 
 
@@ -90,7 +71,7 @@ In summary, _das Perfekt_ is the go-to past tense in conversational German, used
 
 #### The Present Perfect Tense in English
 
-The present perfect tense describes a past event that has present tense implications (compare the simple past "I cooked twice this week" with the present perfect: "I have cooked twice this week" - the former implies that that's all the cooking I'm going to do, while the latter suggests that I might cook more).
+The present perfect tense describes a past event that has [[The Present Tense (das Präsens)|present tense]] implications (compare the [[The Simple Past or Imperfect Tense (das Präteritum)|simple past]] "I cooked twice this week" with the present perfect: "I have cooked twice this week" - the former implies that that's all the cooking I'm going to do, while the latter suggests that I might cook more).
 
 English forms this tense with a combination of the auxiliary verb "to have" and a past participle: "I have noticed that," "She has gone there twice," etc. The name "present perfect" reflects the fact that the auxiliary verb, "to have," is conjugated in its present-tense forms.
 
@@ -109,10 +90,10 @@ Strong, or irregular, verbs generally (but not always) change the vowel in the s
 ![[The Present Perfect Tense (das Perfekt).png]]
 
 
-In German, as in English, the present perfect differs from the [simple past,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html) in that it describes past events that have present implications. German speakers are not always careful in making this distinction, however. Indeed, they sometimes even mix the two tenses indiscriminately.
+In German, as in English, the present perfect differs from the [[[The Simple Past or Imperfect Tense (das Präteritum)|simple past]],](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html) in that it describes past events that have present implications. German speakers are not always careful in making this distinction, however. Indeed, they sometimes even mix the two tenses indiscriminately.
 
 
-Even more important: in colloquial conversation, Germans use the present perfect almost exclusively. Indeed, many dialects do not even have a [simple past,](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html) which is thus mostly reserved for written narrations. Colloquial accounts are in the present perfect: "Ich bin nach Hause gegangen und habe meinem Mann gesagt...." There are a few exceptions, such as the verb "sein" and the [modal auxiliaries.](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Verbs/modals.html) It is quite common to use the less complex "ich war da" instead or "ich bin da gewesen" or "sie konnte ihn sehen" rather than "sie hat ihn sehen können." Even in ordinary speech it is more usual to say "ich musste einen Arzt rufen lassen" than "ich habe einen Arzt rufen lassen müssen." "Er hatte einen Hund" is also possible in place of "Er hat einen Hunde gehabt."
+Even more important: in colloquial conversation, Germans use the present perfect almost exclusively. Indeed, many dialects do not even have a [[[The Simple Past or Imperfect Tense (das Präteritum)|simple past]],](https://germanstudiesdepartmenaluser.host.dartmouth.edu/SimplePast/SimplePast.html) which is thus mostly reserved for written narrations. Colloquial accounts are in the present perfect: "Ich bin nach Hause gegangen und habe meinem Mann gesagt...." There are a few exceptions, such as the verb "sein" and the [modal auxiliaries.](https://germanstudiesdepartmenaluser.host.dartmouth.edu/Verbs/modals.html) It is quite common to use the less complex "ich war da" instead or "ich bin da gewesen" or "sie konnte ihn sehen" rather than "sie hat ihn sehen können." Even in ordinary speech it is more usual to say "ich musste einen Arzt rufen lassen" than "ich habe einen Arzt rufen lassen müssen." "Er hatte einen Hund" is also possible in place of "Er hat einen Hunde gehabt."
 
 
 #### Forming the Present Perfect Tense in German
