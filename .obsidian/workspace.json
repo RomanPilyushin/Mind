@@ -8,14 +8,28 @@
         "type": "tabs",
         "children": [
           {
-            "id": "410c9e04eb9d5c9e",
+            "id": "9dccb0d6114a16e5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "20. Valid Parentheses.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "08b7f40d0e4a12fa",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -194,14 +208,15 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "410c9e04eb9d5c9e",
+  "active": "08b7f40d0e4a12fa",
   "lastOpenFiles": [
+    "20. Valid Parentheses.md",
+    "The Present Perfect Tense (das Perfekt).md",
+    "The Present Simple (das Präsens).md",
+    "The Past Simple or Imperfect Tense (das Präteritum).md",
     "The Future Perfect Tense (das Futur II).md",
     "The Future Tense (das Futur).md",
     "The Past Perfect Tense (das Plusquamperfekt).md",
-    "The Present Perfect Tense (das Perfekt).md",
-    "The Simple Past or Imperfect Tense (das Präteritum).md",
-    "The Present Tense (das Präsens).md",
     "_Toggl.md",
     "_Dataviewer.md",
     "Contribution Graph.md",
@@ -231,7 +246,6 @@
     "Conditional Sentences.md",
     "Anki.md",
     "Commit Push.md",
-    "Bus.md",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",

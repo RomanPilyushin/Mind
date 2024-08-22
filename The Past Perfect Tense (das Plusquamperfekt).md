@@ -24,7 +24,7 @@ _Das Plusquamperfekt_ is formed using two components:
 1. **Auxiliary Verb**: The past tense form of _haben_ (had) or _sein_ (was) as the auxiliary verb.
 2. **Past Participle** (_Partizip II_): The main verb in its past participle form.
 
-#### 1. **Auxiliary Verb in the [[The Simple Past or Imperfect Tense (das Präteritum)|Simple Past]]**
+#### 1. **Auxiliary Verb in the [[The Past Simple or Imperfect Tense (das Präteritum)|Simple Past]]**
 
 - **_Haben_ (to have)** is used with most verbs:
     - _Ich hatte_ (I had)
@@ -58,7 +58,7 @@ The past participle is the same form used in _das [[The Present Perfect Tense (d
 
 The structure of a sentence in _das Plusquamperfekt_ is as follows:
 
-**Subject + Auxiliary Verb (haben/sein in [[The Simple Past or Imperfect Tense (das Präteritum)|simple past]]) + Other Elements + Past Participle**
+**Subject + Auxiliary Verb (haben/sein in [[The Past Simple or Imperfect Tense (das Präteritum)|simple past]]) + Other Elements + Past Participle**
 
 **Example Sentences:**
 
@@ -85,7 +85,7 @@ _Das Plusquamperfekt_ is used in the following situations:
 ### Key Points:
 
 - **Time Indicators**: Words like _bevor_ (before), _nachdem_ (after), and _als_ (when) are often used with _das Plusquamperfekt_ to clarify the sequence of events.
-- **Relation to _das [[The Present Perfect Tense (das Perfekt)|Perfekt]]_ and _das [[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_**: While _das [[The Present Perfect Tense (das Perfekt)|Perfekt]]_ and _das [[The Simple Past or Imperfect Tense (das Präteritum)|Präteritum]]_ describe past actions, _das Plusquamperfekt_ goes a step further to describe actions that were completed even earlier.
+- **Relation to _das [[The Present Perfect Tense (das Perfekt)|Perfekt]]_ and _das [[The Past Simple or Imperfect Tense (das Präteritum)|Präteritum]]_**: While _das [[The Present Perfect Tense (das Perfekt)|Perfekt]]_ and _das [[The Past Simple or Imperfect Tense (das Präteritum)|Präteritum]]_ describe past actions, _das Plusquamperfekt_ goes a step further to describe actions that were completed even earlier.
 
 
 

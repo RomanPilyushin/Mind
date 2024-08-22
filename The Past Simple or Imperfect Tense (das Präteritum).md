@@ -18,7 +18,7 @@ aliases:
 ### Introduction
 
 
-The Simple Past or Imperfect Tense, known as _das Präteritum_ in German, is primarily used in written language, especially in literature, reports, and formal writing. It's used to describe actions or events that happened in the past and are now completed. Unlike *[[The Present Perfect Tense (das Perfekt)|das Perfekt]]* (the [[The Present Perfect Tense (das Perfekt)|present perfect]] tense), which is more commonly used in spoken German, _das Präteritum_ is preferred in written narratives.
+The Past Simple or Imperfect Tense, known as _das Präteritum_ in German, is primarily used in written language, especially in literature, reports, and formal writing. It's used to describe actions or events that happened in the past and are now completed. Unlike *[[The Present Perfect Tense (das Perfekt)|das Perfekt]]* (the [[The Present Perfect Tense (das Perfekt)|present perfect]] tense), which is more commonly used in spoken German, _das Präteritum_ is preferred in written narratives.
 
 
 

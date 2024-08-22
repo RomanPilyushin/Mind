@@ -14,7 +14,7 @@ aliases:
 
 ### Introduction
 
-The Future Tense, known as _das Futur_ in German, is used to describe actions or events that will happen in the future. While German often uses the [[The Present Tense (das Präsens)|present tense]] with a time adverb (e.g., _morgen_, _nächste Woche_) to talk about the future, _das Futur_ provides a way to clearly indicate future intentions, predictions, or assumptions.
+The Future Tense, known as _das Futur_ in German, is used to describe actions or events that will happen in the future. While German often uses the [[The Present Simple (das Präsens)|present tense]] with a time adverb (e.g., _morgen_, _nächste Woche_) to talk about the future, _das Futur_ provides a way to clearly indicate future intentions, predictions, or assumptions.
 
 
 ### Formation of _das Futur_
@@ -88,7 +88,7 @@ _Das Futur_ is used in several contexts:
 ### Key Points:
 
 - **Time Indicators**: While _das Futur_ clearly indicates future actions, time indicators like _morgen_ (tomorrow), _nächste Woche_ (next week), and _bald_ (soon) are often used to specify when the action will occur.
-- **[[The Present Tense (das Präsens)|Present Tense]] for Future Actions**: In everyday spoken German, the [[The Present Tense (das Präsens)|present tense]] is often used with a future time indicator to talk about future actions.
+- **[[The Present Simple (das Präsens)|Present Tense]] for Future Actions**: In everyday spoken German, the [[The Present Simple (das Präsens)|present tense]] is often used with a future time indicator to talk about future actions.
     - Example: _Ich gehe morgen ins Kino._ (I am going to the cinema tomorrow.)
 
 
@@ -98,14 +98,14 @@ _Das Futur_ is used in several contexts:
 - _Sie werden das Haus renovieren._ (They will renovate the house.)
 - _Wirst du mit uns kommen?_ (Will you come with us?)
 
-In summary, _das Futur_ is a straightforward tense used to express future intentions, predictions, and assumptions in German. While it is essential for clarity, especially in written or formal contexts, the [[The Present Tense (das Präsens)|present tense]] often serves a similar function in everyday speech when accompanied by time indicators.
+In summary, _das Futur_ is a straightforward tense used to express future intentions, predictions, and assumptions in German. While it is essential for clarity, especially in written or formal contexts, the [[The Present Simple (das Präsens)|present tense]] often serves a similar function in everyday speech when accompanied by time indicators.
 
 
 ### Dartmouth
 #### **The Future Tense in English:**
 
 
-1) by using the progressive [[The Present Tense (das Präsens)|present tense]] when the context makes the future meaning clear:
+1) by using the progressive [[The Present Simple (das Präsens)|present tense]] when the context makes the future meaning clear:
 
 |   |
 |---|
@@ -161,7 +161,7 @@ The [[The Future Perfect Tense (das Futur II)|future perfect]] tense is also use
 #### **The Future Tense in German:**
 
 
-Like English, German can talk about future events in the [[The Present Tense (das Präsens)|present tense]] when the context is clear:
+Like English, German can talk about future events in the [[The Present Simple (das Präsens)|present tense]] when the context is clear:
 
 |                                     |                                        |
 | ----------------------------------- | -------------------------------------- |
