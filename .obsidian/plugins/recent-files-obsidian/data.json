@@ -1,6 +1,14 @@
 {
   "recentFiles": [
     {
+      "basename": "White PC Build",
+      "path": "White PC Build.md"
+    },
+    {
+      "basename": "_Toggl",
+      "path": "_Toggl.md"
+    },
+    {
       "basename": "CPU Scheduling",
       "path": "CPU Scheduling.md"
     },
@@ -59,10 +67,6 @@
     {
       "basename": "The Past Perfect Tense (das Plusquamperfekt)",
       "path": "The Past Perfect Tense (das Plusquamperfekt).md"
-    },
-    {
-      "basename": "_Toggl",
-      "path": "_Toggl.md"
     },
     {
       "basename": "_Dataviewer",
@@ -195,10 +199,6 @@
     {
       "basename": "Subsets",
       "path": "Subsets.md"
-    },
-    {
-      "basename": "Theo",
-      "path": "Theo.md"
     }
   ],
   "omittedPaths": [],
