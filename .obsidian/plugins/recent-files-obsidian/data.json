@@ -1,12 +1,16 @@
 {
   "recentFiles": [
     {
-      "basename": "White PC Build",
-      "path": "White PC Build.md"
+      "basename": "Rendere a CV Resume using LaTex in WSL",
+      "path": "Rendere a CV Resume using LaTex in WSL.md"
     },
     {
       "basename": "_Toggl",
       "path": "_Toggl.md"
+    },
+    {
+      "basename": "White PC Build",
+      "path": "White PC Build.md"
     },
     {
       "basename": "CPU Scheduling",
@@ -195,10 +199,6 @@
     {
       "basename": "Diffuse Mode",
       "path": "Diffuse Mode.md"
-    },
-    {
-      "basename": "Subsets",
-      "path": "Subsets.md"
     }
   ],
   "omittedPaths": [],

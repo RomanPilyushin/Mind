@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b07d2f226bf1213e",
+        "id": "35d12fa88630e3a2",
         "type": "tabs",
         "children": [
           {
-            "id": "a229f66d791b8d6e",
+            "id": "9dd008920132a420",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "White PC Build.md",
+                "file": "_Toggl.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -21,23 +21,20 @@
             }
           },
           {
-            "id": "6587e87e4325d9e9",
+            "id": "57eaf2f8c893af26",
             "type": "leaf",
             "state": {
-              "type": "home-tab-view",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Rendere a CV Resume using LaTex in WSL.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
             }
           },
           {
-            "id": "1f1a71a8f9ec18f3",
-            "type": "leaf",
-            "state": {
-              "type": "home-tab-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "9fb7dd71c989a35b",
+            "id": "3a27101fd645874a",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -45,7 +42,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -121,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "White PC Build.md"
-              }
+              "state": {}
             }
           },
           {
@@ -174,7 +169,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "White PC Build.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -191,7 +185,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "White PC Build.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -229,10 +222,11 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "9fb7dd71c989a35b",
+  "active": "3a27101fd645874a",
   "lastOpenFiles": [
-    "White PC Build.md",
+    "Rendere a CV Resume using LaTex in WSL.md",
     "_Toggl.md",
+    "White PC Build.md",
     "CPU Scheduling.md",
     "Fetch-Execute Cycle (FEC).md",
     "Replicate FOR using JUMP.md",
@@ -266,7 +260,6 @@
     "ARM1.md",
     "Bit-Fields.md",
     "templates/Conceptual Note.md",
-    "1. Two Sum.md",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",
