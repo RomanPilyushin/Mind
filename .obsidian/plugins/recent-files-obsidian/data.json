@@ -1,32 +1,44 @@
 {
   "recentFiles": [
     {
-      "basename": "std thread",
-      "path": "std thread.md"
+      "basename": "SPI (Serial Peripheral Interface)",
+      "path": "SPI (Serial Peripheral Interface).md"
     },
     {
-      "basename": "std async",
-      "path": "std async.md"
+      "basename": "I2C (Inter-Integrated Circuit)",
+      "path": "I2C (Inter-Integrated Circuit).md"
     },
     {
-      "basename": "MQTT (Message Queuing Telemetry Transport)",
-      "path": "MQTT (Message Queuing Telemetry Transport).md"
+      "basename": "UART (Universal Asynchronous Receiver Transmitter)",
+      "path": "UART (Universal Asynchronous Receiver Transmitter).md"
     },
     {
-      "basename": "HTTP(S) Hypertext Transfer Protocol (Secure)",
-      "path": "HTTP(S) Hypertext Transfer Protocol (Secure).md"
-    },
-    {
-      "basename": "UDP (User Datagram Protocol)",
-      "path": "UDP (User Datagram Protocol).md"
+      "basename": "NETCONF",
+      "path": "NETCONF.md"
     },
     {
       "basename": "TCP IP (Transmission Control Protocol Internet Protocol)",
       "path": "TCP IP (Transmission Control Protocol Internet Protocol).md"
     },
     {
-      "basename": "NETCONF",
-      "path": "NETCONF.md"
+      "basename": "UDP (User Datagram Protocol)",
+      "path": "UDP (User Datagram Protocol).md"
+    },
+    {
+      "basename": "HTTP(S) Hypertext Transfer Protocol (Secure)",
+      "path": "HTTP(S) Hypertext Transfer Protocol (Secure).md"
+    },
+    {
+      "basename": "MQTT (Message Queuing Telemetry Transport)",
+      "path": "MQTT (Message Queuing Telemetry Transport).md"
+    },
+    {
+      "basename": "std thread",
+      "path": "std thread.md"
+    },
+    {
+      "basename": "std async",
+      "path": "std async.md"
     },
     {
       "basename": "Fast and Slow pointers",
@@ -187,18 +199,6 @@
     {
       "basename": "1. Two Sum",
       "path": "1. Two Sum.md"
-    },
-    {
-      "basename": "Selection Sort",
-      "path": "Selection Sort.md"
-    },
-    {
-      "basename": "Sliding Window",
-      "path": "Sliding Window.md"
-    },
-    {
-      "basename": "Anki",
-      "path": "Anki.md"
     }
   ],
   "omittedPaths": [],

@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "3a78ba7fdb3cdcb7",
+        "id": "3f129e8ade09e491",
         "type": "tabs",
         "children": [
           {
-            "id": "b67583c0142aed5f",
+            "id": "81bf4dd589a4c4b4",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -16,12 +16,12 @@
             }
           },
           {
-            "id": "de735103112a3766",
+            "id": "fabe2245d7acad5d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NETCONF.md",
+                "file": "UART (Universal Asynchronous Receiver Transmitter).md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -29,12 +29,12 @@
             }
           },
           {
-            "id": "0a87887c95181ad6",
+            "id": "87c1d61eb43f6db0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TCP IP (Transmission Control Protocol Internet Protocol).md",
+                "file": "I2C (Inter-Integrated Circuit).md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -42,20 +42,12 @@
             }
           },
           {
-            "id": "c65c91233db41b83",
-            "type": "leaf",
-            "state": {
-              "type": "home-tab-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "afc4264395ec1a23",
+            "id": "3002fad8ee494842",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "UDP (User Datagram Protocol).md",
+                "file": "SPI (Serial Peripheral Interface).md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -63,75 +55,7 @@
             }
           },
           {
-            "id": "ecd2729ad5f79870",
-            "type": "leaf",
-            "state": {
-              "type": "home-tab-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "839c83dbcd60af96",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "HTTP(S) Hypertext Transfer Protocol (Secure).md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0648bcf0a10c803c",
-            "type": "leaf",
-            "state": {
-              "type": "home-tab-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "bc5422fe98a0c791",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "MQTT (Message Queuing Telemetry Transport).md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "319db843f0feea59",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "std thread.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ddfd8a7015580d85",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "std async.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "fdb39fbacadec96f",
+            "id": "8921b5d8d781502b",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -139,7 +63,7 @@
             }
           }
         ],
-        "currentTab": 11
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -168,7 +92,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#algorithm",
+                "query": "tag:c",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -286,12 +210,12 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 391.5,
-    "collapsed": true
+    "width": 391.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -318,15 +242,18 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "fdb39fbacadec96f",
+  "active": "8921b5d8d781502b",
   "lastOpenFiles": [
+    "SPI (Serial Peripheral Interface).md",
+    "I2C (Inter-Integrated Circuit).md",
+    "UART (Universal Asynchronous Receiver Transmitter).md",
+    "NETCONF.md",
+    "TCP IP (Transmission Control Protocol Internet Protocol).md",
+    "UDP (User Datagram Protocol).md",
+    "HTTP(S) Hypertext Transfer Protocol (Secure).md",
+    "MQTT (Message Queuing Telemetry Transport).md",
     "std thread.md",
     "std async.md",
-    "MQTT (Message Queuing Telemetry Transport).md",
-    "HTTP(S) Hypertext Transfer Protocol (Secure).md",
-    "UDP (User Datagram Protocol).md",
-    "TCP IP (Transmission Control Protocol Internet Protocol).md",
-    "NETCONF.md",
     "Fast and Slow pointers.md",
     "Einstellung Effect.md",
     "Diffuse Mode.md",
@@ -344,9 +271,6 @@
     "Linking and Compiling in C++.md",
     "Rendere a CV Resume using LaTex in WSL.md",
     "White PC Build.md",
-    "CPU Scheduling.md",
-    "Fetch-Execute Cycle (FEC).md",
-    "Replicate FOR using JUMP.md",
     "attachments/ALU.png",
     "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
     "attachments/Harvard CPU.png",
