@@ -24,12 +24,24 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "Rendere a CV Resume using LaTex in WSL.md",
-      "timestamp": 1724494367178
+      "filepath": "gRPC in C++.md",
+      "timestamp": 1724499597849
+    },
+    {
+      "filepath": "C++ Standards.md",
+      "timestamp": 1724499597054
     },
     {
       "filepath": "_Toggl.md",
-      "timestamp": 1724494365196
+      "timestamp": 1724499596841
+    },
+    {
+      "filepath": "Linking and Compiling in C++.md",
+      "timestamp": 1724499596628
+    },
+    {
+      "filepath": "Rendere a CV Resume using LaTex in WSL.md",
+      "timestamp": 1724494732009
     }
   ],
   "bookmarkedFileStore": [],

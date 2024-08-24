@@ -1,12 +1,24 @@
 {
   "recentFiles": [
     {
-      "basename": "Rendere a CV Resume using LaTex in WSL",
-      "path": "Rendere a CV Resume using LaTex in WSL.md"
+      "basename": "gRPC in C++",
+      "path": "gRPC in C++.md"
+    },
+    {
+      "basename": "C++ Standards",
+      "path": "C++ Standards.md"
     },
     {
       "basename": "_Toggl",
       "path": "_Toggl.md"
+    },
+    {
+      "basename": "Linking and Compiling in C++",
+      "path": "Linking and Compiling in C++.md"
+    },
+    {
+      "basename": "Rendere a CV Resume using LaTex in WSL",
+      "path": "Rendere a CV Resume using LaTex in WSL.md"
     },
     {
       "basename": "White PC Build",
@@ -187,18 +199,6 @@
     {
       "basename": "In-place reversal of linked list",
       "path": "In-place reversal of linked list.md"
-    },
-    {
-      "basename": "How to Excel at Math and Science",
-      "path": "How to Excel at Math and Science.md"
-    },
-    {
-      "basename": "Einstellung Effect",
-      "path": "Einstellung Effect.md"
-    },
-    {
-      "basename": "Diffuse Mode",
-      "path": "Diffuse Mode.md"
     }
   ],
   "omittedPaths": [],

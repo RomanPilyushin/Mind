@@ -4,45 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "35d12fa88630e3a2",
+        "id": "3a78ba7fdb3cdcb7",
         "type": "tabs",
         "children": [
           {
-            "id": "9dd008920132a420",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Toggl.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "57eaf2f8c893af26",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Rendere a CV Resume using LaTex in WSL.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3a27101fd645874a",
+            "id": "b67583c0142aed5f",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -222,10 +195,13 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "3a27101fd645874a",
+  "active": "b67583c0142aed5f",
   "lastOpenFiles": [
-    "Rendere a CV Resume using LaTex in WSL.md",
+    "gRPC in C++.md",
+    "C++ Standards.md",
     "_Toggl.md",
+    "Linking and Compiling in C++.md",
+    "Rendere a CV Resume using LaTex in WSL.md",
     "White PC Build.md",
     "CPU Scheduling.md",
     "Fetch-Execute Cycle (FEC).md",
@@ -257,9 +233,6 @@
     "attachments/Decoder-1.png",
     "NES PPU.md",
     "NES CPU.md",
-    "ARM1.md",
-    "Bit-Fields.md",
-    "templates/Conceptual Note.md",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",
