@@ -24,24 +24,24 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "Zephyr RTOS.md",
+      "timestamp": 1724515011537
+    },
+    {
+      "filepath": "FreeRTOS.md",
+      "timestamp": 1724514969121
+    },
+    {
       "filepath": "SPI (Serial Peripheral Interface).md",
-      "timestamp": 1724514590636
+      "timestamp": 1724514623052
+    },
+    {
+      "filepath": "UART (Universal Asynchronous Receiver Transmitter).md",
+      "timestamp": 1724514622717
     },
     {
       "filepath": "I2C (Inter-Integrated Circuit).md",
       "timestamp": 1724514581764
-    },
-    {
-      "filepath": "UART (Universal Asynchronous Receiver Transmitter).md",
-      "timestamp": 1724514562760
-    },
-    {
-      "filepath": "NETCONF.md",
-      "timestamp": 1724504557650
-    },
-    {
-      "filepath": "TCP IP (Transmission Control Protocol Internet Protocol).md",
-      "timestamp": 1724504557498
     }
   ],
   "bookmarkedFileStore": [],

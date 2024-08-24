@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "81bf4dd589a4c4b4",
+            "id": "9b4070f0e3a274a3",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -16,12 +16,12 @@
             }
           },
           {
-            "id": "fabe2245d7acad5d",
+            "id": "e832116405db6070",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "UART (Universal Asynchronous Receiver Transmitter).md",
+                "file": "FreeRTOS.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -29,12 +29,12 @@
             }
           },
           {
-            "id": "87c1d61eb43f6db0",
+            "id": "4180928febabedec",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "I2C (Inter-Integrated Circuit).md",
+                "file": "Zephyr RTOS.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -42,20 +42,7 @@
             }
           },
           {
-            "id": "3002fad8ee494842",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SPI (Serial Peripheral Interface).md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "8921b5d8d781502b",
+            "id": "d4782ca2e51fd356",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -63,7 +50,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -215,7 +202,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 391.5
+    "width": 391.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -242,11 +230,13 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "8921b5d8d781502b",
+  "active": "d4782ca2e51fd356",
   "lastOpenFiles": [
+    "Zephyr RTOS.md",
+    "FreeRTOS.md",
     "SPI (Serial Peripheral Interface).md",
-    "I2C (Inter-Integrated Circuit).md",
     "UART (Universal Asynchronous Receiver Transmitter).md",
+    "I2C (Inter-Integrated Circuit).md",
     "NETCONF.md",
     "TCP IP (Transmission Control Protocol Internet Protocol).md",
     "UDP (User Datagram Protocol).md",
@@ -269,8 +259,6 @@
     "gRPC in C++.md",
     "_Toggl.md",
     "Linking and Compiling in C++.md",
-    "Rendere a CV Resume using LaTex in WSL.md",
-    "White PC Build.md",
     "attachments/ALU.png",
     "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
     "attachments/Harvard CPU.png",

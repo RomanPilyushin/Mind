@@ -1,16 +1,24 @@
 {
   "recentFiles": [
     {
+      "basename": "Zephyr RTOS",
+      "path": "Zephyr RTOS.md"
+    },
+    {
+      "basename": "FreeRTOS",
+      "path": "FreeRTOS.md"
+    },
+    {
       "basename": "SPI (Serial Peripheral Interface)",
       "path": "SPI (Serial Peripheral Interface).md"
     },
     {
-      "basename": "I2C (Inter-Integrated Circuit)",
-      "path": "I2C (Inter-Integrated Circuit).md"
-    },
-    {
       "basename": "UART (Universal Asynchronous Receiver Transmitter)",
       "path": "UART (Universal Asynchronous Receiver Transmitter).md"
+    },
+    {
+      "basename": "I2C (Inter-Integrated Circuit)",
+      "path": "I2C (Inter-Integrated Circuit).md"
     },
     {
       "basename": "NETCONF",
@@ -191,14 +199,6 @@
     {
       "basename": "Bit-Fields",
       "path": "Bit-Fields.md"
-    },
-    {
-      "basename": "Conceptual Note",
-      "path": "templates/Conceptual Note.md"
-    },
-    {
-      "basename": "1. Two Sum",
-      "path": "1. Two Sum.md"
     }
   ],
   "omittedPaths": [],
