@@ -964,6 +964,10 @@ body {
                 margin: 0 auto;
             }
         }
+        &:hover {
+            /* themes like Cyber Glow add a hover color to callouts; remove it for toolbars */
+            background-color: unset;
+        }
         /* user feedback that toolbar interaction is not available; workaround for #69 */
         &:not(.is-focused &), &:not(.mod-active &) {
             opacity: var(--cg-nt-tbar-inactive-opacity);
@@ -1167,10 +1171,24 @@ body {
     & .setting-item {
         padding: 0.5em;
         margin: 0.25em;
-    }
-    & .setting-item:focus-within {
-        outline: solid 2px var(--background-modifier-border-focus);
-        border-radius: var(--button-radius);
+        /* duplicate toolbar button */
+        & button:first-child {
+            opacity: 0;
+            .is-mobile & {
+                opacity: 1;
+                width: auto;
+            }
+        }
+        &:hover button:first-child {
+            opacity: 1;
+        }
+        &:focus-within {
+            outline: solid 2px var(--background-modifier-border-focus);
+            border-radius: var(--button-radius);
+            & button:first-child {
+                opacity: 1;
+            }
+        }
     }
 } 
 
@@ -1287,7 +1305,10 @@ body {
     column-gap: 0.5em;
     justify-content: space-between;
     width: 100%;
-    & .note-toolbar-setting-item-preview-edit-mobile-icon svg {
+}
+
+.note-toolbar-setting-icon-button-cta {
+    & svg {
         color: var(--interactive-accent);
     }
 }
@@ -1673,29 +1694,47 @@ input[type="text"].note-toolbar-setting-error {
 }
 
 .note-toolbar-setting-item-delete {
-    border: none;
-    padding: 0 !important;
-    padding-inline-end: 0.25em !important;
+    padding: 0 8px 0 0;
     & .setting-item-info {
         display: none;
     }
     & .setting-item-control {
         .is-mobile & {
-            align-items: center;
             margin-top: 0 !important;
         }
-        & svg {
-            color: var(--text-error);
+        & button {
+            background: none;
+            box-shadow: none;
+            color: var(--icon-color);
+            gap: var(--size-4-2);
+            padding: var(--size-4-2);
+            &:hover {
+                opacity: var(--icon-opacity-hover);
+                color: var(--icon-color-hover);
+                background-color: var(--background-modifier-hover);
+            }
+            &:focus-visible {
+                border-radius: var(--input-radius);
+                box-shadow: 0 0 0 1px var(--background-modifier-border);
+                box-shadow: 0 0 0 2px var(--background-modifier-border-focus);
+            }
         }
+    }
+    & svg {
+        color: var(--text-error);
     }
 }
 
 .note-toolbar-setting-item-visibility {
     display: flex;
+    & button {
+        font-size: var(--font-ui-smaller);
+    }
 }
 
 .note-toolbar-setting-item-controls {
     display: flex;
+    gap: var(--size-4-2);
     & .setting-item {
         border-bottom: none !important;
         padding: 0 !important;

@@ -4,24 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "3f129e8ade09e491",
+        "id": "f89a90f212b4fcfc",
         "type": "tabs",
         "children": [
           {
-            "id": "9b4070f0e3a274a3",
-            "type": "leaf",
-            "state": {
-              "type": "home-tab-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "e832116405db6070",
+            "id": "86bc70a3071a2c62",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "FreeRTOS.md",
+                "file": "21. Merge Two Sorted Lists.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -29,12 +21,12 @@
             }
           },
           {
-            "id": "4180928febabedec",
+            "id": "1aedca9fd218110c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Zephyr RTOS.md",
+                "file": "121. Best Time to Buy and Sell Stock.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -42,7 +34,20 @@
             }
           },
           {
-            "id": "d4782ca2e51fd356",
+            "id": "2e016c98cc60e57b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "125. Valid Palindrome.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d2316029a803761f",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -79,7 +84,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:c",
+                "query": "tag:linked-list",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -230,8 +235,14 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "d4782ca2e51fd356",
+  "active": "d2316029a803761f",
   "lastOpenFiles": [
+    "125. Valid Palindrome.md",
+    "121. Best Time to Buy and Sell Stock.md",
+    "21. Merge Two Sorted Lists.md",
+    "attachments/21. Merge Two Sorted Lists.png",
+    "1. Two Sum.md",
+    "_Toggl.md",
     "Zephyr RTOS.md",
     "FreeRTOS.md",
     "SPI (Serial Peripheral Interface).md",
@@ -253,12 +264,7 @@
     "C++ Standards.md",
     "Bus.md",
     "Pointers - Cpp.md",
-    "Subsets.md",
-    "obsidian.css.md",
     "pdf/deutsch/Basic German.pdf",
-    "gRPC in C++.md",
-    "_Toggl.md",
-    "Linking and Compiling in C++.md",
     "attachments/ALU.png",
     "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
     "attachments/Harvard CPU.png",
@@ -268,7 +274,6 @@
     "attachments/Bitwise Operations-7.png",
     "attachments/Bitwise Operations-6.png",
     "attachments/Bitwise Operations-5.png",
-    "attachments/Decoder-1.png",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",

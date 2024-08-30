@@ -1,6 +1,26 @@
 {
   "recentFiles": [
     {
+      "basename": "125. Valid Palindrome",
+      "path": "125. Valid Palindrome.md"
+    },
+    {
+      "basename": "121. Best Time to Buy and Sell Stock",
+      "path": "121. Best Time to Buy and Sell Stock.md"
+    },
+    {
+      "basename": "21. Merge Two Sorted Lists",
+      "path": "21. Merge Two Sorted Lists.md"
+    },
+    {
+      "basename": "1. Two Sum",
+      "path": "1. Two Sum.md"
+    },
+    {
+      "basename": "_Toggl",
+      "path": "_Toggl.md"
+    },
+    {
       "basename": "Zephyr RTOS",
       "path": "Zephyr RTOS.md"
     },
@@ -97,10 +117,6 @@
       "path": "gRPC in C++.md"
     },
     {
-      "basename": "_Toggl",
-      "path": "_Toggl.md"
-    },
-    {
       "basename": "Linking and Compiling in C++",
       "path": "Linking and Compiling in C++.md"
     },
@@ -183,22 +199,6 @@
     {
       "basename": "Decoder Unit",
       "path": "Decoder Unit.md"
-    },
-    {
-      "basename": "NES PPU",
-      "path": "NES PPU.md"
-    },
-    {
-      "basename": "NES CPU",
-      "path": "NES CPU.md"
-    },
-    {
-      "basename": "ARM1",
-      "path": "ARM1.md"
-    },
-    {
-      "basename": "Bit-Fields",
-      "path": "Bit-Fields.md"
     }
   ],
   "omittedPaths": [],
