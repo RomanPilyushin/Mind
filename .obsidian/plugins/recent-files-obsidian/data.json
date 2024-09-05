@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "Tech Stach Java Cpp",
+      "path": "Tech Stach Java Cpp.md"
+    },
+    {
       "basename": "125. Valid Palindrome",
       "path": "125. Valid Palindrome.md"
     },
@@ -195,10 +199,6 @@
     {
       "basename": "Bitwise Operations",
       "path": "Bitwise Operations.md"
-    },
-    {
-      "basename": "Decoder Unit",
-      "path": "Decoder Unit.md"
     }
   ],
   "omittedPaths": [],
