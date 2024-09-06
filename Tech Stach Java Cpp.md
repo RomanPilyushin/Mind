@@ -75,19 +75,23 @@ MQTT (Using `paho.mqtt.cpp`)
 Redis (Using `hiredis` library)
 
 
-Internet protocol suite (TCP/UDP, SSL/TLS, HTTP, OSI);
+TCP/UDP, SSL/TLS, HTTP, OSI
 
+ZeroMQ
 
-Inter-process communication
+gRPC
 
+gprof
 
-Disk optimization
+callgrind
 
+Perf
 
-CPU, Memory
+pprof
 
+pgo
 
-
+pert stat
 
 
 
