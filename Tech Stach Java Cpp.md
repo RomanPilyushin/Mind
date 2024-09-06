@@ -10,81 +10,81 @@ aliases:
 ## Java
 
 
-### Spring (MVC, Boot, Cloud, Data)
+Spring (MVC, Boot, Cloud, Data)
 
-### InfluxDB
+InfluxDB
 
-### Postgres
+Postgres
 
-### Hibernate
+Hibernate
 
-### Kafka
+Kafka
 
-### Grafana
+Grafana
 
-### Prometheus
+Prometheus
 
-### Maven, Gradle
+Maven, Gradle
 
-### Network stack and HTTP protocol
+Network stack and HTTP protocol
 
-### GCP (Google Cloud Platform)
+GCP (Google Cloud Platform)
 
-### Kubernetes
+Kubernetes
 
-### New Relic
+New Relic
 
-### Spock
+Spock
 
-### SparkJava
+SparkJava
 
-### JOOQ (Java Object-Oriented Querying)
+JOOQ (Java Object-Oriented Querying)
 
-### Flyway
+Flyway
 
-### Javalin
+Javalin
 
-### RSocket
+RSocket
 
-### Redis
+Redis
 
+AWS
 
 
 
 ## Cpp
 
 
-### Boost.Asio
+Boost.Asio
+
+Boost.Beast
 
 
-### Boost.Beast
+Kubernetes (Interacting with Kubernetes API using C++)
 
 
-### Kubernetes (Interacting with Kubernetes API using C++)
+Apache Thrift (Client and Server Example)
 
 
-### Apache Thrift (Client and Server Example)
+RabbitMQ (C++ using `rabbitmq-c`)
 
 
-### RabbitMQ (C++ using `rabbitmq-c`)
+MQTT (Using `paho.mqtt.cpp`)
 
 
-### MQTT (Using `paho.mqtt.cpp`)
+Redis (Using `hiredis` library)
 
 
-### Redis (Using `hiredis` library)
+Internet protocol suite (TCP/UDP, SSL/TLS, HTTP, OSI);
 
 
-### Internet protocol suite (TCP/UDP, SSL/TLS, HTTP, OSI);
+Inter-process communication
 
 
-### Inter-process communication
+Disk optimization
 
 
-### Disk optimization
-
-
-### CPU, Memory
+CPU, Memory
 
 
 
