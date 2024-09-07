@@ -12,23 +12,21 @@ aliases:
 
 Spring (MVC, Boot, Cloud, Data)
 
-InfluxDB
+PostgreSQL
 
-Postgres
+MongoDB
 
-Hibernate
+Redis
 
 Kafka
+
+RabbitMQ
 
 Grafana
 
 Prometheus
 
 Maven, Gradle
-
-Network stack and HTTP protocol
-
-GCP (Google Cloud Platform)
 
 Kubernetes
 
@@ -46,19 +44,16 @@ Javalin
 
 RSocket
 
-Redis
-
 AWS
 
+JUnit
 
+Mockito
 
 ## Cpp
 
 
 Boost.Asio
-
-Boost.Beast
-
 
 Kubernetes (Interacting with Kubernetes API using C++)
 
