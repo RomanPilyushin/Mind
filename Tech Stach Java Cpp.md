@@ -30,7 +30,11 @@ Maven, Gradle
 
 Kubernetes
 
+ElasticSearch
+
 New Relic
+
+gRPC
 
 Spock
 
