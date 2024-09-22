@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "Bookmap Task",
+      "path": "Bookmap Task.md"
+    },
+    {
       "basename": "Tech Stach Java Cpp",
       "path": "Tech Stach Java Cpp.md"
     },
@@ -195,10 +199,6 @@
     {
       "basename": "_Dataviewer",
       "path": "_Dataviewer.md"
-    },
-    {
-      "basename": "Bitwise Operations",
-      "path": "Bitwise Operations.md"
     }
   ],
   "omittedPaths": [],

@@ -10,7 +10,9 @@ aliases:
 ## Java
 
 
-Spring (MVC, Boot, Cloud, Data)
+Spring Boot
+
+Spring Data
 
 PostgreSQL
 
@@ -22,6 +24,8 @@ Kafka
 
 RabbitMQ
 
+New Relic
+
 Grafana
 
 Prometheus
@@ -30,15 +34,15 @@ Maven, Gradle
 
 Kubernetes
 
-ElasticSearch
+Docker
 
-New Relic
+ElasticSearch
 
 gRPC
 
 Spock
 
-SparkJava
+Spark
 
 JOOQ (Java Object-Oriented Querying)
 

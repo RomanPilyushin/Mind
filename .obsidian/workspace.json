@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "01360376df6a19a1",
+            "id": "b788f6d581965b11",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tech Stach Java Cpp.md",
+                "file": "Bookmap Task.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -21,7 +21,7 @@
             }
           },
           {
-            "id": "010292c0dd8d349f",
+            "id": "0bb20380c7e6c889",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -209,9 +209,13 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "010292c0dd8d349f",
+  "active": "0bb20380c7e6c889",
   "lastOpenFiles": [
+    "Bookmap Task.md",
     "Tech Stach Java Cpp.md",
+    "attachments/Bookmap Task-2.png",
+    "attachments/Bookmap Task-1.png",
+    "attachments/Bookmap Task.png",
     "125. Valid Palindrome.md",
     "121. Best Time to Buy and Sell Stock.md",
     "21. Merge Two Sorted Lists.md",
@@ -236,8 +240,6 @@
     "Commit Push.md",
     "Conditional Sentences.md",
     "Contribution Graph.md",
-    "C++ Standards.md",
-    "Bus.md",
     "pdf/deutsch/Basic German.pdf",
     "attachments/ALU.png",
     "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
@@ -245,9 +247,6 @@
     "attachments/Von Neumann CPU.png",
     "attachments/Bitwise Operations-9.png",
     "attachments/Bitwise Operations-8.png",
-    "attachments/Bitwise Operations-7.png",
-    "attachments/Bitwise Operations-6.png",
-    "attachments/Bitwise Operations-5.png",
     "media",
     "attachments/Bash Scripts/Pull PC.bat",
     "attachments/Bash Scripts/Pull Thinkpad.bat",
