@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "Hacken Application",
+      "path": "Hacken Application.md"
+    },
+    {
       "basename": "Bookmap Task",
       "path": "Bookmap Task.md"
     },
@@ -195,10 +199,6 @@
     {
       "basename": "The Past Perfect Tense (das Plusquamperfekt)",
       "path": "The Past Perfect Tense (das Plusquamperfekt).md"
-    },
-    {
-      "basename": "_Dataviewer",
-      "path": "_Dataviewer.md"
     }
   ],
   "omittedPaths": [],
