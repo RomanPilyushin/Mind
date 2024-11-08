@@ -1,6 +1,14 @@
 {
   "recentFiles": [
     {
+      "basename": "Commit Push",
+      "path": "Commit Push.md"
+    },
+    {
+      "basename": "Privatbank Application",
+      "path": "Privatbank Application.md"
+    },
+    {
       "basename": "Hacken Application",
       "path": "Hacken Application.md"
     },
@@ -91,10 +99,6 @@
     {
       "basename": "Diffuse Mode",
       "path": "Diffuse Mode.md"
-    },
-    {
-      "basename": "Commit Push",
-      "path": "Commit Push.md"
     },
     {
       "basename": "Conditional Sentences",
@@ -195,10 +199,6 @@
     {
       "basename": "The Future Tense (das Futur)",
       "path": "The Future Tense (das Futur).md"
-    },
-    {
-      "basename": "The Past Perfect Tense (das Plusquamperfekt)",
-      "path": "The Past Perfect Tense (das Plusquamperfekt).md"
     }
   ],
   "omittedPaths": [],
