@@ -5,6 +5,14 @@
       "path": "Commit Push.md"
     },
     {
+      "basename": "SOLID",
+      "path": "SOLID.md"
+    },
+    {
+      "basename": "Design Patterns",
+      "path": "Design Patterns.md"
+    },
+    {
       "basename": "Privatbank Application",
       "path": "Privatbank Application.md"
     },
@@ -191,14 +199,6 @@
     {
       "basename": "The Past Simple or Imperfect Tense (das Präteritum)",
       "path": "The Past Simple or Imperfect Tense (das Präteritum).md"
-    },
-    {
-      "basename": "The Future Perfect Tense (das Futur II)",
-      "path": "The Future Perfect Tense (das Futur II).md"
-    },
-    {
-      "basename": "The Future Tense (das Futur)",
-      "path": "The Future Tense (das Futur).md"
     }
   ],
   "omittedPaths": [],
