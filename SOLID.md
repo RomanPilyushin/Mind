@@ -1,8 +1,17 @@
+---
+tags:
+  - solid
+  - oop
+  - programming
+link: 
+aliases:
+---
 
 ## SRP
 
+Only one reason to change state
+One module - one purpose
 Class Player 
-Only one for change state
 Use MoveController
 
 ## OCP
@@ -24,7 +33,6 @@ Use interface IUsable
 Dont use return Null
 
 ## DIP
-
 
 Use Abstract classes
 Use abstract Car, not Ford in Factory

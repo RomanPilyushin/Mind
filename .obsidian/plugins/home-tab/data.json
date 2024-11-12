@@ -25,23 +25,19 @@
   "recentFilesStore": [
     {
       "filepath": "Commit Push.md",
-      "timestamp": 1731241708217
+      "timestamp": 1731417185359
+    },
+    {
+      "filepath": "OOP.md",
+      "timestamp": 1731417162511
     },
     {
       "filepath": "SOLID.md",
-      "timestamp": 1731241695892
+      "timestamp": 1731417133938
     },
     {
       "filepath": "Design Patterns.md",
-      "timestamp": 1731241694055
-    },
-    {
-      "filepath": "Privatbank Application.md",
-      "timestamp": 1731085124597
-    },
-    {
-      "filepath": "Hacken Application.md",
-      "timestamp": 1731085124348
+      "timestamp": 1731417103760
     }
   ],
   "bookmarkedFileStore": [],

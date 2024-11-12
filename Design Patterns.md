@@ -1,16 +1,26 @@
+---
+tags:
+  - programming
+  - oop
+  - patterns
+  - design-patterns
+link: 
+aliases:
+---
 
 ## Creational
 
+- **Use Cases**: When the precise nature of object creation needs control or is complex.
 ### Factory Method
 
-Абстрактная команда, имеет разную реализацую у разных наследников
+Абстрактная команда, которая имеет разную реализацую у разных наследников
 
 Abstract class Creator
 Abstract class has abstract method CreateShape()
 
 Realisation
-CreateCirle
-CreateSquare
+Class CreatorCirle creates CreateShape() -> Cirle
+Class CreatorSquare creates CreateShape() -> Square
 
 Different master of sword
 We choose master, not sword
@@ -46,6 +56,8 @@ Only one instance
 Call from any part of the program
 
 ## Structural
+
+- **Use Cases**: When there’s a need to structure complex relationships between objects or manage dependencies.
 ### Decorator (Wrapper)
 
 Add new function using wrapping
@@ -53,7 +65,7 @@ Add new function using wrapping
 Interface Car(int getSpeed)
 
 class SimpleCar implement Car
-class SportCar implement Car + provide private Car car
+class SportCar implement Car + inject the wrapped car
 
 ### Facade
 
@@ -70,10 +82,18 @@ Level of access
 Transform one interface to another that suite to client
 ## Behavioral
 
+- **Use Cases**: When objects need to communicate or the logic needs separation from the calling code.
 ### Observer
 
 Notify Subs about changes
 Use Subscription model
+
+HealthBar (SRP) changes health, not Player
+Player doest care who subscribes
+
+All classes ISubject or IObserver
+Player implements ISubject (Attach calls Observer, Detach, Notify triggers (for each calls) all Observers)
+HealthBar implements IObserver (void HealthChanged)
 
 ### Strategy
 

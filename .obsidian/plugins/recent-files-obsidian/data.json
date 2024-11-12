@@ -5,6 +5,10 @@
       "path": "Commit Push.md"
     },
     {
+      "basename": "OOP",
+      "path": "OOP.md"
+    },
+    {
       "basename": "SOLID",
       "path": "SOLID.md"
     },
@@ -195,10 +199,6 @@
     {
       "basename": "The Present Simple (das Präsens)",
       "path": "The Present Simple (das Präsens).md"
-    },
-    {
-      "basename": "The Past Simple or Imperfect Tense (das Präteritum)",
-      "path": "The Past Simple or Imperfect Tense (das Präteritum).md"
     }
   ],
   "omittedPaths": [],
