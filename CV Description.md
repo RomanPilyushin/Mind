@@ -1,3 +1,12 @@
+---
+tags:
+  - cv
+  - programming
+  - java
+  - cpp
+link: 
+aliases:
+---
 
 ### **Roman**
 

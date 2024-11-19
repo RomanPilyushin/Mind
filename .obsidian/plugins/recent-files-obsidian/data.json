@@ -1,6 +1,14 @@
 {
   "recentFiles": [
     {
+      "basename": "CV Description",
+      "path": "CV Description.md"
+    },
+    {
+      "basename": "CPP Hobby Projects",
+      "path": "CPP Hobby Projects.md"
+    },
+    {
       "basename": "Competitive Programmer’s Handbook",
       "path": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
     },
@@ -51,10 +59,6 @@
     {
       "basename": "Stolyarov-2",
       "path": "pdf/computer science/Stolyarov-2.pdf"
-    },
-    {
-      "basename": "Untitled",
-      "path": "Untitled.md"
     },
     {
       "basename": "High-Frequency Trading",
@@ -195,10 +199,6 @@
     {
       "basename": "Subsets",
       "path": "Subsets.md"
-    },
-    {
-      "basename": "Basic German",
-      "path": "pdf/deutsch/Basic German.pdf"
     }
   ],
   "omittedPaths": [],
