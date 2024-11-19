@@ -24,16 +24,24 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "pdf/computer science/Stolyarov-2.pdf",
-      "timestamp": 1732016850244
+      "filepath": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf",
+      "timestamp": 1732017114379
     },
     {
-      "filepath": "Untitled.md",
-      "timestamp": 1732016833115
+      "filepath": "pdf/statistics/Art of Statistics.pdf",
+      "timestamp": 1732017068888
     },
     {
-      "filepath": "pdf/hft/High-Frequency Trading.pdf",
-      "timestamp": 1731935905737
+      "filepath": "pdf/statistics/Naked Statistics.pdf",
+      "timestamp": 1732017046045
+    },
+    {
+      "filepath": "pdf/cpp/Effective Modern C++ 11 and 14.pdf",
+      "timestamp": 1732017030185
+    },
+    {
+      "filepath": "pdf/cpp/Real-Time C++.pdf",
+      "timestamp": 1732017029668
     }
   ],
   "bookmarkedFileStore": [],

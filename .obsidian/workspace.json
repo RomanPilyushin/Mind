@@ -4,11 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "c2495a235b33d68b",
+        "id": "90a26d0a304e4f25",
         "type": "tabs",
         "children": [
           {
-            "id": "87aab10c80641a9e",
+            "id": "93c60b1535f96081",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Competitive Programmer’s Handbook"
+            }
+          },
+          {
+            "id": "1f057d1114ee9cd7",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -17,7 +29,8 @@
               "title": "Home tab"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -353,19 +366,22 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "87aab10c80641a9e",
+  "active": "1f057d1114ee9cd7",
   "lastOpenFiles": [
-    "pdf/computer science/Stolyarov-2.pdf",
-    "Untitled.md",
-    "pdf/computer science/Stolyarov-3.pdf",
-    "pdf/computer science/Stolyarov-1.pdf",
-    "pdf/computer science/Stolyarov-4.pdf",
-    "pdf/hft/High-Frequency Trading.pdf",
-    "SOLID.md",
-    "OOP.md",
+    "pdf/competitive programming/Competitive Programmer’s Handbook.pdf",
+    "pdf/statistics/Art of Statistics.pdf",
+    "pdf/statistics/Naked Statistics.pdf",
+    "pdf/cpp/Effective Modern C++ 11 and 14.pdf",
+    "pdf/cpp/Real-Time C++.pdf",
+    "pdf/cpp/Cpp Sotfware Design.pdf",
+    "pdf/cpp/Cpp Concurrency In Action.pdf",
     "pdf/competitive programming/USA Comp Olympiad.pdf",
     "pdf/competitive programming/Principles of Algorithmic Problem Solving.pdf",
-    "pdf/competitive programming/Competitive Programmer’s Handbook.pdf",
+    "pdf/computer science/Computer Systems.pdf",
+    "pdf/computer science/TCP IP.pdf",
+    "Untitled.md",
+    "SOLID.md",
+    "OOP.md",
     "Design Patterns.md",
     "Commit Push.md",
     "Privatbank Application.md",
@@ -392,13 +408,11 @@
     "HTTP(S) Hypertext Transfer Protocol (Secure).md",
     "MQTT (Message Queuing Telemetry Transport).md",
     "std thread.md",
-    "pdf/deutsch/Basic German.pdf",
     "attachments/ALU.png",
     "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
     "attachments/Harvard CPU.png",
     "attachments/Von Neumann CPU.png",
     "attachments/Bitwise Operations-9.png",
-    "attachments/Bitwise Operations-8.png",
-    "media"
+    "attachments/Bitwise Operations-8.png"
   ]
 }

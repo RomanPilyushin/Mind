@@ -1,6 +1,54 @@
 {
   "recentFiles": [
     {
+      "basename": "Competitive Programmer’s Handbook",
+      "path": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
+    },
+    {
+      "basename": "Art of Statistics",
+      "path": "pdf/statistics/Art of Statistics.pdf"
+    },
+    {
+      "basename": "Naked Statistics",
+      "path": "pdf/statistics/Naked Statistics.pdf"
+    },
+    {
+      "basename": "Effective Modern C++ 11 and 14",
+      "path": "pdf/cpp/Effective Modern C++ 11 and 14.pdf"
+    },
+    {
+      "basename": "Real-Time C++",
+      "path": "pdf/cpp/Real-Time C++.pdf"
+    },
+    {
+      "basename": "Cpp Sotfware Design",
+      "path": "pdf/cpp/Cpp Sotfware Design.pdf"
+    },
+    {
+      "basename": "Cpp Concurrency In Action",
+      "path": "pdf/cpp/Cpp Concurrency In Action.pdf"
+    },
+    {
+      "basename": "USA Comp Olympiad",
+      "path": "pdf/competitive programming/USA Comp Olympiad.pdf"
+    },
+    {
+      "basename": "Principles of Algorithmic Problem Solving",
+      "path": "pdf/competitive programming/Principles of Algorithmic Problem Solving.pdf"
+    },
+    {
+      "basename": "Computer Systems",
+      "path": "pdf/computer science/Computer Systems.pdf"
+    },
+    {
+      "basename": "TCP IP",
+      "path": "pdf/computer science/TCP IP.pdf"
+    },
+    {
+      "basename": "Operating Systems",
+      "path": "pdf/computer science/Operating Systems.pdf"
+    },
+    {
       "basename": "Stolyarov-2",
       "path": "pdf/computer science/Stolyarov-2.pdf"
     },
@@ -19,18 +67,6 @@
     {
       "basename": "OOP",
       "path": "OOP.md"
-    },
-    {
-      "basename": "USA Comp Olympiad",
-      "path": "pdf/competitive programming/USA Comp Olympiad.pdf"
-    },
-    {
-      "basename": "Principles of Algorithmic Problem Solving",
-      "path": "pdf/competitive programming/Principles of Algorithmic Problem Solving.pdf"
-    },
-    {
-      "basename": "Competitive Programmer’s Handbook",
-      "path": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
     },
     {
       "basename": "Design Patterns",
@@ -163,42 +199,6 @@
     {
       "basename": "Basic German",
       "path": "pdf/deutsch/Basic German.pdf"
-    },
-    {
-      "basename": "gRPC in C++",
-      "path": "gRPC in C++.md"
-    },
-    {
-      "basename": "Linking and Compiling in C++",
-      "path": "Linking and Compiling in C++.md"
-    },
-    {
-      "basename": "Rendere a CV Resume using LaTex in WSL",
-      "path": "Rendere a CV Resume using LaTex in WSL.md"
-    },
-    {
-      "basename": "White PC Build",
-      "path": "White PC Build.md"
-    },
-    {
-      "basename": "CPU Scheduling",
-      "path": "CPU Scheduling.md"
-    },
-    {
-      "basename": "Fetch-Execute Cycle (FEC)",
-      "path": "Fetch-Execute Cycle (FEC).md"
-    },
-    {
-      "basename": "Replicate FOR using JUMP",
-      "path": "Replicate FOR using JUMP.md"
-    },
-    {
-      "basename": "Von Neumann CPU Architecture",
-      "path": "Von Neumann CPU Architecture.md"
-    },
-    {
-      "basename": "Harvard CPU Architecture",
-      "path": "Harvard CPU Architecture.md"
     }
   ],
   "omittedPaths": [],
