@@ -1,20 +1,44 @@
 {
   "recentFiles": [
     {
-      "basename": "Commit Push",
-      "path": "Commit Push.md"
+      "basename": "Stolyarov-2",
+      "path": "pdf/computer science/Stolyarov-2.pdf"
     },
     {
-      "basename": "OOP",
-      "path": "OOP.md"
+      "basename": "Untitled",
+      "path": "Untitled.md"
+    },
+    {
+      "basename": "High-Frequency Trading",
+      "path": "pdf/hft/High-Frequency Trading.pdf"
     },
     {
       "basename": "SOLID",
       "path": "SOLID.md"
     },
     {
+      "basename": "OOP",
+      "path": "OOP.md"
+    },
+    {
+      "basename": "USA Comp Olympiad",
+      "path": "pdf/competitive programming/USA Comp Olympiad.pdf"
+    },
+    {
+      "basename": "Principles of Algorithmic Problem Solving",
+      "path": "pdf/competitive programming/Principles of Algorithmic Problem Solving.pdf"
+    },
+    {
+      "basename": "Competitive Programmer’s Handbook",
+      "path": "pdf/competitive programming/Competitive Programmer’s Handbook.pdf"
+    },
+    {
       "basename": "Design Patterns",
       "path": "Design Patterns.md"
+    },
+    {
+      "basename": "Commit Push",
+      "path": "Commit Push.md"
     },
     {
       "basename": "Privatbank Application",
@@ -175,30 +199,6 @@
     {
       "basename": "Harvard CPU Architecture",
       "path": "Harvard CPU Architecture.md"
-    },
-    {
-      "basename": "Components of CPU (Central Processing Unit)",
-      "path": "Components of CPU (Central Processing Unit).md"
-    },
-    {
-      "basename": "Arithmetic Logic Unit (ALU)",
-      "path": "Arithmetic Logic Unit (ALU).md"
-    },
-    {
-      "basename": "ALU",
-      "path": "attachments/ALU.png"
-    },
-    {
-      "basename": "20. Valid Parentheses",
-      "path": "20. Valid Parentheses.md"
-    },
-    {
-      "basename": "The Present Perfect Tense (das Perfekt)",
-      "path": "The Present Perfect Tense (das Perfekt).md"
-    },
-    {
-      "basename": "The Present Simple (das Präsens)",
-      "path": "The Present Simple (das Präsens).md"
     }
   ],
   "omittedPaths": [],

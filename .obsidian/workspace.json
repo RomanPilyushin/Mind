@@ -8,67 +8,16 @@
         "type": "tabs",
         "children": [
           {
-            "id": "631e1c15620c1feb",
+            "id": "87aab10c80641a9e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OOP.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "OOP"
-            }
-          },
-          {
-            "id": "82384fe6b0b944dc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SOLID.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "SOLID"
-            }
-          },
-          {
-            "id": "281ddf4e655f5904",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Design Patterns.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Design Patterns"
-            }
-          },
-          {
-            "id": "7fac36f818b0b9ba",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Commit Push.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Commit Push"
+              "type": "home-tab-view",
+              "state": {},
+              "icon": "search",
+              "title": "Home tab"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -130,13 +79,11 @@
               "title": "Recent Files"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "d55f1d0d7122810b",
@@ -306,6 +253,26 @@
             "id": "05d96ea5bbe11629",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "40f711c078993eb6",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "90d1a8572ed43758",
+            "type": "leaf",
+            "state": {
               "type": "graph-analysis",
               "state": {},
               "icon": "GA-ICON",
@@ -313,7 +280,7 @@
             }
           }
         ],
-        "currentTab": 15
+        "currentTab": 17
       },
       {
         "id": "c0eae2b40b9c8d42",
@@ -386,10 +353,19 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "7fac36f818b0b9ba",
+  "active": "87aab10c80641a9e",
   "lastOpenFiles": [
-    "OOP.md",
+    "pdf/computer science/Stolyarov-2.pdf",
+    "Untitled.md",
+    "pdf/computer science/Stolyarov-3.pdf",
+    "pdf/computer science/Stolyarov-1.pdf",
+    "pdf/computer science/Stolyarov-4.pdf",
+    "pdf/hft/High-Frequency Trading.pdf",
     "SOLID.md",
+    "OOP.md",
+    "pdf/competitive programming/USA Comp Olympiad.pdf",
+    "pdf/competitive programming/Principles of Algorithmic Problem Solving.pdf",
+    "pdf/competitive programming/Competitive Programmer’s Handbook.pdf",
     "Design Patterns.md",
     "Commit Push.md",
     "Privatbank Application.md",
@@ -416,8 +392,6 @@
     "HTTP(S) Hypertext Transfer Protocol (Secure).md",
     "MQTT (Message Queuing Telemetry Transport).md",
     "std thread.md",
-    "std async.md",
-    "Fast and Slow pointers.md",
     "pdf/deutsch/Basic German.pdf",
     "attachments/ALU.png",
     "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
@@ -425,14 +399,6 @@
     "attachments/Von Neumann CPU.png",
     "attachments/Bitwise Operations-9.png",
     "attachments/Bitwise Operations-8.png",
-    "media",
-    "attachments/Bash Scripts/Pull PC.bat",
-    "attachments/Bash Scripts/Pull Thinkpad.bat",
-    "attachments/Bash Scripts/Commit and Push PC.bat",
-    "attachments/Bash Scripts/Commit and Push ThinkPad.bat",
-    "attachments/Bash Scripts",
-    "attachments/Pull Thinkpad.bat",
-    "attachments/Pull PC.bat",
-    "attachments/Commit and Push ThinkPad.bat"
+    "media"
   ]
 }
