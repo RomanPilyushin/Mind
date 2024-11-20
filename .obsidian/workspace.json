@@ -38,7 +38,7 @@
             }
           },
           {
-            "id": "29e31003c30fa96c",
+            "id": "8abeb2afdcb38de3",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -110,13 +110,11 @@
               "title": "Recent Files"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "d55f1d0d7122810b",
@@ -316,6 +314,16 @@
             "id": "545cbfdca67c324b",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "7b9ab25b4b113d1c",
+            "type": "leaf",
+            "state": {
               "type": "graph-analysis",
               "state": {},
               "icon": "GA-ICON",
@@ -323,7 +331,7 @@
             }
           }
         ],
-        "currentTab": 18
+        "currentTab": 19
       },
       {
         "id": "c0eae2b40b9c8d42",
@@ -396,10 +404,12 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "29e31003c30fa96c",
+  "active": "8abeb2afdcb38de3",
   "lastOpenFiles": [
-    "CV Description.md",
     "CPP Hobby Projects.md",
+    "pdf/graphics/Real-Time Rendering.pdf",
+    "pdf/graphics",
+    "CV Description.md",
     "pdf/competitive programming/Competitive Programmer’s Handbook.pdf",
     "pdf/statistics/Art of Statistics.pdf",
     "pdf/statistics/Naked Statistics.pdf",
@@ -408,8 +418,6 @@
     "pdf/cpp/Cpp Sotfware Design.pdf",
     "pdf/cpp/Cpp Concurrency In Action.pdf",
     "pdf/competitive programming/USA Comp Olympiad.pdf",
-    "pdf/competitive programming/Principles of Algorithmic Problem Solving.pdf",
-    "pdf/computer science/Computer Systems.pdf",
     "SOLID.md",
     "OOP.md",
     "Design Patterns.md",
@@ -437,7 +445,6 @@
     "UDP (User Datagram Protocol).md",
     "HTTP(S) Hypertext Transfer Protocol (Secure).md",
     "MQTT (Message Queuing Telemetry Transport).md",
-    "std thread.md",
     "attachments/ALU.png",
     "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
     "attachments/Harvard CPU.png",
