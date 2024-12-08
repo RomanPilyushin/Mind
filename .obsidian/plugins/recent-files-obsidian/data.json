@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "Commit Push",
+      "path": "Commit Push.md"
+    },
+    {
       "basename": "From the Transistor to the Web Browser",
       "path": "From the Transistor to the Web Browser.md"
     },
@@ -79,10 +83,6 @@
     {
       "basename": "Design Patterns",
       "path": "Design Patterns.md"
-    },
-    {
-      "basename": "Commit Push",
-      "path": "Commit Push.md"
     },
     {
       "basename": "Privatbank Application",

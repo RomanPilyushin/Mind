@@ -1,9 +1,0 @@
-{
-	"nodes":[
-		{"id":"402433ddc9951bfd","x":-580,"y":-480,"width":400,"height":400,"type":"file","file":"create a link.md"},
-		{"id":"6ba6f0c5f1a461ca","x":80,"y":-460,"width":400,"height":408,"type":"file","file":"Grandmaster level in StarCraft II using multi-agent reinforcement learning-O Vinyals 2019.md"}
-	],
-	"edges":[
-		{"id":"bacd672fa9d16716","fromNode":"402433ddc9951bfd","fromSide":"right","toNode":"6ba6f0c5f1a461ca","toSide":"left"}
-	]
-}

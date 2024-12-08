@@ -1,6 +1,0 @@
----
-tags: 
-data: 
-time: 
-id:
----

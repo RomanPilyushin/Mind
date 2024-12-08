@@ -1,4 +1,0 @@
-```toggl
-list week
-```
-
