@@ -8,37 +8,22 @@
         "type": "tabs",
         "children": [
           {
-            "id": "1f057d1114ee9cd7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CV Description.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CV Description"
-            }
-          },
-          {
-            "id": "68f8449e4d5d3e08",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CPP Hobby Projects.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CPP Hobby Projects"
-            }
-          },
-          {
             "id": "8abeb2afdcb38de3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "From the Transistor to the Web Browser.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "From the Transistor to the Web Browser"
+            }
+          },
+          {
+            "id": "17d03f71335c542e",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -48,7 +33,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -110,11 +95,13 @@
               "title": "Recent Files"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "d55f1d0d7122810b",
@@ -324,6 +311,86 @@
             "id": "7b9ab25b4b113d1c",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "88970a94a922d5e9",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "c0c5d1edbf9fbeda",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "679f628bfdbc6b6c",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "74c23ed6389a890c",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "95becd5dc7df1d17",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "6ea5583479a54376",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "7eab808c64873ac3",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "72bdcc5a850766cb",
+            "type": "leaf",
+            "state": {
               "type": "graph-analysis",
               "state": {},
               "icon": "GA-ICON",
@@ -331,7 +398,7 @@
             }
           }
         ],
-        "currentTab": 19
+        "currentTab": 27
       },
       {
         "id": "c0eae2b40b9c8d42",
@@ -404,12 +471,15 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "8abeb2afdcb38de3",
+  "active": "17d03f71335c542e",
   "lastOpenFiles": [
+    "From the Transistor to the Web Browser.md",
     "CPP Hobby Projects.md",
+    "CV Description.md",
+    "un.md",
+    "Media Note - The most dangerous place on Earth_.md",
     "pdf/graphics/Real-Time Rendering.pdf",
     "pdf/graphics",
-    "CV Description.md",
     "pdf/competitive programming/Competitive Programmer’s Handbook.pdf",
     "pdf/statistics/Art of Statistics.pdf",
     "pdf/statistics/Naked Statistics.pdf",
@@ -443,8 +513,6 @@
     "NETCONF.md",
     "TCP IP (Transmission Control Protocol Internet Protocol).md",
     "UDP (User Datagram Protocol).md",
-    "HTTP(S) Hypertext Transfer Protocol (Secure).md",
-    "MQTT (Message Queuing Telemetry Transport).md",
     "attachments/ALU.png",
     "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
     "attachments/Harvard CPU.png",

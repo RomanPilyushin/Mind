@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "From the Transistor to the Web Browser",
+      "path": "From the Transistor to the Web Browser.md"
+    },
+    {
       "basename": "CPP Hobby Projects",
       "path": "CPP Hobby Projects.md"
     },
@@ -191,14 +195,6 @@
     {
       "basename": "Bus",
       "path": "Bus.md"
-    },
-    {
-      "basename": "Pointers - Cpp",
-      "path": "Pointers - Cpp.md"
-    },
-    {
-      "basename": "Subsets",
-      "path": "Subsets.md"
     }
   ],
   "omittedPaths": [],
