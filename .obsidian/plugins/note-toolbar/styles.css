@@ -1375,6 +1375,13 @@ body {
     }
     /* width: var(--var-max-width);
     max-width: var(--var-max-width); */
+
+    /* width fix for Minimal theme in props position #204 */
+    &[data-csstheme="Minimal"][data-tbar-position="props"] {
+        max-width: var(--max-width);
+        width: var(--line-width);
+        margin-inline: var(--content-margin)!important;
+    }
 }
 
 .cg-note-toolbar-position-top,
@@ -1538,7 +1545,11 @@ body {
 
 .note-toolbar-setting-item-preview-code {
     font-family: var(--font-monospace);
-    font-size: var(--font-ui-small);
+    white-space: normal !important;
+}
+
+.note-toolbar-setting-item-preview .note-toolbar-setting-item-preview-code {
+    font-size: var(--font-ui-small); 
 }
 
 .note-toolbar-setting-item-preview {

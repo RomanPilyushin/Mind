@@ -24,12 +24,16 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "pdf/computer vision/Computer Vision Algorithms and Applications 2nd - Szeliski.pdf",
+      "timestamp": 1735161816314
+    },
+    {
       "filepath": "Commit Push.md",
-      "timestamp": 1733671641100
+      "timestamp": 1735161815390
     },
     {
       "filepath": "From the Transistor to the Web Browser.md",
-      "timestamp": 1733671482878
+      "timestamp": 1735161814228
     }
   ],
   "bookmarkedFileStore": [],

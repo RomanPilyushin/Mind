@@ -36,9 +36,31 @@
               "icon": "lucide-file",
               "title": "Commit Push"
             }
+          },
+          {
+            "id": "ce3e33a70be5582d",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "pdf/computer vision/Computer Vision Algorithms and Applications 2nd - Szeliski.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Computer Vision Algorithms and Applications 2nd - Szeliski"
+            }
+          },
+          {
+            "id": "1c83cd81459e6986",
+            "type": "leaf",
+            "state": {
+              "type": "home-tab-view",
+              "state": {},
+              "icon": "search",
+              "title": "Home tab"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -100,8 +122,7 @@
               "title": "Recent Files"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -165,13 +186,34 @@
             "id": "308b6b0a123df22b",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "d4424038cc55f23f",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "9126ac31bea4a525",
+            "type": "leaf",
+            "state": {
               "type": "graph-analysis",
               "state": {},
               "icon": "GA-ICON",
               "title": "Graph Analysis"
             }
           }
-        ]
+        ],
+        "currentTab": 6
       },
       {
         "id": "c0eae2b40b9c8d42",
@@ -216,7 +258,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 391.5
+    "width": 391.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -243,10 +286,12 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "dcf1cc8e55dd6fa5",
+  "active": "1c83cd81459e6986",
   "lastOpenFiles": [
+    "pdf/computer vision/Computer Vision Algorithms and Applications 2nd - Szeliski.pdf",
     "Commit Push.md",
     "From the Transistor to the Web Browser.md",
+    "pdf/computer vision",
     "CPP Hobby Projects.md",
     "CV Description.md",
     "un.md",
@@ -259,8 +304,6 @@
     "pdf/cpp/Effective Modern C++ 11 and 14.pdf",
     "pdf/cpp/Real-Time C++.pdf",
     "pdf/cpp/Cpp Sotfware Design.pdf",
-    "pdf/cpp/Cpp Concurrency In Action.pdf",
-    "pdf/competitive programming/USA Comp Olympiad.pdf",
     "SOLID.md",
     "OOP.md",
     "Design Patterns.md",
@@ -284,7 +327,6 @@
     "I2C (Inter-Integrated Circuit).md",
     "NETCONF.md",
     "TCP IP (Transmission Control Protocol Internet Protocol).md",
-    "UDP (User Datagram Protocol).md",
     "attachments/ALU.png",
     "attachments/Von Neumann Fetch-Execute Cycle (FEC).png",
     "attachments/Harvard CPU.png",
