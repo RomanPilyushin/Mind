@@ -53,7 +53,7 @@
             }
           },
           {
-            "id": "109d7607034aa416",
+            "id": "92e3077177dd6988",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -125,7 +125,8 @@
               "title": "Recent Files"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -146,9 +147,11 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {},
+              "state": {
+                "file": "Computer Vision.md"
+              },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of Computer Vision"
             }
           },
           {
@@ -188,13 +191,24 @@
             "id": "71c7ebc7f1e4e57c",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "0d8e3d382a4b6243",
+            "type": "leaf",
+            "state": {
               "type": "graph-analysis",
               "state": {},
               "icon": "GA-ICON",
               "title": "Graph Analysis"
             }
           }
-        ]
+        ],
+        "currentTab": 5
       },
       {
         "id": "c0eae2b40b9c8d42",
@@ -207,6 +221,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Computer Vision.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -216,7 +231,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Computer Vision"
             }
           },
           {
@@ -225,11 +240,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Computer Vision.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from Computer Vision"
             }
           }
         ]
@@ -264,19 +280,19 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "109d7607034aa416",
+  "active": "92e3077177dd6988",
   "lastOpenFiles": [
     "Computer Vision.md",
-    "attachments/Computer Vision-74.png",
-    "attachments/Computer Vision-73.png",
-    "attachments/Computer Vision-72.png",
-    "attachments/Computer Vision-71.png",
-    "attachments/Computer Vision-70.png",
-    "attachments/Computer Vision-69.png",
-    "attachments/Computer Vision-68.png",
-    "attachments/Computer Vision-67.png",
-    "attachments/Computer Vision-66.png",
-    "attachments/Computer Vision-65.png",
+    "attachments/Computer Vision-85.png",
+    "attachments/Computer Vision-84.png",
+    "attachments/Computer Vision-83.png",
+    "attachments/Computer Vision-82.png",
+    "attachments/Computer Vision-81.png",
+    "attachments/Computer Vision-80.png",
+    "attachments/Computer Vision-79.png",
+    "attachments/Computer Vision-78.png",
+    "attachments/Computer Vision-77.png",
+    "attachments/Computer Vision-76.png",
     "Reinforcement Learning.md",
     "_Dataviewer.md",
     "Deep Reinforcement Learning.md",

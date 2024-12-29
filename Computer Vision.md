@@ -204,6 +204,35 @@ History of Computer Vision[^2]
 
 ![[Computer Vision-74.png]]
 
+### Recognition
+
+![[Computer Vision-75.png]]
+
+![[Computer Vision-76.png]]
+
+![[Computer Vision-77.png]]
+
+![[Computer Vision-78.png]]
+
+![[Computer Vision-79.png]]
+
+![[Computer Vision-80.png]]
+
+![[Computer Vision-81.png]]
+
+![[Computer Vision-82.png]]
+
+![[Computer Vision-83.png]]
+
+### SLAM
+
+![[Computer Vision-84.png]]
+
+
+![[Computer Vision-85.png]]
+
+
+
 
 
 
