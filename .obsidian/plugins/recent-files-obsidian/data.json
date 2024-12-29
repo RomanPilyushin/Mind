@@ -1,6 +1,30 @@
 {
   "recentFiles": [
     {
+      "basename": "Computer Vision",
+      "path": "Computer Vision.md"
+    },
+    {
+      "basename": "Reinforcement Learning",
+      "path": "Reinforcement Learning.md"
+    },
+    {
+      "basename": "_Dataviewer",
+      "path": "_Dataviewer.md"
+    },
+    {
+      "basename": "Deep Reinforcement Learning",
+      "path": "Deep Reinforcement Learning.md"
+    },
+    {
+      "basename": "Conceptual Note",
+      "path": "templates/Conceptual Note.md"
+    },
+    {
+      "basename": "Insertion Sort",
+      "path": "Insertion Sort.md"
+    },
+    {
       "basename": "Computer Vision Algorithms and Applications 2nd - Szeliski",
       "path": "pdf/computer vision/Computer Vision Algorithms and Applications 2nd - Szeliski.pdf"
     },
@@ -175,30 +199,6 @@
     {
       "basename": "Fast and Slow pointers",
       "path": "Fast and Slow pointers.md"
-    },
-    {
-      "basename": "Einstellung Effect",
-      "path": "Einstellung Effect.md"
-    },
-    {
-      "basename": "Diffuse Mode",
-      "path": "Diffuse Mode.md"
-    },
-    {
-      "basename": "Conditional Sentences",
-      "path": "Conditional Sentences.md"
-    },
-    {
-      "basename": "Contribution Graph",
-      "path": "Contribution Graph.md"
-    },
-    {
-      "basename": "C++ Standards",
-      "path": "C++ Standards.md"
-    },
-    {
-      "basename": "Bus",
-      "path": "Bus.md"
     }
   ],
   "omittedPaths": [],

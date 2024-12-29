@@ -24,16 +24,24 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "pdf/computer vision/Computer Vision Algorithms and Applications 2nd - Szeliski.pdf",
-      "timestamp": 1735161816314
+      "filepath": "Computer Vision.md",
+      "timestamp": 1735493533203
     },
     {
-      "filepath": "Commit Push.md",
-      "timestamp": 1735161815390
+      "filepath": "Reinforcement Learning.md",
+      "timestamp": 1735493527562
     },
     {
-      "filepath": "From the Transistor to the Web Browser.md",
-      "timestamp": 1735161814228
+      "filepath": "_Dataviewer.md",
+      "timestamp": 1735493526965
+    },
+    {
+      "filepath": "Deep Reinforcement Learning.md",
+      "timestamp": 1735492884040
+    },
+    {
+      "filepath": "templates/Conceptual Note.md",
+      "timestamp": 1735487701122
     }
   ],
   "bookmarkedFileStore": [],

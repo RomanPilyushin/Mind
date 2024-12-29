@@ -1,0 +1,1 @@
+{"path":"attachments/Reinforcement Learning-8.png","text":"MIT 6.S091: Introduction to Deep Reinforcement Learning (Deep RL . 0o » Optimal Policy for a Stochastic World Reward: for each step actions: UP, DOWN, LEFT, RIGHT ' ‘ = | = 1 N ? When actions are stochastic: \\ 80% move UP — ‘ 10% move LEFT Policy: Longest path. . @ - i","libVersion":"0.3.2","langs":"eng"}
