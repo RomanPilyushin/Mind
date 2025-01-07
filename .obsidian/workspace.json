@@ -53,7 +53,7 @@
             }
           },
           {
-            "id": "92e3077177dd6988",
+            "id": "3b87c473dc1bab8d",
             "type": "leaf",
             "state": {
               "type": "home-tab-view",
@@ -94,7 +94,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#cpp",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -125,13 +125,11 @@
               "title": "Recent Files"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "d55f1d0d7122810b",
@@ -201,6 +199,26 @@
             "id": "0d8e3d382a4b6243",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "642b33b0a829c64a",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "859b2ccc269250be",
+            "type": "leaf",
+            "state": {
               "type": "graph-analysis",
               "state": {},
               "icon": "GA-ICON",
@@ -208,7 +226,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 7
       },
       {
         "id": "c0eae2b40b9c8d42",
@@ -280,9 +298,12 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "92e3077177dd6988",
+  "active": "3b87c473dc1bab8d",
   "lastOpenFiles": [
     "Computer Vision.md",
+    "pdf/cpp/Daily Cpp Interview.pdf",
+    "pdf/cpp/What Every Programmer Should Know About Memory.pdf",
+    "pdf/cpp/Trading Systems Developer Interview Guide.pdf",
     "attachments/Computer Vision-85.png",
     "attachments/Computer Vision-84.png",
     "attachments/Computer Vision-83.png",
@@ -311,9 +332,6 @@
     "pdf/competitive programming/Competitive Programmer’s Handbook.pdf",
     "pdf/statistics/Art of Statistics.pdf",
     "pdf/statistics/Naked Statistics.pdf",
-    "pdf/cpp/Effective Modern C++ 11 and 14.pdf",
-    "pdf/cpp/Real-Time C++.pdf",
-    "pdf/cpp/Cpp Sotfware Design.pdf",
     "SOLID.md",
     "OOP.md",
     "Design Patterns.md",
