@@ -24,8 +24,24 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "pdf/cpp/Trading Systems Developer Interview Guide.pdf",
+      "timestamp": 1737229599314
+    },
+    {
       "filepath": "Computer Vision.md",
-      "timestamp": 1736280219289
+      "timestamp": 1737229598376
+    },
+    {
+      "filepath": "Commit Push.md",
+      "timestamp": 1737229526171
+    },
+    {
+      "filepath": "Reinforcement Learning.md",
+      "timestamp": 1737229512853
+    },
+    {
+      "filepath": "Deep Reinforcement Learning.md",
+      "timestamp": 1737229444831
     }
   ],
   "bookmarkedFileStore": [],

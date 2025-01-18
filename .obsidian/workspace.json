@@ -56,6 +56,18 @@
             "id": "3b87c473dc1bab8d",
             "type": "leaf",
             "state": {
+              "type": "pdf",
+              "state": {
+                "file": "pdf/cpp/Trading Systems Developer Interview Guide.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Trading Systems Developer Interview Guide"
+            }
+          },
+          {
+            "id": "60589902251eca47",
+            "type": "leaf",
+            "state": {
               "type": "home-tab-view",
               "state": {},
               "icon": "search",
@@ -63,7 +75,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -145,11 +157,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Computer Vision.md"
-              },
+              "state": {},
               "icon": "lucide-list",
-              "title": "Outline of Computer Vision"
+              "title": "Outline"
             }
           },
           {
@@ -186,37 +196,7 @@
             }
           },
           {
-            "id": "71c7ebc7f1e4e57c",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "0d8e3d382a4b6243",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "642b33b0a829c64a",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "859b2ccc269250be",
+            "id": "ab20af2493590cee",
             "type": "leaf",
             "state": {
               "type": "graph-analysis",
@@ -225,8 +205,7 @@
               "title": "Graph Analysis"
             }
           }
-        ],
-        "currentTab": 7
+        ]
       },
       {
         "id": "c0eae2b40b9c8d42",
@@ -239,7 +218,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computer Vision.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -249,7 +227,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Computer Vision"
+              "title": "Backlinks"
             }
           },
           {
@@ -270,8 +248,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 391.5,
-    "collapsed": true
+    "width": 391.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -298,12 +275,15 @@
       "obsidian-trash-explorer:Open trash explorer": false
     }
   },
-  "active": "3b87c473dc1bab8d",
+  "active": "60589902251eca47",
   "lastOpenFiles": [
+    "pdf/cpp/Trading Systems Developer Interview Guide.pdf",
     "Computer Vision.md",
+    "Commit Push.md",
+    "Reinforcement Learning.md",
+    "Deep Reinforcement Learning.md",
     "pdf/cpp/Daily Cpp Interview.pdf",
     "pdf/cpp/What Every Programmer Should Know About Memory.pdf",
-    "pdf/cpp/Trading Systems Developer Interview Guide.pdf",
     "attachments/Computer Vision-85.png",
     "attachments/Computer Vision-84.png",
     "attachments/Computer Vision-83.png",
@@ -314,13 +294,10 @@
     "attachments/Computer Vision-78.png",
     "attachments/Computer Vision-77.png",
     "attachments/Computer Vision-76.png",
-    "Reinforcement Learning.md",
     "_Dataviewer.md",
-    "Deep Reinforcement Learning.md",
     "templates/Conceptual Note.md",
     "Insertion Sort.md",
     "pdf/computer vision/Computer Vision Algorithms and Applications 2nd - Szeliski.pdf",
-    "Commit Push.md",
     "From the Transistor to the Web Browser.md",
     "pdf/computer vision",
     "CPP Hobby Projects.md",
